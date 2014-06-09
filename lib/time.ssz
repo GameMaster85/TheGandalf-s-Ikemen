@@ -1,0 +1,13 @@
+﻿
+public uint tickCount()
+{
+  plugin uint TickCount(::) = <dll/time.dll>;
+  ret TickCount(::);
+}
+
+public long unixTime()
+{
+  plugin long UnixTime(::) = <dll/time.dll>;
+  ret UnixTime(::);
+}
+

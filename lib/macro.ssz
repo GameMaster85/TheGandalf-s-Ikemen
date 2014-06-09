@@ -1,0 +1,309 @@
+﻿
+lib s = <string.ssz>;
+lib al = <alert.ssz>;
+
+
+|RetState
+{
+  OK, ERROR, CONTINUED, END, SAVE, LOAD
+}
+
+
+public %char errormes;
+
+public &Macro
+{
+  ^char text;
+  public void init(^char txt)
+  {
+    `text = txt;
+  }
+  public |.RetState call(^char arg, ^/char name, ^char re=)
+  {:<-
+    |.RetState echo(^char arg, ^char re=)
+    {
+      re = arg;
+      ret .RetState::OK;
+    }
+    method$|.RetState(^char, ^char=) mth = echo;
+    if(!<consteval>(mth=, name)){
+      .errormes .= name;
+      .errormes .= "が見つかりません"\r\n;
+      ret .RetState::ERROR;
+    }
+    ret mth(:arg, re=:);
+  }
+  public void trace(^char cc=)
+  {
+    branch{
+    cond #cc > 0:
+      cc = cc + `text;
+    else:
+      cc = `text;
+    }
+  }
+  public bool save(^/char cc)
+  {
+    .errormes .= "セーブできません"\r\n;
+    ret false;
+  }
+  public void error(^/char cc)
+  {
+    .al.alert!`self?(.errormes);
+  }
+  public bool restart(^char cc, ^char re=)
+  {
+    `text = cc;
+    re.new(0);
+    ret true;
+  }
+  public int read(^char arg=, ^char name=)
+  {
+    %char targ .= arg;
+    index i;
+    name.new(0);
+    int nameread(^char text=, ^char name=)
+    {
+      index oi = `i;
+      loop{while; do:
+        branch{
+        cond<nl> text[`i] == '\n':
+        cond<rt> text[`i] == '\r':
+        cond<num> text[`i] == '#':
+        else:
+          break;
+        comm:
+          name = text[oi..`i];
+        diff<nl>:
+          `i++;
+          text = text[`i..-1];
+          ret 0;
+        diff<rt>:
+          `i++;
+          if(`i < #text && text[`i] == '\n') `i++;
+          text = text[`i..-1];
+          ret 0;
+        diff<num>:
+          text = text[`i..-1];
+          ret 1;
+        }
+        `i++;
+      while `i < #text:
+        name = text[oi..`i];
+      }
+      text = text[`i..-1];
+      ret 0;
+    }
+    loop{
+      i = 0;
+      index fi;
+      while;
+    do:
+      targ .= `text[i..i+fi];
+      i += fi+1;
+      if(i >= #`text){
+        targ .= '#';
+        break, while;
+      }
+      switch(`text[i]){
+      case ',':
+      case ';':
+        .s.nextLine(i=, `text);
+        break, while;
+      case '`':
+        targ.new(0);
+      case '^':
+        {
+          %char tmp;
+          arg = (tmp .= `esc(targ) .= `text[i+1..-1]);
+          `text.new(0);
+          ret 3;
+        }
+      case '!':
+        `text = `text[i+1..-1];
+        `pushCode(targ);
+        targ.new(0);
+        i = 0;
+        break, while;
+      case '~':
+        `text = targ;
+        targ.new(0);
+        i = 0;
+        break, while;
+      case '\\':
+        targ .= '#';
+      case '#':
+        i = -.s.nextLine(i=, `text) + i;
+        break, while;
+      case '{', '[':
+        {
+          bool esc = `text[i] == '[';
+          index tmp = ++i;
+          loop{
+            int nest = 1;
+            while;
+          do:
+            if(`text[i] == '#' && i+1 < #`text){
+              i++;
+              branch{
+              cond `text[i] == (esc ? '[' : '{'):
+                nest++;
+              cond `text[i] == (esc ? ']' : '}'):
+                if(--nest <= 0){
+                  i++;
+                  break, break, break, break;
+                }
+              cond `text[i] == '#':
+                break, break, do;
+              }
+            }
+            i++;
+          while i < #`text:
+            arg = `text;
+            ret -1;
+          }
+          branch{
+          cond esc:
+            targ .= `text[tmp..i-2];
+            break, break, break, while;
+          else:
+            name = `text[tmp..i-2];
+            `text = `text[i..-1];
+            arg = targ;
+            ret 2;
+          }
+        }
+      default:
+        arg = targ;
+        ret nameread(`text=, name=);
+      }
+      i++;
+    while (fi = .s.find("#", `text[i..-1])) >= 0:
+      targ .= `text[i..-1];
+      i = #`text;
+    }
+    `text = `text[i..-1];
+    arg = targ;
+    ret 0;
+  }
+  public void pushCode(^/char txt)
+  {
+    %char buf .= txt .= `text;
+    `text = buf;
+  }
+  public ^/char esc(^/char str)
+  {
+    loop{
+      index i = 0, oi = 0;
+      %char buf;
+      while;
+    do:
+      if(str[i] == '#'){
+        buf .= str[oi..i+1] .= '\\';
+        oi = i+1;
+      }
+      i++;
+    while i < #str:
+      if(#buf > 0) ret buf .= str[oi..i];
+    }
+    ret str;
+  }
+  public ^self newBlock(^char txt)
+  {
+    ^`self b.new(1);
+    b~init(txt);
+    ret b;
+  }
+  public void end()
+  {
+  }
+}
+
+public |RetState run<type_t>(type_t this=, ^char out=, bool root)
+{
+  ^char arg, re, name;
+  int readret = 0;
+  out.new(0);
+  loop{
+    |.RetState cs;
+    continue;
+  do:
+    branch{
+    cond readret == 2:
+      {
+        ^type_t r = this.newBlock(name);
+        cs = self(r<>=, re=, false);
+        r~end();
+      }
+    else:
+      cs = this.call(arg, name, re=);
+    }
+    switch(cs){
+    case .RetState::OK:
+      if(readret == 2) re = arg + re;
+    case .RetState::CONTINUED:
+      this.pushCode(re);
+      re.new(0);
+    case .RetState::END:
+      out = re;
+      ret .RetState::END;
+    case .RetState::SAVE:
+      if(readret == 2){
+        %char buf .= this.esc(arg) .= "#{" .=  re .= "#}";
+        re = buf;
+      }
+      this.trace(re=);
+      if(readret == 0) re = re + \r\n;
+      if(!root){
+        out = re;
+        ret .RetState::SAVE;
+      }
+      if(!this.save(re)){
+        out = re;
+        ret .RetState::ERROR;
+      }
+      arg = re;//参照が引数では保てないんで
+      if(!this.restart(arg, re=)) ret .RetState::ERROR;
+    case .RetState::LOAD:
+      if(!root){
+        out = re;
+        ret .RetState::LOAD;
+      }
+      out.new(0);
+      arg = re;//参照が引数では保てないんで
+      if(!this.restart(arg, re=)) ret .RetState::ERROR;
+    default:
+      branch{
+        %char buf .= this.esc(arg);
+      cond readret == 2:
+        buf .= "#{" .=  re .= "#}";
+      else:
+        buf .= '#' .= name;
+        if(readret == 0) buf .= \r\n;
+      comm:
+        re = buf;
+      }
+      this.trace(re=);
+      if(root) this.error(re);
+      out = re;
+      ret .RetState::ERROR;
+    }
+    arg = re;
+    if(readret > 0) continue;
+    out = arg;
+    arg.new(0);
+  continue:
+    if((readret = this.read(arg=, name=)) < 0){
+      if(#.errormes == 0) .errormes .= "読み取りエラー"\r\n;
+      if(root) this.error(arg);
+      ret .RetState::ERROR;
+    }
+  while #name > 0 || readret == 2:
+  }
+  if(readret == 3){
+    out = arg;
+    ret .RetState::CONTINUED;
+  }
+  ret .RetState::OK;
+}
+
