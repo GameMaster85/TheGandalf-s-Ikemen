@@ -1,0 +1,508 @@
+;Stage: "Air Force"                 -          feito por/by: DG
+;dg_mugen@yahoo.com.br
+;--------------------------------------------------------------
+
+[Info]
+name = "Air Force"
+author = "DG"
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -390
+boundright = 390
+boundhigh = -380
+boundlow = 0
+verticalfollow = .97 ;.68
+floortension = 75    ;0
+tension = 50
+
+[PlayerInfo]
+p1startx = -70
+p1starty = 0
+p1startz = 0
+p1facing = 1
+
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+leftbound = -1000
+rightbound = 1000
+topbound = 0
+botbound = 0
+
+[Scaling]
+topz = 0
+botz = 50
+topscale = 1
+botscale = 1.2
+
+[Bound]
+screenleft = 15
+screenright = 15
+
+[StageInfo]
+zoffset = 217;208
+autoturn = 1
+resetBG = 0
+
+[Shadow]
+color = 92,92,92
+yscale = .2
+reflect = 0
+
+[Music]
+bgmusic = sound/sf2guile.mp3
+bgvolume = 255
+
+[BGdef]
+spr = stages/guilestageDG.sff
+debugbg = 0
+
+
+[BG Sky]       		
+type  = normal
+spriteno = 0, 0
+start = 0, -260
+delta = 0, .63
+tile  = 1,0
+yscalestart = 100
+yscaledelta = 0
+velocity = .1
+
+[BG Floor Back]
+type = normal
+spriteno = 10, 1
+start = 0, 76;99
+delta = .45, .63 
+mask = 1
+
+[BG Floor Back 2]
+type = normal
+spriteno = 10, 2
+start = 0, 68;104
+delta = .45, .63 
+mask = 1
+
+[BG Background]
+type = normal
+spriteno = 11, 0
+start = 0, 29;65
+delta = .45, .63 
+mask = 1
+
+[BG Truck]
+type = anim
+id = 6
+actionno = 6
+start = 0, 0
+delta = .45, .63
+mask = 1
+
+[BG Truck 2]
+type = anim
+id = 7
+actionno = 7
+start = 0, 0
+delta = .45, .63
+mask = 1
+
+[BG Floor]
+type = parallax
+spriteno = 10,0
+start = 0, 155
+delta = .504, 1;.604, 1  
+xscale = 1, 2.333;1, 2.9
+mask = 1
+
+[BG Plane Back]
+type = anim
+id = 5
+actionno = 5
+start = 0, 0
+delta = .45, .63
+mask = 1
+
+[BG Plane]
+type = normal
+spriteno = 12, 0
+start = 0, -40
+delta = .508, .77;504,72 
+mask = 1
+
+[BG Helicopter]
+type = anim
+id = 4
+actionno = 4
+start = 0, 0
+delta = .505, .771;.504
+mask = 1
+
+[BG Grade]
+type = normal
+spriteno = 13, 0
+start = -480, 60
+delta = .682, 1 ;.794, 1 
+mask = 1
+
+[BG Man and Woman]
+type = anim
+id = 1
+actionno = 1
+start = 0, 0
+delta = .666 ;.738
+mask = 1
+
+[BG Men]
+type = anim
+id = 2
+actionno = 2
+start = 0, 0
+delta = .666 ;.738
+mask = 1
+
+[BG Man and Woman 2]
+type = anim
+id = 3
+actionno = 3
+start = 0, 0
+delta = .666 ;.738
+mask = 1
+
+[BG Small Box]
+type = normal
+spriteno = 14, 1
+start = 365, 114;115
+delta = .747, 1 ;.768, 1 
+mask = 1
+
+[BG Box]
+type = normal
+spriteno = 14, 0
+start = -350, 124;125;130
+delta = .898, 1 ;1.069, 1 ;1.067, 1
+mask = 1
+
+[BG Box 2]
+type = normal
+spriteno = 14, 0
+start = 345, 124;125 ;350
+delta = .898, 1 ;1.069, 1 
+mask = 1
+
+;----------------------
+;----------------------
+;----------------------
+[BGCtrlDef 1]
+CtrlID = 1
+
+[BGCtrl 1.2]
+type = Enable
+time = 0
+value = 1
+
+[BGCtrl 1.3] 
+type = PosSet
+time = 0
+x = -150 
+y = 180 
+
+[Begin Action 1]
+16,0, 0,0, 11
+16,1, 0,0, 10
+16,2, 0,0, 10
+16,1, 0,0, 10
+16,0, 0,0, 11
+16,1, 0,0, 10
+16,2, 0,0, 10
+16,1, 0,0, 10
+16,0, 0,0, 11
+16,1, 0,0, 8
+16,2, 0,0, 8
+16,1, 0,0, 8
+16,2, 0,0, 8
+16,1, 0,0, 8
+16,2, 0,0, 8
+16,1, 0,0, 8
+16,0, 0,0, 8
+
+;----------------------
+[BGCtrlDef 2]
+CtrlID = 2
+
+[BGCtrl 2.2]
+type = Enable
+time = 0
+value = 1
+
+[BGCtrl 2.3] 
+type = PosSet
+time = 0
+x = -33 
+y = 180
+
+[Begin Action 2]
+15,0, 0,0, 8
+15,1, 0,0, 7
+15,2, 0,0, 6
+15,3, 0,0, 7
+15,4, 0,0, 7
+15,5, 0,0, 6
+15,6, 0,0, 8
+15,7, 0,0, 7
+15,8, 0,0, 6
+15,9, 0,0, 7
+15,10, 0,0, 6
+
+;----------------------
+[BGCtrlDef 3]
+CtrlID = 3
+
+[BGCtrl 3.2]
+type = Enable
+time = 0
+value = 1
+
+[BGCtrl 3.3] 
+type = PosSet
+time = 0
+x = 120 
+y = 180
+
+[Begin Action 3]
+17,0, 0,0, 10
+17,1, 0,0, 8
+17,2, 0,0, 9
+17,1, 0,0, 8
+17,0, 0,0, 10
+17,1, 0,0, 8
+17,2, 0,0, 9
+17,1, 0,0, 8
+17,0, 0,0, 10
+17,1, 0,0, 8
+17,2, 0,0, 9
+17,1, 0,0, 8
+17,1, 0,0, 8
+17,2, 0,0, 9
+17,1, 0,0, 8
+17,1, 0,0, 8
+17,2, 0,0, 9
+17,1, 0,0, 8
+
+;----------------------
+[BGCtrlDef 4]
+looptime = 7500
+CtrlID = 4
+
+[BGCtrl 4.2]
+type = Enable
+time = 0
+value = 1
+
+[BGCtrl 4.3] 
+type = PosSet
+time = 0
+x = 400
+y = -250
+
+[BGCtrl 4.4] 
+type = VelSet
+time = 1
+x = -.5
+y = .3
+
+[BGCtrl 4.5] 
+type = VelSet
+time = 500
+x = -.7
+y = -.1
+
+[BGCtrl 4.6] 
+type = VelSet
+time = 1000
+x = -.4
+y = .3
+
+[BGCtrl 4.7] 
+type = VelSet
+time = 1050
+x = 0
+y = -.15
+
+[BGCtrl 4.8] 
+type = VelSet
+time = 1230
+x = 0
+y = .15
+
+[BGCtrl 4.9] 
+type = VelSet
+time = 1550
+x = 0
+y = -.15
+
+[BGCtrl 4.10] 
+type = VelSet
+time = 1870
+x = 0
+y = .15
+
+[BGCtrl 4.11] 
+type = VelSet
+time = 2190
+x = 0
+y = -.15
+
+[BGCtrl 4.12] 
+type = VelSet
+time = 2510
+x = -.05
+y = .15
+
+[BGCtrl 4.13] 
+type = VelSet
+time = 2830
+x = -.05
+y = -.15
+
+[BGCtrl 4.14] 
+type = VelSet
+time = 2990
+x = .2
+y = .2
+
+[BGCtrl 4.15] 
+type = VelSet
+time = 3090
+x = .5
+y = -.3
+
+[BGCtrl 4.16] 
+type = VelSet
+time = 3490
+x = -.2
+y = .4
+
+[BGCtrl 4.17] 
+type = VelSet
+time = 3650
+x = .4
+y = -.5
+
+[BGCtrl 4.18] 
+type = VelSet
+time = 4320
+x = .7
+y = -.7
+
+[BGCtrl 4.19]
+type = Enable
+time = 7499
+value = 0
+
+[Begin Action 4]
+18,0, 0,0, 1
+18,1, 0,0, 1
+18,2, 0,0, 1
+18,3, 0,0, 1
+18,4, 0,0, 1
+18,5, 0,0, 1
+18,6, 0,0, 1
+18,7, 0,0, 1
+18,8, 0,0, 1
+18,9, 0,0, 1
+18,10, 0,0, 1
+18,11, 0,0, 1
+
+;----------------------
+[BGCtrlDef 5]
+looptime = 5800
+CtrlID = 5
+
+[BGCtrl 5.2]
+type = Enable
+time = 0
+value = 1
+
+[BGCtrl 5.3] 
+type = PosSet
+time = 0
+x = 450
+y = -50
+
+[BGCtrl 5.4] 
+type = VelSet
+time = 1
+x = -3
+y = .1
+
+[BGCtrl 5.5]
+type = Enable
+time = 5799
+value = 0
+
+[Begin Action 5]
+19,1, 0,0, 600
+19,0, 0,0, 199
+
+;----------------------
+[BGCtrlDef 6]
+looptime = 5800
+CtrlID = 6
+
+[BGCtrl 6.2]
+type = Enable
+time = 0
+value = 1
+
+[BGCtrl 6.3] 
+type = Posset
+time = 0
+x = -345
+y = 71
+
+[BGCtrl 6.4] 
+type = Velset
+time = 0
+x = .2
+
+[BGCtrl 6.5] 
+type = Enable
+time = 5575
+value = 0
+
+[Begin Action 6]
+20,0, 0,0, 5575
+-1,0, 0,0, 5575
+
+;----------------------
+[BGCtrlDef 7]
+looptime = 5800
+CtrlID = 7
+
+[BGCtrl 7.2]
+type = Enable
+time = 0
+value = 1
+
+[BGCtrl 7.3] 
+type = Posset
+time = 0
+x = 345
+y = 71
+
+[BGCtrl 7.4] 
+type = Velset
+time = 0
+x = -.2
+
+[BGCtrl 7.5] 
+type = Enable
+time = 5575
+value = 0
+
+[Begin Action 7]
+-1,0, 0,0, 5575
+20,0, 0,0, 5575, H

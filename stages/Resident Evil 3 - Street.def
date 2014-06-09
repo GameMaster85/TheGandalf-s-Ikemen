@@ -1,0 +1,176 @@
+;
+;¡¡¡VIVA EL MUGEN CARAJO !!!
+;
+;
+;______________________________________________________________________
+;
+;
+;Autor : made by Dj Sonic "100% Recomendado, 100% Argentino"
+;-------
+;
+;Nombre: Resident Evil 3 - Street
+;-------
+;
+;Extraido de Garbage Dump Dusk de KOF 2000 y 
+;readaptado para el Resident Evil 3 - Street.
+;
+;
+;Music: by Dj Sonic (Extraido del Resident Evil 3 Nemesis)
+;------
+;
+;Version: 3.0 (12/2/08)
+;--------
+;______________________________________________________________________
+
+
+[Info]
+name = "Resident Evil 3 - Street"
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -216
+boundright = 216
+boundhigh = -8
+boundlow =  0
+verticalfollow = .2
+floortension = 0
+tension = 60
+
+[PlayerInfo]
+p1startx = -70
+p1starty = 0
+p1startz = 0
+p1facing = 1
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0
+botbound  =  0
+
+[Scaling]
+topz     = 0
+botz     = 50  
+topscale = 1
+botscale = 1.2
+[Bound]
+screenleft = 15
+screenright = 15
+
+[StageInfo]
+zoffset = 220
+autoturn = 1
+resetBG = 0
+[Shadow]
+color = 40,40,40
+yscale = .18
+
+[Music]
+bgmusic = sound/The City of Ruin.mp3
+bgvolume = 255
+
+[BGdef]
+spr = stages/Resident Evil 3 - Street.sff
+debugbg = 1
+
+
+[BG 0]
+type  = normal
+spriteno = 0, 1
+layerno = 0
+start = 0,113
+delta = .85,.84
+trans = none
+mask  = 0
+
+[BG 00 Zombie]
+type  = normal
+spriteno = 1,1
+layerno = 0
+start = 0,116
+delta = 1, 1
+trans = none
+mask  = 1
+
+[BG 1]
+type  = normal
+spriteno = 0, 0
+layerno = 0
+start = 0,116
+delta = 1, 1
+trans = none
+mask  = 1
+
+[BG Crow Combuncionado]
+type = anim
+actionno= 1
+layerno= 1
+start = -250,200
+;delta = 1, 1
+mask = 1
+
+[Begin Action 1]
+2,0, 0,0, 95
+2,1, 0,0, 10
+
+[BG Zombie Woman]
+type  = normal
+spriteno = 3,0
+layerno = 0
+start = 0,116
+delta = 1, 1
+trans = none
+mask  = 1
+
+[BG 2]
+type  = normal
+spriteno = 0,2
+layerno = 1
+start = 0,116
+delta = 1, 1
+trans = none
+mask  = 1
+
+[BG 3]
+type  = normal
+spriteno = 0,3
+layerno = 1
+start = 0,116
+delta = 1, 1
+trans = none
+mask  = 1
+
+[BG 4]
+type  = normal
+spriteno = 0,4
+layerno = 1
+start = 0,116
+delta = 1, 1
+trans = none
+mask  = 1
+
+[BG 5]
+type  = normal
+spriteno = 0,5
+layerno = 1
+start = 0,116
+delta = 1, 1
+trans = none
+mask  = 1
+
+[BG niebla]
+type  = normal
+spriteno = 1,0
+start = 0, 200
+velocity = -0.8,0 ; -6,0
+delta = .8, .75
+mask = 1
+tile = 1, 0
+trans = add
+layerno = 1
+ID    = 1
+
+

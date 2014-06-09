@@ -1,0 +1,759 @@
+[Info]
+name = "Capcom vs SNK Pro - Train Stage"; by LenaShock
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -160
+boundright = 160
+boundhigh = -20
+boundlow = 0
+verticalfollow = 1
+floortension = 110
+tension = 50
+
+[PlayerInfo]
+p1startx = -80
+p1starty = 0
+p1startz = 0
+p1facing = 1
+
+p2startx = 80
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0
+botbound  =  0
+
+[Scaling]
+topz     = 0
+botz     = -50
+topscale = 1
+botscale = 1.2
+
+[Bound]
+screenleft = 25
+screenright = 25
+
+[StageInfo]
+zoffset   = 215
+autoturn  = 1
+resetBG = 0
+
+[Shadow]
+intensity = 8
+color = 60,60,80
+yscale = -0.05
+fade.range = 120,90
+
+[Music]
+bgmusic =sound/train.mp3 
+bgvolume = 1
+
+[BGDef]
+spr = stages/cvstrain.sff
+
+[bg base]
+type = normal
+spriteno = 0,1
+velocity = 1,1
+tile = 1,1
+
+[bg far]
+type = normal
+spriteno = 1,0
+start = 0, 0
+velocity = -0.25
+tile = 1,0
+tilespacing = 1181
+delta = 0,0
+
+[bg far]
+type = normal
+spriteno = 1,1
+start = 32,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,2
+start = 64,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,3
+start = 96,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,4
+start = 128,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,5
+start = 160,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,6
+start = 192,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,7
+start = 224,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,8
+start = 256,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,9
+start = 288,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,10
+start = 320,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,11
+start = 352,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,12
+start = 384,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,13
+start = 416,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,14
+start = 448,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,15
+start = 480,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,16
+start = 512,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,17
+start = 544,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,18
+start = 576,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,19
+start = 608,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,20
+start = 640,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,21
+start = 672,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,22
+start = 704,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,23
+start = 736,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,24
+start = 768,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,25
+start = 800,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,26
+start = 832,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,27
+start = 864,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,28
+start = 896,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,29
+start = 928,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,30
+start = 960,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,31
+start = 992,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,32
+start = 1024,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,33
+start = 1056,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,34
+start = 1088,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,35
+start = 1120,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,36
+start = 1152,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg far]
+type = normal
+spriteno = 1,37
+start = 1184,0
+positionlink = 1
+tile = 1,0
+tilespacing = 1181
+
+[bg 4th]
+type = normal
+spriteno = 2,1
+velocity = -2
+start = 0, 10
+tile = 1,0
+delta = 0,0
+mask = 1
+
+[bg 3rd]
+type = normal
+spriteno = 2,0
+velocity = -4
+start = 0, 3.5
+tile = 1,0
+delta = 0,0
+mask = 1
+
+;--------------------train--------------------------------
+
+[bg frontal 1]
+type = normal
+spriteno = 4,0
+mask = 1
+start = 0,120
+delta = 0.05,0
+id = 30
+
+[bg frontaldown]
+type = anim
+actionno = 1
+mask = 1
+positionlink = 1
+sinx = 3,4
+delta = 0.05,0
+id = 30
+
+[begin action 1]
+4,1,0,0,2
+4,2,0,0,2
+4,3,0,0,2
+4,4,0,0,2
+
+[bg train 1.2]
+type = normal
+spriteno = 5,0
+mask = 1
+start = -182,121
+delta = 0.05,0
+id = 30
+
+[bg train 1.2]
+type = anim
+actionno = 2
+mask = 1
+start = -182,121
+delta = 0.05,0
+id = 30
+
+[begin action 2]
+5,0,0,0,2
+5,1,0,60,2
+
+[bg train 2]
+type = normal
+mask = 1
+spriteno = 6,11
+start = -425,121
+delta = 0.05,0
+id = 30
+
+[bg smoke]
+type = anim
+actionno = 4
+start = -48,81
+delta = 0.05,0
+id = 30
+
+[begin action 4]
+8,3,0,0,4,,a1
+8,2,0,0,4,,a1
+8,1,0,0,4,,a1
+8,0,0,0,4,,a1
+
+;---------------------------------------------------------
+[bg 2nd]
+type = normal
+spriteno = 2,2
+velocity = -5
+start = 0, 38
+tile = 1,0
+delta = 0,0
+mask = 1
+
+[bg trick]
+type = normal
+spriteno = 0,1
+start = 0,205
+velocity = 1,0
+tile = 1,0
+
+[bg 1st]
+type = normal
+spriteno = 2,3
+velocity = -7
+start = 0, 52
+tile = 1,0
+delta = 0,0
+mask = 1
+
+[bg poles]
+type = normal
+mask = 1
+spriteno = 3,1
+id = 10
+tile = 1,0
+start = -208,30
+tilespacing = 640,0
+
+[bg floor]
+type = normal
+mask = 1
+start = -320, 0
+spriteno = 0,0
+
+[bg poles]
+type = normal
+spriteno = 3,0
+mask = 1
+id = 20
+tile = 1,0
+layerno = 1
+start = -208,30
+tilespacing = 640,0
+
+;-----------------------------------------------------
+
+[bgctrldef pole1]
+looptime = 68
+ctrlid = 10
+
+[BGCtrl pole1.2]
+type = Enable
+time = 0
+value = 1
+
+[bgctrl side1.4]
+type = posset
+time = 0
+x = 640
+
+[bgctrl pole1.3]
+type = velset
+time = 1
+x = -10
+
+[bgctrldef pole2]
+looptime = 68
+ctrlid = 20
+
+[BGCtrl pole2.2]
+type = Enable
+time = 0
+value = 0
+
+[BGCtrl pole2.2]
+type = Enable
+time = 18
+value = 1
+
+[bgctrl side2.4]
+type = posset
+time = 0
+x = 792
+
+[bgctrl pole2.3]
+type = velset
+time = 1
+x = -14
+
+;----------------------------------------------------
+
+[bgctrldef train]
+ctrlid = 30
+
+[bgctrl train 1]
+type = velset
+time = 1
+x = 0.65
+
+[bgctrl train 2]
+type = veladd
+time = 300
+x = -1
+
+[bgctrl train 2]
+type = velset
+time = 600
+x = 0.2
+
+[bgctrl train 1]
+type = velset
+time = 1000
+x = -0.75
+
+[bgctrl train 2]
+type = veladd
+time = 1500
+x = 0.5
+
+[bgctrl train 2]
+type = velset
+time = 1600
+x = -0.15
+
+[bgctrl train 1]
+type = velset
+time = 1900
+x = 0.75
+
+[bgctrl train 2]
+type = veladd
+time = 2300
+x = -1.25
+
+[bgctrl train 2]
+type = velset
+time = 2900
+x = 1.05
+
+[bgctrl train 1]
+type = velset
+time = 3200
+x = -0.65
+
+[bgctrl train 2]
+type = veladd
+time = 3600
+x = 1
+
+[bgctrl train 2]
+type = velset
+time = 3900
+x = -1
+
+[bgctrl train 1]
+type = velset
+time = 4000
+x = 0.75
+
+[bgctrl train 2]
+type = veladd
+time = 4300
+x = -1
+
+[bgctrl train 2]
+type = velset
+time = 4600
+x = 0.4
+
+[bgctrl train 1]
+type = velset
+time = 5000
+x = -0.5
+
+[bgctrl train 2]
+type = veladd
+time = 5500
+x = 0.5
+
+[bgctrl train 2]
+type = velset
+time = 5600
+x = -0.15
+
+[bgctrl train 1]
+type = velset
+time = 5900
+x = 0.3
+
+[bgctrl train 2]
+type = veladd
+time = 6300
+x = -0.1
+
+[bgctrl train 2]
+type = velset
+time = 6900
+x = 0.35
+
+[bgctrl train 1]
+type = velset
+time = 7200
+x = -0.45
+
+[bgctrl train 2]
+type = veladd
+time = 7600
+x = 0.9
+
+[bgctrl train 2]
+type = velset
+time = 7900
+x = -0.5
+
+;-----------------------------------------------------------
+
+[bg frontlayer]
+type = normal
+spriteno = 0,2
+mask = 1
+layerno = 1
+start = -320,0
+
+;-----------------------------------------------------------
+
+[bg trainfar]
+type = anim
+actionno = 3
+start = 0,146
+mask = 1
+id = 40
+delta = 0,0
+
+[begin action 3]
+7,0,0,0,4
+7,1,0,0,4
+7,2,0,0,4
+7,3,0,0,4
+
+[bg trainfarwagon]
+type = normal
+spriteno = 7,4
+start = -188,146
+mask = 1
+id = 40
+delta = 0,0
+
+;--------------------------------------------------------------
+
+[bgctrldef trainfar]
+ctrlid = 40
+
+[bgctrl trainfar1]
+type = enable
+time = 0
+value = 1
+
+[bgctrl trainfar1]
+type = posset
+time = 0
+x = -224
+
+[bgctrl trainfar1]
+type = velset
+time = 11000
+x = 0.1
+
+[bgctrl trainfar1]
+type = velset
+time = 13800
+x = -0.05
+
+[bgctrl trainfar1]
+type = velset
+time = 14400
+x = 0.05
+
+[bgctrl trainfar1]
+type = velset
+time = 15000
+x = -0.1
+
+[bgctrl trainfar1]
+type = velset
+time = 15600
+x = 0.1
+
+
+[bgctrl trainfar1]
+type = velset
+time = 15800,15840
+x = 0.1
+
+
+[bgctrl trainfar1]
+type = velset
+time = 15840
+x = -0.1
+

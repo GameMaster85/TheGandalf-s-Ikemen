@@ -1,0 +1,80 @@
+;Skullomania's stage from the SF:EX Plus Alpha SNES pirate game
+;Stage made for mugen by Tamez
+;
+;tamezmugen@yahoo.com http://tamezmugen.110mb.com/
+;
+;Thanks as always to HankVenture for getting me 
+;started making mugen stuff.  
+;Thanks to MOTVN, Twon, Dissidia for the laughs in the chat.  
+;Special blame to Dissidia for linking me to this game.  
+;Thanks to Djoulz and MaxBeta for support.  
+;And thanks to Cybaster because he wants to be in every "thanks" list.
+[Info]
+name = "SFEXPlusAlpha SNES - Skullomania"
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -95
+boundright = 95
+boundhigh = -0
+boundlow = 0
+verticalfollow = 0
+floortension = 0
+tension = 60
+
+[PlayerInfo]
+p1startx = -70
+p1starty = 0
+p1startz = 0
+p1facing = 1
+
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0
+botbound  =  0
+
+[Scaling]
+topz     = 0
+botz     = 50
+topscale = 1
+botscale = 1.2
+
+[Bound]
+screenleft = 15
+screenright = 15
+
+[StageInfo]
+zoffset = 222
+autoturn = 1
+resetBG = 0
+
+[Shadow]
+intensity = 222
+color = 0,0,0
+yscale = -.1
+fade.range = -88,-1
+
+[Reflection]
+intensity = 0
+
+[Music]
+bgmusic = sound/12_amusementive_crime.mp3
+bgvolume = 255
+
+; Main background definition
+[BGdef]
+spr = SFEXPlusAlphaSNES-Skullomania.sff
+debugbg = 0
+
+[BG EntireStageLOL]
+type = normal
+spriteno = 0,0
+start = -255,0
+delta = 1,1
+mask = 0

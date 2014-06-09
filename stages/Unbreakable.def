@@ -1,0 +1,350 @@
+
+[Info]
+name = "Unbreakable by Ryon"
+displayname = "Unbreakable"
+versiondate = 03,01,2013
+mugenversion = 1.0
+author = "Ryon"
+
+;--------------------------------------------------------
+[Camera]
+startx = 0
+starty = 0
+boundleft = -224
+boundright = 224
+boundhigh = -342
+boundlow = 0
+verticalfollow = .8
+floortension = 0
+tension = 50
+overdrawhigh = 0
+overdrawlow = 0
+cuthigh = 35
+cutlow = 25
+
+;--------------------------------------------------------
+[PlayerInfo]
+p1startx = -70
+p1starty = 0
+p1facing = 1
+p2startx = 70
+p2starty = 0
+p2facing = -1
+
+;--- Common ---
+leftbound  = -1000 ;Left bound
+rightbound =  1000 ;Right bound
+
+;--------------------------------------------------------
+[Bound]
+screenleft = 15
+screenright = 15
+
+;--------------------------------------------------------
+[StageInfo]
+zoffset = 220
+autoturn = 1
+resetBG = 0
+localcoord = 320, 240
+xscale = 1
+yscale = 1
+
+;--------------------------------------------------------
+[Shadow]
+intensity = 96
+color = 0,0,0
+yscale = .3
+fade.range = 0,0
+
+;--------------------------------------------------------
+[Reflection]
+intensity = 0
+
+;--------------------------------------------------------
+[Music]
+bgmusic = sound/Shield.mp3
+bgmvolume = 90
+
+;========================================================
+;--------------------------------------------------------
+; Background definition
+; ***
+;-------------------------------------
+; [BG x]
+; type = ?       "Normal"/"Parallax"  (def: "normal")
+; spriteno = ?, ? Sprite group and number: groupno, imgno  (req'd)
+; start = ?, ?   Starting location (integer)  (def: 0, 0)
+; delta = ?, ?   Change in location per camera unit moved (float)  (def: 1,1)
+; trans = ?      Transparency settings: "none"/"add"/"add1"/"sub"" (def: "none")
+; mask = ?       Masking (int): 0 - off, 1 - on  (def: 0)
+; velocity = ?, ? Velocity: x, y (float): speed background moves (def: 0, 0)
+; tile = ?, ?    Tiling: xtile, ytile (int): 0 - off, 1 - infinite,
+;                        >1 - tile that number of times  (def: 0, 0) - only for Normal BG
+; tilespacing = ?, ? Tiling: x, y (int) : space between tiles (def: 0, 0)
+;  Parallax-only:
+; xscale = ?, ?    Top xscale, bottom xscale (float)
+; width = ?, ?     Top width, bottom width (int)  (use either this or above, but not both)
+; yscalestart = ?  Starting y-scale (float, in percent)  (def: 100)
+; yscaledelta = ?  Change in y-scale per unit (float, in percent)  (def: 0)
+;-------------------------------------
+
+;-------------------------------------
+[BGdef]
+spr = Unbreakable.sff
+debugbg = 0
+
+[BG Sky]
+type  = Normal
+spriteno = 3, 0
+start = 0, 156
+delta = .1, 1
+
+[BG Moon]
+type  = Normal
+spriteno = 5, 0
+start = 0, -200
+delta = .1, 1
+mask = 1
+
+[BG Moon Glow]
+type  = normal
+spriteno = 5,1
+start = 0, -200
+delta = .15, 1
+mask = 1
+trans = addalpha
+alpha = 96,256
+
+[BG Shooting Star]
+type  = anim
+actionno = 20
+start = 0, 50
+delta = .15, 1
+mask = 1
+
+;[BG City]
+;type  = Normal
+;spriteno = 8, 0
+;start = 0, 100
+;delta = .1, 1
+;mask = 1
+
+[BG Backdrop Ocean]
+type  = Parallax
+spriteno = 0, 0
+start = 0, 156
+delta = .1, 1
+velocity = 0, 0
+tile = 1, 0
+tilespacing = 0, 0
+width = 200,560
+yscalestart = 500
+
+[BG Floor]
+type  = Normal
+spriteno = 4, 0
+start = 0, 90
+delta = 1, 1
+mask = 1
+tile = 1,0
+tilespacing = 0,0
+trans = sub
+
+[BG Shinobi]
+type  = anim
+actionno = 30
+start = -500, 175
+delta = .15, 1
+mask = 1
+id = 10
+
+[BG Floor]
+type  = Normal
+spriteno = 1, 0
+start = 0, 156
+delta = 1, 1
+mask = 1
+
+[BG Foreground]
+type  = Normal
+spriteno = 2, 0
+start = 0, 156
+delta = 1, 1
+mask = 1
+layerno = 1
+
+[BG Cloud]
+type  = Normal
+spriteno = 10, 0
+start = 0, -50
+delta = .12, 1
+mask = 1
+layerno = 0
+trans = add
+velocity = .07,0
+tile = 1,0
+tilespacing = 400,0
+
+[BG Cloud]
+type  = Normal
+spriteno = 10, 1
+start = 40, -200
+delta = .13, 1
+mask = 1
+layerno = 0
+trans = add
+velocity = -.03,0
+tile = 1,0
+tilespacing = 400,0
+
+[BG Cloud]
+type  = Normal
+spriteno = 10,2
+start = -40, -350
+delta = .14, 1
+mask = 1
+layerno = 0
+trans = add
+velocity = .05,0
+tile = 1,0
+tilespacing = 400,0
+
+[Begin Action 20]
+20,-1, 0,0, 120
+20,0, 0,0, 1,,A
+20,1, 0,0, 1,,A
+20,2, 0,0, 1,,A
+20,3, 0,0, 1,,A
+20,4, 0,0, 1,,A
+20,5, 0,0, 1,,A
+20,6, 0,0, 1,,A
+20,7, 0,0, 1,,A
+20,8, 0,0, 1,,A
+20,9, 0,0, 1,,A
+20,10, 0,0, 1,,A
+20,11, 0,0, 1,,A
+20,12, 0,0, 1,,A
+20,13, 0,0, 1,,A
+20,14, 0,0, 1,,A
+20,15, 0,0, 1,,A
+20,16, 0,0, 1,,A
+20,17, 0,0, 1,,A
+20,18, 0,0, 2,,A
+20,19, 0,0, 2,,A
+20,20, 0,0, 2,,A
+20,21, 0,0, 2,,A
+20,22, 0,0, 2,,A
+20,23, 0,0, 2,,A
+20,24, 0,0, 2,,A
+20,25, 0,0, 2,,A
+20,26, 0,0, 2,,A
+20,27, 0,0, 2,,A
+20,28, 0,0, 2,,A
+20,-1, 0,0, -1
+
+[Begin Action 30]
+30,0, 0,0, 1,,
+30,1, 0,0, 1,,
+30,2, 0,0, 1,,
+30,3, 0,0, 1,,
+30,4, 0,0, 1,,
+30,5, 0,0, 1,,
+30,6, 0,0, 1,,
+30,7, 0,0, 1,,
+30,8, 0,0, 1,,
+30,9, 0,0, 1,,
+30,10, 0,0, 1,,
+30,11, 0,0, 1,,
+30,12, 0,0, 1,,
+30,13, 0,0, 1,,
+30,14, 0,0, 1,,
+30,15, 0,0, 1,,
+30,16, 0,0, 1,,
+30,17, 0,0, 1,,
+30,18, 0,0, 1,,
+30,19, 0,0, 1,,
+30,20, 0,0, 1,,
+30,21, 0,0, 1,,
+30,22, 0,0, 1,,
+30,23, 0,0, 1,,
+30,24, 0,0, 1,,
+30,25, 0,0, 1,,
+30,26, 0,0, 1,,
+30,27, 0,0, 1,,
+30,28, 0,0, 1,,
+30,29, 0,0, 1,,
+30,30, 0,0, 1,,
+30,31, 0,0, 1,,
+30,32, 0,0, 1,,
+30,33, 0,0, 1,,
+30,34, 0,0, 1,,
+30,35, 0,0, 1,,
+30,36, 0,0, 1,,
+30,37, 0,0, 1,,
+30,38, 0,0, 1,,
+
+[Begin Action 31]
+30,0, 0,0, 1,h,
+30,1, 0,0, 1,h,
+30,2, 0,0, 1,h,
+30,3, 0,0, 1,h,
+30,4, 0,0, 1,h,
+30,5, 0,0, 1,h,
+30,6, 0,0, 1,h,
+30,7, 0,0, 1,h,
+30,8, 0,0, 1,h,
+30,9, 0,0, 1,h,
+30,10, 0,0, 1,h,
+30,11, 0,0, 1,h,
+30,12, 0,0, 1,h,
+30,13, 0,0, 1,h,
+30,14, 0,0, 1,h,
+30,15, 0,0, 1,h,
+30,16, 0,0, 1,h,
+30,17, 0,0, 1,h,
+30,18, 0,0, 1,h,
+30,19, 0,0, 1,h,
+30,20, 0,0, 1,h,
+30,21, 0,0, 1,h,
+30,22, 0,0, 1,h,
+30,23, 0,0, 1,h,
+30,24, 0,0, 1,h,
+30,25, 0,0, 1,h,
+30,26, 0,0, 1,h,
+30,27, 0,0, 1,h,
+30,28, 0,0, 1,h,
+30,29, 0,0, 1,h,
+30,30, 0,0, 1,h,
+30,31, 0,0, 1,h,
+30,32, 0,0, 1,h,
+30,33, 0,0, 1,h,
+30,34, 0,0, 1,h,
+30,35, 0,0, 1,h,
+30,36, 0,0, 1,h,
+30,37, 0,0, 1,h,
+30,38, 0,0, 1,h,
+
+[BGCtrlDef Peregrinator]
+looptime = 1200
+ctrlID = 10
+
+[BGCtrl Walk Right]
+type = VelSet
+time = 0
+x = 5
+
+[BGCtrl Walk Left]
+type = Anim
+time = 0
+value = 30
+
+[BGCtrl Walk Left]
+type = VelSet
+time = 500
+x = -5
+
+[BGCtrl Walk Left]
+type = Anim
+time = 500
+value = 31
+

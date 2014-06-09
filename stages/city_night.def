@@ -1,0 +1,108 @@
+;--------------------------------------------------------
+;CITY NIGHT "NGBF" STAGE POR ALEX & MUDY
+;--------------------------------------------------------
+;e-mail:  mugenarok@acesse.net
+;website: www.mugenarok.com.br
+;--------------------------------------------------------
+
+[Info]
+name =  "City Night"
+
+[camera]
+startx = 0
+starty = 0
+boundleft = -183
+boundright = 183
+boundhigh = -1405
+verticalfollow =.3
+tension = 50
+
+[PlayerInfo]
+p1startx = -70
+p1starty = 0            
+p1startz = 0           
+p1facing = 1            
+
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+leftbound  = -1000
+rightbound =  1000
+topbound  =  0    
+botbound  =  0   
+
+[Scaling]
+topz     = 0      
+botz     = 50    
+topscale = 1      
+botscale = 1.2    
+
+[Bound]
+screenleft = 15   
+screenright = 15  
+
+[StageInfo]
+zoffset   = 220
+autoturn  = 1    
+
+[Shadow]
+color = 130.130,130
+yscale = .3
+
+[Music]
+
+bgmusic = sound/In the Bar.mp3
+bgvolume = 255
+
+[BGdef]
+spr = stages/city_night.sff
+debugbg = 1
+
+
+[BG 0]
+type  = normal
+spriteno = 0, 2          
+start = 0, 0
+delta = .7, 1
+mask  = 1
+
+[BG 1]
+type  = normal
+spriteno = 0, 1          
+start = 0, 0
+delta = 1, 1
+mask  = 1
+
+[BG 2]
+type  = normal
+spriteno = 0, 0          
+start = 0, 0
+delta = 1, 1
+mask  = 1
+
+[BG 3]
+type  = normal
+spriteno = 0, 3         
+start = 0, 0
+delta = 1, 1
+mask  = 1
+
+[BG 4]
+type  = anim
+spriteno = 1, 0
+start = 0, 0
+delta = 1, 1
+mask = 0
+velocity = 0, 0
+tile = 0, 0
+tilespacing = 0, 0
+actionno = 0
+
+[Begin action 0]
+1,0,0,0, 30
+1,1,0,0, 10
+1,2,0,0, 10
+1,1,0,0, 20
+1,0,0,0, 30

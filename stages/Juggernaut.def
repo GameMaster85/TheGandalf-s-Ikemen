@@ -1,0 +1,186 @@
+;To Ride a Juggernaut!, from Dungeons & Dragons:Shadow over Mystara
+;by Phantom.of.the.Server
+
+[Info]
+name="To Ride a Juggernaut!"
+versiondate=05,18,2006
+author="Phantom.of.the.Server"
+
+[Music]
+bgmusic=sound/Juggernaut.mp3
+bgvolume=255
+
+[Camera]
+startx=0
+starty=0
+boundleft=-200
+boundright=200
+boundhigh=0
+boundlow=0
+verticalfollow=0
+floortension=0
+tension=60
+
+[PlayerInfo]
+p1startx=-70
+p1starty=0
+p1startz=0
+p1facing=1
+
+p2startx=70
+p2starty=0
+p2startz=0
+p2facing=-1
+
+leftbound=-1000
+rightbound=1000
+topbound=0
+botbound=0
+
+[Scaling]
+topz=0
+botz=50
+topscale=1
+botscale=1.2
+
+[Bound]
+screenleft=15
+screenright=15
+
+[StageInfo]
+zoffset=166
+zoffsetlink=0
+autoturn=1
+resetBG=1
+
+[Shadow]
+intensity=0
+color=64,64,64
+yscale=.25
+fade.range=-80,0
+
+
+;=====<MAIN BG DEFINITION>=====
+[BGdef]
+spr=stages/Juggernaut.sff
+debugbg=0
+
+[BG dummy]
+type=dummy
+start=0,0
+
+[BG safety]
+type=normal
+spriteno=0,99
+layerno=0
+start=0,0
+delta=0,0
+mask=0
+tile=1,1
+tilespacing=0,0
+
+[BG forest]
+type=normal
+spriteno=0,1
+layerno=0
+start=0,216
+delta=1,1
+tile=1,0
+mask=1
+id=2
+
+[BG floor]
+type=normal
+spriteno=0,0
+layerno=0
+start=0,250
+delta=1,1
+mask=1
+
+[BG wheel]
+type=anim
+actionno=1
+layerno=0
+start=242,240
+delta=1,1
+id=1
+
+[BG wheel]
+type=anim
+actionno=1
+layerno=0
+start=81,240
+delta=1,1
+id=1
+
+[BG wheel]
+type=anim
+actionno=1
+layerno=0
+start=-79,240
+delta=1,1
+id=1
+
+[BG wheel]
+type=anim
+actionno=1
+layerno=0
+start=-239,240
+delta=1,1
+id=1
+
+[BG wheel]
+type=anim
+actionno=1
+layerno=0
+start=-400,240
+delta=1,1
+id=1
+
+
+;=====<BGCTRLDEFs>=====
+[BGctrldef 0]
+ctrlid=0
+looptime=60
+[BGCtrl 0, enable]
+type=enable
+time=0
+value=1
+[BGctrl 0,vel]
+type=velset
+time=0
+y=-.33
+[BGctrl 0,vel]
+type=velset
+time=4
+y=.33
+[BGctrl 0,vel]
+type=velset
+time=8
+y=0
+[BGctrl 0,vel]
+type=posset
+time=8
+y=0
+
+
+[BGctrldef 2]
+ctrlid=2
+[BGCtrl 2, enable]
+type=enable
+time=0
+value=1
+[BGctrl 0,vel]
+type=velset
+time=0
+x=-4
+
+
+;=====<ACTIONS>=====
+
+[Begin Action 1]
+1, 0, 0, 0, 4, , 
+1, 0, 0, 0, 4, , 
+1, 1, 0, 0, 4, , 
+1, 2, 0, 0, 4, , 
+1, 3, 0, 0, 4, , 

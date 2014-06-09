@@ -1,0 +1,151 @@
+;--------------------------------------------------------
+; The Roof - MK3 by RatonMalo <ratonmalo@gmail.com>
+;--------------------------------------------------------
+
+[Info]
+name = "The Roof"
+
+;--------------------------------------------------------
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -300
+boundright = 300
+boundhigh = -30
+boundlow = 0
+verticalfollow = 0
+;floortension = 50
+tension = 50
+
+;--------------------------------------------------------
+
+[PlayerInfo]
+p1startx = -80
+p1starty = 0
+p1startz = 0
+p1facing = 1
+
+p2startx = 80
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+leftbound  = -500
+rightbound = 650
+topbound  = 0
+botbound  = 0
+
+;--------------------------------------------------------
+
+[Scaling]
+topz     = 0
+botz     = 50
+topscale = 1
+botscale = 1.2
+
+;--------------------------------------------------------
+
+[Bound]
+screenleft = 22
+screenright = 22
+
+;--------------------------------------------------------
+
+[StageInfo]
+
+zoffset = 217
+autoturn = 1
+resetBG = 1
+
+;--------------------------------------------------------
+
+[Shadow]
+
+color = 100,100,100
+yscale = -.2
+reflect = 0
+
+;--------------------------------------------------------
+
+[Music]
+bgmusic = sound/Desierto.mp3
+bgvolume = 255
+
+;--------------------------------------------------------
+
+[BGdef]
+spr = stages/MK3_The_Roof.sff
+debugbg = 0
+
+;--------------------------------------------------------
+
+[BG fondo_negro]
+type  = normal
+spriteno = 5, 5
+delta = 0, 1
+mask  = 0
+
+[BG fondo]
+type  = normal
+spriteno = 5, 1
+delta = 0, 1
+mask  = 0
+
+[BG ed1_shao]
+type  = normal
+spriteno = 5, 2
+delta = .6, 1
+mask  = 1
+
+[bg portal]
+type  = anim
+actionno = 1
+layerno = 0
+delta = .6, 1
+
+[bg fire]
+type  = anim
+actionno = 2
+layerno = 0
+delta = .6, 1
+
+[BG ed2]
+type  = normal
+spriteno = 5, 3
+delta = .8, 1
+mask  = 1
+
+[BG piso]
+type  = normal
+spriteno = 5, 4
+delta = 1,1
+mask  = 1
+
+;--------------------------------------------------------
+
+[Begin Action 1] ; Portal
+6,0, 0,0, 6
+6,1, 0,0, 6
+6,2, 0,0, 6
+6,3, 0,0, 6
+6,4, 0,0, 6
+6,5, 0,0, 6
+6,6, 0,0, 6
+6,7, 0,0, 6
+6,8, 0,0, 6
+6,9, 0,0, 6
+6,10, 0,0, 6
+6,11, 0,0, 6
+
+[Begin Action 2] ; Fire
+7,7, 0,0, 6
+7,6, 0,0, 6
+7,5, 0,0, 6
+7,4, 0,0, 6
+7,3, 0,0, 6
+7,2, 0,0, 6
+7,1, 0,0, 6
+7,0, 0,0, 6
+
+;--------------------------------------------------------
