@@ -1,0 +1,56 @@
+----使用方法-------------------------------------------------------
+
+　まず、ダウンロードしたフォルダにある「life_cvs2」フォルダを、mugen本体のdataフォルダに入れてください。
+
+　次に、dataフォルダ内のmugen.cfgの2部分を下のように変更してください。
+
+①タイムカウントを99→999---------------
+[Options]
+Difficulty = 4
+Life = 100
+Time = 99      ←999に
+GameSpeed = 0
+WavVolume = 50
+MidiVolume = 50
+
+↓　↓　↓
+[Options]
+Difficulty = 4
+Life = 100
+Time = 999
+GameSpeed = 0
+WavVolume = 50
+MidiVolume = 50
+
+
+②DoubleRes = 0→DoubleRes = 4---------------
+[Video Win]
+Width  = 320   ←640に
+Height = 240   ←320に
+Depth = 16
+Stretch = 0    ←1に
+DoubleRes = 0  ←4に
+
+↓　↓　↓
+[Video Win]
+Width  = 640
+Height = 480
+Depth = 16
+Stretch = 1
+DoubleRes = 4
+
+　最後に、dataフォルダ内のsystem.defの1部を下のように変更します。これで完了のはずです。
+
+③fight.defの参照先を変更---------------
+[Files]
+spr = system.sff
+snd = system.snd
+fight = fight.def　←data/life_cvs2/fight.defに
+select = select.def
+
+↓　↓　↓
+[Files]
+spr = system.sff
+snd = system.snd
+fight = data/life_cvs2/fight.def
+select = select.def
