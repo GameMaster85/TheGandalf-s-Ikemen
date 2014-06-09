@@ -1,0 +1,208 @@
+;====================<VARIABLE LIST>====================
+
+;var(3)  : Jump Type (0 = Normal; 1 = Low Jump; 2 = Long Low Jump; 3 = Long Jump)
+;var(4)  : Chain Combo (0 = Off; 1 = On)
+;var(5)  : Command Cancel Flag
+;var(6)  : Cancel Flag
+;var(7)  : Super Cancel Flag
+;var(8)  : Hyper Cancel Flag
+;var(9)  : Counter Flag
+;var(10) : Button Detect (0 = Light; 1 = Medium; 2 = Heavy)
+;var(11) : Winpose detection (0 = Off; 1 = able to perform grenade winpose)
+;var(12) : Mekong Delta Escape/Scouter Jump Gravity toggle (0 = not active; 1 = Mekong Delta Escape gravity; 2 = Scouter Jump gravity)
+;var(13) : Hit Count
+;var(14) : Followup Detection (0 = Off; 1101 = Stinger (Attack))
+;var(15) : Juggle Points
+;var(16) : Juggle Flag
+;var(17) : Ticks UnGuardable
+;var(18) : ProjContact (0 = No; 1 = Yes)
+;var(19) : Throw Escape
+;var(20) : Custom Combo Time
+;var(21) : Super Cancel Flag
+;var(22) : Hyper Cancel Flag
+;var(23) : Super Finish Type (900 = Custom Combo; 3000 = Take No Prisoners; 3100 = Mine Sweeper; 3200 = Steel Rain; 3300 = Patriot Sweeper)
+
+;var(25) : Ticks to Apply EX FX
+;var(26) : Ticks Unable to Walk
+;var(27) : EX Patriot Circle Juggle Flag (0 = Can't juggle; 1 = Can juggle)
+;var(28) : EX Stinger / Mine Sweeper Juggle Count, EX Mekong Delta Attack Hit Count
+
+;var(30) : Hit Detection
+;var(31) : Hit Sound (0 = Light Punch; 1 = Medium Punch; 2 = Heavy Punch; 3 = Light Kick; 4 = Medium Kick; 5 = Heavy Kick; 6 = Projectile Hit; 800 = Grab)
+;var(32) : Guard Sound
+;var(33) : Hit Spark (8010 = Light; 8011 = Medium; 8012 = Heavy; 8013 = Special; 8014 = Super)
+;var(34) : Guard Spark (8000 = Normal; 8001 = Special)
+;var(35) : Spark xPos
+;var(36) : Spark yPos
+;var(38) : Throw (0 = Allowed; 1 = Not Allowed)
+;var(39) : Projectile Flag (0 = Off; 1 = On)
+
+;var(58) : Game Time
+
+;fvar(0) : Take No Prisoners P2 Distance
+;fvar(5) : Amount of Corner Push
+;fvar(10): Damage Dampener
+;fvar(11): Damage Dampener with Counter Multiplier Added
+
+
+
+; _________________________________________
+;| Rolento by Jmorphman                    |
+; ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+;====================<CONSTANTS>====================
+[Data]
+life = 972
+power = 3000
+attack = 100
+defence = 100
+fall.defence_up = 50
+lieDown.time = 60
+airJuggle = 15
+sparkNo = s8010
+guard.sparkNo = s8000
+KO.echo = 0
+volume = 128
+IntPersistIndex = 0
+FloatPersistIndex = 0
+
+[Size]
+xScale = 0.8333333
+yScale = 1
+ground.back = 15
+ground.front = 30
+air.back = 15
+air.front = 15
+height = 60
+attack.dist = 160
+proj.attack.dist = 90
+proj.doScale = 0
+head.pos = 22, -87
+mid.pos = 7, -62
+shadowOffset = -2
+draw.offset = 0,0
+
+[Velocity]
+walk.fwd = 4.375
+walk.back = -3.125
+run.fwd = 7.03125,0
+run.back = -5.5,0
+jump.neu = 0, -9.35629111842105
+jump.fwd = 3.43125
+jump.back = -3.88828125
+runJump.fwd = 4.0890625,-10.75973478618421
+runJump.back = -4.6603515625,-10.75973478618421
+airjump.neu = 0,-6.5
+airjump.back = -2.8
+airjump.fwd = 2.8
+
+[Movement]
+airJump.num = 0
+airJump.height = 0
+yAccel = 0.48828125
+stand.friction = 0.85
+crouch.friction = 0.82
+stand.friction.threshold = 1.0
+crouch.friction.threshold = 1.0
+air.gethit.groundLevel = 25
+air.gethit.groundRecover.ground.threshold = -20
+air.gethit.groundRecover.groundLevel = 10
+air.gethit.airRecover.threshold = -1
+air.gethit.airRecover.yAccel = 0.35
+air.gethit.trip.groundLevel = 15
+down.bounce.offset = 0, 20
+down.bounce.yAccel = 0.4
+down.bounce.groundLevel = 12
+down.friction.threshold = 0.5
+
+
+;====================<WINQUOTES>====================
+[Quotes]
+victory0 = "Let's fight again, so I can stick it to you!"
+victory1 = "Fear prevents learning and you've failed."
+victory2 = "Get real! Skill and strength determine the winner!"
+victory3 = "It's okay, perfection is not for everyone."
+victory4 = "Your alternatives to defeat... Retreat, or total obedience."
+victory5 = "Me... dictator? Me... insane? Negative! Absolutely negative!"
+victory6 = "Judgment! You are not qualified to be a soldier!!"
+victory7 = "In my ideal nation, there would exist no one as weak as you!"
+victory8 = "Hey! You!! Stand tall! Speak up!"
+victory9 = "Follow orders, and you may become more difficult to defeat!"
+victory10 = "Encountering you has had no effect on my glorious destiny!"
+victory11 = "Judgment! Grade C! You are in need of supplementary training!!"
+victory12 = "You must obey orders. Understood!?"
+victory13 = "Are you a soldier!? Then you know the price of failure!"
+victory14 = "Devote your existence to the nation!"
+victory15 = "All losers must be terminated..."
+victory16 = "Is that what you call a surprise attack!? How sad..."
+victory17 = "You have five seconds! Obey or surrender? Choose!"
+victory18 = "You're qualified to be a soldier for our new nation!"
+victory19 = "The dawn of the new nation is at hand!"
+
+;Akuma
+victory20 = "Your power stands in the way of my ambition! I'd better get rid of you before you become an issue."
+
+;Balrog
+victory21 = "Your pathetic attacks are nothing to me!"
+
+;Blanka
+victory22 = "Can you understand orders and carry out your mission? If so, I may have a place for you in my army!"
+
+;Cammy
+victory23 = "You'd make for a fine soldier. OK, consider yourself drafted!"
+
+;Chun Li
+victory24 = "Accusing me of breaking the law? what nonsense! I am the law!"
+
+;Cody
+victory25 = "You're no longer a threat to me or my plans. That man is long since gone."
+
+;Dhalsim
+victory26 = "I have no use for gods in my country. I will keep things running orderly and efficiently."
+
+;Dudley
+victory27 = "Tea and biscuits? We only eat battlefield provisions! You will learn to love instant stew, grunt!"
+
+;Elena
+victory28 = "If you want to join my army, you'll need a regulation uniform. Can't have you disrupting the troops' concentration."
+
+;Guile
+victory29 = "You are a model soldier! However, as a member of the opposition, I have no choice but to eliminate you!"
+
+;Guy
+victory30 = "Just what are you looking at? Be careful, you're in the presence of a superior officer!"
+
+;Hugo
+victory31 = "What have you been doing all this time? You haven't gotten better at all! You're not even worth drafting!"
+
+;Ibuki
+victory32 = "Always attack with swift precision! Follow my lead!"
+
+;Jin Kazama
+victory33 = "You don't have what it takes to be a commanding officer! I'll accept your enlistment as a private, though!"
+
+;Ken
+victory34 = "I don't like your attitude, mister! Report to boot camp immediately!"
+
+;M. Bison
+victory35 = "You're nothing but a base-level grunt! You don't get to talk about ambition! Just obey my orders!"
+
+;Poison
+victory36 = "Your fighting skills have come a long way since then. Alright, enlistment approved!"
+
+;Rolento
+victory37 = "A clone of ME? I won't be fooled by enemy spies!"
+
+;Ryu
+victory38 = "What is needed now is not a true martial artist, but a man to rise up and rule the masses! Namely, me!"
+
+;Sagat
+victory39 = "Just who told you you could call yourself a king? You're more like a jester!"
+
+;Sakura
+victory40 = "If you want to survive on the battlefield, you'd better work on your fundamentals!"
+
+;Vega
+victory41 = "War for one's ideals is beautiful. Everything else is useless."
+
+;Zangief
+victory42 = "I like your sense of patriotism! Join me and I'll give you a real country to fight for!"

@@ -1,0 +1,144 @@
+; _____________
+;| Iori by Hero |
+;¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+
+;--------------------- Variable List ----------------------
+
+;--------------------- Float Variable List ----------------------
+
+; fVar(1) - Attack Multiplier
+; fVar(5) - Cornerpush
+; fVar(6) - Multiplier of Custom Combo
+;===================<CONSTANTS>================
+[Data]
+life = 973
+power = 3000
+attack = 100
+defence = 100
+fall.defence_up = 50
+liedown.time = 30
+airjuggle = 15
+sparkno = s8000
+guard.sparkno = s8060 ;special = s8061
+KO.echo = 0
+volume = 128
+IntPersistIndex = 60
+FloatPersistIndex = 40
+
+[Size]
+xscale = 1
+yscale = 1
+ground.back = 15
+ground.front = 16
+air.back = 12
+air.front = 12
+height = 60
+attack.dist = 160
+proj.attack.dist = 90
+proj.doscale = 1
+head.pos =11,-92
+mid.pos =-1,-65
+shadowoffset = 0
+draw.offset = 0,0
+
+[Velocity]
+walk.fwd = 2.61
+walk.back = -2.61
+run.fwd = 6.5,0
+run.back = -6.1,-4.4
+jump.neu = 0,-8.8
+jump.back = -2.61
+jump.fwd = 2.61
+runjump.back = -3.92,-11
+runjump.fwd = 3.92,-11
+
+[Movement]
+airjump.num = 0
+airjump.height = 0
+yaccel = .5
+stand.friction = .85
+crouch.friction = .82
+air.gethit.groundlevel = 25
+air.gethit.groundrecover.ground.threshold = -20
+air.gethit.groundrecover.groundlevel = 10
+air.gethit.airrecover.threshold = -1
+air.gethit.airrecover.yaccel = 0.35
+air.gethit.trip.groundlevel = 15
+down.bounce.offset = 0, 20
+down.bounce.yaccel = 0.4
+down.bounce.groundlevel = 12
+down.friction.threshold = 0.5
+
+[Quotes]
+;Iori
+victory1 = "A rose blooms best near death. You're in full bloom, pal!"
+victory2 = "Another young one bites the dust. Tough break, dweeb!"
+victory3 = "Oh, cheer up. You never even had a chance to begin with!"
+victory4 = "You never even had a chance to begin with!"
+victory5 = "Geez,sorry you guys. There's no cure for stupidity!"
+victory6 = "This is your last fight. A memorable final performance!"
+victory7 = "Well,you had to die sometime. Now is as good a time as any!"
+victory8 = "There's no cure for a fool. A perfect description of you!"
+victory9 = "There's no value to a broken toy. Which is what you losers are."
+victory10 = "Die! You don't deserve to live!"
+victory11 = "Heh heh heh... You're weak..."
+victory12 = "Hmph... Loser!"
+victory13 = "My blood... It commands me... It commands me to destroy you!"
+victory14 = "For you, living is a fate worst than death!"
+victory15 = "Do you know what I like best about you? Your screams!"
+victory16 = "Pitiful..."
+victory17 = "You will drown in a sea of your own blood! Ha! Ha! Ha!"
+victory18 = "With each battle I become stronger!"
+victory19 = "You must BURN!!!"
+victory20 = "It's like I'm assisting suicide! Hate not me. Hate your weakness!"
+victory21 = "Die as you have lived, scum. Sad, alone, and weak..."
+victory22 = "Do you know what I like best about you? Your screams!"
+victory23 = "...Putz!"
+victory24 = "Never come near me again, maggot...!"
+victory25 = "What a waste... of time...!"
+victory26 = "Remember me when you look at the moon!"
+victory27 = "Escape? Or die? It's your pick."
+victory28 = "Buzz off.. loser!"
+victory29 = "Can you shriek no more?"
+victory30 = "Finished so soon?"
+victory31 = "That's it. Be scared... you have much to fear."
+victory32 = "What you feel is this: pure, unadulterated fear."
+victory33 = "Burn, baby, burn! Until your blood boils!"
+victory34 = "I'm sick of screams. Why don't you just die?!"
+victory35 = "Look to eternity! Look to the moon and me!"
+victory36 = "Suffer! And writhe in agony!"
+victory37 = "I've chosen my next victim. Cry tears of joy it's not you!"
+victory38 = "Let's sing a requiem duet. Very well, hear me! A funeral refrain just for you."
+victory39 = "You're not worth fricasseeing. Beat it, you waste of space!"
+victory40 = "Are you just going to writhe like that? You're one pathetic piece of work!"
+victory41 = "Fear the flame! Fear it as a sacrificial lamb does!"
+victory42 = "Rejoice. I'll give you an encore! I'll scorch you to your marrow!"
+victory43 = "You're nothing to me. I have but a single enemy..."
+;Kyo
+victory44 = "Ha ha! You're pathetic, Kyo!"
+victory45 = "What's the matter, Kyo!? You call that fighting!?"
+victory46 = "You don't know your fate? How about hell on Earth?!"
+victory47 = "I'll grant a final request: how do you wish to die?"
+victory48 = "Not even close. This amount of suffering won't appease me..."
+victory49 = "I thought this event would blow, but it ain't so bad. It gave me the chance to kill you."
+victory50 = "I don't know anything about Kagura. My only plan is to annihilate you."
+;v/s himself
+victory51 = "Are you prepared? 'Cause now I'm gonna baste you like the turkey you are!"
+victory52 = "I'll rip off that phony hide of yours!"
+;v/s Chizuru
+victory53 = "You can't escape the Orochi. Both you and I are cursed!"
+;v/s Kusanagi
+victory54 = "Oh, those fists. You must be... No!"
+victory55 = "Think I pity you now?! Guess again! ...Die!"
+;v/s NEST team
+victory56 = "Hmph... NESTS isn't even on my radar screen."
+;v/s Vanessa
+victory57 = "I see you again and I'll bust you up good, chick or not!"
+;v/s Mature/Vice
+victory58 = "Act as a cherry blossom... and scatter, you pinhead!"
+;v/s Shermie
+victory59 = "Why did you come here? Whatever. I'll be happy to send you to hell anytime."
+;v/s Ash
+victory60 = "Still plan to hover around me? I burn priggish bugs like you."
+;v/s Gato
+victory61 = "And you call yourself a real fighter? Pathetic clown. Know your shame!"

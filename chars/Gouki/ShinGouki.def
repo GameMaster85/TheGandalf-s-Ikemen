@@ -1,0 +1,44 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Gouki"
+displayname = "Shin Gouki"
+versiondate = 01,14,2010
+mugenversion = 1.0
+author = "Phantom.of.the.Server"
+pal.defaults = 4,5,6,1,2,3,10,11,12,7,8,9
+
+[Files]
+sprite = Sprite.sff
+anim = Anim.air
+sound = Sound.snd
+cmd = Command.cmd
+cns = Constants.cns
+stcommon = common1.cns
+st = States\System.st
+st1 = States\Normal.st
+st2 = States\Specials.st
+st3 = States\EX-Specials.st
+st4 = States\Supers.st
+st5 = States\Helpers.st
+st6 = States\ShinGouki.st
+st7 = Config.txt
+pal1 = Palettes\ShinGouki\Purple.act
+pal2 = Palettes\ShinGouki\Red.act
+pal3 = Palettes\ShinGouki\SvCGhost.act
+pal4 = Palettes\ShinGouki\Black.act
+pal5 = Palettes\ShinGouki\Anime.act
+pal6 = Palettes\ShinGouki\Oni2.act
+pal7 = Palettes\ShinGouki\Oni3.act
+pal8 = Palettes\ShinGouki\Oni4.act
+pal9 = Palettes\ShinGouki\Oni5.act
+pal10 = Palettes\ShinGouki\Oni6.act
+pal11 = Palettes\ShinGouki\Oni7.act
+pal12 = Palettes\ShinGouki\Oni8.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

@@ -1,0 +1,26 @@
+[Info]
+name="Nanaya_K"
+displayname="Nanaya"
+versiondate=
+mugenversion=1.0
+author="Kohaku"
+pal.defaults=1
+localcoord = 320,240
+[Files]
+sprite=Nanaya_K.sff
+sound=Nanaya_K.snd
+anim=Nanaya_K.air
+cmd=Nanaya_K.cmd
+cns=Nanaya_K.cns
+st=Nanaya_K.cns
+stcommon=Nanaya_K_common.cns
+pal1=Nanaya.act
+pal2=Nanaya2.act
+pal3=Nanaya3.act
+pal4=Nanaya4.act
+pal5=Nanaya5.act
+pal6=Bananaya.act
+st1=super_bg.cns
+[Arcade]
+intro.storyboard=
+ending.storyboard=

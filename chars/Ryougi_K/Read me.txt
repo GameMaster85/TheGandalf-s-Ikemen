@@ -1,0 +1,159 @@
+Ryougi_K (Shiki Ryougi Arranged) by Kohaku for 1.0
+======================================================
+
+This is Shiki Ryougi from Melty Blood. She is not accurate to the source game and instead plays to a custom style.
+
+------------------------------------------------------
+
+Movelist:
+
+p = Any punch button (x/y/z)
+k = Any kick button (a/b/c)
+pp = Press any 2 punch buttons simultaneously
+kk = Press any 2 kick buttons simultaneously
+[EX] = Perform an enhanced version of the attack by pressing an additional button (D,F,p -> D,F,pp), costs 500 power
+[AWK] = Attack will gain an additional benefit from Awakening outside from the standard buffs
+
+Basic Standing
+==============
+Elbow Thrust - x
+Forward Slash - y
+Upward Slash - y (after downward slash)
+Downward Slash - z
+Quick Swipe - a
+Upward Swipe - b
+Turning Slash - c
+
+Basic Crouching
+===============
+Upward - x
+Forward Slash - y
+Lunging Slash - y (after upward slash)
+Dive Slash - z 
+Kick - a
+Sliding Kick - b
+Sweeping Kick - c
+
+Basic Jumping
+=============
+Slash - x
+Double Slash - y
+Crescent Slash - z
+Stab - a
+Sideswipe - b
+Upward Slash - c
+
+Abilities
+=========
+Side Step - x+a
+Dodge roll forward - F,x+a
+Dodge roll backward - B,x+a
+Throw - F+z or c/B+z or c
+Parry - F (before an incoming standing or air attack)
+Crouching parry - D (before an incoming crouching/low attack)
+Air parry - F (while in the air before an incoming attack)
+Power charge - y+b
+Guard Counter - F+y+b (While blocking and requires 1000 power)
+Awakening* - z+c (requires 3000 power)
+- 10% attack bonus
+- Slow health regen
+- EX Attacks can be used (uses up 10% of the Awakening gauge)
+- Level 1 supers can be used (uses 20% of the Awakening gauge)
+- Unlimited use of Guard Counter
+- Activation can be used as a roman cancel from some attacks to extend combos
+- Some EX attacks and Supers will behave differently and will gain additional benefits
+
+Special moves
+=============
+Kasane Shouro Rekka -
+(1)D,F,p [EX]
+      | 
+      |  
+      |
+  (2) |---> D,F,p
+      |      |
+      |      |
+      |      |---> D,F,x
+      |      |
+      |      |---> D,F,y
+      |  (3) |
+      |      |---> D,B,p
+      |      |
+      |      |---> D,F,z
+      |
+      |
+  (2) |---> D,B,p
+             |
+             |
+             |
+             |---> D,F,x
+             |
+             |---> D,F,y
+         (3) |
+             |---> D,B,p
+             |
+             |---> D,B,pp [EX] (Only EX version can be performed)
+
+Hari no Tsuki - D,F,p (air only) [EX][AWK]
+Mumyou no Tsuki - D,B,p [EX]
+
+Level 1 Supers (requires 1000 power)
+==============
+Chokushi no Magan - D,F,D,F,p
+Kasane Shouro - D,F,D,F,k [AWK]
+
+Level 2 Supers (requires 2000 power)
+=============
+Gokei Horaku - D,F,D,F,pp
+Mujun Rasen - D,F,D,B,k
+- Available commads during attack
+  |---> p or k
+  |---> F,p or k
+  |---> D,p or k
+  |---> B,p or k
+  |---> U,p or k
+  |---> s (will cancel the attack)
+
+Level 3 Hyper (requires 3000 power)
+=============
+Kara no Kyoukai - D,F,D,B,p
+------------------------------------------------------
+
+English Voice
+=============
+This character has a special feature where you can play with an alternative voice setting where she can speak English. To use this feature simply hold start while selecting her.
+------------------------------------------------------
+
+Update log(v1.1)
+==========
+9-28-12: 
+- Ryougi_K released.
+
+3-18-14:
+- Updates to Awakening system.
+- Awakened attacks added.
+- Kara no Kyoukai's base damage increased. Damage modifier (based on opponent's power) decreased.
+- Can no longer super cancel from Chokushi no Magan to Kasane Shouro.
+- Reduced hit stun on some basic attacks.
+- New big portrait.
+------------------------------------------------------
+
+Future Updates:
+===============
+- More super/special moves possibly
+- Hit/guard sparks
+- More intros/winposes
+- More alterations and fixes
+------------------------------------------------------
+
+Special Thanks:
+===============
+- NxL for helping out and beta testing
+------------------------------------------------------
+
+Contact Info:
+=============
+If you have any questions please contant me through my email or through the thread of which this character was posted in.
+
+Email: Kohaku@mugen-infantry.net
+Website: http://kohaku.mugen-infantry.net 

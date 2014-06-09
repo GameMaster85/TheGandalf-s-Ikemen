@@ -1,0 +1,43 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name ="Cyclops"
+displayname ="Cyclops"
+versiondate =
+mugenversion =
+author ="Dick Buckus"
+pal.defaults =8,12
+
+; Files for the player
+[Files]
+cmd     =Brain/cyclops.cmd
+cns     =Brain/cyclops.cns
+st      =Brain/states.cns
+stcommon =common1.cns
+sprite  =cyclops.sff
+anim    =cyclops.air
+sound   =cyclops.snd
+pal1=Palettes/cyclops1.act
+pal2=Palettes/cyclops2.act
+pal3=Palettes/cyclops3.act
+pal4=Palettes/cyclops4.act
+pal5=Palettes/cyclops5.act
+pal6=Palettes/cyclops6.act
+pal7=Palettes/cyclops7.act
+pal8=Palettes/cyclops8.act
+pal9=Palettes/cyclops9.act
+pal10=Palettes/cyclops10.act
+pal11=Palettes/cyclops11.act
+pal12=Palettes/cyclops12.act
+st1=Brain/attacks.cns
+st2=Brain/specials.cns
+st3=Brain/supers.cns
+st4=Brain/system.cns
+st5=Brain/helpers.cns
+
+; Arcade mode
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

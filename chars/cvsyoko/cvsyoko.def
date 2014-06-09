@@ -1,0 +1,30 @@
+[Info]
+name = "cvsyoko"          ;ヨーコ・リットナー（CVS）
+displayname = "Yoko"      ;ヨーコ
+versiondate=05,09,2008    ;Version date of character
+mugenversion=06,14,2003   ;Version of M.U.G.E.N character works on
+author="Warusaki3"        ;悪咲3号
+Pal.Defaults=4,5
+
+[Files]
+cmd=cvsyoko.cmd
+cns=cvsyoko.cns
+st=cvsyoko.cns
+st1=groove.cns
+st2=config.txt
+stcommon=common1.cns
+sprite=cvsyoko.sff
+anim=cvsyoko.air
+sound=cvsyoko.snd
+pal1=act004.act
+pal2=act005.act
+pal3=act006.act
+pal4=act001.act
+pal5=act002.act
+pal6=act003.act
+pal7=act010.act
+pal8=act011.act
+pal9=Yoko2.act
+pal10=Yoko1.act
+pal11=act008.act
+pal12=act009.act

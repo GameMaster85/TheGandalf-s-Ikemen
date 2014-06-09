@@ -1,0 +1,352 @@
+;@@@@@@@@@@@@@@@@@@@@@@@Satsuki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@Satsuki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+;=========================================================================
+;Lose Pose
+;=========================================================================
+[statedef 170]
+type=S
+ctrl=0
+velset=0,0
+
+[state 170,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 170,anim]
+type=changeanim
+trigger1=!time
+value=170
+
+[state 170,bolii]
+type=null;playsnd
+trigger1=!animelemtime(1)
+value=s170,0
+volumescale=100
+channel=0
+
+[state 170,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+;=========================================================================
+;Win Pose Decider
+;=========================================================================
+[statedef 180]
+type=S
+
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=!time
+value=1+(random%12)
+
+[state 180,ajay]
+type=NotHitBy
+trigger1=1
+value=SCA
+time=1
+
+[state 180,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[State 180,Win:_Dark_Heart]
+type=changeState
+trigger1=prevstateno=182
+value=prevstateno
+[State 180,Win]
+type=changeState
+trigger1=!time
+value=181
+;=========================================================================
+;Win Pose 1
+;=========================================================================
+[Statedef 181]
+type=S
+ctrl=0
+sprpriority=2
+velset=0,0
+
+[state 181,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 181,anim]
+type=changeanim
+trigger1=!time
+value=180
+
+[state 181,avaaz]
+type=playsnd
+trigger1=!animelemtime(5)
+value=s180,random%4
+volumescale=100
+channel=0
+
+[state 181,na_kiye]
+type=assertspecial
+trigger1=time=[0,270]
+flag=roundnotover
+;=========================================================================
+;Win Pose 2
+;=========================================================================
+[Statedef 182]
+type=S
+sprpriority=2
+velset=0,0
+
+[state 182,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 182,anim]
+type=changeanim
+trigger1=!time
+value=var(58)
+
+[state 182,avaaz]
+type=playsnd
+trigger1=numenemy
+trigger1=enemy,authorname="RajaaBoy"
+trigger1=enemy,name="RajaaShiki"
+trigger1=!var(12)
+trigger1=anim=182
+trigger1=time=48
+trigger1=var(12):=1
+value=s199,0
+volumescale=100
+channel=0
+
+[state 182,na_kiye]
+type=assertspecial
+trigger1=time=[0,200]
+flag=roundnotover
+
+[state 182,badalna]
+type=changestate
+trigger1=time>55
+trigger1=roundstate=3
+trigger1=prevstateno!=180
+trigger2=p2life
+value=ifelse(roundstate=3&&!p2life,180,183)
+ctrl=1
+;=========================================================================
+;Win Pose 3
+;=========================================================================
+[Statedef 183]
+type=S
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 183,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 183,anim]
+type=changeanim
+trigger1=!time
+value=5125
+elem=1+(5*(var(58)!=181))
+
+[state 183,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Intro Pose Decider
+;=========================================================================
+[Statedef 190]
+type=S
+ctrl=0
+velset=0,0
+
+[state 190,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+
+[state 190,Intro]
+type=changestate
+trigger1=!time
+value=191
+;=========================================================================
+;Intro Pose 1
+;=========================================================================
+[Statedef 191]
+type=S
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 191,intro]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 191,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 191,anim]
+type=changeanim
+trigger1=!time
+value=191+random%2
+
+[state 191,murna]
+type=varset
+trigger1=anim=191
+trigger1=!time
+var(12)=4
+[state 191,murna]
+type=varadd
+trigger1=anim=191
+trigger1=!animelemtime(4)
+var(12)=-1
+[state 191,murna]
+type=changeanim
+trigger1=anim=191
+trigger1=var(12)
+trigger1=!animelemtime(4)
+value=anim
+elem=2
+
+[state 191,murna]
+type=varset
+trigger1=anim=191
+trigger1=!animelemtime(4)
+var(12)=5
+[state 191,murna]
+type=varadd
+trigger1=anim=191
+trigger1=!animelemtime(7)
+var(12)=-1
+[state 191,murna]
+type=changeanim
+trigger1=anim=191
+trigger1=var(12)
+trigger1=!animelemtime(7)
+value=anim
+elem=5
+
+[state 191,murna]
+type=varset
+trigger1=anim=192
+trigger1=!time
+var(12)=5
+[state 191,murna]
+type=varadd
+trigger1=anim=192
+trigger1=!animelemtime(5)
+var(12)=-1
+[state 191,murna]
+type=changeanim
+trigger1=anim=192
+trigger1=var(12)
+trigger1=!animelemtime(5)
+value=anim
+elem=3
+
+[state 191,murna]
+type=varset
+trigger1=anim=192
+trigger1=!animelemtime(5)
+var(12)=4
+[state 191,murna]
+type=varadd
+trigger1=anim=192
+trigger1=!animelemtime(8)
+var(12)=-1
+[state 191,murna]
+type=changeanim
+trigger1=anim=192
+trigger1=var(12)
+trigger1=!animelemtime(8)
+value=anim
+elem=6
+
+[state 191,avaaz]
+type=playsnd
+trigger1=!animelemtime(2-(anim=192))
+value=s190,anim-191
+volumescale=100
+channel=0
+persistent=0
+
+[state 191,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+;=========================================================================
+;Taunt
+;=========================================================================
+[Statedef 199]
+type=S
+movetype=I
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 199,anim]
+type=changeanim
+trigger1=!time
+value=199
+
+[state 199,murna]
+type=varset
+trigger1=!time
+var(12)=3
+[state 199,murna]
+type=varadd
+trigger1=!animelemtime(6)
+var(12)=-1
+[state 199,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(6)
+value=anim
+elem=4
+
+[state 199,murna]
+type=varset
+trigger1=!animelemtime(6)
+var(12)=3
+[state 199,murna]
+type=varadd
+trigger1=!animelemtime(9)
+var(12)=-1
+[state 199,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(9)
+value=anim
+elem=7
+
+[state 199,avaaz]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s199,0
+volumescale=100
+channel=0
+
+[state 199,ctrlset]
+type=ctrlset
+trigger1=roundstate=2&&time>35
+value=1
+
+[state 199,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1

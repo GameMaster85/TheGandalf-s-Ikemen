@@ -1,0 +1,79 @@
+; Asura by Buckus
+
+[Data]
+life = 912               ;Amount of life to start with
+attack = 100               ;attack power (more is stronger)
+defence = 100              ;defensive power (more is stronger)
+fall.defence_up = 50       ;Percentage to increase defense everytime player is knocked down
+liedown.time = 60          ;Time which player lies down for, before getting up
+airjuggle = 15             ;Number of points for juggling
+sparkno = 7000             ;Default hit spark number for HitDefs
+guard.sparkno = 40         ;Default guard spark number
+KO.echo = 0                ;1 to enable echo on KO
+volume = 255               ;Volume offset (negative for softer)
+IntPersistIndex = 60
+FloatPersistIndex = 40
+
+[Size]
+xscale = 1
+yscale = 1
+ground.back = 15
+ground.front = 16
+air.back = 15
+air.front = 15
+height = 60
+attack.dist = 160
+proj.attack.dist = 90
+proj.doscale = 1
+head.pos = -6,-113
+mid.pos = -3,-78
+shadowoffset = 0
+draw.offset = 0,0
+
+[Velocity]
+walk.fwd  = 4.2
+walk.back = -3.1
+run.fwd  =6.3, 0
+run.back = -7.8,0
+jump.neu = 0,-9.2
+jump.back = -3.96
+jump.fwd = 3.28
+runjump.back = -5.81,-9.4
+runjump.fwd = 5.04,-9.4
+airjump.neu = 0,-6.5
+airjump.back = -2.8
+airjump.fwd = 2.8
+
+[Movement]
+airjump.num = 0
+airjump.height = 28
+yaccel = .47
+stand.friction = .85
+crouch.friction = .82
+
+;---------------------------------------------------------------------------
+; Variable usage:
+; var(1)  - Normal Attack Chain
+; var(2)  - Normal-Special Attack Chain
+; var(3)  - Special-Super Attack Chain
+; var(7)  - A.I.
+; var(10) - Hit Spark Level
+; var(12) - Spark Pos X
+; var(13) - Spark Pos y
+; var(15) - Hit Detection
+; var(23) - Super K.O.
+;---------------------------------------------------------------------------
+; Lose by Time Over
+; CNS difficulty: basic
+; CNS ƒŒƒxƒ‹: Šî–{
+[Statedef 170]
+type = S
+ctrl = 0
+anim = 170
+velset = 0,0
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1

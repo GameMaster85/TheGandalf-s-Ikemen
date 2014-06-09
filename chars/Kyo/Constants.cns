@@ -1,0 +1,261 @@
+;====================<VARIABLE LIST>====================
+
+;var(3)  : Jump Type (0 = Normal; 1 = Low Jump; 2 = Long Low Jump; 3 = Long Jump)
+;var(4)  : Chain Combo (0 = Off; 1 = On)
+;var(5)  : Command Cancel Flag
+;var(6)  : Cancel Flag
+;var(7)  : Super Cancel Flag
+;var(8)  : Hyper Cancel Flag
+;var(9)  : Counter Flag
+;var(10) : Button Detect (0 = Light; 1 = Medium; 2 = Heavy)
+;var(11) : Shiki Kai Juggle Flag (0 = can't juggle; 1 = can juggle)
+;var(12) : Shiki Kai Juggle Stength (0 = Light; 1 = Medium; 2 = Heavy; 3 = EX)
+;var(13) : Hit Count
+;var(14) : Followup Detection (0 = Off; 1010 = Konokizu ; 1020 = Yanosabi; 1030 = Nanase; 1040 = Yanosabi (from Aragami); 1050 = Migiri Ugachi; 1060 Kototsuki You (from Yanosabi); 1110 = Tsumi Yomi; 1120 = Batsu Yomi; 1130 = Oniyaki (from Batsu Yomi); 1160 = Aragami (from Dokugami Kai); 1170 Yanosabi (Dokugami Kai chain); 1180 = Nanase Kai; 1190 = Hikigane)
+;var(15) : Juggle Points
+;var(16) : Juggle Flag
+;var(17) : Ticks UnGuardable
+;var(18) : ProjContact (0 = No; 1 = Yes)
+;var(19) : Throw Escape
+;var(20) : Custom Combo Time
+;var(21) : Super Cancel Flag
+;var(22) : Hyper Cancel Flag
+
+;var(23) : Super Finish Type (900 = Custom Combo; 3000 = Ura 108 Shiki: Orochinagi; 3100 = Saishu Kessen Ougi "Mushiki"; 3200 = 182 Shiki; 3300 = 524 Shiki: Kamukura; 3400 = 1999 Shiki: Kiri Honoo; 3500 = Saishuu Kessen Ougi "Reishiki"
+;var(25) : Ticks to Apply EX FX
+;var(26) : Ticks Unable to Walk
+;var(30) : Hit Detection
+;var(31) : Hit Sound (0 = Light Punch; 1 = Medium Punch; 2 = Heavy Punch; 3 = Light Kick; 4 = Medium Kick; 5 = Heavy Kick; 6 = Projectile Hit; 800 = Grab)
+;var(32) : Guard Sound
+;var(33) : Hit Spark (8010 = Light; 8011 = Medium; 8012 = Heavy; 8013 = Special; 8014 = Super)
+;var(34) : Guard Spark (8000 = Normal; 8001 = Special)
+;var(35) : Spark xPos
+;var(36) : Spark yPos
+;var(38) : Throw (0 = Allowed; 1 = Not Allowed)
+;var(39) : Projectile Flag (0 = Off; 1 = On)
+;var(40) : Mode (0 = Normal; 1 = Kusanagi)
+;var(41) : KO Sound
+;var(42) : Juggle Points for MAX Orochinagi
+;var(43) : Special/Super Throws (0 = Allowed; 1 = Not Allowed)
+
+;var(58) : Game Time
+
+;fvar(5) : Amount of Corner Push
+;fvar(10): Damage Dampener
+;fvar(11): Damage Dampener with Counter Multiplier Added
+
+
+
+; _________________________________________
+;| Kyo Kusanagi by Jmorphman               |
+; ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+;====================<CONSTANTS>====================
+[Data]
+life = 1000
+power = 3000
+attack = 100
+defence = 100
+fall.defence_up = 50
+lieDown.time = 60
+airJuggle = 0
+sparkNo = s8010
+guard.sparkNo = s8000
+KO.echo = 0
+volume = 128
+IntPersistIndex = 0
+FloatPersistIndex = 0
+
+[Size]
+xScale = 1
+yScale = 1
+ground.back = 15
+ground.front = 15
+air.back = 15
+air.front = 15
+height = 60
+attack.dist = 160
+proj.attack.dist = 90
+proj.doScale = 0
+head.pos = 2, -92
+mid.pos = -6, -60
+shadowOffset = 0
+draw.offset = 0,0
+
+[Velocity]
+walk.fwd = 3.33
+walk.back = -2.22
+run.fwd = 5.47,0
+run.back = -6.8,-3
+jump.neu = 0, -9.4
+jump.fwd = 3.36
+jump.back = -3.87
+runJump.fwd = 4.4,-10.35
+runJump.back = -4.85,-10.35
+airjump.neu = 0,-6.5
+airjump.back = -2.8
+airjump.fwd = 2.8
+
+[Movement]
+airJump.num = 0
+airJump.height = 0
+yAccel = 0.46875
+stand.friction = 0.85
+crouch.friction = 0.82
+
+[Quotes]
+;====================<KYO WINQUOTES>====================
+victory0 = "My fists are burning."
+victory1 = "This is too easy!"
+victory2 = "Burn in the fury of my flames, you worthless weakling!"
+victory3 = "So long, weenie king. We won't meet again."
+victory4 = "That's it? Well, I'm not angry, just disappointed."
+victory5 = "Eat my flames of fury, wimp! Grovel before the Kusanagis!"
+victory6 = "Stop moping around and butch up, you weenie!"
+victory7 = "Wow! Back to the gym for you. You're really pathetic."
+victory8 = "You just ain't got it. So stop whining and get lost."
+victory9 = "Huh, don't tell me... think I was a clone?"
+victory10 = "Oh, how boring. School's more fun."
+victory11 = "One bozo, well-done!"
+victory12 = "Victory's talent... Effort's squat!"
+victory13 = "Resistance is flammable. No one can snuff my flames!"
+victory14 = "Hmm... I'm on fire..."
+victory15 = "Haven't you heard the expression about dancing too close to the flame...?"
+victory16 = "I didn't want you to feel cheated, so I let you play a little longer this time!"
+victory17 = "I fan the eternal flame of victory!"
+victory18 = "Teamwork? I don't care about that. I alone am the true winner!"
+victory19 = "You know that I didn't try my hardest, right? What about you?"
+victory20 = "You should be thankful. I showed you the error of your ways!"
+victory21 = "You've just felt the flame of the famous Kusanagi clan!!"
+victory22 = "It's all experience. Fight on, dude!"
+victory23 = "This ain't what a real battlefield should be!"
+victory24 = "Victory was predestined. I'm not in your bush league."
+victory25 = "That's the pepper! That's the stuff! Oooh yeah!"
+victory26 = "That's all ya got? Are you dissin' me, dude?"
+victory27 = "Now that was wild. Just like the old days!"
+victory28 = "Remember the pain of my fist. That is my power!"
+victory29 = "So, tell me. How does it feel to be charcoal?"
+victory30 = "That reminds me of a joke. Aw come on, hear it out. You got time, right?"
+victory31 = "What's the deal? Not cooked enough, eh?"
+victory32 = "It's a law of history: I don't lose so easy."
+victory33 = "Like the raging flames of the sun. That is the fist of Kusanagi!"
+victory34 = "What miraculous stamina! Taking such a beating!"
+victory35 = "What?! I guess KOF without me just isn't KOF, right?"
+victory36 = "Hey, hey! Is that all you got? When do things get interesting?"
+victory37 = "When does this punk parade end? Don't waste my time with these!"
+victory38 = "Do you plan to grovel your whole life? Show a little backbone, will you?"
+victory39 = "Getting up again? I admire your spunk. But you've already lost."
+victory40 = "Out of my way, punk! You make me sick, so you'll get no mercy from me!"
+victory41 = "You lack devotion. Steady effort is what counts! Me? I'm the exception to the rule!"
+
+;Iori Yagami
+victory42 = "Follow me no more..."
+victory43 = "Haven't you come to grips with reality yet? You can't touch me, Yagami."
+victory44 = "Thought you could beat me in a different venue, did you?"
+victory45 = "You never evolve... That's what you're all about!"
+
+;Wild Iori
+victory46 = "Yagami! I'm telling you to chill, you punchy pinhead!"
+
+;Kyo Kusanagi
+victory47 = "That's the fate of a fraud!"
+victory48 = "Now you've seen the true Kusanagi flame! Hope you learned something!"
+victory49 = "Just how many clones of me are left? I could make a baseball team out of me!"
+
+;Kusanagi, Kyo-1, Kyo-2
+victory50 = "You may have my looks, but you ain't got my stuff."
+
+;K', Maxima, Whip, Lin
+victory51 = "Business with NESTS? I'll introduce you personally!"
+
+;K', Kula Diamond
+victory52 = "You gotta use it or lose it. That's the best you can do?"
+
+;Kula Diamond, K9999, Angel, Foxy
+victory53 = "As you've been so nice, I've returned your favors!"
+
+;Kyokugenryu practitioners
+victory54 = "This is the end of Kyokugenryu!"
+
+;Ryo Sakazaki
+victory55 = "That was a terrible display of Kyokugenryu."
+
+;Ryo Sakazaki, Terry Bogard
+victory56 = "What gives?! Where has that old spirit gone?!"
+
+;Terry Bogard
+victory57 = "The howl of a fallen wolf, how pathetic."
+
+;Benimaru Nikaido
+victory58 = "You've gotta work on your end moves, Benimaru!"
+
+;Benimaru Nikaido, Goro Daimon
+victory59 = "You never change. That's why you always lose."
+
+;Goro Daimon
+victory60 = "You still got it! Haven't had so much fun recently."
+
+;Shingo Yabuki
+victory61 = "A year sabbatical's being lazy? ...Well, ya got stamina, kid!"
+
+;Vice, Mature, Chris, Shermie, Yashiro
+victory62 = "Will you never learn? Or must I show you more punishment?"
+
+;Ash Crimson
+victory63 = "You don't think it's over, do you? I don't like tormenting losers, but I'll make an exception for you."
+
+;Shen Woo
+victory64 = "I must incinerate you completely. Flammable trash is the world's trash!"
+
+;Shen Woo, Duo Lon
+victory65 = "Hmm. You got the look down. But you lack the substance."
+
+;Duo Lon
+victory66 = "Legendary assassins!? Whatever, man! You should spend more time training!"
+
+;Goenitz
+victory67 = "Got the picture now? Your 'good wind' that blows only fans my flames!"
+
+;Sagat
+victory68 = "That's not what I'd call even close to kick boxing. Just what is that anyway?"
+
+;Ai
+victory69 = "You really are in the wrong place."
+
+;Mudman
+victory70 = "...You're a unique character. When I see freaks like you, it makes me wax poetic."
+
+;Yuki
+victory71 = "You only look and talk tough. But brats like you can't put one over me."
+
+
+
+;====================<KUSANAGI WINQUOTES>====================
+victory72 = "Hallelujah, brother! You've just met your maker."
+victory73 = "A rude welcome, I fear. Did you enjoy it?!"
+victory74 = "And there it is! Wash up and start anew!"
+victory75 = "You burn like paper! I thought you were better!"
+victory76 = "You lack the flames... A dreg's always a dreg!"
+
+;Kyo Kusanagi
+victory77 = "You're tough... but I rule!"
+
+;Iori Yagami
+victory78 = "I guess you've learned your lesson, saphead."
+
+;Chizuru Kagura
+victory79 = "Well, this's convenient. I can get rid of you in one sweep!"
+
+;K'
+victory80 = "You're as graceful as an elephant. What a clod!"
+
+;K9999
+victory81 = "You gotta focus your power!"
+
+;Kyokugenryu practitioners
+victory82 = "So what about you is exactly 'Kyokugen,' huh?"
+
+;Ash Crimson, Shen Woo, Duo Lon
+victory83 = "Only your mug is special! You're nothing but flash!"
+
+;Billy Kane, Ryuji Yamazaki, Gato,
+victory84 = "If you want to be noticed, you need suitable ability!"

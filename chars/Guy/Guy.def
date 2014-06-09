@@ -1,0 +1,58 @@
+; ______________________________
+;| Guy by Phantom.of.the.Server |
+; ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+;====================<DEFINITION>====================
+[Info]
+name        = "Guy"
+displayname = "Guy"
+versiondate = 01,14,2010
+mugenversion= 1.0
+author      = "Phantom.of.the.Server"
+pal.defaults= 4,5,6,1,2,3,10,11,12,7,8,9
+localcoord  = 320,240
+
+[Files]
+cmd     = Command.cmd
+cns     = Constants.cns
+st      = States/System.st
+st1     = States/Normal.st
+st2     = States/Specials.st
+st3     = States/EX-Specials.st
+st4     = States/Supers.st
+st5     = States/Helpers.st
+st6     = States/Custom.st
+stcommon= common1.cns
+sprite  = Sprite.sff
+anim    = Anim.air
+sound   = Sound.snd
+;ai      = ai.ai
+pal1    = Palettes/SFZ2mp.act
+pal2    = Palettes/Black.act
+pal3    = Palettes/SFZk.act
+pal4    = Palettes/FF3.act
+pal5    = Palettes/SFZ3k.act
+pal6    = Palettes/SFZ2hp.act
+pal7    = Palettes/White.act
+pal8    = Palettes/Purple.act
+pal9    = Palettes/Silent.act
+pal10   = Palettes/SFZ.act
+pal11   = Palettes/FF1.act
+pal12   = Palettes/Green.act
+
+[Palette Keymap]
+a = 1
+b = 2
+c = 3
+x = 4
+y = 5
+z = 6
+a2 = 7
+b2 = 8
+c2 = 9
+x2 = 10
+y2 = 11
+z2 = 12
+
+;[Arcade]
+;intro.storyboard = intro.def
+;ending.storyboard = ending.def

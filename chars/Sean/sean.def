@@ -1,0 +1,44 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name ="Sean"
+displayname ="Sean"
+versiondate = 
+mugenversion = 
+author ="Dick Buckus"
+pal.defaults =1,4
+
+[Files]
+sprite =sean.sff
+anim =sean.air
+sound =sean.snd
+cmd =Brain\sean.cmd
+cns =Brain\sean.cns
+stcommon =common1.cns
+st =Brain\states.cns
+pal1=Palettes\sean0.act
+pal2=Palettes\sean3.act
+pal3=Palettes\sean2.act
+pal4=Palettes\sean1.act
+pal5=Palettes\sean4.act
+pal6=Palettes\sean5.act
+pal7=Palettes\sean6.act
+pal8=Palettes\sean7.act
+pal9=Palettes\sean8.act
+pal10=Palettes\sean9.act
+pal11=Palettes\sean10.act
+pal12=Palettes\sean11.act
+st1=Brain\attacks.cns
+st2=Brain\specials.cns
+st3=Brain\ex-specials.cns
+st4=Brain\supers.cns
+st5=Brain\system.cns
+st6=Brain\helpers.cns
+st7=Brain\playerhelpers.cns
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

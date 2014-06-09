@@ -1,0 +1,43 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Bonne Jenet"
+displayname = "B.Jenet"
+versiondate = 02,21,2013
+mugenversion = 1.0
+author = "Infinite"
+pal.defaults = 1,2,3,4,5,6
+
+[Files]
+sprite = B.Jenet.sff
+anim = B.Jenet.air
+sound = B.Jenet.snd
+cmd = B.Jenet.cmd
+cns = States\System.cns
+stcommon = common1.cns
+st = States\System.cns
+st1 = States\Normal.cns
+st2 = States\Specials.cns
+st3 = States\Supers.cns
+st4 = States\Helpers.cns
+st5 = States\Customs.cns
+st6 = Config.txt
+pal1 = Palettes\Jenet00.act
+pal2 = Palettes\Jenet01.act
+pal3 = Palettes\Jenet02.act
+pal4 = Palettes\Jenet03.act
+pal5 = Palettes\Jenet04.act
+pal6 = Palettes\Jenet05.act
+pal7 = Palettes\Jenet06.act
+pal8 = Palettes\Jenet07.act
+pal9 = Palettes\Jenet08.act
+pal10 = Palettes\Jenet09.act
+pal11 = Palettes\Jenet10.act
+pal12 = Palettes\Jenet11.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

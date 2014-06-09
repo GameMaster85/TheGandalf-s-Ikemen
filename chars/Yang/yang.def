@@ -1,0 +1,44 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name ="Yang"
+displayname ="Yang"
+versiondate =
+mugenversion =
+author ="Dick Buckus"
+pal.defaults =1,6
+
+; Files for the player
+[Files]
+cmd     =Brain/yang.cmd
+cns     =Brain/yang.cns
+st      =Brain/states.cns
+stcommon =common1.cns
+sprite  =yang.sff
+anim    =yang.air
+sound   =yang.snd
+pal1=Palettes/new1.act
+pal2=Palettes/new2.act
+pal3=Palettes/new3.act
+pal4=Palettes/new4.act
+pal5=Palettes/new5.act
+pal6=Palettes/new6.act
+pal7=Palettes/new7.act
+pal8=Palettes/new8.act
+pal9=Palettes/new14.act
+pal10=Palettes/new10.act
+pal11=Palettes/new11.act
+pal12=Palettes/new12.act
+st1=Brain/attacks.cns
+st2=Brain/specials.cns
+st3=Brain/supers.cns
+st4=Brain/system.cns
+st5=Brain/helpers.cns
+st6=Brain/playerhelpers.cns
+
+; Arcade mode
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

@@ -1,0 +1,1110 @@
+;@@@@@@@@@@@@@@@@@@@@@@@Amingo By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@Amingo By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+;=========================================================================
+;Guard Counter
+;=========================================================================
+[StateDef 1100]
+type=S
+movetype=A
+physics=N
+velset=0,0
+sprpriority=2
+ctrl=0
+
+[state 1100,anim]
+type=changeanim
+trigger1=!time
+value=1100
+
+[state 1100,kam_karna]
+type=poweradd
+trigger1=!time
+value=-1000
+
+[state 1100,?haharaav]
+type=superpause
+trigger1=!time
+time=20
+movetime=20
+anim=-1
+sound=-1
+pos=0,0
+p2defmul=1
+poweradd=0
+darken=0
+unhittable=1
+
+[state 1100,Avaaz]
+type=playsnd
+trigger1=!time
+value=s1100,0
+volume=255
+
+[state 1100,Counter_FX]
+type=helper
+triggerall=!numhelper(8540)
+trigger1=!time
+helpertype=normal
+name="Counter_FX"
+id=8540
+stateno=8540
+postype=p1
+pos=60,-70
+facing=0
+ownpal=1
+supermovetime=999999
+pausemovetime=999999
+
+[state 1100,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 1100,ajay]
+type=nothitby
+trigger1=!time
+value=SCA
+time=20
+
+[state 1100,avaaz]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s210,0
+volume=255
+
+[state 1100,hilaav]
+type=envshake
+trigger1=!animelemtime(4)
+time=10
+ampl=5
+
+[state 1100,maar]
+type=hitdef
+trigger1=!animelemtime(4)
+attr=S,SA
+damage=56,12
+guardflag=M
+hitflag=MAF
+priority=6,Hit
+pausetime=8,15
+sparkno=-1+(0*(var(21):=8715))
+guard.sparkno=-1+(0*(var(22):=8726))
+sparkxy=-15,-45+(0*(var(23):=140&&var(24):=-45))
+hitsound=S200,20
+guardsound=s120,0
+animtype=diagup
+air.animtype=diagup
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-3,-7.5
+air.velocity=-3,-7.5
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.6
+kill=0
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=6
+fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=diagup
+forcestand=1
+
+[state 1100,pausetime]
+type=changeanim
+trigger1=hitpausetime
+value=anim
+elem=5
+ignorehitpause=1
+
+[State 1100,bekaar]
+type=statetypeset
+trigger1=!animelemtime(5)
+movetype=I
+
+[state 1100,avaaz]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s1,2
+volume=255
+
+[state 1300,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Guard Counter - Effect
+;=========================================================================
+[StateDef 8540]
+type=A
+physics=N
+velset=0,0
+sprpriority=9
+anim=8540;9999
+
+[State 8540,glow]
+type=trans
+trigger1=1
+trans=add
+ignorehitpause=1
+
+[State 8540,Na_chhaaye]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 8540,size]
+type=angledraw
+trigger1=1
+value=ceil(50+(5*(time)))
+scale=2-(.1*(time)),2-(.1*(time))
+
+[State 8540,RemoveExplod]
+type=removeexplod
+trigger1=time>20
+id=-1
+
+[state 8540,atma_naash]
+type=destroyself
+trigger1=time>20
+;=========================================================================
+;Dodge
+;=========================================================================
+[StateDef 1200]
+type=S
+movetype=I
+physics=S
+velset=0,0
+ctrl=0
+sprpriority=-1
+
+[State 1200, ChangeAnim]
+type=ChangeAnim
+trigger1=time=0
+value=1200
+ignorehitpause=1
+persistent=0
+
+[state 1200,dharna]
+type=PosSet
+trigger1=time=0
+y=0
+
+[State 1200,Boli]
+type=PlaySnd
+trigger1=!animelemtime(2)
+value=S2,0
+volume=255
+channel=0
+
+[State 1200,Boli]
+type=PlaySnd
+trigger1=!animelemtime(2)
+value=S1200,0
+volume=255
+
+[State 1200,Push]
+type=playerpush
+trigger1=1
+value=0
+
+[state 1200,ajay]
+type=hitby
+trigger1=1
+value=SCA,NT,ST,HT
+
+[State 1200, Afterimage]
+type=afterimage
+trigger1=time=1
+time=21
+timegap=1
+framegap=4
+length=9
+palbright=0,0,0
+palcontrast=128,128,128
+palpostbright=0,0,0
+paladd=0,0,0
+palmul=.9,.9,.9
+trans=add1
+
+[state 1200,Siraa]
+type=null;hitby
+triggerall=!ailevel
+triggerall=animtime>-20
+trigger1=(command="a")||(command="b")||(command="c")
+trigger2=(command="x")||(command="y")||(command="z")
+value2=SCA,NT,ST,HT
+time=5
+[state 1200,Siraa]
+type=changestate
+triggerall=!ailevel&&animtime>-20
+trigger1=(command="a")||(command="b")||(command="c")
+trigger2=(command="x")||(command="y")||(command="z")
+value=1201+(1*(command="a"||command="b"||command="c"))
+ctrl=0
+[state 1200,Siraa]
+type=changestate
+triggerall=ailevel&&animtime>-20
+trigger1=(p2bodydist x=[0,110])&&(enemynear,pos y+enemynear,const(size.mid.pos.y))=[-125,5]
+trigger1=random<100
+value=ifelse(p2bodydist x>35,1201,1202)
+ctrl=0
+
+[state 1200,Siraa]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+;=========================================================================
+;Dodge - Attack 1
+;=========================================================================
+[Statedef 1201]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+poweradd=60*!var(25)
+sprpriority=1
+
+[state 1200,ajay]
+type=hitby
+trigger1=!time
+value2=SCA,NT,ST,HT
+time=5
+
+[state 1200,anim]
+type=changeanim
+trigger1=!time
+value=210
+
+[state 200,dharna]
+type=PosSet
+trigger1=time=0
+y=0
+
+[state 1201,Bolii]
+type=playsnd
+trigger1=!animelemtime(2)
+value=S2,1+random%2
+volume=255
+channel=0
+[state 1201,avaaz]
+type=playsnd
+trigger1=!animelemtime(2)
+value=S1,1
+volume=255
+[state 1201,avaaz]
+type=playsnd
+trigger1=!animelemtime(3)
+value=s210,0
+volume=255
+
+[state 210,hilaav]
+type=envshake
+trigger1=!animelemtime(3)
+time=10
+ampl=5
+
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<1
+trigger1=!var(1)
+trigger1=!animelemtime(3)
+attr=S,NA
+damage=56
+guardflag=M
+hitflag=MA
+priority=5,Hit
+pausetime=12,12
+sparkno=-1+(0*(var(21):=8710))
+guard.sparkno=-1+(0*(var(22):=8725))
+sparkxy=-15,-45+(0*(var(23):=140&&var(24):=-45))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-2.5,-5
+air.velocity=-2.5,-5
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=80*!var(25),40*!var(25)
+givepower=55,55
+envshake.time=10
+envshake.ampl=4
+fall=1
+fall.recover=!var(25)
+fall.recovertime=100
+
+[state 210,pausetime]
+type=changeanim
+trigger1=hitpausetime
+value=anim
+elem=4
+ignorehitpause=1
+
+[state 200,bekaar]
+type=statetypeset
+trigger1=animelemtime(4)=0
+movetype=I
+
+[state 200,siraa]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+;=========================================================================
+;Dodge - Attack 2
+;=========================================================================
+[Statedef 1202]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+poweradd=60*!var(25)
+sprpriority=1
+
+[state 1200,ajay]
+type=hitby
+trigger1=!time
+value2=SCA,NT,ST,HT
+time=5
+
+[state 1200,anim]
+type=changeanim
+trigger1=!time
+value=240
+
+[state 200,dharna]
+type=PosSet
+trigger1=time=0
+y=0
+
+[state -3,Bolii]
+type=playsnd
+trigger1=!animelemtime(2)
+value=S2,1+random%2
+volume=255
+channel=0
+[state -3,Avaaz]
+type=playsnd
+trigger1=!animelemtime(2)
+value=S1,1
+volume=255
+
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<1
+trigger1=!var(1)
+trigger1=!animelemtime(3)
+attr=S,NA
+damage=56
+guardflag=M
+hitflag=MA
+priority=5,Hit
+pausetime=12,12
+sparkno=-1+(0*(var(21):=8710))
+guard.sparkno=-1+(0*(var(22):=8725))
+sparkxy=-15,-45+(0*(var(23):=165&&var(24):=-45))
+hitsound=S300,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-12.5
+air.velocity=-8.5,-5
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=80*!var(25),40*!var(25)
+givepower=55,55
+envshake.time=10
+envshake.ampl=4
+fall=0
+fall.recover=!var(25)
+fall.recovertime=100
+
+[state 200,bekaar]
+type=statetypeset
+trigger1=animelemtime(4)=0
+movetype=I
+
+[state 200,siraa]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+;=========================================================================
+;Roll - Forward
+;=========================================================================
+[Statedef 1205]
+type=S
+physics=N
+movetype=I
+anim=1205
+ctrl=0
+sprpriority=1
+
+[state 1205,bolii]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s2,0
+volume=255
+channel=0
+[state 1205,avaaz]
+type=playsnd
+trigger1=!animelemtime(1)
+value=s1205,2
+volume=255
+
+[state 1205,murna]
+type=varset
+trigger1=!time
+var(12)=2
+[state 1205,murna]
+type=varadd
+trigger1=!animelemtime(8)
+var(12)=-1
+[state 1205,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(8)
+value=anim
+elem=8
+
+[state 1205,shiighrataa]
+type=velset
+trigger1=prevstateno!=[100,101]
+trigger1=!time
+x=0
+y=0
+[state 1205,Shiighrataa]
+type=velset
+trigger1=animelemno(0)=[5,7]
+x=10.0;+(3.5*(prevstateno=[100,101]))
+[state 1205,Shiighrataa]
+type=velset
+trigger1=!animelemtime(8)
+x=0
+
+[state 1205,ajay]
+type=hitby
+trigger1=animtime<-5
+value=SCA,NT,ST,HT
+
+[State 1200,chaayaa]
+type=afterimage
+trigger1=!time
+time=50
+timegap=1
+framegap=4
+length=9
+palbright=0,0,0
+palcontrast=128,128,128
+palpostbright=0,0,0
+paladd=0,0,0
+palmul=.9,.9,.9
+trans=add1
+[state 1200,chaayaa]
+type=afterimagetime
+trigger1=!animtime
+time=0
+
+[state 1205,ajay]
+type=playerpush
+trigger1=1
+value=0
+
+[state 1205,Siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Roll - Backward
+;=========================================================================
+[Statedef 1210]
+type=S
+physics=N
+movetype=I
+anim=1210
+ctrl=0
+sprpriority=1
+
+[state 1205,bolii]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s2,0
+volume=255
+channel=0
+[state 1205,avaaz]
+type=playsnd
+trigger1=!animelemtime(1)
+value=s1205,2
+volume=255
+
+[state 1205,murna]
+type=varset
+trigger1=!time
+var(12)=2
+[state 1205,murna]
+type=varadd
+trigger1=!animelemtime(8)
+var(12)=-1
+[state 1205,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(8)
+value=anim
+elem=8
+
+[state 1205,shiighrataa]
+type=velset
+trigger1=!time
+x=0
+y=0
+[state 1205,Shiighrataa]
+type=velset
+trigger1=animelemno(0)=[5,7]
+x=-10.0
+[state 1205,Shiighrataa]
+type=velset
+trigger1=!animelemtime(8)
+x=0
+
+[state 1205,ajay]
+type=hitby
+trigger1=animtime<-5
+value=SCA,NT,ST,HT
+
+[State 1200,chaayaa]
+type=afterimage
+trigger1=!time
+time=50
+timegap=1
+framegap=4
+length=9
+palbright=0,0,0
+palcontrast=128,128,128
+palpostbright=0,0,0
+paladd=0,0,0
+palmul=.9,.9,.9
+trans=add1
+[state 1200,chaayaa]
+type=afterimagetime
+trigger1=!animtime
+time=0
+
+[state 1205,jay]
+type=playerpush
+trigger1=1
+value=0
+
+[state 1205,Siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Power Charge
+;=========================================================================
+[Statedef 6000]
+type=S
+physics=S
+movetype=I
+velset=0,0
+ctrl=0
+sprpriority=0
+
+[state 6000,anim]
+type=changeanim
+trigger1=!time
+value=6000
+
+[state 6000,Shakti_Jodanaa]
+type=poweradd
+trigger1=anim=6000
+value=ceil(.8*(time/10))
+
+[state 6000,anim]
+type=changeanim
+triggerall=!ailevel&&anim=6000
+trigger1=Command!="hold_y"&&Command!="hold_b"
+trigger2=power>=powermax;||power>=const(data.power)
+value=6005
+[state 6000,anim]
+type=changeanim
+triggerall=ailevel&&anim=6000
+trigger1=power>=powermax;||power>=const(data.power)
+trigger2=p2bodydist x<75
+trigger3=enemy,numproj
+trigger4=p2bodydist x<75&&enemynear,movetype=A
+trigger5=inguarddist
+value=6005
+
+[state 6000,charge]
+type=helper
+trigger1=!numhelper(6005)
+trigger1=animelemtime(2)>=0
+id=6005
+name="Charge"
+postype=P1
+pos=0,8
+stateno=6005
+helpertype=normal
+keyctrl=0
+ownpal=1
+size.xscale=.75
+size.yscale=.75
+pausemovetime=99999999
+supermovetime=99999999
+
+[state 6000,roop]
+type=palfx
+trigger1=animelemtime(2)>=0
+trigger1=!(time%4)
+trigger1=!ctrl
+time=1
+color=256
+add=256,128,0
+mul=256,192,0
+
+[state 6000,ctrl]
+type=ctrlset
+trigger1=anim=6005
+value=1
+
+[state 6000,bolii]
+type=playsnd
+trigger1=anim=6000
+trigger1=!animelemtime(1)
+value=S190,0
+volume=255
+channel=0
+
+[state 6000,Siraa]
+type=stopsnd
+trigger1=anim=6005&&!animelemtime(1)
+channel=0
+[state 6000,Siraa]
+type=changestate
+trigger1=anim=6005&&!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Power Charge - Helper
+;=========================================================================
+[Statedef 6005]
+type=A
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 6005,anim]
+type=changeanim
+trigger1=!time
+value=8525
+
+[state 6005,Bind]
+type=bindtoparent
+trigger1=1
+pos=0,8
+
+[state 6005,Na_Chhaaye]
+type=assertspecial
+trigger1=1
+flag=noshadow
+[state 6005,Na_Chhaaye]
+type=trans
+trigger1=1
+trans=add
+
+[state 6005,Avaaz]
+type=playsnd
+trigger1=!time
+value=s6000,0
+channel=13
+
+[State 6005,chingariiyaa]
+type=explod
+trigger1=!time&&!numexplod(8520)
+anim=8520
+id=8520
+pos=0,-3
+scale=.70,.70
+postype=P1
+sprpriority=-1
+bindtime=-1
+ownpal=1
+removetime=-1
+facing=1
+pausemovetime=-1
+supermovetime=-1
+
+[state 6005,chingariiyaa]
+type=varrandom
+trigger1=1
+v=0
+range=1,5
+[State 6005,chingariiyaa]
+type=explod
+trigger1=!(time%10)
+anim=8530
+ID=8530
+sprpriority=ifelse(random<500,-1,1)
+postype=p1
+bindtime=1
+pos=5,0
+random=60,0
+vel=0,-1
+accel=0,(random%20)*-.002
+removetime=-2
+scale=var(0)*-.05,var(0)*-.05
+ownpal=1
+
+[State 6005, scale]
+type=angledraw
+trigger1=1
+scale=0.525,0.635*(power*0.000325)
+
+[state 6005,Apne_Naash_Karne]
+type=stopsnd
+trigger1=parent,stateno!=6000||parent,anim=6005
+channel=13
+ignorehitpause=1
+[state 6005,Apne_Naash_Karne]
+type=RemoveExplod
+trigger1=parent,stateno!=6000||parent,anim=6005
+id=-1
+ignorehitpause=1
+[state 6005,Apne_Naash_Karne]
+type=DestroySelf
+trigger1=parent,stateno!=6000||parent,anim=6005
+ignorehitpause=1
+;=========================================================================
+;Parry - Stand
+;=========================================================================
+[StateDef 6100]
+type=S
+movetype=I
+physics=S
+velset=0,0
+ctrl=0
+sprpriority=2
+
+[state 6100,anim]
+type=changeanim
+trigger1=!time
+value=6100
+
+[state 6100,shakti]
+type=poweradd
+trigger1=!time
+value=100
+
+[State 6100,Thaharan]
+type=pause
+trigger1=!time
+time=12
+movetime=12
+endcmdbuftime=12
+pausebg=0
+
+[State 6100,ajay]
+type=nothitby
+trigger1=1
+time=1
+value=SCA
+
+[State 6100,Bolii]
+type=playsnd
+trigger1=time=1
+value=S2,0+random%2
+channel=0
+volume=255
+
+[State 6100,Avaaz]
+type=playsnd
+trigger1=time=1
+value=S6100,0
+
+[State 6100,Parry_Spark]
+type=explod
+trigger1=time=0
+anim =8545
+ID=8545
+sprpriority=5
+postype=p1
+pos=ceil(21*const(size.xscale)),ceil(-63*const(size.yscale))
+pausemovetime=-1
+supermovetime=-1
+ownpal=1
+scale=.5,.5
+
+[state 6100,!Hilaav]
+type=envshake
+trigger1=time=0
+time=0
+ampl=0
+
+[State 6100,No_Walk]
+type=assertspecial
+trigger1=1
+flag=nowalk
+flag2=nostandguard
+flag3=nocrouchguard
+
+[state 6100,ctrlset]
+type=ctrlset
+trigger1=time>12
+value=1
+
+[State 6100,RemoveExplod]
+type=removeexplod
+trigger1=animtime=0
+id=8545
+
+[State 6100,Siraa]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+;=========================================================================
+;Parry - Crouch
+;=========================================================================
+[StateDef 6101]
+type=C
+movetype=I
+physics=C
+velset=0,0
+ctrl=0
+sprpriority=2
+
+[state 6100,anim]
+type=changeanim
+trigger1=!time
+value=6101
+
+[state 6100,shakti]
+type=poweradd
+trigger1=!time
+value=100
+
+[State 6100,Thaharan]
+type=pause
+trigger1=!time
+time=12
+movetime=12
+endcmdbuftime=12
+pausebg=0
+
+[State 6100,ajay]
+type=nothitby
+trigger1=1
+time=1
+value=SCA
+
+[State 6100,Bolii]
+type=playsnd
+trigger1=time=1
+value=S2,0+random%2
+channel=0
+volume=255
+
+[State 6100,Avaaz]
+type=playsnd
+trigger1=time=1
+value=S6100,0
+
+[State 6100,Parry_Spark]
+type=explod
+trigger1=time=0
+anim =8545
+ID=8545
+sprpriority=5
+postype=p1
+pos=ceil(30*const(size.xscale)),ceil(-45*const(size.yscale))
+pausemovetime=-1
+supermovetime=-1
+ownpal=1
+scale=.5,.5
+
+[state 6100,!Hilaav]
+type=envshake
+trigger1=time=0
+time=0
+ampl=0
+
+[State 6100,No_Walk]
+type=assertspecial
+trigger1=1
+flag=nowalk
+flag2=nostandguard
+flag3=nocrouchguard
+
+[state 6100,ctrlset]
+type=ctrlset
+trigger1=time>12
+value=1
+
+[State 6100,RemoveExplod]
+type=removeexplod
+trigger1=animtime=0
+id=8545
+
+[State 6100,Siraa]
+type=changestate
+trigger1=animtime=0
+value=11
+ctrl=1
+;=========================================================================
+;Parry - Air
+;=========================================================================
+[Statedef 6102]
+type=A
+movetype=I
+physics=N
+ctrl=0
+sprpriority=2
+
+[state 6100,anim]
+type=changeanim
+trigger1=!time
+value=6102
+
+[state 6100,shakti]
+type=poweradd
+trigger1=!time
+value=100
+
+[State 6102,rise]
+type=VelSet
+trigger1=!time
+y=-3
+
+[State 6100,akaash]
+type=statetypeSet
+trigger1=time<=10
+physics=N
+
+[State 6100,akaash]
+type=statetypeSet
+trigger1=time>10
+physics=A
+
+[State 6100,Rahnaa]
+type=posfreeze
+trigger1=time<=10
+value=1
+
+[State 6100,Thaharan]
+type=pause
+trigger1=!time
+time=12
+movetime=12
+endcmdbuftime=12
+pausebg=0
+
+[State 6100,ajay]
+type=nothitby
+trigger1=1
+time=1
+value=SCA
+
+[State 6100,Bolii]
+type=playsnd
+trigger1=time=1
+value=S2,0+random%2
+channel=0
+volume=255
+
+[State 6100,Avaaz]
+type=playsnd
+trigger1=time=1
+value=S6100,0
+
+[State 6100,Parry_Spark]
+type=explod
+trigger1=time=0
+anim =8545
+ID=8545
+sprpriority=5
+postype=p1
+pos=ceil(38*const(size.xscale)),ceil(-90*const(size.yscale))
+pausemovetime=-1
+supermovetime=-1
+ownpal=1
+scale=.5,.5
+
+[state 6100,!Hilaav]
+type=envshake
+trigger1=time=0
+time=0
+ampl=0
+
+[State 6100,No_Walk]
+type=assertspecial
+trigger1=1
+flag=noairguard
+
+[state 6100,CtrlSet]
+type=ctrlset
+trigger1=time>12
+value=1
+
+[State 6100,RemoveExplod]
+type=removeexplod
+trigger1=animtime=0
+id=8545
+;=========================================================================
+;Vigor Mode
+;=========================================================================
+[statedef 7000]
+type=S
+physics=S
+movetype=I
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 7000,anim]
+type=changeanim
+trigger1=!time
+value=7000
+
+[state 7000,bolii]
+type=playsnd
+trigger1=!time
+value=s190,0
+channel=0
+
+[state 7000,palette]
+type=remappal
+trigger1=time=5
+source=1,4
+dest=1,cond(var(25),13,palno)
+
+[State 7000,end]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1

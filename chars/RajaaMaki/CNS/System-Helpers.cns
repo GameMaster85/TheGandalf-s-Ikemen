@@ -1,0 +1,2512 @@
+;@@@@@@@@@@@@@@@@@@@@@@@Maki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@Maki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+;=========================================================================
+;Vigor Mode's System Helper
+;=========================================================================
+[Statedef 7100]
+type=A
+movetype=I
+physics=N
+ctrl=0
+
+[state 7100,Vigor:_System-Display]
+type=DisplayToClipboard
+trigger1=time
+text="Vigor=%d/1 Meter=%d/1500 Punch=%d Kick=%d Vigor End=%d RajaaBoy"
+params=root,var(25),root,var(26),root,var(27),root,var(28),root,var(29)
+
+[state 7100,ID]
+type=varset
+trigger1=root,numpartner
+trigger1=root,id>partner,id
+var(0)=partner,authorname="RajaaBoy"
+
+[state 7100,Duration]
+type=varset
+trigger1=root,stateno=7000
+trigger1=root,time=5
+trigger1=!root,var(25)
+var(12)=power/2
+
+[state 7100,bind]
+type=bindtoparent
+trigger1=1
+pos=0,-5
+
+[state 7100,turn]
+type=turn
+trigger1=facing!=root,facing
+
+[state 7100,anim]
+type=changeanim
+trigger1=anim!=9999
+value=9999
+
+[state 7100,kam_karna]
+type=poweradd
+trigger1=root,stateno=7000
+trigger1=root,time=5
+trigger1=!root,var(25)
+value=-3000
+[state 7100,kam_karna]
+type=powerset
+trigger1=root,var(25)
+trigger1=!root,numpartner
+value=0
+[state 7100,kam_karna]
+type=poweradd
+trigger1=root,stateno=7000
+trigger1=root,time=5
+trigger1=root,var(25)
+value=root,var(26)
+
+[state 7100,avaaz]
+type=playsnd
+trigger1=root,stateno=7000
+trigger1=root,time=5
+value=s7000,0
+volume=255
+
+[state 7100,Detect]
+type=parentvarset
+trigger1=root,stateno=7000
+trigger1=root,time=5
+var(25)=ifelse(root,var(25),0,1)
+[state 7100,Duration]
+type=parentvarset
+trigger1=root,stateno=7000
+trigger1=root,time=5
+trigger1=root,var(25)
+var(26)=var(12)
+[state 7100,Vigor_End]
+type=parentvarset
+trigger1=root,var(26)=1
+trigger2=root,var(25)
+trigger2=root,stateno=170||root,stateno=[181,189]
+trigger2=root,time=1
+trigger3=root,var(25)
+trigger3=!root,alive
+var(29)=1
+
+[state 7100,Duration-Standard]
+type=parentvaradd
+trigger1=root,var(26)
+var(26)=-1
+[state 7100,Duration-Vigormoves]
+type=parentvaradd
+trigger1=root,var(26)
+trigger1=root,stateno=4000||root,stateno=4100||root,stateno=4200||root,stateno=4300||root,stateno=4500
+trigger1=root,time=1
+var(26)=-60
+[state 7100,Duration-Supermoves]
+type=parentvaradd
+trigger1=root,var(26)
+trigger1=root,stateno=3000||root,stateno=3100||root,stateno=3200||root,stateno=3205
+trigger1=root,time=1
+var(26)=-120
+
+[state 7100,Meter]
+type=explod
+trigger1=!numexplod(7100)
+trigger1=root,var(25)
+id=7100
+anim=7100+(teamside=2)
+postype=left
+pos=cond(teamside=1,20,300),ceil((1.33*gameheight/gamewidth)*(230-(10*(var(0)))))
+facing=cond(teamside=2,-1,1)
+bindtime=-1
+removetime=-1
+ontop=1
+ownpal=1
+scale=0.5,0.5
+sprpriority=5
+[state 7100,Meter]
+type=removeexplod
+trigger1=numexplod(7100)
+trigger1=!root,var(25)
+id=7100
+
+[state 7100,Bar]
+type=explod
+trigger1=!numexplod(7102)
+trigger1=root,var(25)
+id=7102
+anim=7102
+postype=left
+pos=cond(teamside=1,20,300),ceil((1.33*gameheight/gamewidth)*(230-(10*(var(0)))))
+facing=cond(teamside=2,-1,1)
+bindtime=-1
+removetime=-1
+ontop=1
+ownpal=1
+scale=0.5,0.5
+sprpriority=5
+[state 7100,Bar]
+type=modifyexplod
+trigger1=numexplod(7102)
+scale=(0.5*root,var(26))/1500,0.5
+id=7102
+[state 7100,Bar]
+type=modifyexplod
+trigger1=numexplod(7102)
+trigger1=root,var(26)<500
+scale=(0.5*root,var(26))/1500,0.5
+trans=addalpha
+alpha=ceil(250*cos(time*pi/6)),0
+id=7102
+[state 7100,Bar]
+type=removeexplod
+trigger1=numexplod(7102)
+trigger1=!root,var(25)
+id=7102
+
+[state 7100,Energy]
+type=explod
+trigger1=!numexplod(7105)
+trigger1=root,stateno=7000
+trigger1=root,time=5
+trigger1=var(1):=1
+id=7105
+anim=7105
+postype=p1
+pos=-15,-70+5
+bindtime=1
+removetime=16
+ontop=1
+ownpal=1
+scale=0.5,0.5
+sprpriority=5
+[state 7100,Energy]
+type=modifyexplod
+trigger1=numexplod(7105)
+trigger1=var(1):=var(1)+1
+scale=cond(!root,var(25),0.0+(0.07*var(1)),1.12-(0.07*var(1))),cond(!root,var(25),0.0+(0.07*var(1)),1.12-(0.07*var(1)))
+trans=addalpha
+alpha=256-((cond(var(1)<=8,8,16))*var(1)),256
+id=7105
+
+[state 7100,Vigor_End]
+type=explod
+trigger1=!numexplod(7105)&&!numexplod(7106)
+trigger1=root,var(29)
+trigger1=root,var(30)
+trigger1=var(2):=1
+id=7106
+anim=7105
+postype=p1
+pos=0,-(55*(root,statetype=S))-(35*(root,statetype=C))-(50*(root,statetype=A))-(5*(root,statetype=L))
+bindtime=1
+removetime=16
+ontop=1
+ownpal=1
+scale=0.5,0.5
+sprpriority=5
+[state 7100,Vigor_End]
+type=modifyexplod
+trigger1=numexplod(7106)
+trigger1=var(2):=var(2)+1
+scale=0.0+(0.07*var(2)),0.0+(0.07*var(2))
+trans=addalpha
+alpha=256-((cond(var(2)<=8,8,16))*var(2)),256
+id=7106
+[state 7100,Vigor_End]
+type=playsnd
+trigger1=numexplod(7106)
+trigger1=root,var(29)
+trigger1=root,var(30)
+value=s7000,0
+volume=255
+
+[state 7100,Reset]
+type=parentvarset
+trigger1=root,var(26)<=1
+trigger2=root,var(29)
+var(25)=0
+[state 7100,Reset]
+type=parentvarset
+trigger1=!root,var(25)
+trigger1=root,var(26)!=[0,1]
+var(26)=1
+[state 7100,Reset]
+type=parentvarset
+trigger1=root,var(29)
+var(29)=0
+;=========================================================================
+;Jump Smoke
+;=========================================================================
+[Statedef 8500]
+type=A
+movetype=I
+physics=N
+anim=9999
+sprpriority=1
+velset=0,0
+
+[state 8500,bind]
+type=bindtoparent
+trigger1=time>=0
+pos=parent,fvar(9),0
+
+[state 8500,explod]
+type=explod
+trigger1=!time
+anim=8500
+id=8500
+pos=0,0
+postype=P1
+scale=.5,.5
+sprpriority=5
+ownpal=1
+supermovetime=-1
+[state 8500,explod]
+type=explod
+trigger1=!time
+trigger2=time=2
+trigger3=time=6
+anim=8510
+id=8510
+pos=0,0
+postype=P1
+scale=.2,.2
+sprpriority=5
+ownpal=1
+supermovetime=-1
+
+[State 8500,atma_naash]
+type=destroyself
+trigger1=time>=20
+;=========================================================================
+;Land Smoke
+;=========================================================================
+[Statedef 8505]
+type=A
+movetype=I
+physics=N
+anim=9999
+sprpriority=1
+velset=0,0
+
+[state 8505,bind]
+type=bindtoparent
+trigger1=!time
+pos=0,0
+
+[state 8505,vakt]
+type=varadd
+trigger1=time>=0
+var(0)=1
+[state 8505,Landing Effect]
+type=explod
+trigger1=!time
+anim=8505
+id=8505
+pos=0,0
+postype=P1
+sprpriority=-3
+ownpal=1
+[state 8505,Landing Effect]
+type=modifyexplod
+trigger1=numexplod(8505)
+scale=0.25+(var(0)*0.035),0.1
+trans=addalpha
+alpha=ceil(256-25*var(0)),256
+id=8505
+
+[state 8505,atma_naash]
+type=removeexplod
+trigger1=time>15
+id=-1
+[State 8505,atma_naash]
+type=destroyself
+trigger1=time>15
+;=========================================================================
+;Weak Hitspark - Base
+;=========================================================================
+[Statedef 8700]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8700,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8700,anim]
+type=changeanim
+trigger1=!time
+value=8700
+
+[state 8700,angle]
+type=angledraw
+trigger1=time<=10
+value=30*(random%12)
+scale=0.3-(0.03*time),0.3-(0.03*time)
+[state 8700,angle]
+type=angledraw
+trigger1=time>10
+value=30*(random%12)
+scale=0.0,0.0
+
+[state 8700,trans]
+type=trans
+trigger1=time>=0
+trans=add
+
+[state 8700,Mass]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Mass"
+stateno=8701
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8700,Particles]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Particles"
+stateno=8702
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8700,Force]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Force"
+stateno=8703
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8700,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8700,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Weak Hitspark - Mass
+;=========================================================================
+[Statedef 8701]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8701,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8701,anim]
+type=changeanim
+trigger1=!time
+value=8701
+
+[state 8701,angle]
+type=angleset
+trigger1=!time
+value=30*(random%12)
+[state 8701,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.1+(0.015*time),0.1+(0.015*time)
+
+[state 8701,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-(16*time),256
+
+[state 8701,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8701,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Weak Hitspark - Particles
+;=========================================================================
+[Statedef 8702]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8702,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8702,anim]
+type=changeanim
+trigger1=!time
+value=8702
+
+[state 8702,angle]
+type=angleset
+trigger1=!time
+value=30*(random%12)
+[state 8702,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.03+(0.015*time),0.03+(0.015*time)
+
+[state 8702,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+
+[state 8702,Particles]
+type=explod
+trigger1=!time
+anim=8702
+ID=8702
+postype=p1
+pos=0,0
+facing=cond(random<500,1,-1)
+vfacing=cond(random<500,1,-1)
+removetime=-1
+bindtime=-1
+ownpal=0
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+[state 8702,Particles]
+type=modifyexplod
+trigger1=numexplod(8702)
+scale=0.03+(0.0075*time),0.03+(0.0075*time)
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+id=8702
+
+[state 8702,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8702,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Weak Hitspark - Force
+;=========================================================================
+[Statedef 8703]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8703,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8703,anim]
+type=changeanim
+trigger1=!time
+value=8703
+
+[state 8703,angle]
+type=angleadd
+trigger1=time>=0
+value=45
+[state 8703,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.2-(0.0075*time),0.2-(0.0075*time)
+
+[state 8703,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,24))*time),256
+
+[state 8703,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8701,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Medium Hitspark - Base
+;=========================================================================
+[Statedef 8705]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8705,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8705,anim]
+type=changeanim
+trigger1=!time
+value=8700
+
+[state 8705,angle]
+type=angledraw
+trigger1=time<=10
+value=30*(random%12)
+scale=0.325-(0.0325*time),0.325-(0.0325*time)
+[state 8705,angle]
+type=angledraw
+trigger1=time>10
+value=30*(random%12)
+scale=0.0,0.0
+
+[state 8705,trans]
+type=trans
+trigger1=time>=0
+trans=add
+
+[state 8705,Mass]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Mass"
+stateno=8706
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8705,Particles]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Particles"
+stateno=8707
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8705,Force]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Force"
+stateno=8708
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8705,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8705,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Medium Hitspark - Mass
+;=========================================================================
+[Statedef 8706]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8706,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8706,anim]
+type=changeanim
+trigger1=!time
+value=8701
+
+[state 8706,angle]
+type=angleset
+trigger1=!time
+value=30*(random%12)
+[state 8706,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.125+(0.015*time),0.125+(0.015*time)
+
+[state 8706,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-(16*time),256
+
+[state 8706,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8706,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Medium Hitspark - Particles
+;=========================================================================
+[Statedef 8707]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8707,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8707,anim]
+type=changeanim
+trigger1=!time
+value=8702
+
+[state 8707,angle]
+type=angleset
+trigger1=!time
+value=30*(random%12)
+[state 8702,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.0325+(0.015*time),0.0325+(0.015*time)
+
+[state 8707,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+
+[state 8707,Particles]
+type=explod
+trigger1=!time
+anim=8702
+ID=8702
+postype=p1
+pos=0,0
+facing=cond(random<500,1,-1)
+vfacing=cond(random<500,1,-1)
+removetime=-1
+bindtime=-1
+ownpal=0
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+[state 8707,Particles]
+type=modifyexplod
+trigger1=numexplod(8702)
+scale=0.0325+(0.0075*time),0.0325+(0.0075*time)
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+id=8702
+
+[state 8707,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8707,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Medium Hitspark - Force
+;=========================================================================
+[Statedef 8708]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8708,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8708,anim]
+type=changeanim
+trigger1=!time
+value=8703
+
+[state 8708,angle]
+type=angleadd
+trigger1=time>=0
+value=45
+[state 8708,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.212-(0.0075*time),0.212-(0.0075*time)
+
+[state 8708,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,24))*time),256
+
+[state 8708,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8708,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Strong Hitspark - Base
+;=========================================================================
+[Statedef 8710]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8710,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8710,anim]
+type=changeanim
+trigger1=!time
+value=8700
+
+[state 8710,angle]
+type=angledraw
+trigger1=time<=10
+value=30*(random%12)
+scale=0.35-(0.035*time),0.35-(0.035*time)
+[state 8710,angle]
+type=angledraw
+trigger1=time>10
+value=30*(random%12)
+scale=0.0,0.0
+
+[state 8710,trans]
+type=trans
+trigger1=time>=0
+trans=add
+
+[state 8710,Mass]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Mass"
+stateno=8711
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8710,Particles]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Particles"
+stateno=8712
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8710,Force]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Force"
+stateno=8713
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8710,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8710,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Strong Hitspark - Mass
+;=========================================================================
+[Statedef 8711]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8711,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8711,anim]
+type=changeanim
+trigger1=!time
+value=8701
+
+[state 8711,angle]
+type=angleset
+trigger1=!time
+value=30*(random%12)
+[state 8711,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.15+(0.015*time),0.15+(0.015*time)
+
+[state 8711,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-(16*time),256
+
+[state 8711,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8711,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Strong Hitspark - Particles
+;=========================================================================
+[Statedef 8712]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8712,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8712,anim]
+type=changeanim
+trigger1=!time
+value=8702
+
+[state 8712,angle]
+type=angleset
+trigger1=!time
+value=30*(random%12)
+[state 8712,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.035+(0.015*time),0.035+(0.015*time)
+
+[state 8712,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+
+[state 8712,Particles]
+type=explod
+trigger1=!time
+anim=8702
+ID=8702
+postype=p1
+pos=0,0
+facing=cond(random<500,1,-1)
+vfacing=cond(random<500,1,-1)
+removetime=-1
+bindtime=-1
+ownpal=0
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+[state 8712,Particles]
+type=modifyexplod
+trigger1=numexplod(8702)
+scale=0.035+(0.0075*time),0.035+(0.0075*time)
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+id=8702
+
+[state 8712,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8712,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Strong Hitspark - Force
+;=========================================================================
+[Statedef 8713]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8713,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8713,anim]
+type=changeanim
+trigger1=!time
+value=8703
+
+[state 8713,angle]
+type=angleadd
+trigger1=time>=0
+value=45
+[state 8713,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.224-(0.0075*time),0.224-(0.0075*time)
+
+[state 8713,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,24))*time),256
+
+[state 8713,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8713,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Special Hitspark - Base
+;=========================================================================
+[Statedef 8715]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8715,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8715,anim]
+type=changeanim
+trigger1=!time
+value=8715
+
+[state 8715,angle]
+type=angledraw
+trigger1=time<=10
+value=30*(random%12)
+scale=0.375-(0.0375*time),0.375-(0.0375*time)
+[state 8715,angle]
+type=angledraw
+trigger1=time>10
+value=30*(random%12)
+scale=0.0,0.0
+
+[state 8715,trans]
+type=trans
+trigger1=time>=0
+trans=add
+
+[state 8715,Mass]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Mass"
+stateno=8716
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8715,Particles]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Particles"
+stateno=8717
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8715,Force]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Force"
+stateno=8718
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8715,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8710,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Special Hitspark - Mass
+;=========================================================================
+[Statedef 8716]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8716,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8716,anim]
+type=changeanim
+trigger1=!time
+value=8716
+
+[state 8716,angle]
+type=angleset
+trigger1=!time
+value=30*(random%12)
+[state 8716,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.175+(0.0175*time),0.175+(0.0175*time)
+
+[state 8716,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-(16*time),256
+
+[state 8716,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8716,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Special Hitspark - Particles
+;=========================================================================
+[Statedef 8717]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8717,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8717,anim]
+type=changeanim
+trigger1=!time
+value=8717
+
+[state 8717,angle]
+type=angleset
+trigger1=!time
+value=30*(random%12)
+[state 8717,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.0375+(0.015*time),0.0375+(0.015*time)
+
+[state 8717,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+
+[state 8717,Particles]
+type=explod
+trigger1=!time
+anim=8717
+ID=8717
+postype=p1
+pos=0,0
+facing=cond(random<500,1,-1)
+vfacing=cond(random<500,1,-1)
+removetime=-1
+bindtime=-1
+ownpal=0
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+[state 8717,Particles]
+type=modifyexplod
+trigger1=numexplod(8717)
+scale=0.0375+(0.0075*time),0.0375+(0.0075*time)
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+id=8717
+
+[state 8717,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8717,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Special Hitspark - Force
+;=========================================================================
+[Statedef 8718]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8718,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8718,anim]
+type=changeanim
+trigger1=!time
+value=8718
+
+[state 8718,angle]
+type=angleadd
+trigger1=time>=0
+value=45
+[state 8718,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.236-(0.0075*time),0.236-(0.0075*time)
+
+[state 8718,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,24))*time),256
+
+[state 8718,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8718,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Super Hitspark - Base
+;=========================================================================
+[Statedef 8720]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8720,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8720,anim]
+type=changeanim
+trigger1=!time
+value=8720
+
+[state 8720,angle]
+type=angledraw
+trigger1=time<=10
+value=30*(random%12)
+scale=0.4-(0.04*time),0.4-(0.04*time)
+[state 8720,angle]
+type=angledraw
+trigger1=time>10
+value=30*(random%12)
+scale=0.0,0.0
+
+[state 8720,trans]
+type=trans
+trigger1=time>=0
+trans=add
+
+[state 8720,Mass]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Mass"
+stateno=8721
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8720,Particles]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Particles"
+stateno=8722
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8720,Force]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Force"
+stateno=8723
+id=8700
+postype=p1
+ownpal=0
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 8720,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8720,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Super Hitspark - Mass
+;=========================================================================
+[Statedef 8721]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8721,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8721,anim]
+type=changeanim
+trigger1=!time
+value=8721
+
+[state 8721,angle]
+type=angleset
+trigger1=!time
+value=30*(random%12)
+[state 8721,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.2+(0.02*time),0.2+(0.02*time)
+
+[state 8721,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-(16*time),256
+
+[state 8721,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8721,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Super Hitspark - Particles
+;=========================================================================
+[Statedef 8722]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8722,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8722,anim]
+type=changeanim
+trigger1=!time
+value=8722
+
+[state 8722,angle]
+type=angleset
+trigger1=!time
+value=30*(random%12)
+[state 8722,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.04+(0.015*time),0.04+(0.015*time)
+
+[state 8722,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+
+[state 8722,Particles]
+type=explod
+trigger1=!time
+anim=8722
+ID=8722
+postype=p1
+pos=0,0
+facing=cond(random<500,1,-1)
+vfacing=cond(random<500,1,-1)
+removetime=-1
+bindtime=-1
+ownpal=0
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+[state 8722,Particles]
+type=modifyexplod
+trigger1=numexplod(8722)
+scale=0.04+(0.0075*time),0.04+(0.0075*time)
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+id=8722
+
+[state 8722,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8722,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Super Hitspark - Force
+;=========================================================================
+[Statedef 8723]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8723,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8723,anim]
+type=changeanim
+trigger1=!time
+value=8723
+
+[state 8723,angle]
+type=angleadd
+trigger1=time>=0
+value=45
+[state 8723,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.248-(0.0075*time),0.248-(0.0075*time)
+
+[state 8723,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,24))*time),256
+
+[state 8723,atma_naash]
+type=removeexplod
+trigger1=time>16
+[state 8723,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Normal Guard Spark
+;=========================================================================
+[Statedef 8725]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8725,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8725,anim]
+type=changeanim
+trigger1=!time
+value=8725
+
+[state 8725,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.05+(0.025*time),0.05+(0.025*time)
+
+[state 8725,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+
+[state 8725,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Special Guard Spark
+;=========================================================================
+[Statedef 8726]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8726,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8726,anim]
+type=changeanim
+trigger1=!time
+value=8725
+
+[state 8726,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.1+(0.025*time),0.1+(0.025*time)
+
+[state 8726,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+
+[state 8726,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Super Guard Spark
+;=========================================================================
+[Statedef 8727]
+type=A
+movetype=I
+physics=N
+sprpriority=5
+velset=0,0
+
+[state 8727,shadow]
+type=assertspecial
+trigger1=time>=0
+flag=noshadow
+
+[state 8727,anim]
+type=changeanim
+trigger1=!time
+value=8725
+
+[state 8727,angle]
+type=angledraw
+trigger1=time>=0
+scale=0.15+(0.025*time),0.15+(0.025*time)
+
+[state 8727,trans]
+type=trans
+trigger1=time>=0
+trans=addalpha
+alpha=256-((cond(time<=8,8,16))*time),256
+
+[state 8727,atma_naash]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Death Helper
+;=========================================================================
+[Statedef 9999]
+type=A
+movetype=I
+physics=N
+velset=0,0
+ctrl=0
+
+[state 9999,anim]
+type=changeanim
+trigger1=!time
+value=9999
+
+[state 9999,bolii]
+type=playsnd
+trigger1=!time
+value=s(ifelse(root,anim=5950||root,stateno=5950,5950,5150)),0
+
+[State 9999,atma_naash]
+type=destroyself
+trigger1=root,alive
+;=========================================================================
+;Death Helper
+;=========================================================================
+[Statedef 9999]
+type=A
+movetype=I
+physics=N
+velset=0,0
+ctrl=0
+
+[state 9999,anim]
+type=changeanim
+trigger1=!time
+value=9999
+
+[state 9999,bolii]
+type=playsnd
+trigger1=!time
+value=s(ifelse(root,anim=5950||root,stateno=5950,5950,5150)),0
+
+[State 9999,atma_naash]
+type=destroyself
+trigger1=root,alive
+;=========================================================================
+;Super K.O.
+;=========================================================================
+[StateDef 10000]
+type=A
+physics=N
+velset=0,0
+sprpriority=99
+
+[state 10000,Kaas]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+
+[state 10000,anim]
+type=changeanim
+trigger1=!time
+value=9999
+
+[state 10000,anim]
+type=explod
+trigger1=!time
+anim=10000
+ID=10000
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+facing=1
+bindtime=-1
+ontop=1
+ownpal=1
+pausemovetime=5
+supermovetime=-1
+
+[state 10000,pause]
+type=varset
+trigger1=!time
+var(0)=0
+[state 10000,pause]
+type=varadd
+trigger1=time&&var(0)<6
+var(0)=1
+[state 10000,pause]
+type=pause
+trigger1=time<50
+time=7-var(0)
+movetime=6-var(0)
+
+[state 10000,avaaz]
+type=playsnd
+trigger1=!time
+value=S10000,0
+volume=255
+
+[state 10000,atma_naash]
+type=destroyself
+trigger1=!(roundstate>2)
+;=========================================================================
+;Super Charge - Level 1
+;=========================================================================
+[StateDef 10005]
+type=A
+physics=N
+velset=0,0
+sprpriority=99
+
+[state 10005,Root-Varset-Root,Stateno]
+type=null
+trigger1=!time
+trigger1=var(0):=root,stateno
+[state 10005,Root-Varset-Position X/Position Y]
+type=null
+trigger1=!time
+trigger1=fvar(6):=root,fvar(6)||fvar(7):=root,fvar(7)
+
+[state 10005,bind]
+type=bindtoparent
+trigger1=1
+pos=fvar(6),fvar(7)
+
+[state 10005,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 10005,anim]
+type=changeanim
+trigger1=!time
+value=10005
+
+[state 10005,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+
+[state 10005,avaaz]
+type=playsnd
+trigger1=!time
+value=S10000,1
+volume=255
+[state 10005,avaaz]
+type=playsnd
+trigger1=!time
+value=S10000,2
+volume=255
+
+[state 10005,roop]
+type=angledraw
+trigger1=time=[0,16]
+trigger1=var(1):=var(1)+4
+scale=0.384,0.384
+;scale=0.006*var(1),0.006*var(1)
+[state 10005,roop]
+type=angledraw
+trigger1=time=[17,32]
+scale=0.006*var(1),0.006*var(1)
+[state 10005,roop]
+type=angledraw
+trigger1=time>32
+trigger1=var(1):=var(1)-8
+scale=0.006*var(1),0.006*var(1)
+[state 10005,roop]
+type=angleadd
+trigger1=1
+value=6
+
+[state 10005,roop]
+type=trans
+trigger1=time<=32
+trans=add
+[state 10005,roop]
+type=trans
+trigger1=time>32
+trigger1=var(2):=var(2)+1
+trans=addalpha
+alpha=256-((cond(var(2)<=8,8,32))*var(2)),256
+
+[state 10005,roop]
+type=bgpalfx
+trigger1=time=[0,13]
+trigger1=var(3):=var(3)+1
+time=1
+mul=0,0,512-(20*var(3))
+add=0,0,0
+sinadd=255,255,255,20
+color=0
+invertall=0
+[state 10005,roop]
+type=bgpalfx
+trigger1=time=[14,26]
+trigger1=var(4):=var(4)+1
+time=1
+mul=0,0,256+(20*var(4))
+add=0,0,0
+sinadd=255,255,255,20
+color=0
+invertall=0
+[state 10005,roop]
+type=bgpalfx
+trigger1=time=[27,40]
+trigger1=var(5):=var(5)+1
+time=1
+mul=0,0,512-(20*var(5))
+add=0,0,0
+sinadd=255,255,255,20
+color=0
+invertall=0
+
+[state 10005,prakash]
+type=explod
+trigger1=time=0
+trigger2=time=8
+trigger3=time=16
+trigger4=time=24
+anim=10006
+ID=cond(time=0,1,cond(time=8,2,cond(time=16,3,4)))
+postype=p1
+facing=cond(random<500,1,-1)
+vfacing=cond(random<500,1,-1)
+removetime=32
+bindtime=-1
+ontop=1
+ownpal=0
+pausemovetime=-1
+supermovetime=-1
+
+[state 10005,prakash]
+type=modifyexplod
+trigger1=numexplod(1)
+trigger1=var(6):=var(6)+1
+scale=0.03125+(0.05*var(6)),0.03125+(0.05*var(6))
+trans=addalpha
+alpha=256-((cond(var(6)<=8,8,16))*var(6)),256
+id=1
+
+[state 10005,prakash]
+type=modifyexplod
+trigger1=numexplod(2)
+trigger1=var(7):=var(7)+1
+scale=0.03125+(0.05*var(7)),0.03125+(0.05*var(7))
+trans=addalpha
+alpha=256-((cond(var(7)<=8,8,16))*var(7)),256
+id=2
+
+[state 10005,prakash]
+type=modifyexplod
+trigger1=numexplod(3)
+trigger1=var(8):=var(8)+1
+scale=0.03125+(0.05*var(8)),0.03125+(0.05*var(8))
+trans=addalpha
+alpha=256-((cond(var(8)<=8,8,16))*var(8)),256
+id=3
+
+[state 10005,prakash]
+type=modifyexplod
+trigger1=numexplod(4)
+trigger1=var(9):=var(9)+1
+scale=0.03125+(0.05*var(9)),0.03125+(0.05*var(9))
+trans=addalpha
+alpha=256-((cond(var(9)<=8,16,32))*var(9)),256
+id=4
+
+[state 10005,prakash]
+type=explod
+trigger1=time=0
+trigger2=time=8
+trigger3=time=16
+trigger4=time=24
+anim=10007
+ID=cond(time=0,5,cond(time=8,6,cond(time=16,7,8)))
+postype=p1
+removetime=32
+bindtime=-1
+ontop=1
+ownpal=0
+pausemovetime=-1
+supermovetime=-1
+
+[state 10005,prakash]
+type=modifyexplod
+trigger1=numexplod(5)
+trigger1=var(10):=var(10)+1
+scale=0.0+(0.05*var(10)),0.0+(0.05*var(10))
+trans=addalpha
+alpha=256-(16*var(10)),256
+id=5
+
+[state 10005,prakash]
+type=modifyexplod
+trigger1=numexplod(6)
+trigger1=var(11):=var(11)+1
+scale=0.0+(0.05*var(11)),0.0+(0.05*var(11))
+trans=addalpha
+alpha=256-(16*var(11)),256
+id=6
+
+[state 10005,prakash]
+type=modifyexplod
+trigger1=numexplod(7)
+trigger1=var(12):=var(12)+1
+scale=0.0+(0.05*var(12)),0.0+(0.05*var(12))
+trans=addalpha
+alpha=256-(16*var(12)),256
+id=7
+
+[state 10005,prakash]
+type=modifyexplod
+trigger1=numexplod(8)
+trigger1=var(13):=var(13)+1
+scale=0.0+(0.05*var(13)),0.0+(0.05*var(13))
+trans=addalpha
+alpha=256-(16*var(13)),256
+id=8
+
+[state 10005,atma_naash]
+type=removeexplod
+trigger1=time>40
+trigger2=root,stateno!=var(0)
+id=-1
+[state 10005,atma_naash]
+type=destroyself
+trigger1=time>40
+trigger2=root,stateno!=var(0)
+;=========================================================================
+;Super Charge - Level 2
+;=========================================================================
+[StateDef 10010]
+type=A
+physics=N
+velset=0,0
+sprpriority=99
+
+[state 10010,Root-Varset-Root,Stateno]
+type=null
+trigger1=!time
+trigger1=var(0):=root,stateno
+[state 10010,Root-Varset-Position X/Position Y]
+type=null
+trigger1=!time
+trigger1=fvar(6):=root,fvar(6)||fvar(7):=root,fvar(7)
+
+[state 10010,bind]
+type=bindtoparent
+trigger1=1
+pos=fvar(6),fvar(7)
+
+[state 10010,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 10010,anim]
+type=changeanim
+trigger1=!time
+value=10010
+
+[state 10010,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+
+[state 10010,avaaz]
+type=playsnd
+trigger1=!time
+value=S10000,1
+volume=255
+[state 10010,avaaz]
+type=playsnd
+trigger1=!time
+value=S10000,2
+volume=255
+
+[state 10010,roop]
+type=angledraw
+trigger1=time=[0,16]
+trigger1=var(1):=var(1)+4
+scale=0.384,0.384
+;scale=0.006*var(1),0.006*var(1)
+[state 10010,roop]
+type=angledraw
+trigger1=time=[17,32]
+scale=0.006*var(1),0.006*var(1)
+[state 10010,roop]
+type=angledraw
+trigger1=time>32
+trigger1=var(1):=var(1)-8
+scale=0.006*var(1),0.006*var(1)
+[state 10010,roop]
+type=angleadd
+trigger1=1
+value=6
+
+[state 10010,roop]
+type=trans
+trigger1=time<=32
+trans=add
+[state 10010,roop]
+type=trans
+trigger1=time>32
+trigger1=var(2):=var(2)+1
+trans=addalpha
+alpha=256-((cond(var(2)<=8,8,32))*var(2)),256
+
+[state 10010,roop]
+type=bgpalfx
+trigger1=time=[0,13]
+trigger1=var(3):=var(3)+1
+time=1
+mul=0,512-(20*var(3)),0
+add=0,0,0
+sinadd=255,255,255,20
+color=0
+invertall=0
+[state 10010,roop]
+type=bgpalfx
+trigger1=time=[14,26]
+trigger1=var(4):=var(4)+1
+time=1
+mul=0,256+(20*var(4)),0
+add=0,0,0
+sinadd=255,255,255,20
+color=0
+invertall=0
+[state 10010,roop]
+type=bgpalfx
+trigger1=time=[27,40]
+trigger1=var(5):=var(5)+1
+time=1
+mul=0,512-(20*var(5)),0
+add=0,0,0
+sinadd=255,255,255,20
+color=0
+invertall=0
+
+[state 10010,prakash]
+type=explod
+trigger1=time=0
+trigger2=time=8
+trigger3=time=16
+trigger4=time=24
+anim=10011
+ID=cond(time=0,1,cond(time=8,2,cond(time=16,3,4)))
+postype=p1
+facing=cond(random<500,1,-1)
+vfacing=cond(random<500,1,-1)
+removetime=32
+bindtime=-1
+ontop=1
+ownpal=0
+pausemovetime=-1
+supermovetime=-1
+
+[state 10010,prakash]
+type=modifyexplod
+trigger1=numexplod(1)
+trigger1=var(6):=var(6)+1
+scale=0.03125+(0.05*var(6)),0.03125+(0.05*var(6))
+trans=addalpha
+alpha=256-((cond(var(6)<=8,8,16))*var(6)),256
+id=1
+
+[state 10010,prakash]
+type=modifyexplod
+trigger1=numexplod(2)
+trigger1=var(7):=var(7)+1
+scale=0.03125+(0.05*var(7)),0.03125+(0.05*var(7))
+trans=addalpha
+alpha=256-((cond(var(7)<=8,8,16))*var(7)),256
+id=2
+
+[state 10010,prakash]
+type=modifyexplod
+trigger1=numexplod(3)
+trigger1=var(8):=var(8)+1
+scale=0.03125+(0.05*var(8)),0.03125+(0.05*var(8))
+trans=addalpha
+alpha=256-((cond(var(8)<=8,8,16))*var(8)),256
+id=3
+
+[state 10010,prakash]
+type=modifyexplod
+trigger1=numexplod(4)
+trigger1=var(9):=var(9)+1
+scale=0.03125+(0.05*var(9)),0.03125+(0.05*var(9))
+trans=addalpha
+alpha=256-((cond(var(9)<=8,16,32))*var(9)),256
+id=4
+
+[state 10010,prakash]
+type=explod
+trigger1=time=0
+trigger2=time=8
+trigger3=time=16
+trigger4=time=24
+anim=10012
+ID=cond(time=0,5,cond(time=8,6,cond(time=16,7,8)))
+postype=p1
+removetime=32
+bindtime=-1
+ontop=1
+ownpal=0
+pausemovetime=-1
+supermovetime=-1
+
+[state 10010,prakash]
+type=modifyexplod
+trigger1=numexplod(5)
+trigger1=var(10):=var(10)+1
+scale=0.0+(0.05*var(10)),0.0+(0.05*var(10))
+trans=addalpha
+alpha=256-(16*var(10)),256
+id=5
+
+[state 10010,prakash]
+type=modifyexplod
+trigger1=numexplod(6)
+trigger1=var(11):=var(11)+1
+scale=0.0+(0.05*var(11)),0.0+(0.05*var(11))
+trans=addalpha
+alpha=256-(16*var(11)),256
+id=6
+
+[state 10010,prakash]
+type=modifyexplod
+trigger1=numexplod(7)
+trigger1=var(12):=var(12)+1
+scale=0.0+(0.05*var(12)),0.0+(0.05*var(12))
+trans=addalpha
+alpha=256-(16*var(12)),256
+id=7
+
+[state 10010,prakash]
+type=modifyexplod
+trigger1=numexplod(8)
+trigger1=var(13):=var(13)+1
+scale=0.0+(0.05*var(13)),0.0+(0.05*var(13))
+trans=addalpha
+alpha=256-(16*var(13)),256
+id=8
+
+[state 10010,atma_naash]
+type=removeexplod
+trigger1=time>40
+trigger2=root,stateno!=var(0)
+id=-1
+[state 10010,atma_naash]
+type=destroyself
+trigger1=time>40
+trigger2=root,stateno!=var(0)
+;=========================================================================
+;Super Charge - Level 3
+;=========================================================================
+[StateDef 10015]
+type=A
+physics=N
+velset=0,0
+sprpriority=99
+
+[state 10015,Root-Varset-Root,Stateno]
+type=null
+trigger1=!time
+trigger1=var(0):=root,stateno
+[state 10015,Root-Varset-Position X/Position Y]
+type=null
+trigger1=!time
+trigger1=fvar(6):=root,fvar(6)||fvar(7):=root,fvar(7)
+
+[state 10015,bind]
+type=bindtoparent
+trigger1=1
+pos=fvar(6),fvar(7)
+
+[state 10015,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 10015,anim]
+type=changeanim
+trigger1=!time
+value=10015
+
+[state 10015,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+
+[state 10015,avaaz]
+type=playsnd
+trigger1=!time
+value=S10000,1
+volume=255
+[state 10015,avaaz]
+type=playsnd
+trigger1=!time
+value=S10000,2
+volume=255
+
+[state 10015,roop]
+type=angledraw
+trigger1=time=[0,16]
+trigger1=var(1):=var(1)+4
+scale=0.384,0.384
+;scale=0.006*var(1),0.006*var(1)
+[state 10015,roop]
+type=angledraw
+trigger1=time=[17,32]
+scale=0.006*var(1),0.006*var(1)
+[state 10015,roop]
+type=angledraw
+trigger1=time>32
+trigger1=var(1):=var(1)-8
+scale=0.006*var(1),0.006*var(1)
+[state 10010,roop]
+type=angleadd
+trigger1=1
+value=6
+
+[state 10015,roop]
+type=trans
+trigger1=time<=32
+trans=add
+[state 10015,roop]
+type=trans
+trigger1=time>32
+trigger1=var(2):=var(2)+1
+trans=addalpha
+alpha=256-((cond(var(2)<=8,8,32))*var(2)),256
+
+[state 10015,roop]
+type=bgpalfx
+trigger1=time=[0,13]
+trigger1=var(3):=var(3)+1
+time=1
+mul=512-(20*var(3)),0,0
+add=0,0,0
+sinadd=255,255,255,20
+color=0
+invertall=0
+[state 10015,roop]
+type=bgpalfx
+trigger1=time=[14,26]
+trigger1=var(4):=var(4)+1
+time=1
+mul=256+(20*var(4)),0,0
+add=0,0,0
+sinadd=255,255,255,20
+color=0
+invertall=0
+[state 10015,roop]
+type=bgpalfx
+trigger1=time=[27,40]
+trigger1=var(5):=var(5)+1
+time=1
+mul=512-(20*var(5)),0,0
+add=0,0,0
+sinadd=255,255,255,20
+color=0
+invertall=0
+
+[state 10015,prakash]
+type=explod
+trigger1=time=0
+trigger2=time=8
+trigger3=time=16
+trigger4=time=24
+anim=10016
+ID=cond(time=0,1,cond(time=8,2,cond(time=16,3,4)))
+postype=p1
+facing=cond(random<500,1,-1)
+vfacing=cond(random<500,1,-1)
+removetime=32
+bindtime=-1
+ontop=1
+ownpal=0
+pausemovetime=-1
+supermovetime=-1
+
+[state 10015,prakash]
+type=modifyexplod
+trigger1=numexplod(1)
+trigger1=var(6):=var(6)+1
+scale=0.03125+(0.05*var(6)),0.03125+(0.05*var(6))
+trans=addalpha
+alpha=256-((cond(var(6)<=8,8,16))*var(6)),256
+id=1
+
+[state 10015,prakash]
+type=modifyexplod
+trigger1=numexplod(2)
+trigger1=var(7):=var(7)+1
+scale=0.03125+(0.05*var(7)),0.03125+(0.05*var(7))
+trans=addalpha
+alpha=256-((cond(var(7)<=8,8,16))*var(7)),256
+id=2
+
+[state 10015,prakash]
+type=modifyexplod
+trigger1=numexplod(3)
+trigger1=var(8):=var(8)+1
+scale=0.03125+(0.05*var(8)),0.03125+(0.05*var(8))
+trans=addalpha
+alpha=256-((cond(var(8)<=8,8,16))*var(8)),256
+id=3
+
+[state 10015,prakash]
+type=modifyexplod
+trigger1=numexplod(4)
+trigger1=var(9):=var(9)+1
+scale=0.03125+(0.05*var(9)),0.03125+(0.05*var(9))
+trans=addalpha
+alpha=256-((cond(var(9)<=8,16,32))*var(9)),256
+id=4
+
+[state 10015,prakash]
+type=explod
+trigger1=time=0
+trigger2=time=8
+trigger3=time=16
+trigger4=time=24
+anim=10017
+ID=cond(time=0,5,cond(time=8,6,cond(time=16,7,8)))
+postype=p1
+removetime=32
+bindtime=-1
+ontop=1
+ownpal=0
+pausemovetime=-1
+supermovetime=-1
+
+[state 10015,prakash]
+type=modifyexplod
+trigger1=numexplod(5)
+trigger1=var(10):=var(10)+1
+scale=0.0+(0.05*var(10)),0.0+(0.05*var(10))
+trans=addalpha
+alpha=256-(16*var(10)),256
+id=5
+
+[state 10015,prakash]
+type=modifyexplod
+trigger1=numexplod(6)
+trigger1=var(11):=var(11)+1
+scale=0.0+(0.05*var(11)),0.0+(0.05*var(11))
+trans=addalpha
+alpha=256-(16*var(11)),256
+id=6
+
+[state 10015,prakash]
+type=modifyexplod
+trigger1=numexplod(7)
+trigger1=var(12):=var(12)+1
+scale=0.0+(0.05*var(12)),0.0+(0.05*var(12))
+trans=addalpha
+alpha=256-(16*var(12)),256
+id=7
+
+[state 10015,prakash]
+type=modifyexplod
+trigger1=numexplod(8)
+trigger1=var(13):=var(13)+1
+scale=0.0+(0.05*var(13)),0.0+(0.05*var(13))
+trans=addalpha
+alpha=256-(16*var(13)),256
+id=8
+
+[state 10015,atma_naash]
+type=removeexplod
+trigger1=time>40
+trigger2=root,stateno!=var(0)
+id=-1
+[state 10015,atma_naash]
+type=destroyself
+trigger1=time>40
+trigger2=root,stateno!=var(0)
+;=========================================================================
+;Super Portrait
+;=========================================================================
+[Statedef 10020]
+physics=N
+sprpriority=-9999999
+
+[state 10020,Root-Varset-Root,Stateno]
+type=null
+trigger1=!time
+trigger1=var(0):=root,stateno
+
+[state 10020,roop]
+type=assertspecial
+trigger1=1
+flag=nobg
+flag2=nofg
+[state 10020,roop]
+type=assertspecial
+trigger1=1
+flag=nobardisplay
+flag2=globalnoshadow
+
+[state 10020,anim]
+type=changeanim
+trigger1=!time
+value=9999
+
+[state 10020,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+
+[state 10020,prakash]
+type=explod
+trigger1=!time
+trigger1=var(1):=-243;-203 (accurate)
+anim=10020
+ID=1
+postype=back
+facing=1
+removetime=-1
+bindtime=-1
+under=1
+ownpal=1
+pausemovetime=-1
+supermovetime=-1
+
+[state 10020,prakash]
+type=modifyexplod
+trigger1=numexplod(1)
+trigger1=time=[0,16]
+trigger1=var(1):=var(1)+10
+postype=back
+pos=160,ceil((1.33*gameheight/gamewidth)*var(1))
+scale=0.75,0.75
+id=1
+[state 10020,prakash]
+type=modifyexplod
+trigger1=numexplod(1)
+trigger1=time=[17,40]
+trigger1=var(1):=var(1)+1
+postype=back
+pos=160,ceil((1.33*gameheight/gamewidth)*var(1))
+id=1
+[state 10020,prakash]
+type=modifyexplod
+trigger1=numexplod(1)
+trigger1=time=[41,48]
+trigger1=var(1):=var(1)+1
+postype=back
+pos=160,ceil((1.33*gameheight/gamewidth)*var(1))
+trans=addalpha
+alpha=256-(32*(time-40)),256
+id=1
+
+[state 10020,prakash]
+type=explod
+trigger1=!time
+trigger1=var(2):=483;443 (accurate)
+anim=10021
+ID=2
+postype=back
+facing=1
+removetime=-1
+bindtime=-1
+under=1
+ownpal=1
+pausemovetime=-1
+supermovetime=-1
+
+[state 10020,prakash]
+type=modifyexplod
+trigger1=numexplod(2)
+trigger1=time=[0,16]
+trigger1=var(2):=var(2)-10
+postype=back
+pos=160,ceil((1.33*gameheight/gamewidth)*var(2))
+scale=0.75,0.75
+id=2
+[state 10020,prakash]
+type=modifyexplod
+trigger1=numexplod(1)
+trigger1=time=[17,40]
+trigger1=var(2):=var(2)-1
+postype=back
+pos=160,ceil((1.33*gameheight/gamewidth)*var(2))
+id=2
+[state 10020,prakash]
+type=modifyexplod
+trigger1=numexplod(1)
+trigger1=time=[41,48]
+trigger1=var(2):=var(2)-1
+postype=back
+pos=160,ceil((1.33*gameheight/gamewidth)*var(2))
+trans=addalpha
+alpha=256-(32*(time-40)),256
+id=2
+
+[state 10020,prakash]
+type=explod
+trigger1=!time
+trigger1=var(3):=-160
+anim=10025
+ID=3
+postype=back
+facing=1
+removetime=-1
+bindtime=-1
+under=1
+ownpal=1
+pausemovetime=-1
+supermovetime=-1
+
+[state 10020,prakash]
+type=modifyexplod
+trigger1=numexplod(3)
+trigger1=time=[0,16]
+trigger1=var(3):=var(3)+12
+postype=back
+pos=var(3),ceil((1.33*gameheight/gamewidth)*120)
+scale=0.5,0.5
+id=3
+[state 10020,prakash]
+type=modifyexplod
+trigger1=numexplod(3)
+trigger1=time=[17,32]
+trigger1=var(3):=var(3)+1
+postype=back
+pos=var(3),ceil((1.33*gameheight/gamewidth)*120)
+id=3
+[state 10020,prakash]
+type=modifyexplod
+trigger1=numexplod(3)
+trigger1=time=[33,48]
+trigger1=var(3):=var(3)+1
+postype=back
+pos=var(3),ceil((1.33*gameheight/gamewidth)*120)
+trans=addalpha
+alpha=256-(24*(time-32)),256
+id=3
+
+[state 10020,atma_naash]
+type=removeexplod
+trigger1=time>48
+trigger2=parent,stateno!=var(0)
+id=-1
+[state 10020,atma_naash]
+type=destroyself
+trigger1=time>48
+trigger2=parent,stateno!=var(0)

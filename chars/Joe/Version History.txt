@@ -1,0 +1,83 @@
+<09/05/11>
+ - Tiger Kick behavior changed back to CvS2
+ - Throw damage changed
+ - Changed around some canceling rules
+
+<v.04/10/11>
+ - Major CLSN overhaul
+ - Fixed P2 side turns intro
+ - Adjusted the size of the hitboxes for Dynamite Fist.
+ - Adjusted EX Hurricane Upper behavior
+ - Added AI
+ - EX Slash Kick bounce now uses MUGEN's default hitsparks
+ - All versions of Tiger Kick (save for the EX version) do 2 hits now
+ - New, better quality voices on EX Hurricane Upper and Dynamite Upper
+ - EX Golden Heel behavior modified
+ - Exploding Hurricane Tiger Heel's number of hits adjusted (both versions)
+ - Golden Tiger Kick now behaves like it does in KOF2002UM, level 2 version added
+
+<v.08/01/10>
+ - Total overhaul: GetHits redone, palettes redone, and other miscellaneous fixes.
+ - Made Dynamite Fist an overhead.
+ - Fixed Level 2 AfterImage frameGap bug.
+ - Adjusted EnvShake on the throws.
+ - Fixed some minor hitspark bugs.
+ - Adjusted some Tiger Kick velocities.
+ - Redid all projectile code.
+ - EX Golden Heel now has autoguard.
+ - Fixed some minor sound bugs.
+
+<v.06/28/10>
+ - Fixed a a bug during the intro vs Mai Shiranui where a hit sound would play when a hurricane 
+   projectile began fading away.	
+ - Removed a weird PosAdd bug during Cheap K.O.
+ - Corrected a minor bug in the command file for Screw Upper.
+ - Adjusted some normal move HitDef animTypes and velocities.
+ - Modified the behavior of opponents hit by Zero Counter.
+ - Fixed a bug that allowed you to cancel normal moves into a taunt.
+
+<v.06/04/10>
+ - Fixed some minor PalFX issues relating to EX Tiger Kick and Golden Tiger Kick.
+ - Removed a minor hit sound bug in the small projectile at the beginning of Screw Upper.
+ - Adjusted some constants.
+ - Modified the behavior of opponents hit by Golden Heel on the ground.
+
+<v.05/27/10>
+ - Fixed a bug that gave back power when performing a Zero Counter.
+ - Corrected a Golden Tiger Kick FX misalignment problem when performed on a blocking opponent.
+ - Removed a minor bug where the hit sound for a connected Hurrican Upper projectile would play when a
+   projectile faded away without hitting anything during Exploding Hurricane Tiger Heel.
+ - Improved chances of connecting both hits of EX Slash Kick on an airborne opponent.
+ - Fixed a minor sound error in Hurricane Upper.
+ - Corrected minor bug in Shoulder Throw.
+
+<v.05/23/10>
+ - Fixed a bug in EX Slash Kick that prevented the second hit from connecting with an opponent that is      airborne.
+ - Corrected a minor bug in Golden Tiger Kick that caused the top layer FX to become misaligned when
+   performed on a blocking opponent in a corner.
+ - Removed minor bug where the hit sound for a connected Hurricane Upper projectile would play when the
+   projectile hit a guarding opponent.
+ - Modified the behavior of the turns intro, allowing the intros against Dan Hibiki and the Muay Thai
+   fighters to be shown after landing.
+ - Fixed minor bug where the impact dust from an opponent being slammed into the ground by a Golden Heel     would play twice.
+ - Modified the animations of the hit by Golden Heel states.
+
+<v.05/21/10>
+ - Redid Double Cyclone; the bug that allowed opponents to be hit up to thirteen times was removed and       the opponent will now only be hit the full twelve times if they are hit at the beginning of the move.
+ - Changed the default Level 3 Super Portrait to a zoomed in version that is a different color.
+ - Increased the timing for the half circle and super moves, so they are easier to pull off.
+ - Modified EX Golden Heel so that its y velocity is no longer determined by whether the opponent is
+   airborne.
+
+<v.05/18/10>
+ - Fixed the bug in EX Slash Kick that causes a debug flood for some characters.
+ - Toned down the damage of MAX Exploding Hurricane Tiger Heel.
+ - Lowered jump height to a more reasonable level.
+ - Fixed issues with Hurricane Upper projectiles colliding with other projectiles.
+ - Backwards dash goes slightly faster so it looks better.
+ - MAX Exploding Hurricane Tiger Heel's hurricane portion doesn't push the opponent back so far, and the     hitbox for the first hit of the Tiger Knee part has been resized to ensure the entire move connects.
+ - EX Golden Heel no longer homes in on enemies and all hits are now overheads.
+ - Added an alternate Level 3 Super Portrait by .:[HaDeS]:.
+
+<v.05/17/10>
+ - First release

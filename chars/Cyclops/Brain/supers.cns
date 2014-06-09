@@ -1,0 +1,1545 @@
+;=============================================================
+;Supers
+;=============================================================
+; Super Optic Blast
+[Statedef 3000]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 3000
+ctrl = 0
+sprpriority = 1
+
+[State 3000, Special-Super Cancel Flag]
+type=varset
+trigger1= !time
+var(5)= (prevstateno=[1000,2999]) && var(35)
+
+[State 3000, Super-Super Cancel Flag]
+type=varset
+trigger1= !time
+var(6)= (prevstateno=[3000,4999]) && var(36)
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = time = [0,45]
+value = SCA;,NA,SA,HA,NP,SP,HP,NT,ST,HT
+
+[State 3000, Super A]
+type = SuperPause
+trigger1 = AnimElem = 1
+time=45
+movetime=45
+pos = 25, -57
+anim = -1
+darken = 0
+unhittable = 1
+poweradd = -1000
+
+[State 3000, Helper]
+type = Helper
+trigger1 = animelem = 1
+helpertype = normal ;player
+name = "Super Charge"
+ID = 8000
+stateno = 8000
+pos = ceil(28*const(size.xscale)), ceil(-93*const(size.yscale))
+postype = p1
+size.xscale = .5
+size.yscale = .5
+sprpriority = 2
+facing = 1
+ownpal = 1
+supermovetime=300
+
+[State 3050, hadouken]
+type=helper
+trigger1= anim=3000 && animelemtime(7)>=0
+helpertype=player
+stateno=3005
+ID=3005
+name="Super Optic Blast"
+postype=p1
+size.xscale= .5
+size.yscale= .5
+ownpal=1
+persistent=0
+sprpriority = 5
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = anim=3000 && time = 0
+value = S3000,0
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = anim=3000 && animelem = 6
+value = S3000,1
+channel = 0
+
+[State 1010, end]
+type=changeanim
+trigger1= anim=3000 && animelemtime(8)>=0 && !numhelper(3005)
+value=3001
+
+[State AttackDone]
+type=statetypeset
+triggerall = anim = 3001
+trigger1= animelemtime(1)>=0
+movetype=I
+
+[State 1010, end]
+type=changestate
+trigger1= anim=3001 && !animtime
+value=0
+ctrl=1
+;========================<Super Optic Blast>=============================
+[Statedef 3005]
+type=A
+physics=N
+movetype=A
+ctrl=0
+velset=0,0
+sprpriority=4
+hitcountpersistent = 1
+
+[State 3000, Special-Super Cancel Flag]
+type=varset
+trigger1= !time
+var(5)= (prevstateno=[1000,2999]) && var(35)
+
+[State 3000, Super-Super Cancel Flag]
+type=varset
+trigger1= !time
+var(6)= (prevstateno=[3000,4999]) && var(36)
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S3005,0
+channel = -1
+
+[State 3055, Anim]
+type=changeanim
+triggerall= !time && !prevstateno
+trigger1 = root,stateno = 3000
+value=3005
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 0
+
+[State 3005, HitOverride]
+type=hitoverride
+trigger1= 1
+time=-1
+attr=SCA,AA,AP,AT
+stateno=ifelse(var(2)<14,3005,1008)
+ignorehitpause=1
+
+[State 3005,hitby]
+type=hitby
+trigger1= 1
+time=-1
+value=SCA,NP,SP,HP
+ignorehitpause=1
+
+[State 3005, strengthvar]
+type=varset
+trigger1= !time && !prevstateno
+var(10)=5
+
+[State 3005, Anim]
+type=changeanim
+trigger1= !time && !prevstateno
+value=3005
+
+[State 3005, hitvar]
+type=varadd
+trigger1= !time
+var(2)=1
+
+[State 3005, movehitvar]
+type=varset
+trigger1= movecontact && numtarget
+trigger1= !(target,ishelper)
+var(3)=1
+ignorehitpause=1
+
+[State 1105, assert]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+
+;[State 5035, 1]
+;type = Trans
+;trigger1 = 1
+;trans = add
+
+[State 1105, bind]
+type=bindtoroot
+triggerall = root,stateno=3000
+trigger1=1
+pos=ceil(-3*const(size.xscale)), -101;ceil(-64*const(size.yscale))
+time = -1
+
+[State 0, AttackMulSet]
+type = AttackMulSet
+trigger1 = 1
+value = ifelse(var(6), .6, ifelse(var(5), .8, 1.0))
+
+[State 6101, Dampener]
+type=varset
+trigger1= 1
+fvar(11)= fvar(10)
+
+[State 6101, Hit]
+type=hitdef
+trigger1 = animElem=5||animelem=7||animelem=9||animelem=11||animelem =13||animelem=15||animelem =17
+trigger2 = animElem=19||animelem=21||animelem=23||animelem=25||animelem =27||animelem=29
+attr = A,HA
+hitflag = MAFP
+guardflag = M
+priority = 4, Hit
+damage = ceil(ifelse(fvar(11)*11<7, 7, fvar(11)*11)), 2
+getpower = 0, 0
+givepower = 36, 36
+pausetime = 0, 12
+guard.pausetime = 0, 12
+animtype = Hard
+air.animtype = Hard
+fall.animtype = Hard
+ground.type = Low
+air.type = Low
+ground.hittime = 18
+ground.slidetime = 18
+guard.hittime = 18
+air.hittime = 60
+ground.velocity = -13.3, -3.66
+ground.cornerpush.veloff = 0
+guard.velocity = -5.41
+guard.cornerpush.veloff = 0
+air.velocity = -13.3, -3.66
+air.cornerpush.veloff = 0
+yaccel = .46
+fall = 1
+fall.recover = 0
+forcestand = 1
+hitsound = s1005,1
+guardsound = s6,0
+sparkno = -1
+guard.sparkno = -1
+sparkxy = -10, -60
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+sprpriority = 2
+
+[State 1001, 5] ;Opponent near
+type = HitDef
+trigger1 = animelem =31
+attr = S, HP
+animtype  = Hard
+damage    = ceil(ifelse(fvar(11)*11<7, 7, fvar(11)*11)), 2
+getpower = 0,0
+priority=1,Miss
+guardflag = MA
+pausetime = 3,15
+sparkno = -1;s7020+(random%8)
+guard.sparkno = S7060
+sparkxy = -10, 0
+hitsound   = s1005,1
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -7,0
+air.velocity = -6.5,0
+ground.cornerpush.veloff = 0
+fall = 1
+fall.recover = 20
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+sprpriority = 5
+
+[State 910, Hitspark]
+type = Helper;Explod
+helpertype = normal
+triggerall = root,stateno = 3000
+trigger1 = movehit=1
+;trigger1= !(target,hitshakeover)
+stateno = 7020;+(random%8)
+pos= ceil(p2dist x),0;ifelse(p2dist x<0, 0, ifelse(p2dist x<20, ceil(p2dist x), 20)), 0
+size.xscale = 1
+size.yscale = 1
+bindtime = 1
+sprpriority = 5
+
+[State 1006, ProjContact]
+type=varset
+trigger1= movecontact && numtarget
+var(9)=2
+
+[State 1006, ProjContact]
+type=parentvarset
+trigger1= movecontact && numtarget
+trigger1= root,stateno=3000
+var(9)=2
+
+[State 1006, HitCount]
+type=parentvaradd
+trigger1= !time
+trigger1= movecontact && numtarget
+var(19)=1
+
+[State 1105, vel]
+type=velset
+trigger1=animelemtime(1)>=0
+x=(root,vel x)
+y=(root,vel y)
+persistent=1
+
+[State 1105, turn]
+type=turn
+trigger1=facing!=(root,facing)
+
+[State 211, 3]
+type = DestroySelf
+trigger1 = !animtime
+trigger2=(root,stateno!=3000||root,anim!=3000)
+
+[State 1055, end]
+type=destroyself
+trigger1=animtime = 0
+;=============================================================
+; Super Cyclone Kick
+[Statedef 3050]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 0
+anim = 3050
+ctrl = 0
+sprpriority = 1
+hitcountpersistent = 1
+
+[State 0, AttackMulSet]
+type = AttackMulSet
+trigger1 = (prevstateno=[200,699])
+value = 1
+
+[State 0, AttackMulSet]
+type = AttackMulSet
+trigger1 = (prevstateno=[1000,2999])
+value = .8
+
+[State 0, Width]
+type = Width
+trigger1 = 1
+value = 20,0
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = time = [0,49]
+value = SCA;,NA,SA,HA,NP,SP,HP,NT,ST,HT
+
+[State 3000, Super A]
+type = SuperPause
+trigger1 = AnimElem = 1
+time=45
+movetime=45
+pos = 25, -57
+anim = -1
+darken = 0
+unhittable = 1
+poweradd = -1000
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem=1
+value = S3000,0
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem=4
+value = S1150,0
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem=34
+value = S100,0
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem=4||animelem=9||animelem=14||animelem=19||animelem=24||animelem=29||animelem=35
+value = S1,6
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = animelem = 35
+x = 27
+
+[State 0, VelAdd]
+type = Velset
+trigger1 = time = 93
+x = 1
+y = -10
+
+[State 0, StateTypeSet]
+type = StateTypeSet
+trigger1 = time = 93
+statetype = A
+physics = N
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time >= 93
+y = .5
+
+[State 3000, Helper]
+type = Helper
+trigger1 = animelem = 1
+helpertype = normal ;player
+name = "Super Charge"
+ID = 8000
+stateno = 8000
+pos = ceil(-16*const(size.xscale)), ceil(-15*const(size.yscale))
+postype = p1
+size.xscale = .5
+size.yscale = .5
+sprpriority = 2
+facing = 1
+ownpal = 1
+supermovetime=300
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelem=4||animelem=9||animelem=14||animelem=19||animelem=24||animelem=29
+x = 5
+
+[State 250, 2l]
+type = HitDef
+trigger1 = animelem=5||animelem=10||animelem=15||animelem=20||animelem=25||animelem=30
+attr = S, HA
+animtype  = Hard
+damage    = 32
+getpower = 0,0
+guardflag = MA
+pausetime = 4,4
+priority=4,Hit
+sparkno = -1 * (var(10):=7020)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=149), var(13):=-20
+hitsound   = s2,6
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 16
+ground.velocity = -1
+air.velocity = -1,-1
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+
+[State 210, 2]
+type = HitDef
+trigger1 = AnimElem = 36
+attr = S, HA
+animtype  = Up
+damage    = 34
+getpower = 0,0
+guardflag = MA
+pausetime = 8,8
+priority=4,Hit
+sparkno = -1 * (var(10):=7020)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=95), var(13):=-74
+hitsound   = s2,6
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -2, -11
+air.velocity = -2,-11
+air.hittime = 25
+fall = 1
+fall.recover = 0
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+yaccel = .5
+
+[State AttackDone]
+type=statetypeset
+triggerall = anim = 3050
+trigger1= animelemtime(37)>=0
+movetype=I
+
+[State 1006, ChangeState]
+type = ChangeState
+triggerall = time > 100
+trigger1 = Vel Y > 0 && Pos Y >= 0
+value = 52
+ctrl = 0
+;=============================================================
+; Super Optic Slam
+[Statedef 3060]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 3060
+ctrl = 0
+sprpriority = 2
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = time = [0,46]
+value = SCA;,NA,SA,HA,NP,SP,HP,NT,ST,HT
+
+[State 3000, Super A]
+type = SuperPause
+trigger1 = AnimElem = 1
+time=45
+movetime=45
+pos = 25, -57
+anim = -1
+darken = 0
+unhittable = 1
+poweradd = -2000
+
+[State 3000, Helper]
+type = Helper
+trigger1 = animelem = 1
+helpertype = normal ;player
+name = "Super Charge"
+ID = 8010
+stateno = 8010
+pos = ceil(3*const(size.xscale)), ceil(-77*const(size.yscale))
+postype = p1
+size.xscale = .5
+size.yscale = .5
+sprpriority = 2
+facing = 1
+ownpal = 1
+supermovetime=300
+
+[State 100, vel]
+type=velset
+trigger1= time>=45
+x= 6
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = anim = 101
+x = .2
+
+[State 1100, 1]
+type = PlaySnd
+trigger1 = anim = 3060 && AnimElem = 27
+value = 40, 2
+channel = 1
+
+[State 800, 1]
+type = HitDef
+Trigger1 = Time = 0
+attr = S, HT
+hitflag = M
+guardflag = M
+animtype  = Hard
+damage    = 0
+getpower = 0
+priority = 1, Miss
+pausetime = 0,6
+sparkno = -1
+sparkxy = -10, -73
+guard.sparkno = S7060
+sprpriority = 1
+hitsound = -1
+p2facing = 1
+guard.dist = 0
+guardsound = s6,0
+p1stateno = 3061
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = 0, 0
+guard.dist = 0        ;This prevents p2 from going into a guard state if close
+fall = 0
+numhits = 0
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = anim = 3060 && animtime = 0
+trigger2 = moveguarded
+value = 101
+persistent = 0
+
+[State 1100, 5]
+type = ChangeState
+triggerall = anim = 101
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------------
+; Super Optic Slam
+[Statedef 3061]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+velset = 5,0
+anim = 3061
+ctrl = 0
+sprpriority = 2
+
+;[State 1100, VelSet]
+;type = Velset
+;trigger1 = animelem = 1
+;x = 5
+
+[State 1100, VelSet]
+type = Velset
+trigger1 = Anim = 3061 && animelemtime(18)>=0
+x = 0
+
+[State 210, 2]
+type = HitDef
+trigger1 = AnimElem = 3||animelem=6
+attr = S, HA
+animtype  = Medium
+damage    = 40
+getpower = 0,0
+guardflag = MA
+pausetime = 8,8
+priority=4,Hit
+sparkno = s7020+(random%8)
+guard.sparkno = S7060
+sparkxy = -10,-82
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -2, 0
+air.velocity = -1.8,-1
+air.hittime = 25
+envshake.time=24
+envshake.freq=60
+envshake.ampl=4
+
+[State 210, 2]
+type = HitDef
+trigger1 = AnimElem = 10||animelem=14
+attr = S, HA
+animtype  = Medium
+damage    = 40
+getpower = 0,0
+guardflag = MA
+pausetime = 8,8
+priority=4,Hit
+sparkno = s7020+(random%8)
+guard.sparkno = S7060
+sparkxy = -10,-65
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -2, 0
+air.velocity = -1.8,-1
+air.hittime = 25
+envshake.time=24
+envshake.freq=60
+envshake.ampl=4
+
+[State 210, 2]
+type = HitDef
+trigger1 = AnimElem = 19
+attr = S, HA
+animtype  = Medium
+damage    = 40
+getpower = 0,0
+guardflag = MA
+pausetime = 8,12
+priority=4,Hit
+sparkno = s7020+(random%8)
+guard.sparkno = S7060
+sparkxy = -10,-100
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = 0, 0
+air.velocity = -1.7,0
+air.hittime = 25
+fall = 0
+envshake.time=24
+envshake.freq=60
+envshake.ampl=4
+
+[State 800, 1]
+type = HitDef
+Trigger1 = animelem = 21
+attr = S, HT
+hitflag = M
+animtype  = Hard
+damage    = 0
+getpower = 0
+priority = 1, Miss
+pausetime = 0,25
+sparkno = -1
+guard.sparkno = S7060
+sprpriority = 1
+hitsound = s800,0
+p2facing = 1
+guard.dist = 0        ;Force p2 to face KFM
+p1stateno = 3062   ;On success, KFM changes to state 810
+;p2stateno = 820       ;If hit, p2 changes to state 820 in KFM's cns
+guard.dist = 0        ;This prevents p2 from going into a guard state if close
+fall = 1
+numhits = 0
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;=============================================================
+; Super Optic Slam
+[Statedef 3062]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 3062
+ctrl = 0
+sprpriority = 1
+
+[State 810,TargetBind]
+type = TargetBind
+trigger1 = animelem = 1
+pos = 5, 0
+
+[State 3050, hadouken]
+type=helper
+trigger1= anim=3062 && animelemtime(3)>=0
+helpertype=player
+stateno=3065
+ID=3065
+name="Optic Blast"
+postype=p1
+size.xscale= .5
+size.yscale= .35
+ownpal=1
+persistent=0
+sprpriority = 3
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1000,0
+channel = 0
+
+[State 1010, end]
+type=changeanim
+trigger1= anim=3062 && animelemtime(3)>=0 && !numhelper(3065)
+value=3063
+
+[State 1010, end]
+type=changestate
+trigger1= anim=3063 && !animtime
+value=0
+ctrl=1
+;========================<Super Optic Slam Blast>=============================
+[Statedef 3065]
+type=A
+physics=N
+movetype=A
+ctrl=0
+velset=0,0
+sprpriority=5
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S3005,0
+freqmul = 1
+channel = -1
+
+[State 3055, Anim]
+type=changeanim
+triggerall= !time && !prevstateno
+trigger1 = root,stateno = 3062
+value=3065
+
+[State 3055, Anim]
+type=changeanim
+triggerall= !time && !prevstateno
+trigger1 = root,stateno = 3071
+value=3075
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 0
+
+[State 1030, hitoverride]
+type=hitoverride
+trigger1= 1
+time=-1
+attr=SCA,AA,AP,AT
+;stateno=226
+ignorehitpause=1
+
+[State 1030, hitby]
+type=hitby
+trigger1= 1
+time=-1
+value=SCA,NP,SP,HP
+ignorehitpause=1
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 1105, assert]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+
+[State 5035, 1]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 1105, bind]
+type=bindtoroot
+triggerall = root,stateno=3062
+trigger1=1
+pos=ceil(60*const(size.xscale)), -92;ceil(-64*const(size.yscale))
+time = -1
+
+[State 1105, bind]
+type=bindtoroot
+triggerall = root,stateno=3071
+trigger1=1
+pos=ceil(0*const(size.xscale)), -90;ceil(-64*const(size.yscale))
+time = -1
+
+[State 5035, 1]
+type = AngleDraw
+triggerall = root,stateno = 3071;1020||root,stateno = 1050||root,stateno = 1070||root,stateno = [1101,1129]
+trigger1 = time <= 600
+
+[State 5035, 1]
+type = AngleSet
+triggerall = root,stateno = 3071;1020||root,stateno = 1070
+trigger1 = time = 0
+value = 90
+
+[State 0, AttackMulSet]
+type = AttackMulSet
+trigger1 = 1
+value = ifelse(var(6), .6, ifelse(var(5), .8, 1.0))
+
+[State 6101, Dampener]
+type=varset
+trigger1= 1
+fvar(11)= fvar(10)
+
+[State 1001, 5] ;Opponent near
+type = HitDef
+trigger1 =animelem =5||animElem=6||animelem=7||animelem=8||animelem=9||animelem =10||animelem=1
+trigger3 =animElem=12||animElem=13||animElem=14||animelem=15
+attr = S, HP
+animtype  = Hard
+damage    = ceil(ifelse(fvar(11)*19<7, 7, fvar(11)*19)), 2
+getpower = 0,0
+priority=4,Hit
+guardflag = M
+pausetime = 2,12
+sparkno = -1;s7020+(random%8)
+guard.sparkno = S7060
+sparkxy = 0,-100
+hitsound   = s1005,1
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+air.hittime = 30
+ground.hittime  = 30
+ground.velocity = -2,-10
+air.velocity = -2,-10
+ground.cornerpush.veloff = 0
+fall = 0
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+sprpriority = 5
+yaccel = .8
+
+[State 1001, 5] ;Opponent near
+type = HitDef
+trigger1 =animelem=16
+attr = S, HP
+animtype  = Hard
+damage    = ceil(ifelse(fvar(11)*25<7, 7, fvar(11)*25)), 2
+getpower = 0,0
+priority=4,Hit
+guardflag = M
+pausetime = 3,20
+sparkno = -1;s7020+(random%8)
+guard.sparkno = S7060
+sparkxy = -10, 0
+hitsound   = s1005,1
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+air.hittime = 30
+ground.hittime  = 30
+ground.velocity = -2,-10
+air.velocity = -2,-10
+ground.cornerpush.veloff = 0
+fall = 1
+fall.recover = 0
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+yaccel = .8
+
+[State 910, Hitspark]
+type = Helper;Explod
+helpertype = normal
+triggerall = root,stateno = 3071
+trigger1 = movehit=1
+;trigger1= !(target,hitshakeover)
+stateno = 7020;+(random%8)
+pos= ceil(p2dist x),ceil(p2dist y-60);ifelse(p2dist x<0, 0, ifelse(p2dist x<20, ceil(p2dist x), 20)), 0
+size.xscale = 1
+size.yscale = 1
+bindtime = 1
+sprpriority = 5
+
+[State 1105, vel]
+type=velset
+trigger1=animelemtime(1)>=0
+x=(root,vel x)
+y=(root,vel y)
+persistent=1
+
+[State 1105, turn]
+type=turn
+trigger1=facing!=(root,facing)
+
+[State 211, 3]
+type = DestroySelf
+trigger1 = !animtime
+trigger2=(root,stateno!=3062||root,anim!=3062)
+trigger2=(root,stateno!=3071||root,anim!=3071)
+
+[State 1055, end]
+type=destroyself
+trigger1=animtime = 0
+;=============================================================
+; Super Optic Slam
+[Statedef 3070]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 3070
+ctrl = 0
+sprpriority = 2
+
+[State 0, AttackMulSet]
+type = AttackMulSet
+trigger1 = (prevstateno=[200,699])
+value = 1
+
+[State 0, AttackMulSet]
+type = AttackMulSet
+trigger1 = (prevstateno=[1000,2999])
+value = .8
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = time = [0,53]
+value = SCA;,NA,SA,HA,NP,SP,HP,NT,ST,HT
+
+[State 3000, Super A]
+type = SuperPause
+trigger1 = AnimElem = 1
+time=45
+movetime=45
+pos = 25, -57
+anim = -1
+darken = 0
+unhittable = 1
+poweradd = -2000
+
+[State 3000, Helper]
+type = Helper
+trigger1 = animelem = 1
+helpertype = normal ;player
+name = "Super Charge"
+ID = 8010
+stateno = 8010
+pos = ceil(3*const(size.xscale)), ceil(-77*const(size.yscale))
+postype = p1
+size.xscale = .5
+size.yscale = .5
+sprpriority = 2
+facing = 1
+ownpal = 1
+supermovetime=300
+
+[State 100, vel]
+type=velset
+trigger1= time=45
+x= 9
+
+[State 0, VelMul]
+type = Velset
+trigger1 = time>= 53
+x = 0
+
+[State 1100, 1]
+type = PlaySnd
+trigger1 = anim = 3070 && AnimElem = 24
+value = 40, 2
+
+[State 1100, 1]
+type = PlaySnd
+trigger1 = anim = 3070 && AnimElem = 25
+value = s1, 3
+
+[State 1100, 1]
+type = PlaySnd
+trigger1 = anim = 3070 && AnimElem = 26
+value = s100, 0
+channel = 0
+
+[State 800, 1]
+type = HitDef
+Trigger1 = Time = 0
+attr = S, HA
+hitflag = MAF
+guardflag = MA
+animtype  = Hard
+damage    = 68,4
+getpower = 0
+priority = 6, Hit
+pausetime = 16,16
+sparkno = -1 * (var(10):=7020)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=65), var(13):=-100
+hitsound   = s3070,0
+guardsound = s6,0
+p2facing = 1
+guard.dist = 0
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 30
+air.hittime  = 30
+ground.velocity = -.5, -3
+air.velocity = -.5, -2
+guard.dist = 0
+p1stateno = 3071        ;This prevents p2 from going into a guard state if close
+fall = 1
+fall.recover = 0
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+yaccel = .3
+kill = 0
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = movehit
+pos = 35,-10
+;time = 50
+
+[State AttackDone]
+type=statetypeset
+triggerall = anim = 3070
+trigger1= animelemtime(28)>=0
+movetype=I
+
+[State 1100, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;=============================================================
+; Super Optic Slam
+[Statedef 3071]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 3071
+ctrl = 0
+sprpriority = 1
+
+[State 3000, Special-Super Cancel Flag]
+type=varset
+trigger1= !time
+var(5)= (prevstateno=[1000,2999]) && var(35)
+
+[State 3000, Super-Super Cancel Flag]
+type=varset
+trigger1= !time
+var(6)= (prevstateno=[3000,4999]) && var(36)
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = time = [0,53]
+value = SCA;,NA,SA,HA,NP,SP,HP,NT,ST,HT
+
+[State 3050, hadouken]
+type=helper
+trigger1= anim=3071 && animelemtime(22)>=0
+helpertype=player
+stateno=3065
+ID=3065
+name="Optic Blast"
+postype=p1
+size.xscale= .5
+size.yscale= .8
+ownpal=1
+persistent=0
+sprpriority = 5
+
+[State 220, 2]
+type = HitDef
+trigger1 = AnimElem=5
+attr = A, HA
+animtype  = Hard
+damage    = 68
+getpower = 0,0
+guardflag = MA
+pausetime = 16,16
+priority=4,Hit
+sparkno = -1 * (var(10):=7020)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=77), var(13):=-60
+hitsound   = s3070,0
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 30
+air.hittime = 30
+ground.velocity = 0,-6
+air.velocity = 0,-5.5
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+fall = 1
+fall.recover = 0
+kill = 0
+
+[State 220, 2]
+type = HitDef
+trigger1 = animelem=11
+attr = A, HA
+animtype  = Hard
+damage    = 68
+getpower = 0,0
+guardflag = MA
+pausetime = 16,16
+priority=4,Hit
+sparkno = -1 * (var(10):=7020)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=95), var(13):=-74
+hitsound   = s3070,0
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 30
+air.hittime = 45
+ground.velocity = 1.3,-9.7
+air.velocity = 1.3,-9
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+fall = 1
+fall.recover = 0
+kill = 0
+
+[State 1100, 1]
+type = PlaySnd
+triggerall = anim = 3071
+trigger1 = AnimElem = 4
+value = s1, 3
+
+[State 1100, 1]
+type = PlaySnd
+triggerall = anim = 3071
+trigger1 = AnimElem = 10
+value = s1, 6
+
+[State 1100, 1]
+type = PlaySnd
+triggerall = anim = 3071
+trigger1 = AnimElem=3||animelem=9
+value = s100, 0
+channel = 0
+
+[State 1100, 1]
+type = PlaySnd
+triggerall = anim = 3071
+trigger1 = AnimElem = 19
+value = s810, 0
+channel = 0
+
+[State 1010, end]
+type=changeanim
+trigger1= anim=3071 && animelemtime(22)>=0 && !numhelper(3065)
+value=3072
+
+[State AttackDone]
+type=statetypeset
+triggerall = anim = 3072
+trigger1= animelemtime(1)>=0
+movetype=I
+
+[State 1010, end]
+type=changestate
+trigger1= anim=3072 && !animtime
+value=0
+ctrl=1
+;=============================================================
+; Mega Optic Blast
+[Statedef 4000]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 4000
+ctrl = 0
+sprpriority = 1
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = time = [0,48]
+value = SCA;,NA,SA,HA,NP,SP,HP,NT,ST,HT
+
+[State 3000, Super A]
+type = SuperPause
+trigger1 = AnimElem = 1
+time=45
+movetime=45
+pos = 25, -57
+anim = -1
+darken = 0
+unhittable = 1
+poweradd = -3000
+
+[State 3000, Helper]
+type = Helper
+trigger1 = animelem = 1
+helpertype = normal ;player
+name = "Super Charge"
+ID = 8020
+stateno = 8020
+pos = ceil(22*const(size.xscale)), ceil(-89*const(size.yscale))
+postype = p1
+size.xscale = .5
+size.yscale = .5
+sprpriority = 2
+facing = 1
+ownpal = 1
+supermovetime=300
+
+[State 3050, hadouken]
+type=helper
+trigger1= anim=4000 && animelemtime(5)>=0
+helpertype=player
+stateno=4005
+ID=4005
+name="Super Optic Blast"
+postype=p1
+size.xscale= 1
+size.yscale= 1
+ownpal=1
+persistent=0
+sprpriority = 5
+
+[State 3000, Dust]
+type = Explod
+trigger1 = anim=4000 && animelemtime(5)>=0
+scale = 1, 1
+anim = 7106
+pos = 0, 0
+sprpriority = 3
+ownpal=1
+persistent = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = anim=4000 && time = 0
+value = S4000,0
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = anim=4000 && animelem = 4
+value = S3000,1
+channel = 0
+
+[State 1010, end]
+type=changeanim
+trigger1= anim=4000 && animelemtime(5)>=0 && !numhelper(4005)
+value=4001
+
+[State 4000, BG PalFX]
+type=bgpalfx
+trigger1= anim=4000
+time=45
+add=-150,-150,-150
+sinadd=150,150,150,180
+ignorehitpause=0
+
+[State AttackDone]
+type=statetypeset
+triggerall = anim = 4001
+trigger1= animelemtime(1)>=0
+movetype=I
+
+[State 1010, end]
+type=changestate
+trigger1= anim=4001 && !animtime
+value=0
+ctrl=1
+;========================<Mega Optic Blast>=============================
+[Statedef 4005]
+type=A
+physics=N
+movetype=A
+ctrl=0
+velset=0,0
+sprpriority=4
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S4005,0
+freqmul = .8
+channel = -1
+
+[State 3055, Anim]
+type=changeanim
+triggerall= !time && !prevstateno
+trigger1 = root,stateno = 4000
+value=4005
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 0
+
+[State 3005, HitOverride]
+type=hitoverride
+trigger1= 1
+time=-1
+attr=SCA,AA,AP,AT
+stateno=ifelse(var(2)<14,4005,1008)
+ignorehitpause=1
+
+[State 3005,hitby]
+type=hitby
+trigger1= 1
+time=-1
+value=SCA,NP,SP,HP
+ignorehitpause=1
+
+[State 3005, strengthvar]
+type=varset
+trigger1= !time && !prevstateno
+var(10)=5
+
+[State 3005, hitvar]
+type=varadd
+trigger1= !time
+var(2)=1
+
+[State 3005, movehitvar]
+type=varset
+trigger1= movecontact && numtarget
+trigger1= !(target,ishelper)
+var(3)=1
+ignorehitpause=1
+
+[State 1105, assert]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+
+[State 5035, 1]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 1105, bind]
+type=bindtoroot
+triggerall = root,stateno=4000
+trigger1=1
+pos=ceil(30*const(size.xscale)), -87;ceil(-64*const(size.yscale))
+time = -1
+
+[State 0, AttackMulSet]
+type = AttackMulSet
+trigger1 = 1
+value = ifelse(var(6), .6, ifelse(var(5), .8, 1.0))
+
+[State 6101, Dampener]
+type=varset
+trigger1= 1
+fvar(11)= fvar(10)
+
+[State 1001, 5] ;Opponent near
+type = HitDef
+trigger1 =animElem=1||animElem=2||animElem=3||animelem=4||animelem=5||animelem=6||animelem =7||animelem=8||animelem =9
+attr = S, HP
+animtype  = Hard
+damage    = ceil(ifelse(fvar(11)*17<7, 7, fvar(11)*17)), 2
+getpower = 0,0
+priority=4,Miss
+guardflag = M
+pausetime = 2,2
+sparkno = -1;s7020+(random%8)
+guard.sparkno = S7060
+sparkxy = -10, 0
+hitsound   = s1005,1
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -40,0
+air.velocity = -39.5,-0
+ground.cornerpush.veloff = 0
+fall = 0
+;fall.recover = 0
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+sprpriority = 5
+
+[State 1001, 5] ;Opponent near
+type = HitDef
+trigger1 = animElem=10||animelem=11||animelem=12||animelem=13||animelem =14||animelem=15
+trigger2 =animElem=16||animElem=17||animElem=18||animelem=19||animelem=20||animelem=21||animelem =22||animelem=23||animelem =24
+trigger3 = animElem=25
+attr = S, HP
+animtype  = Hard
+damage    = ceil(ifelse(fvar(11)*17<7, 7, fvar(11)*17)), 2
+getpower = 0,0
+priority=4,Hit
+guardflag = M
+pausetime = 2,12
+sparkno = -1;s7020+(random%8)
+guard.sparkno = S7060
+sparkxy = -10, 0
+hitsound   = s1005,1
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -30,0
+air.velocity = -29.5,-0
+ground.cornerpush.veloff = 0
+fall = 0
+;fall.recover = 0
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+sprpriority = 5
+
+[State 1001, 5] ;Opponent near
+type = HitDef
+trigger1 =animelem=26
+attr = S, HP
+animtype  = Hard
+damage    = ceil(ifelse(fvar(11)*20<7, 7, fvar(11)*20)), 2
+getpower = 0,0
+priority=4,Hit
+guardflag = M
+pausetime = 3,9
+sparkno = -1;s7020+(random%8)
+guard.sparkno = S7060
+sparkxy = -10, 0
+hitsound   = s1005,1
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -9,-5
+air.velocity = -8.5,-4.7
+ground.cornerpush.veloff = 0
+fall = 1
+fall.recover = 0
+envshake.time=24
+envshake.freq=60
+envshake.ampl=8
+sprpriority = 5
+
+[State 910, Hitspark]
+type = Helper;Explod
+helpertype = normal
+triggerall = root,stateno = 4000
+trigger1 = movehit=1
+;trigger1= !(target,hitshakeover)
+stateno = 7020;+(random%8)
+pos= ceil(p2dist x),0;ifelse(p2dist x<0, 0, ifelse(p2dist x<20, ceil(p2dist x), 20)), 0
+size.xscale = 1.5
+size.yscale = 1.5
+bindtime = 1
+sprpriority = 5
+
+[State 1105, vel]
+type=velset
+trigger1=animelemtime(1)>=0
+x=(root,vel x)
+y=(root,vel y)
+persistent=1
+
+[State 1105, turn]
+type=turn
+trigger1=facing!=(root,facing)
+
+[State 211, 3]
+type = DestroySelf
+trigger1 = !animtime
+trigger2=(root,stateno!=4000||root,anim!=4000)
+
+[State 1055, end]
+type=destroyself
+trigger1=animtime = 0

@@ -1,0 +1,42 @@
+[Info]
+name         = "RajaaDhalsim"
+displayname  = "Dhalsim"
+versiondate  = 4, 20, 11
+mugenversion = 1.0
+author       = "RajaaBoy"
+pal.defaults = 1, 2, 3, 4
+localcoord   = 320, 240
+
+[Files]
+sprite   = RajaaDhalsim.sff
+sound    = RajaaDhalsim.snd
+anim     = RajaaDhalsim.air
+cmd      = RajaaDhalsim.cds
+cns      = RajaaDhalsim.cns
+st       = RajaaDhalsim.cns
+stcommon = common1.cns
+
+st1 = States/System.st
+st2 = States/Helpers.st
+st3 = States/Poses.st
+st4 = States/Normals.st
+st5 = States/Specials.st
+st6 = States/Supers.st
+st7 = States/Sally.st
+st8 = Config.cfg
+st65536 = Variables.txt
+st65536 = readme.txt
+
+[Palette Keymap]
+a  = 1
+b  = 2
+c  = 3
+x  = 4
+y  = 5
+z  = 6
+a2 = 7
+b2 = 8
+c2 = 9
+x2 = 10
+y2 = 11
+z2 = 12

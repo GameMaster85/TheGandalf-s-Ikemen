@@ -1,0 +1,75 @@
+; ______________________________
+;| Yuri by Phantom.of.the.Server|
+; ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+;====================<CONSTANTS>====================
+
+[Data]
+life = 950
+power = 3000
+attack = 100
+defence = 100
+fall.defence_up = 50
+liedown.time = 60
+airjuggle = 15
+sparkno = s8010
+guard.sparkno = s8000
+KO.echo = 0
+volume = 0
+IntPersistIndex = 0
+FloatPersistIndex = 0
+
+[Size]
+xscale = 1
+yscale = 1
+ground.back = 16
+ground.front = 16
+air.back = 16
+air.front = 16
+height = 55
+attack.dist = 160
+proj.attack.dist = 90
+proj.doscale = 0
+head.pos = 3, -80
+mid.pos = -7, -55
+shadowoffset = 0
+draw.offset = 0, 0
+
+[Velocity]
+walk.fwd = 3
+walk.back = -2.5
+run.fwd = 6.25, 0
+run.back = -5.95, -4.5
+jump.neu = 0, -9.6
+jump.back = -3.25
+jump.fwd = 3.25
+runjump.back = -5.3, -9.6
+runjump.fwd = 5.3, -9.6
+
+[Movement]
+airjump.num = 0
+airjump.height = 0
+yaccel = 0.5
+stand.friction = 0.85
+crouch.friction = 0.85
+stand.friction.threshold = 1.0
+crouch.friction.threshold = 1.0
+air.gethit.groundlevel = 25
+air.gethit.groundrecover.ground.threshold = -20
+air.gethit.groundrecover.groundlevel = 10
+air.gethit.airrecover.threshold = -1
+air.gethit.airrecover.yaccel = 0.35
+air.gethit.trip.groundlevel = 15
+down.bounce.offset = 0, 20
+down.bounce.yaccel = 0.4
+down.bounce.groundlevel = 12
+down.friction.threshold = 0.5
+
+[Quotes]
+victory1 = "Why are you such a wuss? I was hoping for a workout!"
+victory2 = "Over so soon? I'll never lose those extra pounds like this..."
+victory3 = "Why am I so strong? It's in my blood!"
+victory4 = "Oh stop moping! Even in defeat, smile!"
+victory5 = "Tough and a babe! I'm just too much!"
+victory6 = "I'm Kyokugen! Ryo's not even fit to sweep for me!"
+victory7 = "Skill over power! Spirit over skill! The secret to victory!"
+victory8 = "Lose your cool, lose the battle."

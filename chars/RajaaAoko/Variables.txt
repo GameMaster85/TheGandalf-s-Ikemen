@@ -1,0 +1,143 @@
+========================================
+Character's Variables
+========================================
+<----------[System Variables]---------->
+var(0)  = A miscellaneous variable. used for animation looping. detecting, etc. changes from state to state and is never static.
+var(1)  = The long jump, short jump, and high jump.
+var(2)  = Hit detector for hit sparks, hit sounds, and hit reprisals.
+var(3)  = Hit sound.
+var(4)  = Guard sound.
+var(5)  = Hit spark.
+var(6)  = Guard spark.
+var(7)  = Spark x position.
+var(8)  = Spark y position.
+var(9)  = Reprisal.
+var(10) = Juggle hit counter.
+var(11) = Juggle restriction.
+var(12) = Dampener hit counter.
+var(13) = X, Y, Z canceling.
+var(14) = A, B, C canceling.
+var(15) = Extra canceling.
+var(16) = X and A canceling.
+var(17) = Jump canceling.
+var(18) = Super canceling.
+var(19) = Super canceling juggle exception.
+var(20) = Custom canceling.
+var(21) = Air Attack to Ground attack canceling.
+var(22) = Special/super levels.
+var(23) = Super dampener limiter.
+var(24) = Palette configuration.
+var(25) = Toggle attack chaining.
+var(26) = Toggle jump canceling.
+var(27) = Toggle air jump.
+var(28) = Toggle air dash.
+var(29) = Toggle parrying, dodging, and shielding.
+var(30) = Toggle forward and backward dodging.
+var(31) = Toggle guard counter.
+var(32) = Toggle power charge.
+var(33) = Toggle super canceling.
+var(34) = [Blank]
+var(35) = [Blank]
+var(36) = [Blank]
+var(37) = Helper Cornerpush Target id.
+var(38) = Target id.
+var(39) = Selfstate detection.
+
+<----------[Character Specific Variables]---------->
+var(40) = Suitcase Detection.
+var(41) = Starmine ID.
+var(42) = Aerial Starmine ID.
+var(43) = Blowning Starbow Mirror override detection.
+var(44) = Hit Sound for Reverse Canal Creation.
+var(45) = End of Reverse Canal Creation detector.
+var(46) = [Blank]
+var(47) = [Blank]
+var(48) = [Blank]
+var(49) = [Blank]
+var(50) = [Blank]
+var(51) = [Blank]
+var(52) = [Blank]
+var(53) = [Blank]
+var(54) = [Blank]
+var(55) = [Blank]
+var(56) = [Blank]   
+var(57) = [Blank]   
+var(58) = [Blank]
+var(59) = [Blank]
+
+<----------[System Variables]---------->
+fvar(0)  = Dampener multiplier.
+fvar(1)  = Cornerpush.
+fvar(2)  = Helper Cornerpush.
+fvar(3)  = [Blank]
+fvar(4)  = [Blank]
+fvar(5)  = [Blank]
+fvar(6)  = [Blank]
+fvar(7)  = [Blank]
+fvar(8)  = [Blank]
+fvar(9)  = [Blank]
+fvar(10) = [Blank]
+fvar(11) = [Blank]
+fvar(12) = [Blank]
+fvar(13) = [Blank]
+fvar(14) = [Blank]
+fvar(15) = [Blank]
+fvar(16) = [Blank]
+fvar(17) = [Blank]
+fvar(18) = [Blank]
+fvar(19) = [Blank]
+
+<----------[Character Specific Variables]---------->
+fvar(20) = [Blank]
+fvar(21) = [Blank]
+fvar(22) = [Blank]
+fvar(23) = [Blank]
+fvar(24) = [Blank]
+fvar(25) = [Blank]
+fvar(26) = [Blank]
+fvar(27) = [Blank]
+fvar(28) = [Blank]
+fvar(29) = [Blank]
+fvar(30) = [Blank]
+fvar(31) = [Blank]
+fvar(32) = [Blank]
+fvar(33) = [Blank]
+fvar(34) = [Blank]
+fvar(35) = [Blank]
+fvar(36) = [Blank]
+fvar(37) = [Blank]
+fvar(38) = [Blank]
+fvar(39) = [Blank]
+
+========================================
+System Helper's Variables
+========================================
+<----------[System Variables]---------->
+var(0)  = Air jump: make sure the up button isn't being held.
+var(1)  = Air jump: detect air jump.
+var(2)  = Detect air dash.
+var(3)  = Detect air chaining for jump landing cool down.
+var(4)  = Detect air dash -> attack for jump landing cool down.
+var(38) = Target ID.
+var(39) = Roundstate >= 2.
+
+<----------[Character Specific Variables]---------->
+
+========================================
+Sound Channels
+========================================
+0000 = Voice
+0001 = Swipe sounds
+0002 = Hit sounds
+0003 = Parry/Shield.
+0004 = Introduction Sound effects
+
+========================================
+Nothing to See Here
+========================================
+[statedef -65536]
+type = A
+ctrl = 0
+[state -65536]
+type = null
+trigger1 = 0

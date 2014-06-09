@@ -1,0 +1,184 @@
+;--------------------- Variable List ----------------------
+; Var(0) - StateDef
+; Var(3) - Jump Type (0 = Normal; 1 = Low Jump; 2 = Long Low Jump; 3 = Long Jump)
+; Var(5) - Special Cancel Check
+; Var(6) - Super Cancel Check
+; Var(7) - MAX Cancel Check
+; Var(9) - Counter Flag
+; Var(10) - Button Detect (0 = Light; 1 = Medium; 2 = Heavy)
+; Var(13) - Hit Count
+; Var(15) - Juggle Points
+; Var(16) - Juggle Flag
+; Var(17) - Ticks UnGuardable
+; Var(19) - Throw Escape
+; Var(20) - Custom Combo Timer
+; Var(21) - Super Cancel Flag
+; Var(22) - MAX Cancel Flag
+; Var(23) - Super Finish Type
+; Var(24) - MAX Mode Power Gauge Set
+; Var(25) - Ticks to Apply EX FX
+; Var(26) - Ticks Unable to Walk
+; Var(30) - Hit Detection
+; Var(33) - Hit Spark (8010 = Light; 8011 = Medium; 8012 = Hard; 8013 = Special; 8014 = Super)
+; Var(34) - Guard Spark (8000 = Normal; 8001 = Special)
+; Var(35) - Spark xPos
+; Var(36) - Spark yPos
+; Var(58) - Game Time
+
+;--------------------- Float Variable List ----------------------
+;fvar(5) - Amount of Corner Push
+;fvar(10) - Damage Dampener
+;fvar(11) - enemy hit
+;----------------------------------------------------------------
+
+
+
+[Data]
+life = 1035			;Amount of life to start with
+attack = 100		;attack power (more is stronger)
+defence = 100		;defensive power (more is stronger)
+fall.defence_up = 50	;Percentage to increase defense everytime player is knocked down
+liedown.time = 50		;Time which player lies down for, before getting up
+airjuggle = 0		;Number of points for juggling
+sparkno = s8010			;Default hit spark number for HitDefs
+guard.sparkno = s8000	;Default guard spark number
+KO.echo = 0			;1 to enable echo on KO
+volume = 150			;Volume offset (negative for softer)
+IntPersistIndex = 0	;Variables with this index and above will not have their values
+FloatPersistIndex = 0 ;reset to 0 between rounds or matches. There are 60 int variables,
+  				;indexed from 0 to 59, and 40 float variables, indexed from 0 to 39.
+  				;If omitted, then it defaults to 60 and 40 for integer and float
+  				;variables repectively, meaning that none are persistent, i.e. all
+  				;are reset. If you want your variables to persist between matches,
+  				;you need to override state 5900 from common1.cns.
+
+[Size]
+xscale = .8333           ;Horizontal scaling factor.
+yscale = 1           ;Vertical scaling factor.
+ground.back = 25     ;Player width (back, ground)
+ground.front = 22    ;Player width (front, ground)
+air.back = 20        ;Player width (back, air)
+air.front = 20       ;Player width (front, air)
+height = 60          ;Height of player (for opponent to jump over)
+attack.dist = 160    ;Default attack distance
+proj.attack.dist = 90 ;Default attack distance for projectiles
+proj.doscale = 0     ;Set to 1 to scale projectiles too
+head.pos = 2, -102   ;Approximate position of head
+mid.pos = 2, -65    ;Approximate position of midsection
+shadowoffset = 0     ;Number of pixels to vertically offset the shadow
+draw.offset = 0,0    ;Player drawing offset in pixels (x, y)
+
+[Velocity]
+walk.fwd  = 2.5      ;Walk forward
+walk.back = -2.2     ;Walk backward
+run.fwd  = 6, 0    ;Run forward (x, y)
+run.back = -7,-4.5 ;Hop backward (x, y)
+jump.neu = 0,-10    ;Neutral jumping velocity (x, y)
+jump.back = -3.5, -9.75    ;Jump back Speed (x, y)
+jump.fwd = 3.5, -9.75       ;Jump forward Speed (x, y)
+runjump.back = -4.5,-11 ;Running jump speeds (opt)
+runjump.fwd = 4.5,-11     ;.
+airjump.neu = 0,-8      ;.
+airjump.back = -2.55      ;Air jump speeds (opt)
+airjump.fwd = 2.5         ;.
+
+[Movement]
+airJump.num = 0
+airJump.height = 0
+yaccel = 0.4725
+stand.friction = 0.85
+crouch.friction = 0.82
+stand.friction.threshold = 1.0
+crouch.friction.threshold = 1.0
+air.gethit.groundLevel = 25
+air.gethit.groundRecover.ground.threshold = -20
+air.gethit.groundRecover.groundLevel = 10
+air.gethit.airRecover.threshold = -1
+air.gethit.airRecover.yAccel = 0.35
+air.gethit.trip.groundLevel = 15
+down.bounce.offset = 0, 20
+down.bounce.yAccel = 0.4
+down.bounce.groundLevel = 12
+down.friction.threshold = 0.5
+
+[Quotes]
+victory0 = "I don't want you dead... yet."
+victory1 = "You should be ready for trouble... 'cause trouble is ready for you!!"
+victory2 = " I've been from the future to the past and back again...but you are the one who has ran out of time."
+victory3 = "You think you understand order and discipline, honor and principle? I've been a Four-Star general, head of the joint chiefs of staff, a president and a pope all rolled into one."
+victory4 = "Did you really think you stood a chance? I'm a soldier. I've trained for everything."
+victory5 = "Your bark is nothing compared to my bite."
+victory6 = "I never back down from a fight I know I can win!"
+victory7 = "Fighting me will definitely shroten your future!"
+victory8 = "You know nothing of real battle!"
+victory9 = "Your life is without purpose!"
+victory10 = "I will never fail!"
+victory11 = "You will never know the future I lived!"
+victory12 = "You sacrifice too little, there is no power in you!"
+victory13 = "You lack training!"
+victory14 = "The Apocalypse would've eaten you alive!"
+victory15 = "Why must you try to fight me?"
+victory16 = "I'm done here! Let's move!"
+victory17 = "You are a detriment to your timeline!"
+;M.Bison(Dictator)
+victory18 = "Who the hell do you think you are? You're no general. You're powerless compared to a foot soldier in my timeline. Take a walk scumbag!"
+;Geese
+victory19 = "An organization run by someone as pathetic as you deserves no mercy... What kind of a name is Geese anyway...?"
+;Krauser
+victory20 = "All that so called power and wealth won't save you from a grim future asshole... It's best you stay down...!"
+;Akuma/Gouki
+victory21 = "You supposed to be some sort of ultimate fighting power or something? Hmm... This time lines weaker that I thought!"
+;Seth
+victory22 = "Well whadda ya know... A machine that thinks it's a man huh...? Let's crack you open and see what makes you tick!"
+;Gill
+victory23 = "You really tried to pass yourself off as a god huh...? Looks like you've fallen from grace pal... Try resurecting what's left of you!"
+;Urien
+victory24 = "You're brother didn't fare too well against me either! Now to rid this timeline of scumbags like you... Don't get up!"
+;Vega
+victory25 = "Beat it cream puff! You're hardly worth the effort!"
+;Balrog
+victory26 = "Is that all you've got champ...? You couldn't hack it in my future. They'd be scraping you off the pavement within minutes of arival!"
+;Asura
+victory27 = "Two for the price of one... Time to put you both out of your misery!"
+;Krizalid
+victory28 = "A bio engineered lapdog trying to prove a point!? You were out of your league the moment you even thought of facing me pal!"
+;Goenitz
+victory29 = "You're all hot air pal, How many times were you gonna break wind till I kicked your ass...? Get lost!"
+;Billy Kane
+victory30 = "No good soldier goes to war with a matchstick pal... No amount of weaponry could have prepared you for me!"
+;Ryu
+victory31 = "Give it up kid... You did ok, but we could do this all day, and you'd never win. Stand down!"
+;Ken
+victory32 = "You're all flash but not much power kid... Step it up if you hope to survive in your future!"
+;Gouken
+victory33 = "You're a bit tougher than I thought! But I've been trained and conditioned for the worst things imaginable. You're not anywhere near the worst!"
+;Guile
+victory34 = "Nice tactics, but I've seen better... Now be a good soldier and fall back!"
+;Charlie Nash
+victory35 = "You spend too much time airborne and not enough time on the ground soldier. You should've given up at the sight of me!"
+;Sagat
+victory36 = "... King...? Of what? You wouldn't last a day in my timeline...! Take a hike pal!"
+;Terry Bogard
+victory37 = "I'll admit, you've guts, but it's not enough to take me down... Get it through your head. I always win!"
+;Kyo
+victory38 = "If you'd shut your mouth and learn how to survive, you might have stood a chance... Walk it off kid!"
+;Rugal
+victory39 = "I've been a general, and faught in more wars on more timelines than you could understand... I wouldn't be cought dead in a tux!"
+;Bishop
+victory40 = "Don't you ever sleep? Stop chasing a twisted dream... You'll NEVER get your hands on Hope... Stand down!"
+;Cyclops
+victory41 = "How can you help me protect Hope in this condition? On your feet... You gotta get rough! The future's at stake!"
+;Gambit
+victory42 = "Stand aside LeBeau...! Unless you wanna end up M.I.A. I suggest you fall back... Now!"
+;Deadpool
+victory43 = "You're a tough nutjob Wilson... I've got an axe to grind... You in...? Let's move!"
+;Wolverine
+victory44 = "One of these days I'll find a way to deal with that healing factor of yours and make sure you stay down...! See ya around pal!"
+;Supergirl
+victory45 = "Super speed, strength, etc, Whatever... I'm done here!"
+;Wonder Woman
+victory46 = "A warrior princess with the strength of a goddess, but carries a lasso...? Something just doesn't add up... Gotta run!"
+;Superman
+victory47 = "Looks like I'm your new Kryptonite pal... Don't get too close again, You might not get up!"
+;Hulk
+victory48 = "Light's out big guy, everyone's gotta weakness. Your's just happened to be me!"

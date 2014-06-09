@@ -1,0 +1,41 @@
+; _______________________________________________
+;| Vice by Jmorphman							 |
+; ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+;====================<DEFINITION>====================
+[Info]
+name        = "Vice"
+displayName = "Vice"
+versionDate = 10,27,2011
+mugenVersion= 1.0
+author      = "Jmorphman"
+pal.defaults= 4,5,6,1,2,3,10,11,12,7,8,9
+localCoord  = 320,240
+
+[Files]
+cmd     = Command.cmd
+cns     = Constants.cns
+st      = States/System.st
+st1     = States/Normal.st
+st2     = States/Special.st
+st3     = States/Super.st
+st4     = States/Helpers.st
+stCommon= common1.cns
+sprite  = Sprite.sff
+anim    = Anim.air
+sound   = Sound.snd
+pal1	= Palettes/Chosis_Leona.act
+pal2	= Palettes/MC2_IdentityCrisis.act
+pal3	= Palettes/Kiri_BrownPurple.act
+pal4	= Palettes/Default.act
+pal5	= Palettes/Kiri_YellowBlack.act
+pal6	= Palettes/Goodaldo_Ominous.act
+pal7	= Palettes/Zero-Sennin_KillerBlueMoon.act
+pal8	= Palettes/senorfro_Red&Black.act
+pal9	= Palettes/PsychoKrusher_White.act
+pal10	= Palettes/KOF2002.act
+pal11	= Palettes/MC2_Wickedness.act
+pal12	= Palettes/KoopaKoot_KOF2002UM_Artwork.act
+
+;[Arcade]
+;intro.storyBoard = intro.def
+;ending.storyBoard = ending.def

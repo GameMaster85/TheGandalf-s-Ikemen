@@ -1,0 +1,39 @@
+
+[Info]
+name = "Wolfgang Krauser"
+displayname = "Krauser"
+versiondate = 03,17,2013
+mugenversion = 1.0
+author = "Infinite"
+pal.defaults = 1,2,3,4,5,6
+
+[Files]
+sprite = Krauser.sff
+anim = Krauser.air
+sound = Krauser.snd
+cmd = Krauser.cmd
+cns = States\System.cns
+stcommon = common1.cns
+st = States\System.cns
+st1 = States\Normal.cns
+st2 = States\Specials.cns
+st3 = States\Supers.cns
+st4 = States\Helpers.cns
+st5 = States\Customs.cns
+st6 = config.txt
+pal1 = Palettes\Default.act
+pal2 = Palettes\Krauseralt.act
+pal3 = Palettes\FrozOVA.act
+pal4 = Palettes\Green.act
+pal5 = Palettes\Wonderman.act
+pal6 = Palettes\Froz2nd.act
+pal7 = Palettes\FrozFinalFantasy.act
+pal8 = Palettes\FrozBison.act
+pal9 = Palettes\FrozMachoMillitary.act
+pal10 = Palettes\Rugal.act
+pal11 = Palettes\Ikari.act
+pal12 = Palettes\SteelArms.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

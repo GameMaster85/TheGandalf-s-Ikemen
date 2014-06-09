@@ -1,0 +1,1641 @@
+;@@@@@@@@@@@@@@@@@@@@@@@Shiki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@Shiki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+;=========================================================================
+;Wall - Shake
+;=========================================================================
+[statedef 900]
+type=A
+movetype=H
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=-1
+
+[state 900,marna]
+type=removeexplod
+trigger1=ishelper
+[state 900,marna]
+type=destroyself
+trigger1=ishelper
+
+[state 900,anim]
+type=changeanim
+trigger1=!time
+trigger1=gethitvar(animtype)!=[3,5]
+value=cond((gethitvar(groundtype)=1),5000,5010)+gethitvar(animtype)
+
+[state 900,anim]
+type=changeanim
+trigger1=!time
+trigger1=gethitvar(animtype)=[3,5]
+value=5030
+
+[state 900,anim]
+type=changeanim
+trigger1=!time
+trigger1=(gethitvar(animtype)=[4,5])&&(selfanimexist(5047+gethitvar(animtype)))
+value=5047+gethitvar(animtype)
+
+[state 900,anim]
+type=changeanim
+trigger1=!hitshakeover
+value=anim
+
+[state 900,anim]
+type=changeanim2
+trigger1=hitshakeover
+value=900
+persistent=0
+
+[state 900,fall]
+type=hitfallset
+trigger1=!time
+value=1
+
+[state 900,roop]
+type=screenbound
+trigger1=1
+value=0
+movecamera=1,1
+
+[state 900,roop]
+type=playerpush
+trigger1=1
+value=0
+
+[state 900,shiighrataa]
+type=velset
+trigger1=hitshakeover
+x=gethitvar(xvel)*facing
+y=gethitvar(yvel)
+persistent=0
+
+[state 900,shiighrataa]
+type=velset
+triggerall=hitshakeover
+trigger1=gethitvar(chainid)=4010
+x=-10.9375
+y=0.0
+persistent=0
+
+[state 900,shiighrataa]
+type=veladd
+triggerall=alive
+triggerall=hitshakeover
+trigger1=gethitvar(chainid)=1300
+trigger2=gethitvar(chainid)=1505
+trigger3=gethitvar(chainid)=1605
+trigger4=gethitvar(chainid)=1606
+y=gethitvar(yaccel)*0.5859375
+
+[state 900,shiighrataa]
+type=veladd
+trigger1=!alive
+trigger1=hitshakeover
+y=gethitvar(yaccel)
+
+[state 900,hilaav]
+type=envshake
+triggerall=hitshakeover
+trigger1=cond(vel x>0,frontedgebodydist<=0,backedgebodydist<=0)
+trigger2=pos y>=0
+trigger2=vel y>0
+time=10
+ampl=10
+persistent=0
+
+[state 900,ground-recover]
+type=selfstate
+trigger1=alive
+trigger1=hitshakeover
+trigger1=pos y>=const(movement.air.gethit.groundrecover.ground.threshold)
+trigger1=vel y>0
+trigger1=gethitvar(fall.recover)
+trigger1=command="recovery"
+value=5200
+
+[state 900,air-recover]
+type=selfstate
+trigger1=alive
+trigger1=hitshakeover
+trigger1=canrecover
+trigger1=command="recovery"
+value=5210
+
+[state 900,badalna]
+type=changestate
+trigger1=hitshakeover
+trigger1=cond(vel x>0,frontedgebodydist<=0,backedgebodydist<=0)
+value=905
+ctrl=0
+
+[state 900,phir_lana]
+type=selfstate
+trigger1=hitshakeover
+trigger1=pos y>=0
+trigger1=vel y>0
+value=5100
+
+[state 900,phir_lana]
+type=selfstate
+trigger1=hitshakeover
+trigger1=!gethitvar(isbound)
+trigger1=time>100
+value=5050
+;=========================================================================
+;Wall - Impact
+;=========================================================================
+[statedef 905]
+type=A
+movetype=H
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=-1
+
+[state 905,anim]
+type=changeanim2
+trigger1=!time
+value=905
+
+[state 905,roop]
+type=screenbound
+trigger1=1
+value=0
+movecamera=1,1
+
+[state 905,roop]
+type=playerpush
+trigger1=1
+value=0
+
+[state 905,roop]
+type=turn
+trigger1=backedgedist<frontedgedist
+trigger1=!animtime
+
+[state 905,avaaz]
+type=playsnd
+trigger1=!time
+value=f7,2
+volumescale=100
+
+[state 905,todo]
+type=posadd
+trigger1=!time
+x=const(size.ground.back)
+
+[state 905,shiighrataa]
+type=velset
+triggerall=!animtime
+trigger1=gethitvar(chainid)=4010
+x=-0.9765625
+y=-8.59375
+
+[state 905,shiighrataa]
+type=velset
+triggerall=!animtime
+trigger1=gethitvar(chainid)=1605
+x=-3.0
+y=-5.0
+
+[state 905,shiighrataa]
+type=velset
+triggerall=!animtime
+trigger1=gethitvar(chainid)=1300
+trigger2=gethitvar(chainid)=1505
+trigger3=gethitvar(chainid)=1606
+x=-3.0
+y=-7.5
+
+[state 905,shiighrataa]
+type=velset
+triggerall=!animtime
+trigger1=gethitvar(chainid)=3300
+x=-1.0
+y=-10.0
+
+[state 905,prakash]
+type=explod
+trigger1=backedgedist<frontedgedist
+trigger1=!time
+anim=f72
+postype=back
+pos=0,ceil(screenpos y+(const(size.mid.pos.y)))
+facing=1
+bindtime=2
+random=0,0
+velocity=0.0,0.0
+accel=0,0
+ownpal=1
+scale=1.0,1.0
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+[state 905,prakash]
+type=explod
+trigger1=frontedgedist<backedgedist
+trigger1=!time
+anim=f72
+postype=front
+pos=0,ceil(screenpos y+(const(size.mid.pos.y)))
+facing=-facing
+bindtime=2
+random=0,0
+velocity=0.0,0.0
+accel=0,0
+ownpal=1
+scale=1.0,1.0
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+
+[state 905,air-recover]
+type=selfstate
+trigger1=time
+trigger1=alive
+trigger1=canrecover
+trigger1=command="recovery"
+value=5210
+
+[state 905,phir_lana]
+type=changestate
+trigger1=!animtime
+value=910
+ctrl=0
+
+[state 905,phir_lana]
+type=selfstate
+trigger1=!gethitvar(isbound)
+trigger1=time>100
+value=5050
+;=========================================================================
+;Wall - Fall
+;=========================================================================
+[Statedef 910]
+type=A
+movetype=H
+physics=N
+ctrl=0
+sprpriority=-1
+
+[state 910,anim]
+type=changeanim2
+trigger1=!time
+value=900
+
+[state 910,roop]
+type=screenbound
+trigger1=1
+value=1
+movecamera=1,1
+
+[state 910,shiighrataa]
+type=veladd
+trigger1=1
+y=gethitvar(yaccel)
+
+[state 910,hilaav]
+type=envshake
+trigger1=pos y>=0
+trigger1=vel y>0
+time=10
+ampl=10
+
+[state 910,ground-recover]
+type=selfstate
+trigger1=alive
+trigger1=pos y>=const(movement.air.gethit.groundrecover.ground.threshold)
+trigger1=vel y>0
+trigger1=gethitvar(fall.recover)
+trigger1=command="recovery"
+value=5200
+
+[state 910,air-recover]
+type=selfstate
+trigger1=alive
+trigger1=canrecover
+trigger1=command="recovery"
+value=5210
+
+[state 910,phir_lana]
+type=selfstate
+trigger1=pos y>=0
+trigger1=vel y>0
+value=5100
+
+[state 910,phir_lana]
+type=selfstate
+trigger1=!gethitvar(isbound)
+trigger1=time>300
+value=5050
+;=========================================================================
+;Floor - Shake
+;=========================================================================
+[statedef 915]
+type=A
+movetype=H
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=-1
+
+[state 915,marna]
+type=removeexplod
+trigger1=ishelper
+[state 915,marna]
+type=destroyself
+trigger1=ishelper
+
+[state 915,anim]
+type=changeanim
+trigger1=!time
+trigger1=gethitvar(animtype)!=[3,5]
+value=cond((gethitvar(groundtype)=1),5000,5010)+gethitvar(animtype)
+
+[state 915,anim]
+type=changeanim
+trigger1=!time
+trigger1=gethitvar(animtype)=[3,5]
+value=5030
+
+[state 915,anim]
+type=changeanim
+trigger1=!time
+trigger1=(gethitvar(animtype)=[4,5])&&(selfanimexist(5047+gethitvar(animtype)))
+value=5047+gethitvar(animtype)
+
+[state 915,anim]
+type=changeanim
+trigger1=!hitshakeover
+value=anim
+
+[state 915,anim]
+type=changeanim2
+trigger1=hitshakeover
+value=900
+persistent=0
+[state 915,anim]
+type=changeanim
+trigger1=selfanimexist(5061)
+trigger1=hitshakeover
+value=5061
+persistent=0
+
+[state 915,fall]
+type=hitfallset
+trigger1=!time
+value=1
+
+[state 915,roop]
+type=screenbound
+trigger1=1
+value=1
+movecamera=1,1
+
+[state 915,roop]
+type=playerpush
+trigger1=1
+value=0
+
+[state 915,shiighrataa]
+type=velset
+trigger1=hitshakeover
+x=gethitvar(xvel)*facing
+y=gethitvar(yvel)
+persistent=0
+
+[state 915,shiighrataa]
+type=veladd
+triggerall=hitshakeover
+trigger1=gethitvar(chainid)=650
+trigger2=gethitvar(chainid)=805
+trigger3=gethitvar(chainid)=1620
+y=gethitvar(yaccel)
+
+[state 915,badalna]
+type=changestate
+trigger1=hitshakeover
+trigger1=pos y>=0
+trigger1=vel y>0
+value=920
+
+[state 915,phir_lana]
+type=selfstate
+trigger1=hitshakeover
+trigger1=!gethitvar(isbound)
+trigger1=time>100
+value=5050
+;=========================================================================
+;Floor - Impact
+;=========================================================================
+[Statedef 920]
+type=A
+movetype=H
+physics=N
+ctrl=0
+sprpriority=-1
+
+[state 920,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 920,anim]
+type=changeanim2
+trigger1=!time
+value=920
+[state 920,anim]
+type=changeanim
+trigger1=selfanimexist(5100)
+trigger1=!time
+value=5100
+
+[state 920,avaaz]
+type=playsnd
+trigger1=!time
+value=f7,2
+volumescale=100
+
+[state 920,hilaav]
+type=envshake
+trigger1=!time
+time=10
+ampl=-10
+
+[state 920,jodo]
+type=posadd
+trigger1=!animtime
+trigger2=time>=7
+y=-pos y
+
+[state 920,shiighrataa]
+type=velset
+trigger1=!time
+y=0.0
+
+[state 920,shiighrataa]
+type=velset
+triggerall=!animtime||time>=7
+trigger1=gethitvar(chainid)=650
+y=-12.109375
+
+[state 920,shiighrataa]
+type=velset
+triggerall=!animtime||time>=7
+trigger1=gethitvar(chainid)=805
+x=0.0
+y=0.0
+
+[state 920,shiighrataa]
+type=velset
+triggerall=!animtime||time>=7
+trigger1=gethitvar(chainid)=1620
+x=-2.734375
+y=-10.3515625
+
+[state 920,prakash]
+type=explod
+trigger1=!time
+anim=f62
+postype=p1
+pos=0,0
+bindtime=1
+random=0,0
+velocity=0.0,0.0
+accel=0,0
+ownpal=1
+scale=1.0,1.0
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+
+[state 920,ground-recover]
+type=selfstate
+triggerall=time
+triggerall=alive
+triggerall=pos y>=const(movement.air.gethit.groundrecover.ground.threshold)
+triggerall=vel y>0
+triggerall=gethitvar(fall.recover)
+triggerall=command="recovery"
+trigger1=gethitvar(chainid)=-1
+value=5200
+
+[state 920,phir_lana]
+type=selfstate
+triggerall=!animtime||time>=7
+trigger1=gethitvar(chainid)=805
+value=5110
+
+[state 920,badalna]
+type=changestate
+trigger1=!animtime
+trigger2=time>=7
+value=925
+
+[state 920,phir_lana]
+type=selfstate
+trigger1=!gethitvar(isbound)
+trigger1=time>100
+value=5050
+;=========================================================================
+;Floor - Fall
+;=========================================================================
+[Statedef 925]
+type=A
+movetype=H
+physics=N
+ctrl=0
+sprpriority=-1
+
+[state 925,anim]
+type=changeanim2
+trigger1=!time
+value=900
+
+[state 925,shiighrataa]
+type=veladd
+trigger1=1
+y=gethitvar(yaccel)
+
+[state 925,ground-recover]
+type=selfstate
+trigger1=alive
+trigger1=pos y>=const(movement.air.gethit.groundrecover.ground.threshold)
+trigger1=vel y>0
+trigger1=gethitvar(fall.recover)
+trigger1=command="recovery"
+value=5200
+
+[state 925,air-recover]
+type=selfstate
+trigger1=alive
+trigger1=vel y>1
+trigger1=canrecover
+trigger1=command="recovery"
+value=5210
+
+[state 925,phir_lana]
+type=selfstate
+trigger1=pos y>=0
+trigger1=vel y>0
+value=5100
+
+[state 925,phir_lana]
+type=selfstate
+trigger1=!gethitvar(isbound)
+trigger1=time>300
+value=5050
+;=========================================================================
+;Guard Counter
+;=========================================================================
+[StateDef 1100]
+type=S
+movetype=A
+physics=N
+ctrl=0
+facep2=1
+velset=0,0
+
+[state 1100,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 1100,anim]
+type=changeanim
+trigger1=!time
+value=1100
+
+[state 1100,shakti]
+type=poweradd
+trigger1=!time
+value=-1000
+
+[state 1100,thaharaav]
+type=superpause
+trigger1=!time
+time=20
+movetime=20
+anim=-1
+sound=-1
+pos=0,0
+p2defmul=1
+poweradd=0
+darken=0
+unhittable=1
+
+[state 1100,ajay]
+type=nothitby
+trigger1=!time
+value=SCA
+time=20
+
+[state 1100,avaaz]
+type=playsnd
+trigger1=!time
+value=s1100,0
+volumescale=100
+[state 1100,bolii]
+type=playsnd
+trigger1=!animelemtime(4)
+trigger1=random<1000
+value=s2,5+random%3
+volumescale=100
+channel=0
+[state 1100,avaaz]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s1,2
+volumescale=100
+
+[state 1100,roop]
+type=playerpush
+trigger1=animelemno(0)=[3,8]
+value=0
+ignorehitpause=1
+
+[state 1100,jodo]
+type=null
+trigger1=!animelemtime(4)
+trigger1=(fvar(12):=7.8125)^^(fvar(13):=0.0)^^fvar(14):=1.0
+trigger2=!animelemtime(7)
+trigger2=(fvar(12):=24.0)^^(fvar(13):=0.0)^^fvar(14):=1.0
+trigger3=!animelemtime(8)
+trigger3=(fvar(12):=23.0)^^(fvar(13):=0.0)^^fvar(14):=1.0
+trigger4=!animelemtime(9)
+trigger4=(fvar(12):=3.125)^^(fvar(13):=0.0)^^fvar(14):=1.0
+[state 1100,jodo]
+type=varset
+trigger1=!time||cond(fvar(14)=1.0,fvar(12)<0.0,fvar(12)>0.0)
+trigger2=!animelemtime(11)
+fvar(12)=(fvar(13):=0.0)
+[state 1100,jodo]
+type=varadd
+trigger1=fvar(12)||fvar(13)
+fvar(12)=fvar(13)
+[state 1100,jodo]
+type=posadd
+trigger1=fvar(12)
+x=fvar(12)
+
+[state 1100,Counter_FX]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Counter_FX"
+id=1101
+stateno=1101
+postype=p1
+pos=55,-62
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+
+[state 1100,maar]
+type=hitdef
+trigger1=!animelemtime(4)
+attr=S,SA
+damage=ceil(cond(56*fvar(1)<7,7,56*fvar(1))),12
+guardflag=M
+hitflag=MAF
+priority=6,Hit
+pausetime=8,15
+hitsound=-1+(0*(var(19):=400))
+guardsound=-1+(0*(var(20):=10))
+sparkno=-1+(0*(var(21):=8715))
+guard.sparkno=-1+(0*(var(22):=8726))
+sparkxy=0,0+(0*(var(23):=70&&var(24):=-60))
+animtype=diagup
+ground.type=low
+air.animtype=diagup
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+guard.slidetime=18+4*var(16)
+guard.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-1.5,-8.0
+air.velocity=-1.5,-8.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.6
+kill=0
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=6
+fall=1
+fall.recover=0
+fall.animtype=diagup
+
+[state 1100,bekaar]
+type=statetypeset
+trigger1=!animelemtime(10)
+movetype=I
+
+[state 1100,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Dodge
+;=========================================================================
+[StateDef 1200]
+type=S
+movetype=I
+physics=S
+ctrl=0
+facep2=1
+velset=0,0
+sprpriority=-1
+
+[state 1200,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 1200,anim]
+type=changeanim
+trigger1=!time
+value=1200
+
+[state 1200,chaayaa]
+type=afterimage
+trigger1=!animelemtime(1)
+time=32
+timegap=1
+framegap=4
+length=9
+palbright=0,0,0
+palcontrast=128,128,128
+palpostbright=0,0,0
+paladd=0,0,0
+palmul=.9,.9,.9
+trans=add1
+[state 1200,chaayaa]
+type=afterimagetime
+trigger1=!animtime
+time=0
+
+[state 1200,roop]
+type=playerpush
+trigger1=1
+value=0
+
+[state 1200,ajay]
+type=hitby
+trigger1=1
+value=SCA,NT,ST,HT
+
+[state 1200,bolii]
+type=playsnd
+trigger1=!animelemtime(3)
+trigger1=random<500
+value=s105,10
+volumescale=100
+channel=0
+[state 1200,avaaz]
+type=playsnd
+trigger1=!animelemtime(3)
+value=S1200,0
+volumescale=100
+
+[state 1200,badalna]
+type=changestate
+triggerall=!ailevel&&animtime>-20
+trigger1=(command="a")||(command="b")||(command="c")
+trigger2=(command="x")||(command="y")||(command="z")
+value=1201+(1*(command="a"||command="b"||command="c"))
+ctrl=0
+[state 1200,badalna]
+type=changestate
+triggerall=ailevel&&animtime>-20
+trigger1=(p2bodydist x=[0,70])&&(p2dist y=[-70,5])
+trigger1=random<100
+value=ifelse(p2bodydist x>55,1202,1201)
+ctrl=0
+
+[state 1200,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Dodge - Attack 1
+;=========================================================================
+[Statedef 1201]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+poweradd=60*!var(25)
+sprpriority=1
+
+[state 1201,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 1201,chaayaa]
+type=afterimagetime
+trigger1=!time
+time=5
+
+[state 1201,ajay]
+type=hitby
+trigger1=!time
+value2=SCA,NT,ST,HT
+time=5
+
+[state 1201,anim]
+type=changeanim
+trigger1=!time
+value=210
+
+[state 1201,bolii]
+type=playsnd
+trigger1=!animelemtime(3)
+value=s2,5+random%3
+volumescale=100
+channel=0
+[state 1201,avaaz]
+type=playsnd
+trigger1=!animelemtime(3)
+value=s1,2
+volumescale=100
+
+[state 1201,jodo]
+type=null
+trigger1=!animelemtime(4)
+trigger1=(fvar(12):=14.84375)^^(fvar(13):=0.0)^^fvar(14):=1.0
+[state 1201,jodo]
+type=varset
+trigger1=!time||cond(fvar(14)=1.0,fvar(12)<0.0,fvar(12)>0.0)
+trigger2=!animelemtime(5)
+fvar(12)=(fvar(13):=0.0)
+[state 1201,jodo]
+type=varadd
+trigger1=fvar(12)||fvar(13)
+fvar(12)=fvar(13)
+[state 1201,jodo]
+type=posadd
+trigger1=fvar(12)
+x=fvar(12)
+
+[state 1201,maar]
+type=hitdef
+trigger1=var(0)<1
+trigger1=!var(1)
+trigger1=!animelemtime(5)
+attr=S,NA
+damage=ceil(cond(56*fvar(1)<7,7,56*fvar(1)))
+guardflag=M
+hitflag=MAF
+priority=5,Hit
+pausetime=12,12
+hitsound=-1+(0*(var(19):=220))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=8710))
+guard.sparkno=-1+(0*(var(22):=8725))
+sparkxy=0,0+(0*(var(23):=66&&var(24):=-61))
+animtype=hard
+ground.type=low
+air.animtype=hard
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+guard.slidetime=18+4*var(16)
+guard.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-2.5,-7.5
+air.velocity=-2.5,-7.5
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+getpower=80*!var(25),40*!var(25)
+givepower=40,40
+envshake.time=10
+envshake.ampl=5
+fall=1
+fall.recover=!var(16)
+fall.recovertime=ceil(cond(var(0),cond(72*(0.5**var(0))<32,32,72*(0.5**var(0))),72))
+fall.animtype=hard
+nochainid=450
+
+[state 1201,bekaar]
+type=statetypeset
+trigger1=!animelemtime(7)
+movetype=I
+
+[state 1201,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Dodge - Attack 2
+;=========================================================================
+[Statedef 1202]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+poweradd=60*!var(25)
+sprpriority=1
+
+[state 1202,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 1202,chaayaa]
+type=afterimagetime
+trigger1=!time
+time=5
+
+[state 1202,ajay]
+type=hitby
+trigger1=!time
+value2=SCA,NT,ST,HT
+time=5
+
+[state 1202,anim]
+type=changeanim
+trigger1=!time
+value=240
+
+[state 1202,bolii]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s2,5+random%3
+volumescale=100
+channel=0
+[state 1202,avaaz]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s1,2
+volumescale=100
+
+[state 1202,jodo]
+type=null
+trigger1=!animelemtime(4)
+trigger1=(fvar(12):=14.84375)^^(fvar(13):=0.0)^^fvar(14):=1.0
+[state 1202,jodo]
+type=varset
+trigger1=!time||cond(fvar(14)=1.0,fvar(12)<0.0,fvar(12)>0.0)
+trigger2=!animelemtime(5)
+fvar(12)=(fvar(13):=0.0)
+[state 1202,jodo]
+type=varadd
+trigger1=fvar(12)||fvar(13)
+fvar(12)=fvar(13)
+[state 1202,jodo]
+type=posadd
+trigger1=fvar(12)
+x=fvar(12)
+
+[state 1202,maar]
+type=hitdef
+trigger1=var(0)<1
+trigger1=!var(1)
+trigger1=!animelemtime(5)
+attr=S,NA
+damage=ceil(cond(56*fvar(1)<7,7,56*fvar(1)))
+guardflag=M
+hitflag=MAF
+priority=5,Hit
+pausetime=12,12
+hitsound=-1+(0*(var(19):=320))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=8710))
+guard.sparkno=-1+(0*(var(22):=8725))
+sparkxy=0,0+(0*(var(23):=50&&var(24):=-70))
+animtype=hard
+ground.type=high
+air.animtype=hard
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+guard.slidetime=18+4*var(16)
+guard.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-12.5
+air.velocity=-8.5,-5.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+getpower=80*!var(25),40*!var(25)
+givepower=40,40
+envshake.time=10
+envshake.ampl=5
+fall=0
+fall.recover=!var(16)
+fall.recovertime=ceil(cond(var(0),cond(72*(0.5**var(0))<32,32,72*(0.5**var(0))),72))
+fall.animtype=hard
+nochainid=450
+
+[state 1202,bekaar]
+type=statetypeset
+trigger1=!animelemtime(7)
+movetype=I
+
+[state 1202,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Dodge - Forward
+;=========================================================================
+[Statedef 1205]
+type=S
+physics=N
+movetype=I
+ctrl=0
+sprpriority=-1
+
+[state 1205,anim]
+type=changeanim
+trigger1=!time
+value=1205
+
+[state 1205,chaayaa]
+type=afterimage
+trigger1=!animelemtime(3)
+time=30
+timegap=1
+framegap=4
+length=9
+palbright=0,0,0
+palcontrast=128,128,128
+palpostbright=0,0,0
+paladd=0,0,0
+palmul=.9,.9,.9
+trans=add1
+[state 1205,chaayaa]
+type=afterimagetime
+trigger1=!animtime
+time=0
+
+[state 1205,roop]
+type=playerpush
+trigger1=1
+value=0
+
+[state 1205,ajay]
+type=hitby
+trigger1=animtime<-5
+value=SCA,NT,ST,HT
+
+[state 1205,bolii]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s2,1
+volumescale=100
+channel=0
+[state 1205,avaaz]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s1205,0
+volumescale=100
+
+[state 1205,shiighrataa]
+type=velset
+trigger1=prevstateno!=[100,101]
+trigger1=!time
+x=0.0
+y=0.0
+[state 1205,shiighrataa]
+type=velset
+trigger1=!animelemtime(2)
+x=5.0625+(1.75*(prevstateno=[100,101]))
+[state 1205,shiighrataa]
+type=velset
+trigger1=!animelemtime(6)
+x=0.0
+
+[state 1205,Jump-Smoke]
+type=helper
+trigger1=!animelemtime(2)
+helpertype=normal
+name="Jump-Smoke"
+id=8500
+stateno=8500
+postype=P1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+
+[state 1205,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Dodge - Backward
+;=========================================================================
+[Statedef 1210]
+type=S
+physics=N
+movetype=I
+ctrl=0
+sprpriority=-1
+
+[state 1210,anim]
+type=changeanim
+trigger1=!time
+value=1210
+
+[State 1210,chaayaa]
+type=afterimage
+trigger1=!animelemtime(3)
+time=30
+timegap=1
+framegap=4
+length=9
+palbright=0,0,0
+palcontrast=128,128,128
+palpostbright=0,0,0
+paladd=0,0,0
+palmul=.9,.9,.9
+trans=add1
+[state 1210,chaayaa]
+type=afterimagetime
+trigger1=!animtime
+time=0
+
+[state 1210,roop]
+type=playerpush
+trigger1=1
+value=0
+
+[state 1210,ajay]
+type=hitby
+trigger1=animtime<-5
+value=SCA,NT,ST,HT
+
+[state 1210,bolii]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s2,1
+volumescale=100
+channel=0
+[state 1210,avaaz]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s1205,0
+volumescale=100
+
+[state 1210,shiighrataa]
+type=velset
+trigger1=!time
+x=0
+y=0
+[state 1210,Shiighrataa]
+type=velset
+trigger1=!animelemtime(2)
+x=-5.0625
+[state 1210,Shiighrataa]
+type=velset
+trigger1=!animelemtime(6)
+x=0
+
+[state 1210,Jump-Smoke]
+type=helper
+trigger1=!animelemtime(2)
+helpertype=normal
+name="Jump-Smoke"
+id=8500
+stateno=8500
+postype=P1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+
+[state 1210,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Power Charge
+;=========================================================================
+[Statedef 1215]
+type=S
+movetype=I
+physics=S
+ctrl=0
+facep2=1
+velset=0,0
+sprpriority=0
+
+[state 1215,anim]
+type=changeanim
+trigger1=!time
+value=1215
+
+[state 1215,hold]
+type=changeanim
+trigger1=!animelemtime(9)
+value=anim
+elem=7
+[state 1215,hold]
+type=changeanim
+triggerall=!ailevel
+triggerall=animelemtime(9)<0
+trigger1=power>=powermax||power>=const(data.power)
+trigger2=command!="hold_y"
+trigger2=command!="hold_b"
+value=anim
+elem=9
+[state 1215,hold]
+type=changeanim
+triggerall=ailevel
+triggerall=animelemtime(9)<0
+trigger1=power>=powermax||power>=const(data.power)
+trigger2=p2bodydist x<75
+trigger3=p2bodydist x<100&&p2movetype=A
+trigger4=enemy,numproj
+trigger5=inguarddist
+value=anim
+elem=9
+
+[state 1215,roop]
+type=palfx
+trigger1=numhelper(1216)
+time=2
+add=ceil(128+cos(gametime*pi/4.0)*128),ceil(48+cos(gametime*pi/4.0)*48),0
+
+[state 1215,shakti]
+type=poweradd
+trigger1=animelemtime(9)<0
+value=ceil(0.75*(time/8.0))
+
+[state 1215,bolii]
+type=playsnd
+trigger1=!animelemtime(3)
+value=s1215,10
+volumescale=100
+channel=0
+
+[state 1215,Charge]
+type=helper
+trigger1=!numhelper(1216)
+trigger1=animelemtime(3)>=0
+trigger1=animelemtime(9)<0
+id=1216
+name="Charge"
+postype=P1
+pos=0,5
+stateno=1216
+helpertype=normal
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+
+[state 1215,tolna]
+type=ctrlset
+trigger1=!animelemtime(9)
+value=1
+
+[state 1215,badalna]
+type=stopsnd
+trigger1=!animelemtime(9)
+channel=0
+[state 1215,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Parry - Stand
+;=========================================================================
+[StateDef 1220]
+type=S
+movetype=I
+physics=S
+ctrl=0
+facep2=1
+velset=0,0
+sprpriority=2
+
+[state 1220,anim]
+type=changeanim
+trigger1=!time
+value=1220
+
+[state 1220,ajay]
+type=nothitby
+trigger1=1
+time=1
+value=SCA
+
+[state 1220,shakti]
+type=poweradd
+trigger1=!time
+value=100
+
+[state 1220,thaharan]
+type=pause
+trigger1=!time
+time=16
+movetime=16
+endcmdbuftime=16
+pausebg=0
+
+[state 1220,bolii]
+type=playsnd
+trigger1=!time
+value=s1220,10+(random%5)
+volumescale=100
+channel=0
+[state 1220,avaaz]
+type=playsnd
+trigger1=!time
+value=S1220,0
+volumescale=100
+
+[state 1220,hilaav]
+type=envshake
+trigger1=!time
+time=0
+ampl=0
+
+[state 1220,prakash]
+type=explod
+trigger1=!time
+anim=8545
+ID=8545
+sprpriority=5
+postype=p1
+pos=ceil(55*const(size.xscale)),ceil(-62*const(size.yscale))
+pausemovetime=-1
+supermovetime=-1
+ownpal=1
+scale=0.5,0.5
+
+[state 1220,Parry_Skill]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Parry_Skill"
+ID=1227
+stateno=1227
+postype=p1
+pos=ceil(55*const(size.xscale)),ceil(-62*const(size.yscale))
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+
+[state 1220,marna]
+type=removeexplod
+trigger1=!animtime
+id=8545
+[state 1220,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Parry - Crouch
+;=========================================================================
+[StateDef 1221]
+type=C
+movetype=I
+physics=C
+ctrl=0
+facep2=1
+velset=0,0
+sprpriority=2
+
+[state 1221,anim]
+type=changeanim
+trigger1=!time
+value=1221
+
+[state 1221,ajay]
+type=nothitby
+trigger1=1
+time=1
+value=SCA
+
+[state 1221,shakti]
+type=poweradd
+trigger1=!time
+value=100
+
+[state 1221,thaharan]
+type=pause
+trigger1=!time
+time=16
+movetime=16
+endcmdbuftime=16
+pausebg=0
+
+[state 1221,bolii]
+type=playsnd
+trigger1=!time
+value=s1220,10+(random%5)
+volumescale=100
+channel=0
+[state 1221,avaaz]
+type=playsnd
+trigger1=!time
+value=S1220,0
+volumescale=100
+
+[state 1221,hilaav]
+type=envshake
+trigger1=!time
+time=0
+ampl=0
+
+[state 1221,prakash]
+type=explod
+trigger1=!time
+anim=8545
+ID=8545
+sprpriority=5
+postype=p1
+pos=ceil(52*const(size.xscale)),ceil(-43*const(size.yscale))
+pausemovetime=-1
+supermovetime=-1
+ownpal=1
+scale=0.5,0.5
+
+[state 1221,Parry_Skill]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Parry_Skill"
+ID=1227
+stateno=1227
+postype=p1
+pos=ceil(52*const(size.xscale)),ceil(-43*const(size.yscale))
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+
+[state 1221,marna]
+type=removeexplod
+trigger1=!animtime
+id=8545
+[state 1221,badalna]
+type=changestate
+trigger1=!animtime
+value=11
+ctrl=1
+;=========================================================================
+;Parry - Air
+;=========================================================================
+[Statedef 1222]
+type=A
+movetype=I
+physics=N
+ctrl=0
+facep2=1
+sprpriority=2
+
+[state 1222,anim]
+type=changeanim
+trigger1=!time
+value=1222
+
+[state 1222,roop]
+type=posfreeze
+trigger1=1
+value=1
+
+[state 1222,ajay]
+type=nothitby
+trigger1=1
+time=1
+value=SCA
+
+[state 1222,shakti]
+type=poweradd
+trigger1=!time
+value=100
+
+[state 1222,thaharan]
+type=pause
+trigger1=!time
+time=16
+movetime=16
+endcmdbuftime=16
+pausebg=0
+
+[state 1222,bolii]
+type=playsnd
+trigger1=!time
+value=s1220,10+(random%5)
+volumescale=100
+channel=0
+[state 1222,avaaz]
+type=playsnd
+trigger1=!time
+value=s1220,0
+volumescale=100
+
+[state 1222,hilaav]
+type=envshake
+trigger1=!time
+time=0
+ampl=0
+
+[State 1222,prakash]
+type=explod
+trigger1=!time
+anim=8545
+ID=8545
+sprpriority=5
+postype=p1
+pos=ceil(53*const(size.xscale)),ceil(-53*const(size.yscale))
+pausemovetime=-1
+supermovetime=-1
+ownpal=1
+scale=0.5,0.5
+
+[state 1222,Parry_Skill]
+type=null;helper
+trigger1=!time
+helpertype=normal
+name="Parry_Skill"
+ID=1227
+stateno=1227
+postype=p1
+pos=ceil(53*const(size.xscale)),ceil(-53*const(size.yscale))
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+
+[state 1222,marna]
+type=removeexplod
+trigger1=!animtime
+id=8545
+
+[state 1222,badalna]
+type=changestate
+trigger1=!animtime
+value=1223
+;=========================================================================
+;Parry - Air Fall
+;=========================================================================
+[Statedef 1223]
+type=A
+movetype=I
+physics=N
+ctrl=1
+facep2=1
+sprpriority=2
+
+[state 1223,anim]
+type=changeanim
+trigger1=!time
+value=1223
+
+[state 1223,shiighrataa]
+type=velset
+trigger1=!time
+y=-3.0
+
+[state 1223,shiighrataa]
+type=veladd
+trigger1=1
+y=const(movement.yaccel)
+
+[state 1223,badalna]
+type=changestate
+trigger1=pos y>=0
+trigger1=vel y>0
+value=52

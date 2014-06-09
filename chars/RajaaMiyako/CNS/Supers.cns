@@ -1,0 +1,3192 @@
+;@@@@@@@@@@@@@@@@@@@@@@@Miyako By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@Miyako By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+;=========================================================================
+;Baji_Quan_Blitz
+;=========================================================================
+[StateDef 3000]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 800,width]
+type=width
+trigger1=movetype=A
+edge=20,0
+
+[state 3000,shakti]
+type=varset
+triggerall=!ailevel
+trigger1=time=0
+var(11)=ifelse(command="x"||command="NE_x",1,ifelse(command="y"||command="NE_y",2,3))
+[state 3000,shakti]
+type=varset
+triggerall=ailevel
+trigger1=time=0
+var(11)=ifelse(numtarget&&random<500||random<500,2,ifelse(random>500,3,1))
+[state 3000,shakti]
+type=varadd
+trigger1=time=0
+var(11)=ifelse((power=[2000,2999])&&var(11)=3,-1,ifelse((power=[1000,1999])&&var(11)=2,-1,ifelse((power=[1000,1999])&&var(11)=3,-2,0)))
+[state 3000,Super--->Super/Vigor]
+type=varset
+trigger1=var(7)||var(25)
+trigger1=!time
+var(11)=1
+[state 3000,Super_Dampener]
+type=varset
+trigger1=!time
+var(15)=ifelse(var(11)=1,5,ifelse(var(11)=2,7,9))
+
+[state 3000,Anim]
+type=changeanim
+trigger1=time=0
+value=3000+(var(11)>=2)+(var(11)>=3)
+
+[state 3000,kam_karna]
+type=poweradd
+trigger1=!var(25)
+trigger1=!time
+value=-1000*var(11)
+
+[state 3000,Super-Config]
+type=helper
+trigger1=!animelemtime(2)
+helpertype=normal
+name="Super-Config"
+id=10005
+stateno=10000+(5*var(11))
+postype=p1
+pos=ceil(fvar(6):=-19),ceil(fvar(7):=-53)
+facing=0
+ownpal=1
+supermovetime=999999
+pausemovetime=999999
+[state 3000,thaharaav]
+type=superpause
+trigger1=!animelemtime(2)
+time=40
+movetime=40
+unhittable=1
+anim=-1
+sound=-1
+p2defmul=1
+poweradd=0
+darken=0
+[State 3000,chaayaa]
+type=afterimage
+trigger1=!var(7)&&!var(8)
+trigger1=!animelemtime(2)
+time=999
+timegap=2
+framegap=5
+length=15
+paladd=0,0,0
+palmul=.5,.5,.5
+palbright=0,0,0
+palcontrast=150-(100*(var(11)=2)),150-(100*(var(11)=3)),150-(100*(var(11)=[2,3]))
+trans=add1
+[state 3000,ajay]
+type=nothitby
+trigger1=!animelemtime(1)
+value=SCA
+time=42+(3*var(11))
+;=========================================================================
+;Level One Management
+;=========================================================================
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=1
+trigger1=animelemno(0)=3
+x=15
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=1
+trigger1=animelemno(0)=11
+x=20
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=1
+trigger1=animelemno(0)=22
+x=15
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=1
+trigger1=animelemno(0)=31
+x=12
+[state 3000,jodo]
+type=posadd
+triggerall=var(11)=1
+trigger1=animelemno(0)=[38,39]
+trigger2=animelemno(0)=41
+x=5+(9*(animelemno(0)=41))
+
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=1
+trigger1=!animelemtime(41)
+x=5.0
+
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=1
+trigger1=!animelemtime(4)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-35+(0*(var(23):=40&&var(24):=-35))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.5
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=1
+trigger1=!animelemtime(12)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-43+(0*(var(23):=40&&var(24):=-43))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=high
+air.type=high
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.5
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=1
+trigger1=!animelemtime(23)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-35+(0*(var(23):=52&&var(24):=-35))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.5
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=1
+trigger1=!animelemtime(33)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-48+(0*(var(23):=42&&var(24):=-48))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=high
+air.type=high
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.5
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=1
+trigger1=!animelemtime(42)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=11,11
+guard.pausetime=15,5
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-10,-43+(0*(var(23):=24&&var(24):=-43))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=high
+air.type=high
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-3.5,-7.0
+guard.velocity=-12
+air.velocity=-3.5,-7.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=1
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+
+[state 3000,bolii]
+type=playsnd
+triggerall=var(11)=1
+trigger1=!animelemtime(3)||!animelemtime(11)
+trigger2=!animelemtime(22)||!animelemtime(32)
+trigger3=!animelemtime(41)
+value=S2,0+ifelse(animelemno(0)=41,2,random%2)
+volume=255
+channel=0
+[state 3000,avaaz]
+type=playsnd
+triggerall=var(11)=1
+trigger1=!animelemtime(3)||!animelemtime(11)
+trigger2=!animelemtime(22)||!animelemtime(32)
+trigger3=!animelemtime(41)
+value=S1,2
+volume=255
+
+[State 200,bekaar]
+type=statetypeset
+trigger1=var(11)=1&&!animelemtime(43)
+movetype=I
+;=========================================================================
+;Level Two Management
+;=========================================================================
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=2
+trigger1=animelemno(0)=3
+x=15
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=2
+trigger1=animelemno(0)=11
+x=20
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=2
+trigger1=animelemno(0)=22
+x=15
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=2
+trigger1=animelemno(0)=31
+x=12
+[state 3000,jodo]
+type=posadd
+triggerall=var(11)=2
+trigger1=animelemno(0)=[38,39]
+trigger2=animelemno(0)=41
+x=5+(9*(animelemno(0)=41))
+
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=2
+trigger1=!animelemtime(41)
+x=5.0
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=2
+trigger1=!animelemtime(48)
+x=0
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=2
+trigger1=!animelemtime(51)
+x=11
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=2
+trigger1=!animelemtime(53)
+x=0
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=2
+trigger1=!animelemtime(64)
+x=15
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=2
+trigger1=!animelemtime(66)
+x=0
+
+[state 3000,chingariya]
+type=explod
+trigger1=var(11)=2
+trigger1=!animelemtime(67)
+id=8015
+anim=8015
+sprpriority=3
+pos=80,-45
+bindtime=-1
+postype=P1
+removeongethit=1
+ownpal=1
+scale=.5,.5
+pausemovetime=-1
+supermovetime=-1
+ignorehitpause=1
+[state 3000,chingariya]
+type=explod
+trigger1=var(11)=2
+trigger1=!animelemtime(67)
+id=8045
+anim=8045
+sprpriority=3
+pos=25,0
+bindtime=1
+postype=P1
+ownpal=1
+ontop=1
+scale=.25,.25
+pausemovetime=-1
+supermovetime=-1
+ignorehitpause=1
+[state 1600,spark]
+type=explod
+trigger1=var(11)=2
+trigger1=animelemno(0)=68
+trigger1=numtarget&&movehit=1
+trigger1=target,movetype=H&&target,time=0
+id=8020
+anim=8020
+sprpriority=3
+pos=48,-48
+bindtime=1
+postype=P1
+ownpal=1
+ontop=1
+scale=.5,.5
+pausemovetime=-1
+supermovetime=-1
+ignorehitpause=1
+
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=2
+trigger1=!animelemtime(4)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-35+(0*(var(23):=40&&var(24):=-35))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=2
+trigger1=!animelemtime(12)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-43+(0*(var(23):=40&&var(24):=-43))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=high
+air.type=high
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=2
+trigger1=!animelemtime(23)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-35+(0*(var(23):=52&&var(24):=-35))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=2
+trigger1=!animelemtime(33)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-48+(0*(var(23):=42&&var(24):=-48))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=high
+air.type=high
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=2
+trigger1=!animelemtime(42)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-10,-43+(0*(var(23):=24&&var(24):=-43))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=2
+trigger1=!animelemtime(53)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-10,-80+(0*(var(23):=32&&var(24):=-80))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=high
+air.type=high
+ground.slidetime=25+4*var(16)
+ground.hittime=35+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-5.5
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=2
+trigger1=!animelemtime(68)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=11,11
+guard.pausetime=15,5
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-10,-43+(0*(var(23):=24&&var(24):=-43))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-3.5,-7.0
+guard.velocity=-12
+air.velocity=-3.5,-7.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=1
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+
+[state 3000,hilaav]
+type=envshake
+trigger1=var(11)=2
+trigger1=!animelemtime(68)
+time=15
+ampl=8
+
+[state 3000,bolii]
+type=playsnd
+triggerall=var(11)=2
+trigger1=!animelemtime(3)||!animelemtime(11)
+trigger2=!animelemtime(22)||!animelemtime(32)
+trigger3=!animelemtime(41)||!animelemtime(52)
+trigger4=!animelemtime(67)
+value=S2,0+ifelse(animelemno(0)=67,2,random%2)
+volume=255
+channel=0
+[state 3000,bolii]
+type=playsnd
+triggerall=var(11)=2
+trigger1=!animelemtime(3)||!animelemtime(11)
+trigger2=!animelemtime(22)||!animelemtime(32)
+trigger3=!animelemtime(41)||!animelemtime(52)
+trigger4=!animelemtime(67)
+value=S1,2
+volume=255
+[state 3000,avaaz]
+type=playsnd
+trigger1=var(11)=2
+trigger1=!animelemtime(67)
+value=s1300,1
+volume=255
+
+[State 200,bekaar]
+type=statetypeset
+trigger1=var(11)=2&&!animelemtime(70)
+movetype=I
+;=========================================================================
+;Level Three Management
+;=========================================================================
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=3
+trigger1=animelemno(0)=3
+x=15
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=3
+trigger1=animelemno(0)=11
+x=20
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=3
+trigger1=animelemno(0)=22
+x=15
+[state 3000,jodo]
+type=posadd
+trigger1=var(11)=3
+trigger1=animelemno(0)=31
+x=12
+[state 3000,jodo]
+type=posadd
+triggerall=var(11)=3
+trigger1=animelemno(0)=[38,39]
+trigger2=animelemno(0)=41
+x=5+(9*(animelemno(0)=41))
+
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=3
+trigger1=!animelemtime(41)
+x=5.0
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=3
+trigger1=!animelemtime(48)
+x=0
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=3
+trigger1=!animelemtime(51)
+x=11
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=3
+trigger1=!animelemtime(53)
+x=0
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=3
+trigger1=!animelemtime(59)
+x=16
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=3
+trigger1=!animelemtime(61)
+x=12
+[state 3000,shiighrataa]
+type=velset
+triggerall=var(11)=3
+trigger1=!animelemtime(60)
+trigger2=!animelemtime(62)
+x=0
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=3
+trigger1=!animelemtime(66)
+x=13
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=3
+trigger1=!animelemtime(68)
+x=20
+[state 3000,shiighrataa]
+type=velset
+trigger1=var(11)=3
+trigger1=!animelemtime(69)
+x=0
+[state 200,jodo]
+type=posadd
+trigger1=var(11)=3
+trigger1=animelemno(0)=[75,78]
+trigger1=!animelemtime(animelemno(0))
+x=10.24
+
+[state 1700,roop]
+type=statetypeset
+trigger1=var(11)=3
+trigger1=!animelemtime(66)
+statetype=C
+physics=C
+[state 1700,roop]
+type=statetypeset
+trigger1=var(11)=3
+trigger1=!animelemtime(73)
+statetype=S
+physics=S
+
+[state 1300,chingariya]
+type=explod
+trigger1=var(11)=3
+trigger1=!animelemtime(61)
+id=8010
+anim=8010
+sprpriority=3
+pos=60,-45
+bindtime=-1
+postype=P1
+removeongethit=1
+ownpal=1
+scale=.5,.5
+pausemovetime=-1
+supermovetime=-1
+ignorehitpause=1
+
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=3
+trigger1=!animelemtime(4)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-35+(0*(var(23):=40&&var(24):=-35))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=3
+trigger1=!animelemtime(12)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-43+(0*(var(23):=40&&var(24):=-43))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=high
+air.type=high
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=3
+trigger1=!animelemtime(23)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-35+(0*(var(23):=52&&var(24):=-35))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=3
+trigger1=!animelemtime(33)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-48+(0*(var(23):=42&&var(24):=-48))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=high
+air.type=high
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=3
+trigger1=!animelemtime(42)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-10,-43+(0*(var(23):=24&&var(24):=-43))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-4.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=3
+trigger1=!animelemtime(53)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-10,-80+(0*(var(23):=32&&var(24):=-80))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=high
+air.type=high
+ground.slidetime=25+4*var(16)
+ground.hittime=35+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-5.5
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=3
+trigger1=!animelemtime(62)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-10,-45+(0*(var(23):=30&&var(24):=-45))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=high
+air.type=high
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-2.5
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=3
+trigger1=!animelemtime(69)
+attr=S,HA
+damage=40,8
+guardflag=L
+hitflag=MAF
+priority=7,Hit
+pausetime=6,6
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-15,-1+(0*(var(23):=48&&var(24):=-1))
+hitsound=S300,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-4.5
+guard.velocity=-5.0
+air.velocity=-2.25,-5.5
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=var(11)=3
+trigger1=!animelemtime(79)
+attr=S,HA
+damage=40,8
+guardflag=M
+hitflag=MAF
+priority=7,Hit
+pausetime=11,11
+guard.pausetime=15,5
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-10,-71+(0*(var(23):=29&&var(24):=-71))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=high
+air.type=high
+ground.slidetime=25+4*var(16)
+ground.hittime=25+4*var(16)
+air.hittime=100
+ground.velocity=-3.5,-7.0
+guard.velocity=-12
+air.velocity=-3.5,-7.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=12
+envshake.ampl=8
+fall=1
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+p2facing=1
+nochainid=450
+
+[state 3000,bolii]
+type=playsnd
+triggerall=var(11)=3
+trigger1=!animelemtime(3)||!animelemtime(11)
+trigger2=!animelemtime(22)||!animelemtime(32)
+trigger3=!animelemtime(41)||!animelemtime(52)
+trigger4=!animelemtime(61)||!animelemtime(69)
+trigger5=!animelemtime(77)
+value=S2,0+ifelse(animelemno(0)=77,3,random%3)
+volume=255
+channel=0
+[state 3000,bolii]
+type=playsnd
+triggerall=var(11)=3
+trigger1=!animelemtime(3)||!animelemtime(11)
+trigger2=!animelemtime(22)||!animelemtime(32)
+trigger3=!animelemtime(41)||!animelemtime(52)
+trigger4=!animelemtime(61)||!animelemtime(69)
+trigger5=!animelemtime(77)
+value=S1,2
+volume=255
+
+[state 3000,bolii]
+type=playsnd
+trigger1=var(11)=3
+trigger1=!animelemtime(60)
+value=s1300,0
+volume=255
+channel=0
+[state 3000,avaaz]
+type=playsnd
+trigger1=var(11)=3
+trigger1=!animelemtime(59)
+value=s1300,1
+volume=255
+[state 3000,avaaz]
+type=playsnd
+trigger1=var(11)=3
+trigger1=!animelemtime(61)||!animelemtime(67)
+value=s100,3
+volume=255
+
+[state 3000,bekaar]
+type=statetypeset
+trigger1=var(11)=3&&!animelemtime(80)
+movetype=I
+;=========================================================================
+;General Management
+;=========================================================================
+[State 1300,bolii]
+type=playsnd
+trigger1=!animelemtime(1)
+value=S3000,0
+volume=255
+channel=0
+
+[state 3000,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Kyuukyoku Ougi
+;=========================================================================
+[StateDef 3100]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 3000,shakti]
+type=varset
+triggerall=!ailevel
+trigger1=time=0
+var(11)=ifelse(command="a"||command="NE_a",1,ifelse(command="b"||command="NE_b",2,3))
+[state 3000,shakti]
+type=varset
+triggerall=ailevel
+trigger1=time=0
+var(11)=ifelse(numtarget&&random<500,3,ifelse(random>850,2,1))
+[state 3000,shakti]
+type=varadd
+trigger1=time=0
+var(11)=ifelse((power=[2000,2999])&&var(11)=3,-1,ifelse((power=[1000,1999])&&var(11)=2,-1,ifelse((power=[1000,1999])&&var(11)=3,-2,0)))
+[state 3000,Super--->Super/Vigor]
+type=varset
+trigger1=var(7)||var(25)
+trigger1=!time
+var(11)=1
+[state 3000,Super_Dampener]
+type=varset
+trigger1=!time
+var(15)=1+(2*var(11))
+
+[state 3000,Anim]
+type=changeanim
+trigger1=time=0
+value=3100
+
+[state 3000,murna]
+type=varset
+trigger1=time=0
+var(12)=var(11)+3
+[state 3000,murna]
+type=varadd
+trigger1=!animelemtime(8)
+trigger1=var(12)
+var(12)=-1
+[state 3000,murna]
+type=changeanim
+trigger1=!animelemtime(8)
+trigger1=var(12)
+value=3100
+elem=5
+
+[state 3000,kam_karna]
+type=poweradd
+trigger1=!var(25)
+trigger1=!time
+value=-1000*var(11)
+
+[state 3100,Super-Config]
+type=helper
+trigger1=!animelemtime(1)
+helpertype=normal
+name="Super-Config"
+id=10005
+stateno=10000+(5*var(11))
+postype=p1
+pos=ceil(fvar(6):=18),ceil(fvar(7):=-37)
+facing=0
+ownpal=1
+supermovetime=999999
+pausemovetime=999999
+[state 3000,thaharaav]
+type=superpause
+trigger1=!animelemtime(1)
+time=40
+movetime=40
+unhittable=1
+anim=-1
+sound=-1
+p2defmul=1
+poweradd=0
+darken=0
+[State 3000,chaayaa]
+type=afterimage
+trigger1=!var(7)&&!var(8)
+trigger1=!animelemtime(1)
+time=999
+timegap=2
+framegap=5
+length=15
+paladd=0,0,0
+palmul=.5,.5,.5
+palbright=0,0,0
+palcontrast=150-(100*(var(11)=2)),150-(100*(var(11)=3)),150-(100*(var(11)=[2,3]))
+trans=add1
+[state 3000,ajay]
+type=nothitby
+trigger1=!animelemtime(1)
+value=SCA
+time=40+(3*var(11))
+
+[state 8000,fasla]
+type=attackdist
+trigger1=1
+value=const(size.proj.attack.dist)
+
+[State 1300,Kyuukyoku_Ougi]
+type=helper
+trigger1=!animelemtime(5)
+trigger1=fvar(16):=10&&fvar(17):=1
+helpertype=normal
+name="Kyuukyoku_Ougi"
+ID=8030
+stateno=8030
+pos=10,1
+postype=p1
+facing=1
+keyctrl=0
+ownpal=1
+size.xscale=.5
+size.yscale=.5
+ignorehitpause=1
+persistent=0
+
+[state 200,bekaar]
+type=statetypeset
+trigger1=animelemtime(8)=1
+movetype=I
+
+[State 811,Hilaav]
+type=envshake
+trigger1=!animelemtime(5)
+time=15+(4*(var(11)))
+ampl=8
+persistent=0
+
+[State 1300,Bolii]
+type=playsnd
+trigger1=!animelemtime(1)
+value=S6000,1
+volume=255
+channel=0
+persistent=0
+[State 1300,Bolii]
+type=PlaySnd
+trigger1=!animelemtime(5)
+value=S3100,0
+volume=255
+channel=0
+persistent=0
+[state 1300,Avaaz]
+type=playsnd
+trigger1=!animelemtime(5)
+value=s1000,2
+volume=255
+persistent=0
+
+[state 3000,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Kyuukyoku Ougi - Effect - Projectile - Attack
+;=========================================================================
+[Statedef 8030]
+type=S
+movetype=A
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 8030,Root-Varset-Juggle/Juggle/Counter]
+type=null
+trigger1=var(0):=root,var(0)||var(1):=root,var(1)||var(16):=root,var(16)
+ignorehitpause=1
+[state 8030,Root-Varset-Special_Juggle/Level/Super_Dampener]
+type=null
+trigger1=!prevstateno&&!time
+trigger1=var(8):=root,var(8)||var(11):=root,var(11)||var(15):=root,var(15)
+ignorehitpause=1
+[state 8030,Root-Varset-Vigor/Dampener]
+type=null
+trigger1=var(25):=root,var(25);||fvar(1):=root,fvar(1)
+ignorehitpause=1
+[state 8030,Dampener-Super-Projectile]
+type=null
+trigger1=fvar(1):=cond(root,fvar(0)<=var(15),1.0,0.65)+(0.10*var(25))
+ignorehitpause=1
+
+[state 8030,noshadow]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+
+[state 8030,fasla]
+type=attackdist
+trigger1=1
+value=root,const(size.proj.attack.dist)
+
+[state 8030,bind]
+type=bindtoparent
+trigger1=parent,stateno=3100
+pos=fvar(16),fvar(17)
+ignorehitpause=1
+
+[state 8030,ajay]
+type=hitby
+trigger1=1
+value=SCA,NP,SP,HP
+time=-1
+ignorehitpause=1
+[state 8030,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,NP,SP,HP
+slot=0
+stateno=8032
+time=-1
+forceair=0
+ignorehitpause=1
+
+[state 8030,anim]
+type=changeanim
+trigger1=time=0&&!prevstateno
+value=8030
+
+[state 8030,na_maar]
+type=hitdef
+trigger1=1
+attr=S,HP
+hitflag=
+sparkxy=0,0+(0*(var(23):=0&&var(24):=0))
+
+[state 8030,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=ifelse(parent,numenemy>1,parent,numtarget(450)<2,parent,numtarget(450)<1)
+attr=S,HP
+damage=ceil(60*fvar(1)),12
+guardflag=MA
+hitflag=MAF
+priority=5,Hit
+pausetime=5,5
+sparkno=-1+(0*(var(21):=0))
+guard.sparkno=-1+(0*(var(22):=0))
+sparkxy=-20,-50
+hitsound=S500,0
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-3+(6*(p2dist x<0)),-11
+guard.velocity=-12+(24*(p2dist x<0))
+air.velocity=-3+(6*(p2dist x<0)),-11
+airguard.velocity=-4+(8*(p2dist x<0)),-9
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=0;15
+envshake.ampl=7
+fall=1
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+
+[state 8030,avaaz]
+type=playsnd
+trigger1=!time
+trigger1=!prevstateno
+value=s3100,1
+volume=55
+
+[state 8030,atma_naash]
+type=changestate
+trigger1=movecontact||movereversed
+value=8031
+ignorehitpause=1
+[state 8030,atma_naash]
+type=destroyself
+trigger1=!animtime
+trigger2=parent,stateno!=3100
+trigger3=parent,stateno=3100&&parent,time<=1
+ignorehitpause=1
+;=========================================================================
+;Kyuukyoku Ougi - Effect - Projectile - System
+;========================================================================
+[Statedef 8031]
+type=S
+movetype=A
+physics=N
+ctrl=0
+velset=0,0
+movehitpersist=1
+
+[state 8031,maare]
+type=varadd
+trigger1=hitpausetime
+var(12)=1
+ignorehitpause=1
+persistent=0
+
+[state 8031,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+[state 8031,roop]
+type=sprpriority
+trigger1=1
+value=5
+ignorehitpause=1
+
+[state 8031,fasla]
+type=attackdist
+trigger1=1
+value=root,const(size.proj.attack.dist)
+ignorehitpause=1
+
+[state 8031,ajay]
+type=hitby
+trigger1=1
+value=SCA,NP,SP,HP
+time=-1
+ignorehitpause=1
+[state 8031,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,NP,SP,HP
+slot=0
+stateno=8032
+time=-1
+forceair=0
+ignorehitpause=1
+
+[state 8031,ajay]
+type=nothitby
+trigger1=var(12)>=var(15)
+value=SCA
+time=-1
+ignorehitpause=1
+
+[state 8031,rukna]
+type=posfreeze
+trigger1=1
+value=1
+ignorehitpause=1
+
+[state 8031,Hit_Sparks:_Activate]
+type=helper
+trigger1=hitpausetime
+trigger1=numtarget
+helpertype=normal
+name="Hit_Spark"
+stateno=ifelse(moveguarded,8727,8720)
+id=8700
+postype=p1
+pos=((ceil(target,pos x-pos x)))*facing,ceil((target,const(size.mid.pos.y)+target,pos y)-pos y)
+ownpal=1
+keyctrl=0
+size.yscale=1
+size.xscale=1
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+ignorehitpause=1
+persistent=0
+
+[state 8031,Juggle]
+type=parentvaradd
+trigger1=movehit=1
+trigger1=numtarget
+var(0)=1
+[state 8031,Projhit]
+type=parentvarset
+trigger1=hitpausetime
+trigger1=movecontact=1
+trigger1=numtarget
+var(9)=1
+ignorehitpause=1
+persistent=0
+[state 8031,Dampener]
+type=parentvaradd
+trigger1=movehit=1
+trigger1=numtarget
+fvar(0)=1
+
+[state 8031,na_maar]
+type=hitdef
+trigger1=1
+attr=S,HP
+hitflag=
+ignorehitpause=1
+
+[state 8031,atma_naash]
+type=changestate
+trigger1=!hitpausetime
+value=8030+(3*(var(12)>=var(15)))
+ignorehitpause=1
+[state 8031,atma_naash]
+type=destroyself
+trigger1=!animtime
+trigger2=parent,stateno!=3100
+trigger3=parent,stateno=3100&&parent,time<=1
+ignorehitpause=1
+;=========================================================================
+;Kyuukyoku Ougi - Effect - Projectile - System
+;========================================================================
+[Statedef 8032]
+type=S
+movetype=A
+physics=N
+ctrl=0
+velset=0,0
+movehitpersist=1
+
+[state 8032,maare]
+type=varadd
+trigger1=!time
+var(12)=1
+ignorehitpause=1
+
+[state 8032,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+[state 8032,roop]
+type=sprpriority
+trigger1=1
+value=5
+ignorehitpause=1
+
+[state 8032,fasla]
+type=attackdist
+trigger1=1
+value=root,const(size.proj.attack.dist)
+ignorehitpause=1
+
+[state 8032,ajay]
+type=hitby
+trigger1=1
+value=SCA,NP,SP,HP
+time=-1
+ignorehitpause=1
+[state 8032,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,NP,SP,HP
+slot=0
+stateno=8032
+time=-1
+forceair=0
+ignorehitpause=1
+
+[state 8032,ajay]
+type=nothitby
+trigger1=var(12)>=var(15)
+value=SCA
+time=-1
+ignorehitpause=1
+
+[state 8032,rukna]
+type=posfreeze
+trigger1=1
+value=1
+ignorehitpause=1
+
+[state 8032,Hit_Sparks:_Activate]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Hit_Spark"
+stateno=ifelse(moveguarded,8727,8720)
+id=8700
+postype=p1
+pos=ceil(var(23)*const(size.xscale)),ceil(var(24)*const(size.yscale))
+ownpal=1
+keyctrl=0
+size.yscale=1
+size.xscale=1
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+ignorehitpause=1
+persistent=0
+
+[state 8032,Juggle]
+type=parentvaradd
+trigger1=movehit=1
+trigger1=numtarget
+var(0)=1
+[state 8032,Dampener]
+type=parentvaradd
+trigger1=movehit=1
+trigger1=numtarget
+fvar(0)=1
+
+[state 8032,na_maar]
+type=hitdef
+trigger1=1
+attr=S,HP
+hitflag=
+ignorehitpause=1
+
+[state 8032,atma_naash]
+type=changestate
+trigger1=!hitpausetime
+value=8030+(3*(var(12)>=var(15)))
+ignorehitpause=1
+;=========================================================================
+;Kyuukyoku Ougi - Effect - Projectile - Disappear
+;========================================================================
+[Statedef 8033]
+type=S
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+movehitpersist=1
+
+[state 8033,noshadow]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 8033,bind]
+type=bindtoparent
+trigger1=parent,stateno=3100
+pos=fvar(16),fvar(17)
+
+[state 8033,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 8033,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+
+[state 8033,atma_naash]
+type=destroyself
+trigger1=!animtime
+trigger2=parent,stateno!=3100
+trigger3=parent,stateno=3100&&parent,time<=1
+;=========================================================================
+;Zetsugi Raikyoku Anhouken
+;=========================================================================
+[StateDef 3200]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 3000,shakti]
+type=varset
+triggerall=!ailevel
+trigger1=time=0
+var(11)=ifelse(command="x"||command="NE_x",1,ifelse(command="y"||command="NE_y",2,3))
+[state 3000,shakti]
+type=varset
+triggerall=ailevel
+trigger1=time=0
+var(11)=ifelse(numtarget&&random<500||random<500,2,ifelse(random>500,3,1))
+[state 3000,shakti]
+type=varadd
+trigger1=time=0
+var(11)=ifelse((power=[2000,2999])&&var(11)=3,-1,ifelse((power=[1000,1999])&&var(11)=2,-1,ifelse((power=[1000,1999])&&var(11)=3,-2,0)))
+[state 3000,Super--->Super/Vigor]
+type=varset
+trigger1=var(7)||var(25)
+trigger1=!time
+var(11)=1
+[state 3000,Super_Dampener]
+type=varset
+trigger1=!time
+var(15)=2
+
+[state 3000,Anim]
+type=changeanim
+trigger1=time=0
+value=3200
+
+[state 3000,kam_karna]
+type=poweradd
+trigger1=!var(25)
+trigger1=!time
+value=-1000*var(11)
+ignorehitpause=1
+
+[state 3000,Super_position]
+type=varset
+trigger1=!animelemtime(1)
+fvar(6)=22
+[state 3000,Super_position]
+type=varset
+trigger1=!animelemtime(2)
+fvar(6)=23
+[state 3000,Super_position]
+type=varset
+trigger1=!animelemtime(3)
+fvar(6)=19
+[state 3000,Super_position]
+type=varset
+trigger1=!animelemtime(4)
+fvar(6)=17
+[state 3000,Super_position]
+type=varset
+trigger1=!animelemtime(1)
+fvar(7)=-53
+[state 3000,Super_position]
+type=varset
+trigger1=!animelemtime(2)
+fvar(7)=-52
+[state 3000,Super_position]
+type=varset
+trigger1=!animelemtime(3)
+fvar(7)=-51
+[state 3000,Super_position]
+type=varset
+trigger1=!animelemtime(4)
+fvar(7)=-48
+[state 3000,Super_position]
+type=varset
+trigger1=!animelemtime(1)
+fvar(8)=40
+
+[state 3000,Super-Config]
+type=helper
+trigger1=!animelemtime(1)
+helpertype=normal
+name="Super-Config"
+id=10005
+stateno=10000+(5*var(11))
+postype=p1
+facing=0
+ownpal=1
+supermovetime=999999
+pausemovetime=999999
+[state 3000,Super-Config:_Super_Portrait]
+type=helper
+trigger1=var(11)=3
+trigger1=!animelemtime(1)
+helpertype=normal
+name="Super-Portrait"
+id=10020
+stateno=10020
+postype=left
+pos=0,0
+facing=facing
+ownpal=1
+supermovetime=999999
+pausemovetime=999999
+[state 3000,thaharaav]
+type=superpause
+trigger1=!animelemtime(1)
+time=40
+movetime=40
+unhittable=1
+anim=-1
+sound=-1
+p2defmul=1
+poweradd=0
+darken=0
+[State 3000,chaayaa]
+type=afterimage
+trigger1=!var(7)&&!var(8)
+trigger1=!animelemtime(1)
+time=999
+timegap=2
+framegap=5
+length=15
+paladd=0,0,0
+palmul=.5,.5,.5
+palbright=0,0,0
+palcontrast=150-(100*(var(11)=2)),150-(100*(var(11)=3)),150-(100*(var(11)=[2,3]))
+trans=add1
+[state 3000,ajay]
+type=nothitby
+trigger1=animelemtime(5)<0
+value=SCA
+time=1
+
+[state 8000,fasla]
+type=attackdist
+trigger1=1
+value=0
+
+[state 1600,Reversal]
+type=reversaldef
+trigger1=!animelemtime(4)
+attr=S,HA
+reversal.attr=SCA,AA,AP
+pausetime=10,15
+hitsound=S300,20
+sparkno=-1+(0*(var(21):=0))
+guard.sparkno=-1+(0*(var(22):=0))
+sparkxy=0,0+(0*(var(23):=0&&var(24):=0))
+p1stateno=3204+var(11)
+p1facing=1
+numhits=0
+envshake.time=15
+envshake.ampl=7
+getpower=0
+id=3200
+
+[state 1300,Bolii]
+type=playsnd
+trigger1=!animelemtime(1)
+value=s3200,0
+volume=255
+channel=0
+
+[state 3000,siraa]
+type=changestate
+triggerall=animelemtime(5)>0
+triggerall=!ailevel
+trigger1=command="x"||command="y"|command="z"
+trigger2=command="a"||command="b"|command="c"
+value=3204+var(11)
+ctrl=0
+[state 3000,siraa]
+type=changestate
+triggerall=animelemtime(5)>0
+triggerall=ailevel
+trigger1=numtarget&&prevstateno!=1605
+trigger2=numtarget&&prevstateno=1605
+trigger2=((p2bodydist x=[50,100])||enemynear,backedgedist<20&&frontedgedist>40)
+trigger3=0;enemynear,movetype=A&&random<250
+trigger4=numtarget
+trigger4=((target,pos y+target,const(size.mid.pos.y))=[-75,5])&&target,vel y>=0&&random<750
+value=3204+var(11)
+ctrl=0
+[state 3000,siraa]
+type=changestate
+trigger1=!animtime
+value=3204+var(11)
+ctrl=0
+;=========================================================================
+;Zetsugi Raikyoku Anhouken - Counter - Attack - 1
+;=========================================================================
+[Statedef 3205]
+type=S
+movetype=A
+physics=N
+velset=0,0
+ctrl=0
+
+[state 3205,turn]
+type=turn
+trigger1=numtarget(3200)
+trigger1!time
+trigger1=target(3200),movereversed
+trigger1=facing=target(3200),facing
+
+[state 1600,rage]
+type=palfx
+trigger1=anim=3200
+trigger1=hitpausetime
+trigger1=!(gametime%3)
+time=2
+color=256
+mul=256,50,50
+add=128,128,128
+ignorehitpause=1
+[state 1600,rage]
+type=lifeadd
+trigger1=anim=3200
+trigger1=hitpausetime
+value=-30
+kill=0
+ignorehitpause=1
+persistent=0
+[state 3000,ajay]
+type=nothitby
+trigger1=animelemno(0)=[1,3]
+value=SCA
+time=1
+
+[state 1300,dharna]
+type=PosSet
+trigger1=time=0
+y=0
+
+[state 1300,anim]
+type=changeanim
+trigger1=!time
+value=3205
+
+[state 3000,murna]
+type=varset
+trigger1=time=0
+var(12)=1
+[state 3000,murna]
+type=varadd
+trigger1=!animelemtime(4)
+trigger1=var(12)
+var(12)=-1
+[state 3000,murna]
+type=changeanim
+trigger1=!animelemtime(4)
+trigger1=var(12)
+value=3205
+elem=2
+
+[state 1300,shiighrataa]
+type=velset
+trigger1=!animelemtime(1)
+x=15
+[state 1300,shiighrataa]
+type=velset
+trigger1=!animelemtime(4)
+x=3
+[state 1300,shiighrataa]
+type=velset
+trigger1=!animelemtime(6)
+x=0
+
+[state 3205,chingariya]
+type=explod
+trigger1=!animelemtime(4)
+id=8095
+anim=8095
+sprpriority=3
+pos=40,16
+bindtime=1
+postype=P1
+removeongethit=1
+ownpal=1
+scale=.5,.5
+pausemovetime=-1
+supermovetime=-1
+ignorehitpause=0
+[state 3205,chingariya]
+type=explod
+trigger1=!animelemtime(1)
+trigger2=!animelemtime(3)
+id=8511
+anim=8511+(1*(!animelemtime(3)))
+sprpriority=5
+pos=-28,0
+bindtime=1
+postype=P1
+ownpal=1
+scale=.5,.5
+pausemovetime=-1
+supermovetime=-1
+[state 3205,chingariya]
+type=explod
+trigger1=!animelemtime(4)
+id=8045
+anim=845
+sprpriority=-3
+pos=40,0
+bindtime=1
+postype=P1
+ownpal=1
+scale=.5,.25
+pausemovetime=-1
+supermovetime=-1
+
+[state 40,JumpSmoke]
+type=helper
+trigger1=!animelemtime(1)
+trigger1=fvar(9):=1
+name="JumpSmoke"
+helpertype=normal
+stateno=8500
+id=8500
+postype=P1
+ownpal=1
+keyctrl=0
+supermovetime=99999
+pausemovetime=99999
+
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=!animelemtime(7)
+attr=S,HA
+damage=150,15
+guardflag=M
+hitflag=MAFP
+priority=7,Hit
+pausetime=10,10
+guard.pausetime=15,15
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-10,-47+(0*(var(23):=45&&var(24):=-47))
+hitsound=S200,20
+guardsound=s120,0
+animtype=diagup
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-4,-7
+air.velocity=-4,-7
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=18
+envshake.ampl=12
+fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=diagup
+forcestand=1
+p2facing=1
+nochainid=450
+
+[State 200,bekaar]
+type=statetypeset
+trigger1=!animelemtime(8)
+movetype=I
+
+[State 811,Hilaav]
+type=envshake
+trigger1=!animelemtime(5)
+time=15
+ampl=8
+
+[state 1300,Bolii]
+type=playsnd
+trigger1=!animelemtime(1)
+value=s3200,1
+volume=255
+channel=0
+[state 1300,avaaz]
+type=playsnd
+trigger1=!animelemtime(6)
+value=s1300,1
+volume=255
+[state 1300,avaaz]
+type=playsnd
+trigger1=!animelemtime(6)
+value=s3200,3
+volume=255
+
+[state 1300,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Zetsugi Raikyoku Anhouken - Counter - Attack - 2
+;=========================================================================
+[Statedef 3206]
+type=S
+movetype=A
+physics=N
+velset=0,0
+ctrl=0
+
+[state 3205,turn]
+type=turn
+trigger1=numtarget(3200)
+trigger1!time
+trigger1=target(3200),movereversed
+trigger1=facing=target(3200),facing
+
+[state 1600,rage]
+type=palfx
+trigger1=anim=3200
+trigger1=hitpausetime
+trigger1=!(time%6)
+time=1
+color=0
+mul=256,50,50
+add=128,128,128
+ignorehitpause=1
+[state 1600,rage]
+type=lifeadd
+trigger1=anim=3200
+trigger1=hitpausetime
+value=-30
+kill=0
+ignorehitpause=1
+persistent=0
+[state 3000,ajay]
+type=nothitby
+trigger1=animelemno(0)=[1,3]
+value=SCA
+time=1
+
+[state 1300,dharna]
+type=PosSet
+trigger1=time=0
+y=0
+
+[state 1300,anim]
+type=changeanim
+trigger1=!time
+value=3206
+
+[state 3000,murna]
+type=varset
+trigger1=time=0
+var(12)=2
+[state 3000,murna]
+type=varadd
+trigger1=!animelemtime(4)
+trigger1=var(12)
+var(12)=-1
+[state 3000,murna]
+type=changeanim
+trigger1=!animelemtime(4)
+trigger1=var(12)
+value=3206
+elem=2
+
+[state 1300,shiighrataa]
+type=velset
+trigger1=!animelemtime(1)
+x=15
+[state 1300,shiighrataa]
+type=velset
+trigger1=!animelemtime(4)
+x=3
+[state 1300,shiighrataa]
+type=velset
+trigger1=!animelemtime(6)
+x=0
+
+[state 3205,chingariya]
+type=explod
+trigger1=!animelemtime(4)
+id=8095
+anim=8095
+sprpriority=3
+pos=40,16
+bindtime=1
+postype=P1
+removeongethit=1
+ownpal=1
+scale=.5,.5
+pausemovetime=-1
+supermovetime=-1
+ignorehitpause=0
+[state 3205,chingariya]
+type=explod
+trigger1=!animelemtime(1)
+trigger2=!animelemtime(3)
+id=8505
+anim=8511+(1*(!animelemtime(3)))
+sprpriority=5
+pos=-28,0
+bindtime=1
+postype=P1
+ownpal=1
+scale=.5,.5
+pausemovetime=-1
+supermovetime=-1
+[state 3205,chingariya]
+type=explod
+trigger1=!animelemtime(4)
+id=8045
+anim=845
+sprpriority=-3
+pos=40,0
+bindtime=1
+postype=P1
+ownpal=1
+scale=.5,.25
+pausemovetime=-1
+supermovetime=-1
+
+[state 40,JumpSmoke]
+type=helper
+trigger1=!animelemtime(1)
+trigger1=fvar(9):=1
+name="JumpSmoke"
+helpertype=normal
+stateno=8500
+id=8500
+postype=P1
+ownpal=1
+keyctrl=0
+supermovetime=99999
+pausemovetime=99999
+
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=!animelemtime(7)
+attr=S,HA
+damage=225,30
+guardflag=M
+hitflag=MAFP
+priority=7,Hit
+pausetime=10,10
+guard.pausetime=15,15
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-10,-47+(0*(var(23):=45&&var(24):=-47))
+hitsound=S200,20
+guardsound=s120,0
+animtype=diagup
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-4,-11
+air.velocity=-4,-11
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=18
+envshake.ampl=12
+fall=1
+fall.recover=0
+fall.recovertime=100
+forcestand=1
+p2facing=1
+id=4300
+nochainid=450
+
+[state 1700,target]
+type=targetstate
+trigger1=anim=3206
+trigger1=numtarget&&movehit=1
+value=4310
+id=4300
+ignorehitpause=1
+
+[State 200,bekaar]
+type=statetypeset
+trigger1=!animelemtime(8)
+movetype=I
+
+[State 811,Hilaav]
+type=envshake
+trigger1=!animelemtime(5)
+time=15
+ampl=8
+
+[state 1300,Bolii]
+type=playsnd
+trigger1=!animelemtime(1)
+value=s3200,1
+volume=255
+channel=0
+[state 1300,avaaz]
+type=playsnd
+trigger1=!animelemtime(6)
+value=s1300,1
+volume=255
+[state 1300,avaaz]
+type=playsnd
+trigger1=!animelemtime(6)
+value=s3200,3
+volume=255
+
+[state 1300,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Zetsugi Raikyoku Anhouken - Counter - Attack - 3
+;=========================================================================
+[Statedef 3207]
+type=S
+movetype=A
+physics=N
+velset=0,0
+ctrl=0
+
+[state 3205,turn]
+type=turn
+trigger1=numtarget(3200)
+trigger1!time
+trigger1=target(3200),movereversed
+trigger1=facing=target(3200),facing
+
+[state 1600,rage]
+type=palfx
+trigger1=anim=3200
+trigger1=hitpausetime
+trigger1=!(time%6)
+time=1
+color=0
+mul=256,50,50
+add=128,128,128
+ignorehitpause=1
+[state 1600,rage]
+type=lifeadd
+trigger1=anim=3200
+trigger1=hitpausetime
+value=-30
+kill=0
+ignorehitpause=1
+persistent=0
+[state 3000,ajay]
+type=nothitby
+trigger1=animelemno(0)=[1,3]
+value=SCA
+time=1
+
+[state 1300,dharna]
+type=PosSet
+trigger1=time=0
+y=0
+
+[state 1300,anim]
+type=changeanim
+trigger1=!time
+value=3207
+
+[state 1300,shiighrataa]
+type=velset
+trigger1=!animelemtime(1)
+x=22
+[state 1300,shiighrataa]
+type=velset
+trigger1=!animelemtime(3)
+x=0
+
+[state 3205,chingariya]
+type=explod
+trigger1=!animelemtime(4)
+id=8035
+anim=8035
+sprpriority=3
+pos=52,-49
+bindtime=1
+postype=P1
+removeongethit=0
+ownpal=1
+scale=.5,.5
+pausemovetime=-1
+supermovetime=-1
+ignorehitpause=1
+[state 3205,chingariya]
+type=explod
+trigger1=!animelemtime(1)
+id=8040
+anim=8040
+sprpriority=3
+pos=0,0
+bindtime=1
+postype=P1
+removeongethit=0
+ownpal=1
+scale=.5,.5
+pausemovetime=-1
+supermovetime=-1
+ignorehitpause=1
+[state 3205,chingariya]
+type=explod
+trigger1=!animelemtime(4)
+Anim=8045
+pos=25,0
+postype=p1
+ownpal=1
+sprpriority=3
+supermovetime=-1
+scale=.5,.25
+
+[state 40,JumpSmoke]
+type=helper
+trigger1=!animelemtime(1)
+trigger1=fvar(9):=1
+name="JumpSmoke"
+helpertype=normal
+stateno=8500
+id=8500
+postype=P1
+ownpal=1
+keyctrl=0
+supermovetime=99999
+pausemovetime=99999
+
+[state 200,maar]
+type=hitdef
+trigger1=var(0)<var(15)||var(8)
+trigger1=!var(1)
+trigger1=!animelemtime(5)
+attr=S,HA
+damage=300,45
+guardflag=M
+hitflag=MAFP
+priority=7,Hit
+pausetime=10,10
+guard.pausetime=15,15
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=-10,-47+(0*(var(23):=45&&var(24):=-47))
+hitsound=S200,20
+guardsound=s120,0
+animtype=diagup
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-4,-11
+air.velocity=-4,-11
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=0
+givepower=50,50
+envshake.time=18
+envshake.ampl=12
+fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=diagup
+forcestand=1
+p2facing=1
+id=3205
+nochainid=450
+
+[state 1700,target]
+type=targetstate
+trigger1=numtarget(3205)
+trigger1=movehit=1
+value=32000
+id=3205
+
+[State 200,bekaar]
+type=statetypeset
+trigger1=!animelemtime(6)
+movetype=I
+
+[State 811,Hilaav]
+type=envshake
+trigger1=!animelemtime(5)
+time=15
+ampl=8
+
+[state 1300,Bolii]
+type=playsnd
+trigger1=!animelemtime(1)
+value=s3200,1
+volume=255
+channel=0
+[state 1300,avaaz]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s1300,1
+volume=255
+[state 1300,avaaz]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s3200,2
+volume=255
+[state 1300,avaaz]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s3200,3
+volume=255
+
+[state 1300,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Zetsugi Raikyoku Anhouken - Target State - Fall
+;=========================================================================
+; HITA_UP (initial going up)
+[Statedef 32000]
+type    = A
+movetype= H
+physics = N
+ctrl = 0
+
+[state 5000,safe]
+type=posset
+trigger1=anim!=[5000,5999]
+y=0
+[state 5000,safe]
+type=selfstate
+trigger1=anim!=[5000,5999]
+value=0
+ctrl=1
+
+[State 5030, 1]
+type = VelAdd;Gravity
+trigger1 = 1
+y = GetHitVar(yaccel)
+
+[State 5030, 2]
+type = HitVelSet
+trigger1 = Time = 0
+x = 1
+y = 1
+
+[State 5030, 4]
+type = ChangeState
+triggerall = HitFall
+trigger1 = HitOver
+trigger2 = Vel Y > 0    ;Hit ground
+trigger2 = Pos Y >= 10  ;.
+value = 32010 ;HITA_FALL
+
+[State 5030, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 32005 ;HITA_UP (transition)
+;=========================================================================
+;Zetsugi Raikyoku Anhouken - Target State - Fall
+;=========================================================================
+; HITA_UP_T (transition)
+[Statedef 32005]
+type    = A
+movetype= H
+physics = N
+
+[State 5035, 1]
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = SelfAnimExist(5035)
+trigger1 = Anim != [5051,5059] ;Not if in hit up anim
+trigger1 = Anim != 5090 ;Not if hit off ground anim
+value = 5035
+
+[State 5035, 2]
+type = VelAdd
+trigger1 = 1
+y = GetHitVar(yaccel)
+
+[State 5035, 4]
+type = ChangeState
+triggerall = HitFall
+trigger1 = HitOver  ;Hit is over
+trigger2 = AnimTime = 0 ;Anim is over
+trigger3 = Vel Y > 0    ;Hit ground
+trigger3 = Pos Y >= 10  ;.
+trigger4 = Time = 0     ;No transition anim
+trigger4 = Anim != 5035 ;.
+value = 32010 ;HITA_FALL
+;=========================================================================
+;Zetsugi Raikyoku Anhouken - Target State - Fall
+;=========================================================================
+; HITA_FALL (knocked up, falling)
+[Statedef 32010]
+type    = A
+movetype= H
+physics = N
+
+[State 5050, 1] ;Change anim when done with transition
+type = ChangeAnim
+trigger1 = AnimTime = 0
+trigger1 = Anim = 5035
+trigger2 = Time = 0     ;If no transition anim
+trigger2 = Anim != 5035
+trigger2 = (Anim != [5051, 5059]) && (Anim != [5061, 5069])
+trigger2 = Anim != [5090,5091] ;Not if hit off ground anim
+value = 5050
+
+[State 5050, 2] ;Coming down anim
+type = ChangeAnim
+trigger1 = anim = [5050,5059]
+trigger1 = Vel Y >= ifelse(anim = 5050, 1, -2)
+trigger1 = SelfAnimExist(anim+10)
+value = anim+10
+persistent = 0
+
+[State 5050, 3] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = GetHitVar(yaccel)
+
+[State 5050, 6]
+type = ChangeState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= ifelse((anim = [5051,5059]) || (anim = [5061,5069]), 0, 25)
+value = 32100 ;HIT_BOUNCE
+;=========================================================================
+;Zetsugi Raikyoku Anhouken - Target State - Hit Ground
+;=========================================================================
+; HIT_BOUNCE (hit ground)
+[Statedef 32100]
+type    = L
+movetype= H
+physics = N
+
+[State 5100, 1]
+type = VelSet
+trigger1 = Time = 0
+trigger1 = GetHitVar(fall.yvel) = 0
+trigger1 = vel x > 1
+x = 1
+
+[State 5100, EnvShake]
+type = FallEnvShake
+trigger1 = Time = 0
+
+[State 5100, Var] ;Save fall velocity
+type = VarSet
+trigger1 = Time = 0
+sysvar(1) = floor(vel y)
+
+[State 5100, 2] ;Hit ground anim (normal)
+type = ChangeAnim
+triggerall = time = 0
+trigger1 = (anim != [5051,5059]) && (anim != [5061,5069])
+trigger2 = !SelfAnimExist(5100 + (anim % 10))
+value = 5100
+
+[State 5100, 3] ;Hit ground anim (for hit up)
+type = ChangeAnim
+trigger1 = time = 0
+trigger1 = (anim = [5051,5059]) || (anim = [5061,5069])
+trigger1 = SelfAnimExist(5100 + (anim % 10))
+value = 5100 + (anim % 10)
+
+[State 5100, 4]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 5100, 5]
+type = VelSet
+trigger1 = Time = 0
+y = 0
+
+[State 5100, 6] ;Reduce speed
+type = VelMul
+trigger1 = Time = 0
+x = 0.75
+
+[State 5100, 7]
+type = ChangeState
+trigger1 = Time = 0
+trigger1 = GetHitVar(fall.yvel) = 0
+value = 32110 ;HIT_LIEDOWN
+
+[State 5100, 8]
+type = GameMakeAnim
+trigger1 = Time = 1
+value = 60 + (sysvar(1) > 5) + (sysvar(1) > 14)
+pos = 0, 0
+under = sysvar(1) <= 14
+
+[State 5100, 9]
+type = HitFallDamage
+trigger1 = Time = 3
+
+[State 5100, 10]
+type = PlaySnd
+trigger1 = Time = 1
+value = F7, (sysvar(1) > 5) + (sysvar(1) > 14)
+
+[State 5100, 11]
+type = PosFreeze
+trigger1 = 1
+
+[State 5100, 12]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 32101
+
+[State 5100, 13]
+type = ForceFeedback
+trigger1 = Time = 0
+waveform = sinesquare
+ampl = 128,-3,-.2,.005
+time = 20
+;=========================================================================
+;Zetsugi Raikyoku Anhouken - Target State - Hit Ground
+;=========================================================================
+; HIT_BOUNCE (bounce into air)
+[Statedef 32101]
+type    = L
+movetype= H
+physics = N
+
+[State 5101, 1] ;Coming hit ground anim (normal)
+type = ChangeAnim
+triggerall = time = 0
+trigger1 = anim != [5101,5109]
+trigger2 = !SelfAnimExist(5160 + (anim % 10))
+value = 5160
+
+[State 5101, 2] ;Coming hit ground anim (for hit up)
+type = ChangeAnim
+triggerall = time = 0
+trigger1 = anim = [5101,5109]
+trigger1 = SelfAnimExist(5160 + (anim % 10))
+value = 5160 + (anim % 10)
+
+[State 5101, 3]
+type = HitFallVel
+trigger1 = Time = 0
+
+[State 5101, 4]
+type = PosSet
+trigger1 = Time = 0
+y = 20
+
+[State 5101, 5] ;Acceleration
+type = VelAdd
+trigger1 = 1
+y = .4
+
+[State 5101, 6] ;Hit ground
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 12
+type = ChangeState
+value = 32110
+;=========================================================================
+;Zetsugi Raikyoku Anhouken - Target State - Lie Down
+;=========================================================================
+; HIT_LIEDOWN
+[Statedef 32110]
+type    = L
+movetype= H
+physics = N
+
+[State 5110, EnvShake]
+type = FallEnvShake
+trigger1 = Time = 0
+
+[State 5110, 1] ;For hit up/up-diag type (from state 5081)
+type = ChangeAnim
+persistent = 0
+trigger1 = SelfAnimExist(5110 + (anim % 10))
+trigger1 = anim = [5081,5089]
+value = 5110 + (anim % 10)
+
+[State 5110, 2] ;Hit ground anim (normal)
+type = ChangeAnim
+triggerall = time = 0
+triggerall = anim != [5110,5119] ;Not already changed anim
+trigger1 = anim != [5161,5169]
+trigger2 = !SelfAnimExist(5170 + (anim % 10))
+value = 5170
+
+[State 5110, 3] ;Hit ground anim (for hit up)
+type = ChangeAnim
+triggerall = time = 0
+triggerall = anim != [5110,5119] ;Not already changed anim
+trigger1 = anim = [5161,5169]
+trigger1 = SelfAnimExist(5170 + (anim % 10))
+value = 5170 + (anim % 10)
+
+[State 5110, 4]
+type = HitFallDamage
+trigger1 = Time = 0
+
+[State 5110, 5]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 5110, Var] ;Get fall velocity
+type = VarSet
+trigger1 = Time = 0
+trigger1 = GetHitVar(fall.yvel) != 0
+sysvar(1) = floor(vel y)
+
+[State 5110, 6]
+type = PlaySnd
+trigger1 = Time = 0
+trigger1 = !SysVar(0)
+value = F7, (sysvar(1) > 5) + (sysvar(1) > 14)
+
+[State 5110, 7]
+type = GameMakeAnim
+trigger1 = Time = 0
+trigger1 = !SysVar(0)
+value = 60 + (sysvar(1) > 5) + (sysvar(1) > 14)
+pos = 0, 0
+under = sysvar(1) <= 14
+
+[State 5110, 8]
+type = VelSet
+trigger1 = Time = 0
+y = 0
+
+[State 5110, 9] ;For hit up type
+type = ChangeAnim
+persistent = 0
+triggerall = anim = [5171,5179]
+triggerall = SelfAnimExist(5110 + (anim % 10))
+trigger1 = AnimTime = 0
+trigger2 = SysVar(0) ;SysVar(0) = 1 avoids hit ground anim
+value = 5110 + (anim % 10)
+
+[State 5110, 10] ;For normal
+type = ChangeAnim
+persistent = 0
+triggerall = Anim != [5111,5119]
+trigger1 = AnimTime = 0
+trigger2 = SysVar(0) ;SysVar(0) = 1 avoids hit ground frame
+value = 5110
+
+[State 5110, 11] ;If just died
+type = selfState
+triggerall = !alive
+trigger1 = AnimTime = 0
+trigger2 = SysVar(0) ;SysVar(0) = 1 avoids hit ground frame
+trigger3 = Anim = [5110,5119]
+value = 5150
+
+[State 5110, 11] ;If just died
+type = changeState
+triggerall = alive
+trigger1 = AnimTime = 0
+trigger2 = SysVar(0) ;SysVar(0) = 1 avoids hit ground frame
+trigger3 = Anim = [5110,5119]
+value = 32120
+
+[State 5110, 12]
+type = VarSet
+trigger1 = SysVar(0)
+trigger1 = Time = 0
+sysvar(0) = 0
+
+[State 5110, 13] ;Friction
+type = VelMul
+trigger1 = 1
+x = 0.85
+
+[State 5110, 14]
+type = ForceFeedback
+trigger1 = alive
+trigger1 = Time = 0
+time = 8
+ampl = 240
+waveform = sine
+
+[State 5110, 15]
+type = ForceFeedback
+trigger1 = !alive
+trigger1 = Time = 0
+ampl = 200, 7, -.467
+time = 30
+waveform = sine
+;=========================================================================
+;Zetsugi Raikyoku Anhouken - Target State - Get Up
+;=========================================================================
+; HIT_GETUP
+[Statedef 32120]
+type    = L
+movetype= H
+physics = N
+
+[State 5120, 1a] ;Get up anim (normal)
+type = ChangeAnim
+trigger1 = time = 0
+;trigger1 = anim != [5111,5119]
+;trigger2 = !SelfAnimExist(5120 + (anim % 10))
+value = 5120
+
+[State 5120, 1b] ;Get up anim (for hit up/diag-up)
+type = null;ChangeAnim
+triggerall = time = 0
+trigger1 = anim = [5111,5119]
+trigger1 = SelfAnimExist(5120 + (anim % 10))
+value = 5120 + (anim % 10)
+
+[State 5120, 2]
+type = VelSet
+trigger1 = Time = 0
+x = 0
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 5120, 3]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 5120, 4]
+type = HitFallSet
+trigger1 = AnimTime = 0
+value = 1
+
+[State 5120, 5] ;Can't be thrown right after getting up
+type = NotHitBy
+trigger1 = AnimTime = 0
+value = , NT,ST,HT
+time = 12
+
+[State 5120, 6] ;Can't be hit right after getting up (short time)
+type = NotHitBy
+trigger1 = AnimTime = 0
+value2 = SCA
+time = 3
+
+[State 5120, 7]
+type = changeState
+trigger1 =animtime=0
+value = 32121
+ctrl = 0
+;=========================================================================
+;Zetsugi Raikyoku Anhouken - Target State - Get Up
+;=========================================================================
+; HIT_GETUP
+[Statedef 32121]
+type    = S
+movetype= I
+physics = N
+
+[State 0, HitFallSet]
+type=HitFallSet
+trigger1=1
+value=0
+ignorehitpause=1
+
+[State 5120, 7]
+type = changeanim
+trigger1 = time=0
+value = 5300
+
+[State 5120, 7]
+type = selfState
+trigger1 =time>100
+value = 0
+ctrl = 1

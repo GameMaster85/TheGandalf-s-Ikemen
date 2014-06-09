@@ -1,0 +1,45 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name ="Tiger"
+displayname ="Tiger"
+versiondate =
+mugenversion =
+author ="Dick Buckus"
+pal.defaults =1,7,2
+
+; Files for the player
+[Files]
+cmd     =Brain/tiger.cmd
+cns     =Brain/tiger.cns
+st      =Brain/states.cns
+;st3   =supers.cns
+stcommon =common1.cns
+sprite  =tiger.sff
+anim    =tiger.air
+sound   =tiger.snd
+pal1=Palettes/2.act
+pal2=Palettes/1.act
+pal3=Palettes/3.act
+pal4=Palettes/4.act
+pal5=Palettes/5.act
+pal6=Palettes/6.act
+pal7=Palettes/7.act
+pal8=Palettes/8.act
+pal9=Palettes/9.act
+pal10=Palettes/10.act
+pal11=Palettes/11.act
+pal12=Palettes/12.act
+st1=Brain/attacks.cns
+st2=Brain/specials.cns
+st3=Brain/supers.cns
+st4=Brain/system.cns
+st5=Brain/helpers.cns
+
+; Arcade mode
+[Arcade]
+
+intro.storyboard=
+ending.storyboard=

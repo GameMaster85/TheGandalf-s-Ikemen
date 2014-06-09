@@ -1,0 +1,3807 @@
+;@@@@@@@@@@@@@@@@@@@@@@@Satsuki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@Satsuki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+;=========================================================================
+;Excessive Pounder Wave
+;=========================================================================
+[StateDef 3000]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 3000,shakti]
+type=null
+triggerall=!time
+trigger1=!ailevel
+trigger1=var(11):=cond(command="a"||command="NE_a",1,cond(command="b"||command="NE_b",2,3))
+trigger2=ailevel
+trigger2=var(11):=cond(random<500||numtarget,2,cond(random<500,3,1))
+
+[state 3000,shakti]
+type=null
+triggerall=!time
+trigger1=var(11)=2&&!var(7)
+trigger1=power=[1000,1999]
+trigger1=var(11):=var(11)-1
+trigger2=var(11)=3&&!var(7)
+trigger2=power=[1000,1999]
+trigger2=var(11):=var(11)-2
+trigger3=var(11)=3&&!var(7)
+trigger3=power=[2000,2999]
+trigger3=var(11):=var(11)-1
+trigger4=var(7)
+trigger4=var(11):=1
+
+[state 3000,shakti]
+type=null
+trigger1=!time
+trigger1=var(15):=cond(var(11)=1,4,cond(var(11)=2,6,8))
+trigger2=time=5
+trigger2=fvar(2):=0.0
+
+[state 3000,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 3000,anim]
+type=changeanim
+trigger1=!time
+value=3000
+
+[state 3000,kam_karna]
+type=poweradd
+trigger1=!var(25)
+trigger1=!time
+value=-1000*var(11)
+
+[state 3000,Super-Config]
+type=helper
+trigger1=!animelemtime(2)
+helpertype=normal
+name="Super-Config"
+id=10005
+stateno=10000+(5*var(11))
+postype=p1
+ownpal=1
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+[state 3000,thaharaav]
+type=superpause
+trigger1=!animelemtime(2)
+time=40
+movetime=40
+unhittable=1
+anim=-1
+sound=-1
+p2defmul=1
+poweradd=0
+darken=0
+[state 3000,chaayaa]
+type=afterimage
+trigger1=!var(7)&&!var(8)
+trigger1=!animelemtime(2)
+time=999
+length=15
+palbright=0,0,0
+palcontrast=144-(96*(var(11)=2)),144-(96*(var(11)=3)),144-(96*(var(11)=[2,3]))
+palpostbright=0,0,0
+paladd=0,0,0
+palmul=0.5,0.5,0.5
+timegap=2
+framegap=5
+trans=add1
+[state 3000,ajay]
+type=nothitby
+trigger1=!animelemtime(1)
+value=SCA
+time=41+(3*var(11))
+
+[state 3000,murna]
+type=varset
+trigger1=!time
+var(12)=1+var(11)
+[state 3000,murna]
+type=varadd
+trigger1=!animelemtime(12)
+var(12)=-1
+[state 3000,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(12)
+value=anim
+elem=5
+
+[state 3000,fasla]
+type=attackdist
+trigger1=1
+value=const(size.proj.attack.dist)
+
+[state 3000,bolii]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s1300,0
+volumescale=100
+channel=0
+[state 3000,bolii]
+type=playsnd
+trigger1=!animelemtime(11)
+value=s1300,1
+volumescale=100
+channel=0
+persistent=0
+[state 3000,avaaz]
+type=playsnd
+trigger1=!animelemtime(5)
+trigger2=!animelemtime(9)
+value=s1,2
+volumescale=100
+[state 3000,avaaz]
+type=playsnd
+trigger1=!animelemtime(6)
+trigger2=!animelemtime(10)
+value=s1000,1
+
+[state 3000,hilaav]
+type=envshake
+trigger1=!animelemtime(6)
+trigger2=!animelemtime(10)
+time=12
+ampl=8
+
+[state 3000,Energy]
+type=helper
+trigger1=!animelemtime(5)||!animelemtime(9)
+helpertype=normal
+name="Energy"
+ID=1075+(5*!animelemtime(9))
+stateno=1000
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3000,Energy]
+type=helper
+trigger1=!animelemtime(6)||!animelemtime(10)
+helpertype=normal
+name="Energy"
+ID=1055+(!animelemtime(10))
+stateno=1000
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3000,Energy]
+type=helper
+trigger1=!animelemtime(6)||!animelemtime(10)
+helpertype=normal
+name="Energy"
+ID=1060
+stateno=1000
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3000,Wave]
+type=helper
+trigger1=!animelemtime(6)||!animelemtime(10)
+helpertype=normal
+name="Wave"
+ID=3050
+stateno=3050+(20*(var(12)=1&&!animelemtime(10)))
+postype=p1
+pos=50,0
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3000,bekaar]
+type=statetypeset
+trigger1=!animelemtime(13)
+movetype=I
+
+[state 3000,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Wave - Slide
+;=========================================================================
+[Statedef 3050]
+type=S
+movetype=A
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3050,Juggle/Juggle/Reprisal]
+type=null
+trigger1=var(0):=root,var(0)||var(1):=root,var(1)||var(16):=root,var(16)
+[state 3050,Special_Juggle/Level]
+type=null
+trigger1=!prevstateno&&!time
+trigger1=var(8):=root,var(8)||var(11):=root,var(11)||var(15):=root,var(15)
+[state 3050,Vigor]
+type=null
+trigger1=var(25):=root,var(25)
+[state 3050,Dampener-Super-Projectile]
+type=null
+trigger1=fvar(1):=cond(root,fvar(0)<=var(15),1.0,0.65)+(0.10*var(16))
+
+[state 3050,bind]
+type=bindtoparent
+trigger1=!time
+pos=50,0
+
+[state 3050,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+
+[state 3050,fasla]
+type=attackdist
+trigger1=1
+value=root,const(size.proj.attack.dist)
+ignorehitpause=1
+
+[state 3050,ajay]
+type=hitby
+trigger1=1
+value=SCA,NP,SP,HP
+time=-1
+ignorehitpause=1
+[state 3050,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,NP,SP,HP
+slot=0
+stateno=3056
+time=-1
+forceair=0
+ignorehitpause=1
+
+[state 3050,anim]
+type=changeanim
+trigger1=!time
+value=1070
+
+[state 3050,shiighrataa]
+type=velset
+trigger1=animelemtime(1)>=0
+x=15.0
+[state 3050,shiighrataa]
+type=velset
+trigger1=animelemtime(2)>=0
+x=11.25
+[state 3050,shiighrataa]
+type=velset
+trigger1=animelemtime(3)>=0
+x=7.5
+[state 3050,shiighrataa]
+type=velset
+trigger1=animelemtime(6)>=0
+x=1.5
+
+[state 3050,na_maar]
+type=hitdef
+trigger1=1
+attr=S,HP
+hitflag=
+
+[state 3050,maar]
+type=hitdef
+trigger1=var(0)<var(15)+5||var(8)
+trigger1=!var(1)
+trigger1=ifelse(parent,numenemy>1,parent,numtarget(450)<2,parent,numtarget(450)<1)
+attr=S,HP
+damage=ceil(cond(42*fvar(1)<7,7,42*fvar(1))),7
+guardflag=M
+hitflag=MAF
+priority=3,Hit
+pausetime=6,6
+hitsound=-1+(0*(var(19):=220))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=0,0+(0*(var(23):=100&&var(24):=-25))
+animtype=hard
+ground.type=low
+air.animtype=hard
+air.type=low
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+air.hittime=100
+ground.velocity=-4.0
+air.velocity=-3.5,-3.5
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+getpower=0,0
+givepower=50,50
+envshake.time=10
+envshake.ampl=4
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+
+[state 3050,maar]
+type=hitdef
+trigger1=random<500
+trigger1=var(0)<var(15)+5||var(8)
+trigger1=!var(1)
+trigger1=ifelse(parent,numenemy>1,parent,numtarget(450)<2,parent,numtarget(450)<1)
+attr=S,HP
+damage=ceil(cond(42*fvar(1)<7,7,42*fvar(1))),7
+guardflag=M
+hitflag=MAF
+priority=3,Hit
+pausetime=6,6
+hitsound=-1+(0*(var(19):=220))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=0,0+(0*(var(23):=100&&var(24):=-25))
+animtype=hard
+ground.type=high
+air.animtype=hard
+air.type=high
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+air.hittime=100
+ground.velocity=-4.0
+air.velocity=-3.5,-3.5
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+getpower=0,0
+givepower=50,50
+envshake.time=10
+envshake.ampl=4
+fall=0
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+
+[state 3050,badalna]
+type=changestate
+trigger1=movecontact||movereversed
+value=3055
+ignorehitpause=1
+[state 3050,marna]
+type=destroyself
+trigger1=!animtime
+;=========================================================================
+;Wave - Contact
+;=========================================================================
+[Statedef 3055]
+type=S
+movetype=A
+physics=N
+ctrl=0
+movehitpersist=1
+
+[state 3055,Juggle]
+type=parentvaradd
+trigger1=movehit=1
+trigger1=numtarget
+var(0)=1
+
+[state 3055,Dampener]
+type=parentvaradd
+trigger1=movehit=1
+trigger1=numtarget
+fvar(0)=1
+
+[state 3055,Projhit]
+type=parentvarset
+trigger1=var(11)=2
+trigger1=hitpausetime
+trigger1=movecontact=1
+trigger1=numtarget
+var(9)=1
+ignorehitpause=1
+persistent=0
+
+[state 3055,Reprisal]
+type=parentvarset
+trigger1=hitpausetime
+trigger1=movehit=1
+trigger1=numtarget
+trigger1=var(16)=1
+var(16)=2
+ignorehitpause=1
+persistent=0
+
+[state 3055,Target_ID]
+type=parentvarset
+trigger1=hitpausetime
+trigger1=movehit=1
+trigger1=numtarget
+trigger1=var(55):=target,id
+var(55)=target,id
+ignorehitpause=1
+persistent=0
+
+[state 3055,Hit_Sound]
+type=playsnd
+trigger1=hitpausetime
+value=s(cond(moveguarded,120,200)),(cond(moveguarded,var(20),var(19)))
+channel=1
+ignorehitpause=1
+persistent=0
+
+[state 3055,Hit_Spark]
+type=helper
+trigger1=hitpausetime
+helpertype=normal
+name="Hit_Spark"
+stateno=ifelse(moveguarded,8727,8720)
+id=8700
+postype=p1
+pos=ceil(ifelse(p2dist x<var(23),p2dist x,var(23))*const(size.xscale)),ceil(var(24)*const(size.yscale))
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+pausemovetime=65536
+supermovetime=65536
+ignorehitpause=1
+persistent=0
+
+[state 3055,Super_Finish]
+type=helper
+trigger1=root,winko
+trigger1=!root,numhelper(10000)
+trigger1=movehit
+trigger1=numtarget
+trigger1=hitpausetime
+name="Super-Finish"
+id=10000
+stateno=10000
+postype=p1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+ignorehitpause=1
+persistent=0
+
+[state 3055,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+[state 3055,roop]
+type=sprpriority
+trigger1=1
+value=5
+ignorehitpause=1
+[state 3055,roop]
+type=posfreeze
+trigger1=1
+value=1
+ignorehitpause=1
+
+[state 3055,fasla]
+type=attackdist
+trigger1=1
+value=const(size.proj.attack.dist)
+ignorehitpause=1
+
+[state 3055,ajay]
+type=hitby
+trigger1=1
+value=SCA,NP,SP,HP
+time=-1
+ignorehitpause=1
+[state 3055,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,NP,SP,HP
+slot=0
+stateno=3056
+time=-1
+forceair=0
+ignorehitpause=1
+
+[state 3055,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+ignorehitpause=1
+
+[state 3055,na_maar]
+type=hitdef
+trigger1=1
+attr=S,HP
+hitflag=
+ignorehitpause=1
+
+[state 3055,badalna]
+type=changestate
+trigger1=!hitpausetime
+value=3060
+ignorehitpause=1
+;=========================================================================
+;Wave- Canceled
+;=========================================================================
+[Statedef 3056]
+type=S
+movetype=A
+physics=N
+ctrl=0
+movehitpersist=1
+
+[state 3056,Hit_Sound]
+type=playsnd
+trigger1=!time
+value=s120,0
+channel=1
+
+[state 3056,Hit_Spark]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Hit_Spark"
+stateno=ifelse(moveguarded,8727,8720)
+id=8700
+postype=p1
+pos=ceil(var(23)*const(size.xscale)),ceil(var(24)*const(size.yscale))
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+pausemovetime=65536
+supermovetime=65536
+
+[state 3056,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+[state 3056,roop]
+type=sprpriority
+trigger1=1
+value=5
+[state 3056,roop]
+type=posfreeze
+trigger1=1
+value=1
+
+[state 3056,ajay]
+type=hitby
+trigger1=1
+value=SCA,NP,SP,HP
+time=-1
+ignorehitpause=1
+[state 3056,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,NP,SP,HP
+slot=0
+stateno=3056
+time=-1
+forceair=0
+ignorehitpause=1
+
+[state 3056,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+ignorehitpause=1
+
+[state 3056,fasla]
+type=attackdist
+trigger1=1
+value=const(size.proj.attack.dist)
+
+[state 3056,na_maar]
+type=hitdef
+trigger1=1
+attr=S,HP
+hitflag=
+
+[state 3056,badalna]
+type=changestate
+trigger1=!time
+value=3060
+;=========================================================================
+;Wave - Disappear
+;=========================================================================
+[Statedef 3060]
+type=S
+movetype=I
+physics=N
+ctrl=0
+movehitpersist=1
+
+[state 3060,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3060,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+
+[state 3060,shiighrataa]
+type=velset
+trigger1=animelemtime(1)>=0
+x=15.0
+[state 3060,shiighrataa]
+type=velset
+trigger1=animelemtime(2)>=0
+x=11.25
+[state 3060,shiighrataa]
+type=velset
+trigger1=animelemtime(3)>=0
+x=7.5
+[state 3060,shiighrataa]
+type=velset
+trigger1=animelemtime(6)>=0
+x=1.5
+
+[state 3060,marna]
+type=destroyself
+trigger1=!animtime
+;=========================================================================
+;Wave - Slide
+;=========================================================================
+[Statedef 3070]
+type=S
+movetype=A
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3070,Juggle/Juggle/Reprisal]
+type=null
+trigger1=var(0):=root,var(0)||var(1):=root,var(1)||var(16):=root,var(16)
+[state 3070,Special_Juggle/Level]
+type=null
+trigger1=!prevstateno&&!time
+trigger1=var(8):=root,var(8)||var(11):=root,var(11)||var(15):=root,var(15)
+[state 3070,Vigor]
+type=null
+trigger1=var(25):=root,var(25)
+[state 3070,Dampener-Super-Projectile]
+type=null
+trigger1=fvar(1):=cond(root,fvar(0)<=var(15),1.0,0.65)+(0.10*var(16))
+
+[state 3070,anim]
+type=changeanim
+trigger1=!time
+value=1070
+
+[state 3070,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3070,ajay]
+type=hitby
+trigger1=1
+value=SCA,NP,SP,HP
+time=-1
+ignorehitpause=1
+[state 3070,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,NP,SP,HP
+slot=0
+stateno=3076
+time=-1
+forceair=0
+ignorehitpause=1
+
+[state 3070,shiighrataa]
+type=velset
+trigger1=animelemtime(1)>=0
+x=15.0
+[state 3070,shiighrataa]
+type=velset
+trigger1=animelemtime(2)>=0
+x=11.25
+[state 3070,shiighrataa]
+type=velset
+trigger1=animelemtime(3)>=0
+x=7.5
+[state 3070,shiighrataa]
+type=velset
+trigger1=animelemtime(6)>=0
+x=1.5
+
+[state 3070,fasla]
+type=attackdist
+trigger1=1
+value=const(size.proj.attack.dist)
+
+[state 3070,na_maar]
+type=hitdef
+trigger1=1
+attr=S,HP
+hitflag=
+
+[state 3070,maar]
+type=hitdef
+trigger1=var(0)<var(15)+5||var(8)
+trigger1=!var(1)
+trigger1=ifelse(parent,numenemy>1,parent,numtarget(450)<2,parent,numtarget(450)<1)
+attr=S,HP
+damage=ceil(cond(70*fvar(1)<7,7,70*fvar(1))),7
+guardflag=M
+hitflag=MAF
+priority=3,Hit
+pausetime=6,6
+hitsound=-1+(0*(var(19):=220))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=0,0+(0*(var(23):=100&&var(24):=-25))
+animtype=hard
+ground.type=low
+air.animtype=hard
+air.type=low
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+air.hittime=100
+ground.velocity=-3.0,-7.5
+guard.velocity=-12.0
+air.velocity=-3.5,-7.5
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+getpower=0,0
+givepower=55,55
+envshake.time=10
+envshake.ampl=4
+fall=1
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+
+[state 3070,badalna]
+type=changestate
+trigger1=movecontact||movereversed
+value=3075
+ignorehitpause=1
+[state 3070,marna]
+type=destroyself
+trigger1=!animtime
+;=========================================================================
+;Wave - Contact
+;=========================================================================
+[Statedef 3075]
+type=S
+movetype=A
+physics=N
+ctrl=0
+movehitpersist=1
+
+[state 3075,Juggle]
+type=parentvaradd
+trigger1=movehit=1
+trigger1=numtarget
+var(0)=1
+
+[state 3075,Dampener]
+type=parentvaradd
+trigger1=movehit=1
+trigger1=numtarget
+fvar(0)=1
+
+[state 3075,Projhit]
+type=parentvarset
+trigger1=var(11)=2
+trigger1=hitpausetime
+trigger1=movecontact=1
+trigger1=numtarget
+var(9)=1
+ignorehitpause=1
+persistent=0
+
+[state 3075,Reprisal]
+type=parentvarset
+trigger1=hitpausetime
+trigger1=movehit=1
+trigger1=numtarget
+trigger1=var(16)=1
+var(16)=2
+ignorehitpause=1
+persistent=0
+
+[state 3075,Target_ID]
+type=parentvarset
+trigger1=hitpausetime
+trigger1=movehit=1
+trigger1=numtarget
+trigger1=var(55):=target,id
+var(55)=target,id
+ignorehitpause=1
+persistent=0
+
+[state 3075,Hit_Sound]
+type=playsnd
+trigger1=hitpausetime
+value=s(cond(moveguarded,120,200)),(cond(moveguarded,var(20),var(19)))
+channel=1
+ignorehitpause=1
+persistent=0
+
+[state 3075,Hit_Spark]
+type=helper
+trigger1=hitpausetime
+helpertype=normal
+name="Hit_Spark"
+stateno=ifelse(moveguarded,8727,8720)
+id=8700
+postype=p1
+pos=ceil(ifelse(p2dist x<var(23),p2dist x,var(23))*const(size.xscale)),ceil(var(24)*const(size.yscale))
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+pausemovetime=65536
+supermovetime=65536
+ignorehitpause=1
+persistent=0
+
+[state 3075,Super_Finish]
+type=helper
+trigger1=root,winko
+trigger1=!root,numhelper(10000)
+trigger1=movehit
+trigger1=numtarget
+trigger1=hitpausetime
+name="Super-Finish"
+id=10000
+stateno=10000
+postype=p1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+ignorehitpause=1
+persistent=0
+
+[state 3075,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+[state 3075,roop]
+type=sprpriority
+trigger1=1
+value=5
+ignorehitpause=1
+[state 3075,roop]
+type=posfreeze
+trigger1=1
+value=1
+ignorehitpause=1
+
+[state 3075,ajay]
+type=hitby
+trigger1=1
+value=SCA,NP,SP,HP
+time=-1
+ignorehitpause=1
+[state 3075,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,NP,SP,HP
+slot=0
+stateno=3076
+time=-1
+forceair=0
+ignorehitpause=1
+
+[state 3075,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+ignorehitpause=1
+
+[state 3075,fasla]
+type=attackdist
+trigger1=1
+value=const(size.proj.attack.dist)
+ignorehitpause=1
+
+[state 3075,na_maar]
+type=hitdef
+trigger1=1
+attr=S,HP
+hitflag=
+ignorehitpause=1
+
+[state 3075,badalna]
+type=changestate
+trigger1=!hitpausetime
+value=3080
+ignorehitpause=1
+;=========================================================================
+;Wave - Canceled
+;=========================================================================
+[Statedef 3076]
+type=S
+movetype=A
+physics=N
+ctrl=0
+movehitpersist=1
+
+[state 3076,Hit_Sound]
+type=playsnd
+trigger1=!time
+value=s120,0
+channel=1
+
+[state 3076,Hit_Spark]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Hit_Spark"
+stateno=ifelse(moveguarded,8727,8720)
+id=8700
+postype=p1
+pos=ceil(var(23)*const(size.xscale)),ceil(var(24)*const(size.yscale))
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+pausemovetime=65536
+supermovetime=65536
+
+[state 3076,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+[state 3076,roop]
+type=sprpriority
+trigger1=1
+value=5
+[state 3076,roop]
+type=posfreeze
+trigger1=1
+value=1
+
+[state 3076,ajay]
+type=hitby
+trigger1=1
+value=SCA,NP,SP,HP
+time=-1
+ignorehitpause=1
+[state 3076,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,NP,SP,HP
+slot=0
+stateno=3076
+time=-1
+forceair=0
+ignorehitpause=1
+
+[state 3076,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+ignorehitpause=1
+
+[state 3076,fasla]
+type=attackdist
+trigger1=1
+value=const(size.proj.attack.dist)
+
+[state 3076,na_maar]
+type=hitdef
+trigger1=1
+attr=S,HP
+hitflag=
+
+[state 3076,badalna]
+type=changestate
+trigger1=!time
+value=3080
+;=========================================================================
+;Wave - Disappear
+;=========================================================================
+[Statedef 3080]
+type=S
+movetype=I
+physics=N
+ctrl=0
+movehitpersist=1
+
+[state 3080,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3080,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+
+[state 3080,shiighrataa]
+type=velset
+trigger1=animelemtime(1)>=0
+x=15.0
+[state 3080,shiighrataa]
+type=velset
+trigger1=animelemtime(2)>=0
+x=11.25
+[state 3080,shiighrataa]
+type=velset
+trigger1=animelemtime(3)>=0
+x=7.5
+[state 3080,shiighrataa]
+type=velset
+trigger1=animelemtime(6)>=0
+x=1.5
+
+[state 3080,marna]
+type=destroyself
+trigger1=!animtime
+;=========================================================================
+;Dark Heart
+;=========================================================================
+[StateDef 3100]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 3100,shakti]
+type=null
+triggerall=!time
+trigger1=!ailevel
+trigger1=var(11):=cond(command="x"||command="NE_x",1,cond(command="y"||command="NE_y",2,3))
+trigger2=ailevel
+trigger2=var(11):=cond(random<500||numtarget,2,cond(random<500,3,1))
+
+[state 3100,shakti]
+type=null
+triggerall=!time
+trigger1=var(11)=2&&!var(7)
+trigger1=power=[1000,1999]
+trigger1=var(11):=var(11)-1
+trigger2=var(11)=3&&!var(7)
+trigger2=power=[1000,1999]
+trigger2=var(11):=var(11)-2
+trigger3=var(11)=3&&!var(7)
+trigger3=power=[2000,2999]
+trigger3=var(11):=var(11)-1
+trigger4=var(7)
+trigger4=var(11):=1
+
+[state 3100,shakti]
+type=null
+trigger1=!time
+trigger1=var(15):=cond(var(11)=1,3,cond(var(11)=2,3,24))
+trigger2=time=5
+trigger2=fvar(2):=0.0
+
+[state 3100,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 3100,anim]
+type=changeanim
+trigger1=!time
+value=3100+(var(11)>=2)+(var(11)>=3)
+
+[state 3100,kam_karna]
+type=poweradd
+trigger1=!var(25)
+trigger1=!time
+value=-1000*var(11)
+
+[state 3100,Super-Config]
+type=helper
+trigger1=!animelemtime(2)
+helpertype=normal
+name="Super-Config"
+id=10005
+stateno=10000+(5*var(11))
+postype=p1
+ownpal=1
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+[state 3100,Super_Portrait]
+type=helper
+trigger1=var(11)=3
+trigger1=!animelemtime(2)
+helpertype=normal
+name="Super-Portrait"
+id=10020
+stateno=10020
+postype=left
+pos=0,0
+facing=facing
+ownpal=1
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+[state 3100,thaharaav]
+type=superpause
+trigger1=!animelemtime(2)
+time=40
+movetime=40
+unhittable=1
+anim=-1
+sound=-1
+p2defmul=1
+poweradd=0
+darken=0
+[state 3100,chaayaa]
+type=afterimage
+trigger1=!var(7)&&!var(8)
+trigger1=!animelemtime(2)
+time=999
+length=15
+palbright=0,0,0
+palcontrast=144-(96*(var(11)=2)),144-(96*(var(11)=3)),144-(96*(var(11)=[2,3]))
+palpostbright=0,0,0
+paladd=0,0,0
+palmul=0.5,0.5,0.5
+timegap=2
+framegap=5
+trans=add1
+[state 3100,ajay]
+type=nothitby
+trigger1=!animelemtime(1)
+value=SCA
+time=44+(3*var(11))
+
+[state 3100,bolii]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s3100,0
+volumescale=100
+channel=0
+[state 3100,avaaz]
+type=playsnd
+trigger1=!animelemtime(3)
+value=s100,4
+volumescale=100
+
+[state 3100,jodo]
+type=null
+trigger1=var(11)=[1,2]
+trigger1=!animelemtime(3)
+trigger1=(fvar(12):=8.59375)^^(fvar(13):=0.0)^^fvar(14):=1.0
+trigger2=var(11)=[1,2]
+trigger2=!animelemtime(8)
+trigger2=(fvar(12):=fvar(12))^^(fvar(13):=-0.390625)^^fvar(14):=1.0
+trigger3=var(11)=3
+trigger3=!animelemtime(3)
+trigger3=(fvar(12):=10.15625)^^(fvar(13):=0.0)^^fvar(14):=1.0
+trigger4=var(11)!=3
+trigger4=!animelemtime(7)
+trigger4=(fvar(12):=fvar(12))^^(fvar(13):=-0.390625)^^fvar(14):=1.0
+[state 3100,jodo]
+type=varset
+trigger1=!time||cond(fvar(14)=1.0,fvar(12)<0.0,fvar(12)>0.0)
+trigger2=var(11)=[1,2]
+trigger2=!animelemtime(10)
+trigger3=var(11)=3
+trigger3=!animelemtime(9)
+fvar(12)=(fvar(13):=0.0)
+[state 3100,jodo]
+type=varadd
+trigger1=fvar(12)||fvar(13)
+fvar(12)=fvar(13)
+[state 3100,jodo]
+type=posadd
+trigger1=fvar(12)
+x=fvar(12)
+
+[state 3100,prakash]
+type=explod
+trigger1=!animelemtime(3)
+id=8045
+anim=8045
+postype=p1
+pos=20,0
+bindtime=1
+random=0,0
+velocity=0,0
+accel=0,0
+ownpal=1
+scale=0.5,0.5
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+
+[state 3100,maar]
+type=hitdef
+trigger1=var(0)<var(15)+5||var(8)
+trigger1=!var(1)
+trigger1=!animelemtime(6)
+trigger1=var(11)=1
+trigger1=p2stateno!=[150,155]
+attr=S,HT
+guardflag=
+hitflag=M-
+priority=7,Miss
+pausetime=0,0
+hitsound=-1+(0*(var(19):=0))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=0))
+guard.sparkno=-1+(0*(var(22):=0))
+sparkxy=0,0+(0*(var(23):=0&&var(24):=0))
+animtype=hard
+ground.type=low
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+fall=1
+fall.recover=0
+fall.animtype=hard
+forcestand=1
+numhits=0
+p1facing=1
+p2facing=1
+p1stateno=3110
+id=3100
+nochainid=450
+
+[state 3100,maar]
+type=hitdef
+trigger1=var(0)<var(15)+5||var(8)
+trigger1=!var(1)
+trigger1=!animelemtime(6)
+trigger1=var(11)=2
+trigger1=p2stateno!=[150,155]
+attr=S,HT
+guardflag=
+hitflag=M
+priority=7,Miss
+pausetime=0,0
+hitsound=-1+(0*(var(19):=0))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=0))
+guard.sparkno=-1+(0*(var(22):=0))
+sparkxy=0,0+(0*(var(23):=0&&var(24):=0))
+animtype=hard
+ground.type=low
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+fall=1
+fall.recover=0
+fall.animtype=hard
+forcestand=1
+numhits=0
+p1facing=1
+p2facing=1
+p1stateno=3110
+id=3100
+nochainid=450
+
+[state 3100,maar]
+type=hitdef
+trigger1=var(0)<var(15)+5||var(8)
+trigger1=!var(1)
+trigger1=!animelemtime(6)
+trigger1=var(11)=3
+trigger1=p2stateno!=[150,155]
+attr=S,HT
+guardflag=
+hitflag=MAF
+priority=7,Miss
+pausetime=0,0
+hitsound=-1+(0*(var(19):=0))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=0))
+guard.sparkno=-1+(0*(var(22):=0))
+sparkxy=0,0+(0*(var(23):=0&&var(24):=0))
+animtype=hard
+ground.type=low
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+fall=1
+fall.recover=0
+fall.animtype=hard
+forcestand=1
+numhits=0
+p1facing=1
+p2facing=1
+p1stateno=3110
+id=3100
+nochainid=450
+
+[state 3100,bekaar]
+type=statetypeset
+trigger1=!animelemtime(7)
+movetype=I
+
+[state 3100,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Explode Heart - 1
+;=========================================================================
+[Statedef 3110]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 3110,anim]
+type=changeanim
+trigger1=!time
+value=3110
+
+[state 3110,roop]
+type=width
+trigger1=animelemno(0)=[1,3]
+trigger2=!animelemtime(7)
+edge=50,0
+
+[state 3110,badalna]
+type=changestate
+trigger1=var(11)=3
+trigger1=!animelemtime(13)
+value=3115
+
+[state 3110,jodo]
+type=null
+trigger1=!animelemtime(1)
+trigger1=(fvar(12):=fvar(12))^^(fvar(13):=-0.390625)^^fvar(14):=1.0
+[state 3110,jodo]
+type=varset
+trigger1=cond(fvar(14)=1.0,fvar(12)<0.0,fvar(12)>0.0)
+trigger2=!animelemtime(4)
+fvar(12)=(fvar(13):=0.0)
+[state 3110,jodo]
+type=varadd
+trigger1=fvar(12)||fvar(13)
+fvar(12)=fvar(13)
+[state 3110,jodo]
+type=posadd
+trigger1=fvar(12)
+x=fvar(12)
+
+[state 3110,Energy]
+type=helper
+trigger1=!animelemtime(7)
+helpertype=normal
+name="Energy"
+ID=1090
+stateno=1000
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3110,Energy]
+type=helper
+trigger1=!animelemtime(8)
+helpertype=normal
+name="Energy"
+ID=1095
+stateno=1000
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3110,Blood]
+type=helper
+trigger1=animelemtime(8)>=0
+trigger1=animelemtime(17)<0
+trigger1=!(gametime%4)
+helpertype=normal
+name="Blood"
+ID=3120
+stateno=3120
+postype=p1
+pos=0+random%50,0
+facing=cond(random<500,-1,1)
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+
+[state 3110,Blood]
+type=helper
+trigger1=!animelemtime(8)
+trigger2=!animelemtime(13)
+helpertype=normal
+name="Blood"
+ID=3125
+stateno=3125
+postype=p1
+pos=0,0
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+
+[state 3110,Blood]
+type=helper
+trigger1=!animelemtime(8)
+trigger2=!animelemtime(13)
+helpertype=normal
+name="Blood"
+ID=3130
+stateno=3130
+postype=p1
+pos=0,0
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+
+[state 3110,Energy]
+type=helper
+trigger1=!animelemtime(9)
+helpertype=normal
+name="Energy"
+ID=1105
+stateno=3150
+postype=p1
+pos=49,-53
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3110,Energy]
+type=helper
+trigger1=!animelemtime(9)
+helpertype=normal
+name="Energy"
+ID=1106
+stateno=3155
+postype=p1
+pos=49,-53
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3110,Energy]
+type=helper
+trigger1=!animelemtime(13)
+helpertype=normal
+name="Energy"
+ID=1110
+stateno=3160
+postype=p1
+pos=49,-53
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3110,fasla]
+type=attackdist
+trigger1=1
+value=0
+
+[state 3110,naash]
+type=targetstate
+trigger1=!time
+value=3170
+[state 3110,naash]
+type=targetbind
+trigger1=animelemtime(1)>=0&&animelemtime(2)<0
+pos=35,0
+[state 3110,naash]
+type=targetbind
+trigger1=animelemtime(2)>=0&&animelemtime(3)<0
+pos=30,0
+[state 3110,naash]
+type=targetbind
+trigger1=animelemtime(3)>=0&&animelemtime(4)<0
+pos=25,0
+[state 3110,naash]
+type=targetbind
+trigger1=animelemtime(3)>=0&&animelemtime(4)<0
+pos=24,0
+[state 3110,naash]
+type=targetbind
+trigger1=animelemtime(4)>=0&&animelemtime(5)<0
+pos=24,0
+[state 3110,naash]
+type=targetbind
+trigger1=animelemtime(5)>=0&&animelemtime(6)<0
+pos=24,0
+[state 3110,naash]
+type=targetbind
+trigger1=animelemtime(6)>=0&&animelemtime(7)<0
+pos=25,0
+[state 3110,naash]
+type=targetbind
+trigger1=animelemtime(7)>=0&&animelemtime(8)<0
+pos=45,0
+[state 3110,naash]
+type=targetbind
+trigger1=animelemtime(8)>=0&&animelemtime(9)<0
+pos=50,0
+[state 3110,ripu]
+type=targetbind
+trigger1=animelemtime(9)>=0&&animelemtime(10)<0
+pos=52,0
+[state 3110,naash]
+type=targetbind
+trigger1=animelemtime(10)>=0&&animelemtime(13)<0
+pos=54,0
+[state 3110,naash]
+type=targetbind
+trigger1=!animelemtime(13)
+pos=54,0
+
+[state 3110,naash]
+type=playsnd
+trigger1=!animelemtime(3)
+value=s200,800
+volumescale=100
+channel=1
+[state 3110,naash]
+type=playsnd
+trigger1=!animelemtime(8)
+value=s200,220
+volumescale=100
+channel=1
+[state 3110,naash]
+type=playsnd
+trigger1=!animelemtime(13)
+value=s200,500
+volumescale=100
+channel=1
+
+[state 3110,naash]
+type=envshake
+trigger1=!animelemtime(8)
+trigger2=!animelemtime(13)
+time=15
+ampl=9
+
+[state 3110,naash]
+type=hitadd
+trigger1=!animelemtime(8)
+trigger2=!animelemtime(13)
+value=1
+
+[state 3110,Hit_Spark]
+type=helper
+trigger1=!animelemtime(8)
+trigger2=!animelemtime(13)
+helpertype=normal
+name="Hit_Spark"
+stateno=8720
+id=8700
+postype=p1
+pos=49,-53+(-7*!animelemtime(8))
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+pausemovetime=65536
+supermovetime=65536
+
+[state 3110,naash]
+type=targetlifeadd
+trigger1=!animelemtime(8)
+value=ceil(cond((42+(7*var(11)))*fvar(1)<7,-7,-(42+(7*var(11)))*fvar(1)))
+kill=0
+[state 3110,naash]
+type=targetlifeadd
+trigger1=!animelemtime(13)
+value=ceil(cond((120*var(11))*fvar(1)<7,-7,(-120*var(11))*fvar(1)))
+kill=1
+[state 3110,naash]
+type=targetpoweradd
+trigger1=!animelemtime(8)
+trigger2=!animelemtime(13)
+value=50
+[state 3110,naash]
+type=targetstate
+trigger1=!animelemtime(13)
+value=3175
+
+[state 3110,shakti]
+type=poweradd
+trigger1=!animelemtime(13)
+value=0
+
+[state 3110,Juggle-Hits/Juggle-Never/Dampener-Hits]
+type=null
+trigger1=!animelemtime(8)||!animelemtime(13)
+trigger1=var(0):=var(0)+1||var(1):=1||fvar(0):=fvar(0)+1
+
+[state 3110,badalna]
+type=changestate
+trigger1=winko
+trigger1=!animelemtime(20)
+trigger1=var(58):=181
+value=182
+[state 3110,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Explode Heart - 2
+;=========================================================================
+[Statedef 3115]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 3115,anim]
+type=changeanim
+trigger1=!time
+value=3115
+
+[state 3115,murna]
+type=varset
+trigger1=!time
+var(12)=10
+[state 3115,murna]
+type=varset
+trigger1=!time
+trigger1=numtarget
+trigger1=target,authorname="RajaaBoy"
+trigger1=target,name="RajaaShiki"
+var(12)=18
+[state 3115,murna]
+type=varadd
+trigger1=!animelemtime(13)
+var(12)=-1
+[state 3115,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(13)
+value=anim
+elem=9
+
+[state 3115,roop]
+type=width
+trigger1=!animelemtime(6)
+edge=125,0
+
+[state 3115,bolii]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s3100,1+(var(12)=18)
+volumescale=100
+channel=0
+[state 3115,avaaz]
+type=playsnd
+trigger1=animelemno(0)=[6,12]
+trigger1=!animelemtime(animelemno(0))
+value=s1,2
+volumescale=100
+channel=2
+[state 3115,avaaz]
+type=playsnd
+trigger1=!animelemtime(18)
+value=s1,10
+volumescale=100
+
+[state 3115,jodo]
+type=null
+trigger1=!animelemtime(17)
+trigger1=(fvar(12):=7.8125)^^(fvar(13):=-0.390625)^^fvar(14):=1.0
+[state 3115,jodo]
+type=varset
+trigger1=!time||cond(fvar(14)=1.0,fvar(12)<0.0,fvar(12)>0.0)
+trigger2=!animelemtime(22)
+fvar(12)=(fvar(13):=0.0)
+[state 3115,jodo]
+type=varadd
+trigger1=fvar(12)||fvar(13)
+fvar(12)=fvar(13)
+[state 3115,jodo]
+type=posadd
+trigger1=fvar(12)
+x=fvar(12)
+
+[state 3115,Energy]
+type=helper
+trigger1=!animelemtime(1)
+helpertype=normal
+name="Energy"
+ID=1110
+stateno=3160
+postype=p1
+pos=49,-53
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3115,Blood]
+type=helper
+trigger1=animelemno(0)=[1,5]
+trigger1=!(gametime%4)
+helpertype=normal
+name="Blood"
+ID=3120
+stateno=3120
+postype=p1
+pos=0+random%50,0
+facing=cond(random<500,-1,1)
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+
+[state 3115,Blood]
+type=helper
+trigger1=!animelemtime(1)
+helpertype=normal
+name="Blood"
+ID=3125
+stateno=3125
+postype=p1
+pos=0,0
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+
+[state 3115,Blood]
+type=helper
+trigger1=!animelemtime(1)
+helpertype=normal
+name="Blood"
+ID=3130
+stateno=3130
+postype=p1
+pos=0,0
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+
+[state 3115,Energy]
+type=helper
+trigger1=!animelemtime(6)
+helpertype=normal
+name="Energy"
+ID=1115
+stateno=3165
+postype=p1
+pos=0,0
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3115,Energy]
+type=helper
+trigger1=!animelemtime(6)
+helpertype=normal
+name="Energy"
+ID=1120
+stateno=1000
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3115,Energy]
+type=helper
+trigger1=!animelemtime(17)
+helpertype=normal
+name="Energy"
+ID=1050
+stateno=1000
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3115,Energy]
+type=helper
+trigger1=!animelemtime(18)
+helpertype=normal
+name="Energy"
+ID=8001
+stateno=1000
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3115,fasla]
+type=attackdist
+trigger1=1
+value=0
+
+[state 3115,naash]
+type=targetbind
+trigger1=!animelemtime(1)
+pos=54,0
+[state 3115,naash]
+type=targetbind
+trigger1=var(12)
+trigger1=animelemtime(6)>=0
+trigger1=animelemtime(13)<0
+pos=100,-50
+
+[state 3115,naash]
+type=playsnd
+trigger1=!animelemtime(1)
+value=s200,500
+volumescale=100
+channel=1
+
+[state 3115,naash]
+type=envshake
+trigger1=!animelemtime(1)
+time=15
+ampl=9
+
+[state 3115,naash]
+type=hitadd
+trigger1=!animelemtime(1)
+value=1
+
+[state 3115,Hit_Spark]
+type=helper
+trigger1=!animelemtime(1)
+helpertype=normal
+name="Hit_Spark"
+stateno=8720
+id=8700
+postype=p1
+pos=49,-53
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+pausemovetime=65536
+supermovetime=65536
+
+[state 3115,naash]
+type=targetlifeadd
+trigger1=!animelemtime(1)
+value=ceil(cond(175*fvar(1)<7,-7,-175*fvar(1)))
+kill=0
+[state 3115,naash]
+type=targetpoweradd
+trigger1=!animelemtime(1)
+value=50
+[state 3115,naash]
+type=targetstate
+trigger1=!animelemtime(1)
+value=3180
+
+[state 3115,kam_karna]
+type=poweradd
+trigger1=!animelemtime(1)
+value=0
+
+[state 3115,Juggle-Hits/Juggle-Never/Dampener-Hits]
+type=null
+trigger1=!animelemtime(1)
+trigger1=var(0):=var(0)+1||var(1):=1||fvar(0):=fvar(0)+1
+
+[state 3115,maar]
+type=hitdef
+trigger1=!animelemtime(6)
+trigger2=!animelemtime(12)
+attr=S,HA
+damage=7
+hitflag=MAF
+priority=5,Hit
+pausetime=0,6
+hitsound=-1+(0*(var(19):=220))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=0,0+(0*(var(23):=(100+random%25)&&var(24):=-(100-random%25)))
+animtype=hard
+ground.type=low
+air.animtype=hard
+air.type=low
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+air.hittime=100
+ground.velocity=cond(var(12)<=1,0.0,-0.9765625),cond(var(12)<=1,-12.109375,-8.59375)
+air.velocity=cond(var(12)<=1,0.0,-0.9765625),cond(var(12)<=1,-12.109375,-8.59375)
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+getpower=0,0
+givepower=20,20
+envshake.time=12
+envshake.ampl=6
+fall=1
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+kill=0
+
+[state 3115,maar]
+type=hitdef
+trigger1=!animelemtime(10)
+attr=S,HA
+damage=7
+hitflag=MAF
+priority=5,Hit
+pausetime=0,6
+hitsound=-1+(0*(var(19):=220))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=0,0+(0*(var(23):=(100+random%25)&&var(24):=-(100-random%25)))
+animtype=hard
+ground.type=high
+air.animtype=hard
+air.type=high
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+air.hittime=100
+ground.velocity=cond(var(12)<=1,0.0,-0.9765625),cond(var(12)<=1,-12.109375,-8.59375)
+air.velocity=cond(var(12)<=1,0.0,-0.9765625),cond(var(12)<=1,-12.109375,-8.59375)
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+getpower=0,0
+givepower=20,20
+envshake.time=12
+envshake.ampl=6
+fall=1
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+kill=0
+
+[state 3115,maar]
+type=hitdef
+trigger1=!animelemtime(20)
+attr=S,HA
+damage=56
+hitflag=MAF
+priority=5,Hit
+pausetime=29,29
+hitsound=-1+(0*(var(19):=220))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=0,0+(0*(var(23):=125&&var(24):=-75))
+animtype=hard
+ground.type=low
+air.animtype=hard
+air.type=low
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+air.hittime=100
+ground.velocity=-14.0625,-7.421875
+air.velocity=-14.0625,-7.421875
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+getpower=0,0
+givepower=50,50
+envshake.time=12
+envshake.ampl=10
+fall=1
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+
+[state 3115,badalna]
+type=changestate
+trigger1=winko
+trigger1=!animelemtime(27)
+trigger1=var(58):=182
+value=182
+[state 3115,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Blood - 1
+;=========================================================================
+[Statedef 3120]
+type=A
+movetype=I
+physics=N
+ctrl=0
+sprpriority=-5
+
+[state 3120,anim]
+type=changeanim
+trigger1=!time
+value=3120
+
+[state 3120,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3120,roop]
+type=trans
+trigger1=!winko
+trigger1=time>240
+trigger1=var(12):=var(12)+1
+trans=addalpha
+alpha=256-(16*var(12)),16*var(12)
+
+[state 3120,marna]
+type=destroyself
+trigger1=!winko
+trigger1=time>256
+;=========================================================================
+;Blood - 2
+;=========================================================================
+[Statedef 3125]
+type=A
+movetype=I
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3125,anim]
+type=changeanim
+trigger1=!time
+value=3125
+
+[state 3125,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3125,marna]
+type=destroyself
+trigger1=!animtime
+;=========================================================================
+;Blood - 3
+;=========================================================================
+[Statedef 3130]
+type=A
+movetype=I
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3130,anim]
+type=changeanim
+trigger1=!time
+value=3130
+
+[state 3130,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3130,marna]
+type=destroyself
+trigger1=!animtime
+;=========================================================================
+;Light - 1
+;=========================================================================
+[Statedef 3150]
+type=A
+movetype=I
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3150,anim]
+type=changeanim
+trigger1=!time
+value=1105
+
+[state 3150,bind]
+type=bindtoparent
+trigger1=1
+pos=49,-53
+
+[state 3150,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3150,marna]
+type=destroyself
+trigger1=parent,stateno!=3110
+trigger2=parent,anim!=3110
+trigger3=!animtime
+;=========================================================================
+;Light - 2
+;=========================================================================
+[Statedef 3155]
+type=A
+movetype=I
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3155,anim]
+type=changeanim
+trigger1=!time
+value=1106
+
+[state 3155,bind]
+type=bindtoparent
+trigger1=1
+pos=49,-53
+
+[state 3155,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+[state 3155,roop]
+type=angledraw
+trigger1=1
+value=(random%360)
+[state 3155,roop]
+type=turn
+trigger1=!(time%2)
+[state 3155,roop]
+type=trans
+trigger1=1
+trans=add
+
+[state 3155,marna]
+type=destroyself
+trigger1=parent,stateno!=3110
+trigger2=parent,anim!=3110
+trigger3=!animtime
+;=========================================================================
+;Explosion
+;=========================================================================
+[Statedef 3160]
+type=A
+movetype=I
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3160,anim]
+type=changeanim
+trigger1=!time
+value=1110
+
+[state 3160,bind]
+type=bindtoparent
+trigger1=1
+pos=49,-53
+
+[state 3160,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3160,marna]
+type=destroyself
+trigger1=parent,stateno!=[3110,3115]
+trigger2=parent,anim!=[3110,3115]
+trigger3=!animtime
+;=========================================================================
+;Rapid Punch
+;=========================================================================
+[Statedef 3165]
+type=A
+movetype=I
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3165,anim]
+type=changeanim
+trigger1=!time
+value=1115
+
+[state 3165,bind]
+type=bindtoparent
+trigger1=1
+pos=0,0
+
+[state 3165,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3165,murna]
+type=varset
+trigger1=!time
+var(12)=4
+[state 3165,murna]
+type=varset
+trigger1=!time
+trigger1=root,var(12)=18
+var(12)=8
+[state 3165,murna]
+type=varadd
+trigger1=!animelemtime(21)
+var(12)=-1
+[state 3165,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(21)
+value=anim
+elem=11
+
+[state 3165,marna]
+type=destroyself
+trigger1=parent,stateno!=[3110,3115]
+trigger2=parent,anim!=[3110,3115]
+trigger3=!animtime
+;=========================================================================
+;Target - Pierced
+;=========================================================================
+[Statedef 3170]
+type=S
+movetype=H
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=-1
+
+[state 3170,anim]
+type=changeanim2
+trigger1=!time
+value=3170
+
+[state 3170,roop]
+type=screenbound
+trigger1=1
+value=0
+movecamera=1,1
+
+[state 3170,phir_lana]
+type=selfstate
+trigger1=!gethitvar(isbound)
+trigger1=time>100
+value=5050
+;=========================================================================
+;Target - Released
+;=========================================================================
+[Statedef 3175]
+type=A
+movetype=H
+physics=N
+velset=0,0
+sprpriority=-1
+
+[state 3175,fall]
+type=hitfallset
+trigger1=!time
+value=1
+
+[state 3175,anim]
+type=changeanim2
+trigger1=!time
+value=3175
+
+[state 3175,shiighrataa]
+type=velset
+trigger1=!time
+x=-0.9765625
+y=-8.59375
+[state 3175,shiighrataa]
+type=veladd
+trigger1=1
+y=0.5859375
+
+[state 3175,hilaav]
+type=envshake
+trigger1=pos y>=0
+trigger1=vel y>0
+time=15
+ampl=12
+
+[state 3175,phir_lana]
+type=selfstate
+trigger1=pos y>=0
+trigger1=vel y>0
+value=5100
+;=========================================================================
+;Target - Released
+;=========================================================================
+[Statedef 3180]
+type=A
+movetype=H
+physics=N
+velset=0,0
+sprpriority=-1
+
+[state 3180,fall]
+type=hitfallset
+trigger1=!time
+value=1
+
+[state 3180,anim]
+type=changeanim2
+trigger1=!time
+value=3175
+
+[state 3180,shiighrataa]
+type=velset
+trigger1=!time
+x=0.0
+y=-12.109375
+[state 3180,shiighrataa]
+type=veladd
+trigger1=1
+y=0.5859375
+
+[state 3180,hilaav]
+type=envshake
+trigger1=pos y>=0
+trigger1=vel y>0
+time=15
+ampl=12
+
+[state 3180,phir_lana]
+type=selfstate
+trigger1=pos y>=0
+trigger1=vel y>0
+value=5100
+;=========================================================================
+;EX Bite
+;=========================================================================
+[StateDef 3200]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 3200,shakti]
+type=null
+trigger1=!time
+trigger1=var(11):=2||var(15):=2
+trigger2=time=5
+trigger2=fvar(2):=0.0
+
+[state 3200,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 3200,anim]
+type=changeanim
+trigger1=!time
+value=3200
+
+[state 3200,kam_karna]
+type=poweradd
+trigger1=!time
+value=-1000*var(11)
+
+[state 3200,Super-Config]
+type=helper
+trigger1=!animelemtime(3)
+helpertype=normal
+name="Super-Config"
+id=10005
+stateno=10000+(5*var(11))
+postype=p1
+ownpal=1
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+[state 3200,thaharaav]
+type=superpause
+trigger1=!animelemtime(3)
+time=40
+movetime=40
+unhittable=1
+anim=-1
+sound=-1
+p2defmul=1
+poweradd=0
+darken=0
+[state 3200,chaayaa]
+type=afterimage
+trigger1=!animelemtime(3)
+time=999
+length=15
+palbright=0,0,0
+palcontrast=144-(96*(var(11)=2)),144-(96*(var(11)=3)),144-(96*(var(11)=[2,3]))
+palpostbright=0,0,0
+paladd=0,0,0
+palmul=0.5,0.5,0.5
+timegap=2
+framegap=5
+trans=add1
+[state 3200,ajay]
+type=nothitby
+trigger1=!animelemtime(1)
+value=SCA
+time=42+(3*var(11))
+
+[state 3200,ajay]
+type=nothitby
+trigger1=animelemtime(6)<0
+value=SCA
+time=1
+
+[state 3200,bolii]
+type=playsnd
+trigger1=!animelemtime(3)
+value=s1215,11
+volumescale=100
+channel=0
+[state 3200,avaaz]
+type=playsnd
+trigger1=!animelemtime(6)
+value=s800,10
+volumescale=100
+
+[state 3200,maar]
+type=hitdef
+trigger1=var(0)<var(15)+5||var(8)
+trigger1=!var(1)
+trigger1=!animelemtime(5)
+trigger1=p2stateno!=[150,155]
+attr=S,HT
+guardflag=
+hitflag=M-
+priority=7,Miss
+pausetime=0,0
+hitsound=-1+(0*(var(19):=800))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=0))
+guard.sparkno=-1+(0*(var(22):=0))
+sparkxy=0,0+(0*(var(23):=0&&var(24):=0))
+animtype=hard
+ground.type=low
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+fall=1
+fall.recover=0
+fall.animtype=hard
+forcestand=1
+numhits=0
+p1facing=1
+p2facing=1
+p1stateno=3210
+id=3200
+nochainid=450
+
+[state 3200,bekaar]
+type=statetypeset
+trigger1=!animelemtime(7)
+movetype=I
+
+[state 3200,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;EX Bite - Grab - Attack
+;=========================================================================
+[Statedef 3210]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 3210,anim]
+type=changeanim
+trigger1=!time
+value=3210
+
+[state 3210,roop]
+type=width
+trigger1=!animelemtime(1)
+edge=50,0
+
+[state 3210,badalna]
+type=afterimagetime
+trigger1=!time
+time=0
+
+[state 3210,Background]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Background"
+ID=3220
+stateno=3220
+postype=p1
+pos=0,0
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+
+[state 3210,Energy]
+type=helper
+trigger1=!animelemtime(4)
+helpertype=normal
+name="Energy"
+ID=1085
+stateno=1000
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 3210,fasla]
+type=attackdist
+trigger1=1
+value=0
+
+[state 3210,naash]
+type=targetstate
+trigger1=!time
+value=3270
+[state 3210,naash]
+type=targetbind
+trigger1=animelemtime(1)>=0&&animelemtime(2)<0
+pos=40,0
+[state 3210,naash]
+type=targetbind
+trigger1=animelemtime(2)>=0&&animelemtime(3)<0
+pos=37,0
+[state 3210,naash]
+type=targetbind
+trigger1=animelemtime(3)>=0&&animelemtime(5)<0
+pos=34,0
+[state 3210,naash]
+type=targetbind
+trigger1=!animelemtime(6)
+pos=37,0
+
+[state 3210,naash]
+type=playsnd
+trigger1=!animelemtime(5)
+value=s200,420
+volumescale=100
+channel=1
+
+[state 3210,naash]
+type=envshake
+trigger1=!animelemtime(5)
+time=15
+ampl=9
+
+[state 3210,naash]
+type=hitadd
+trigger1=!animelemtime(5)
+value=1
+
+[state 3210,Hit_Spark]
+type=helper
+trigger1=!animelemtime(5)
+helpertype=normal
+name="Hit_Spark"
+stateno=8720
+id=8700
+postype=p1
+pos=40,-60
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+pausemovetime=65536
+supermovetime=65536
+
+[state 3210,naash]
+type=targetlifeadd
+trigger1=!animelemtime(5)
+value=ceil(cond(2505*fvar(1)<7,-7,-250*fvar(1)))
+kill=1
+[state 3210,naash]
+type=targetpoweradd
+trigger1=!animelemtime(5)
+value=150
+[state 3210,naash]
+type=targetstate
+trigger1=!animelemtime(6)
+value=3275
+
+[state 3210,shakti]
+type=lifeadd
+trigger1=!animelemtime(5)
+value=125
+[state 3210,shakti]
+type=poweradd
+trigger1=!animelemtime(5)
+value=0
+
+[state 3210,Juggle-Hits/Juggle-Never/Dampener-Hits]
+type=null
+trigger1=!animelemtime(5)
+trigger1=var(0):=var(0)+1||var(1):=1||fvar(0):=fvar(0)+1
+
+[state 3210,badalna]
+type=changestate
+trigger1=winko
+trigger1=!animelemtime(8)
+trigger1=var(58):=183
+value=182
+[state 3210,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;EX Bite - Background
+;=========================================================================
+[Statedef 3220]
+type=A
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 3220,anim]
+type=changeanim
+trigger1=!time
+value=9999
+
+[state 3220,bind]
+type=bindtoparent
+trigger1=1
+pos=0,-10
+
+[state 3220,Flash]
+type=explod
+trigger1=root,stateno=3210
+trigger1=!root,animelemtime(4)
+ID=1
+anim=8040
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+removetime=-2
+bindtime=-1
+ontop=1
+under=0
+ownpal=1
+scale=1.0,1.0
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+[state 3220,Flash]
+type=modifyexplod
+trigger1=numexplod(1)
+trigger1=root,stateno=3210
+trigger1=root,animelemtime(4)>=0
+trigger1=root,animelemtime(7)<0
+trigger1=var(0)<16
+trigger1=var(0):=var(0)+1
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+trans=addalpha
+alpha=(16*var(0)),256-(16*var(0))
+id=1
+[state 3220,Flash]
+type=modifyexplod
+trigger1=numexplod(1)
+trigger1=root,animelemtime(7)>=0||root,stateno!=3210
+trigger1=var(1)<16
+trigger1=var(1):=var(1)+1
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+trans=addalpha
+alpha=256-(16*var(1)),(16*var(1))
+id=1
+
+[state 3220,marna]
+type=removeexplod
+trigger1=var(1)>=16
+[state 3220,marna]
+type=destroyself
+trigger1=var(1)>=16
+;=========================================================================
+;EX Bite - Target State - Bound
+;=========================================================================
+[Statedef 3270]
+type=A
+movetype=H
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=-1
+
+[state 3270,anim]
+type=changeanim2
+trigger1=!time
+value=3270
+
+[state 3270,roop]
+type=screenbound
+trigger1=1
+value=0
+movecamera=1,1
+
+[state 3270,phir_lana]
+type=selfstate
+trigger1=!gethitvar(isbound)
+trigger1=time>100
+value=5050
+
+;=========================================================================
+;EX Bite - Target State - Released
+;=========================================================================
+[Statedef 3275]
+type=A
+movetype=H
+physics=N
+velset=0,0
+sprpriority=-1
+
+[state 3275,anim]
+type=changeanim2
+trigger1=!time
+value=3275
+
+[state 3275,fall]
+type=hitfallset
+trigger1=!time
+value=1
+
+[state 3275,shiighrataa]
+type=velset
+trigger1=!time
+x=-2.734375
+y=-10.9375
+[state 3275,shiighrataa]
+type=veladd
+trigger1=1
+y=0.5859375
+
+[state 3275,hilaav]
+type=envshake
+trigger1=pos y>=0
+trigger1=vel y>0
+time=10
+ampl=10
+
+[state 3275,phir_lana]
+type=selfstate
+trigger1=pos y>=0
+trigger1=vel y>0
+value=5100
+;=========================================================================
+;Depletion Garden
+;=========================================================================
+[StateDef 3300]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 3300,shakti]
+type=null
+trigger1=!time
+trigger1=var(11):=3||var(15):=999
+trigger2=time=5
+trigger2=fvar(2):=0.0
+
+[state 3300,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 3300,Anim]
+type=changeanim
+trigger1=!time
+value=3300
+
+[state 3300,kam_karna]
+type=poweradd
+trigger1=!time
+value=-1000*var(11)
+
+[state 3300,Super-Config]
+type=helper
+trigger1=!animelemtime(3)
+helpertype=normal
+name="Super-Config"
+id=10005
+stateno=10000+(5*var(11))
+postype=p1
+ownpal=1
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+[state 3300,Super_Portrait]
+type=helper
+trigger1=!animelemtime(3)
+helpertype=normal
+name="Super-Portrait"
+id=10020
+stateno=10020
+postype=left
+pos=0,0
+facing=facing
+ownpal=1
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+[state 3300,thaharaav]
+type=superpause
+trigger1=!animelemtime(3)
+time=40
+movetime=40
+unhittable=1
+anim=-1
+sound=-1
+p2defmul=1
+poweradd=0
+darken=0
+[state 3300,chaayaa]
+type=afterimage
+trigger1=!animelemtime(3)
+time=999
+length=15
+palbright=0,0,0
+palcontrast=144-(96*(var(11)=2)),144-(96*(var(11)=3)),144-(96*(var(11)=[2,3]))
+palpostbright=0,0,0
+paladd=0,0,0
+palmul=0.5,0.5,0.5
+timegap=2
+framegap=5
+trans=add1
+[state 3300,ajay]
+type=nothitby
+trigger1=!animelemtime(1)
+value=SCA
+time=44+(3*var(11))
+
+[state 3300,Counter]
+type=helper
+trigger1=!numhelper(3400)
+trigger1=!animelemtime(4)
+helpertype=normal
+name="Counter"
+ID=3350
+stateno=3350
+postype=p1
+pos=0,0
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+
+[state 3300,counter]
+type=attackdist
+trigger1=movetype=A
+value=0
+
+[state 3300,counter]
+type=reversaldef
+trigger1=!animelemtime(4)
+reversal.attr=SCA,NA,SA,HA
+pausetime=12,12
+hitsound=s1220,0
+sparkno=-1+(0*(var(21):=0))
+guard.sparkno=-1+(0*(var(22):=0))
+sparkxy=0,0+(0*(var(23):=0&&var(24):=0))
+numhits=0
+getpower=0
+givepower=0
+fall=1
+fall.recover=0
+p1facing=1
+p2facing=1
+p1stateno=3310
+p2stateno=3400
+id=3300
+
+[state 3300,bekaar]
+type=statetypeset
+trigger1=!animelemtime(7)
+movetype=I
+
+[state 3300,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Depletion Garden - Success - Commence
+;=========================================================================
+[Statedef 3310]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 3310,fasla]
+type=attackdist
+trigger1=1
+value=0
+
+[state 3310,anim]
+type=changeanim
+trigger1=!time
+value=3310
+
+[state 3310,murna]
+type=varset
+trigger1=!time
+var(12)=9
+[state 3310,murna]
+type=varadd
+trigger1=!animelemtime(7)
+var(12)=-1
+[state 3310,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(7)
+value=anim
+elem=3
+
+[state 3310,badalna]
+type=afterimagetime
+trigger1=!time
+time=0
+
+[state 3310,bolii]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s5000,7
+volumescale=100
+channel=0
+[state 3310,bolii]
+type=playsnd
+trigger1=!animelemtime(10)
+value=s3300,0
+volumescale=100
+channel=0
+
+[state 3310,Background]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Background"
+ID=3355
+stateno=3355
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*-120)
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+
+[state 3310,Sound]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Sound"
+ID=3356
+stateno=3356
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*-120)
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+persistent=0
+
+[state 3310,Hitbox]
+type=helper
+trigger1=numhelper(3355)
+trigger1=helper(3355),var(3)>32
+helpertype=normal
+name="Hitbox"
+ID=3365
+stateno=3365
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*-120)
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+persistent=0
+
+[state 3310,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Depletion Garden - Clone
+;=========================================================================
+[Statedef 3350]
+type=A
+movetype=I
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3350,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+
+[state 3350,bind]
+type=bindtoparent
+trigger1=1
+pos=0,0
+
+[state 3350,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3350,anim]
+type=changeanim
+trigger1=1
+value=parent,anim
+elem=parent,animelemno(0)
+
+[state 3350,roop]
+type=angledraw
+trigger1=1
+scale=1.05,1.05
+[state 3350,roop]
+type=trans
+trigger1=1
+trans=add
+
+[state 3350,prakash]
+type=explod
+trigger1=parent,numtarget(3300)
+id=8545
+anim=8545
+postype=p1
+pos=20,-50
+ownpal=1
+scale=.5,.5
+sprpriority=5
+removeongethit=0
+pausemovetime=-1
+supermovetime=-1
+persistent=0
+
+[state 3150,marna]
+type=destroyself
+trigger1=parent,stateno!=3300
+trigger2=parent,anim!=3300
+trigger3=parent,animelemtime(7)>=0
+;=========================================================================
+;Depletion Garden - Background
+;=========================================================================
+[Statedef 3355]
+type=A
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=-5
+
+[state 3355,anim]
+type=changeanim
+trigger1=!time
+value=9999
+
+[state 3355,avaaz]
+type=playsnd
+trigger1=time=94
+value=s3300,10
+volumescale=100
+
+[state 3355,black]
+type=explod
+trigger1=!time
+anim=8020
+ID=8020
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+facing=1
+removetime=-1
+bindtime=-1
+ontop=0
+under=0
+ownpal=1
+scale=1.0,1.0
+supermovetime=-1
+pausemovetime=-1
+sprpriority=-8
+[state 3355,black]
+type=modifyexplod
+trigger1=numexplod(8020)
+trigger1=var(0):=var(0)+1
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+trans=addalpha
+alpha=32*var(0),256-(32*var(0))
+id=8020
+[state 3355,black]
+type=removeexplod
+trigger1=var(2)>=16
+id=8020
+
+[state 3355,flash]
+type=explod
+trigger1=time=4
+anim=8025
+ID=8025
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+facing=1
+removetime=-2
+bindtime=-1
+ontop=0
+under=0
+ownpal=1
+scale=1.0,1.0
+sprpriority=-6
+supermovetime=-1
+pausemovetime=-1
+
+[state 3355,dream]
+type=explod
+trigger1=time=23
+anim=8030
+ID=8030
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+facing=1
+removetime=-2
+bindtime=-1
+ontop=0
+under=0
+ownpal=1
+scale=1.0,1.0
+sprpriority=-6
+supermovetime=-1
+pausemovetime=-1
+
+[state 3355,white]
+type=explod
+trigger1=time=86
+anim=8021
+ID=8021
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+facing=1
+removetime=-1
+bindtime=-1
+ontop=0
+under=0
+ownpal=1
+scale=1.0,1.0
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+[state 3355,white]
+type=modifyexplod
+trigger1=numexplod(8021)
+trigger1=var(1):=var(1)+1
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+trans=addalpha
+alpha=16*var(1),256-(16*var(1))
+id=8021
+[state 3355,white]
+type=modifyexplod
+trigger1=numexplod(8021)
+trigger1=var(1)>24
+trigger1=var(2):=var(2)+1
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+trans=addalpha
+alpha=256-(16*var(2)),16*var(2)
+id=8021
+[state 3355,black]
+type=removeexplod
+trigger1=var(2)>=16
+id=8021
+
+[state 3355,garden]
+type=explod
+trigger1=time=106
+anim=8035
+ID=8035
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+facing=1
+removetime=-1
+bindtime=-1
+ontop=0
+under=0
+ownpal=1
+scale=0.5,0.5
+sprpriority=-5
+supermovetime=-1
+pausemovetime=-1
+[state 3355,garden]
+type=modifyexplod
+trigger1=numexplod(8035)
+trigger1=var(3):=var(3)+1
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+trans=addalpha
+alpha=32*var(3),256-(32*var(3))
+id=8035
+[state 3355,garden]
+type=modifyexplod
+trigger1=var(3)>240
+trigger1=numexplod(8035)
+trigger1=var(4):=var(4)+1
+postype=left
+pos=160,ceil((1.33*gameheight/gamewidth)*120)
+trans=addalpha
+alpha=256-(16*var(4)),16*var(4)
+id=8035
+
+[state 3355,Leaf]
+type=helper
+trigger1=numexplod(8035)
+trigger1=var(3)<240
+trigger1=!(gametime%8)
+trigger1=fvar(0):=cond(random<500,0.5,cond(random<500,0.4,cond(random<500,0.3,0.5)))
+helpertype=normal
+name="Leaf"
+ID=3360
+stateno=3360
+postype=right
+pos=100-(random%ceil(gamewidth)),-ceil(gameheight)
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=fvar(0)
+size.yscale=fvar(0)
+
+[state 3355,marna]
+type=removeexplod
+trigger1=var(4)>52
+[state 3355,marna]
+type=destroyself
+trigger1=var(4)>52
+;=========================================================================
+;Depletion Garden - Sound
+;=========================================================================
+[Statedef 3356]
+type=A
+movetype=I
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3360,roop]
+type=assertspecial
+trigger1=!numhelper(10000)
+flag=nomusic
+flag2=nofg
+
+[state 3360,anim]
+type=changeanim
+trigger1=!time
+value=9999
+
+[state 3360,avaaz]
+type=playsnd
+trigger1=!time
+value=s3300,12
+volumescale=100
+
+[state 3360,marna]
+type=destroyself
+trigger1=time>398;540
+;=========================================================================
+;Depletion Garden - Leaves
+;=========================================================================
+[Statedef 3360]
+type=A
+movetype=I
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3360,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3360,anim]
+type=changeanim
+trigger1=!time
+value=3360+(random%2)
+
+[state 3360,shiighrataa]
+type=velset
+trigger1=!time
+x=-3.0-(random%5)
+y=3.0+(random%5)
+
+[state 3360,marna]
+type=destroyself
+trigger1=pos y>90
+trigger2=time>300
+;=========================================================================
+;Hitbox
+;=========================================================================
+[Statedef 3365]
+type=S
+movetype=A
+physics=N
+ctrl=0
+sprpriority=5
+
+[state 3365,Juggle/Juggle/Reprisal]
+type=null
+trigger1=var(0):=root,var(0)||var(1):=root,var(1)||var(16):=root,var(16)
+[state 3365,Special_Juggle/Level]
+type=null
+trigger1=!prevstateno&&!time
+trigger1=var(8):=root,var(8)||var(11):=root,var(11)||var(15):=root,var(15)
+[state 3365,Vigor]
+type=null
+trigger1=var(25):=root,var(25)
+[state 3365,Dampener-Super-Projectile]
+type=null
+trigger1=fvar(1):=cond(root,fvar(0)<=var(15),1.0,0.65)+(0.10*var(16))
+
+[state 3365,anim]
+type=changeanim
+trigger1=!time
+value=3365
+
+[state 3365,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3365,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+ignorehitpause=1
+
+[state 3365,fasla]
+type=attackdist
+trigger1=1
+value=ceil(gamewidth)
+
+[state 3365,na_maar]
+type=hitdef
+trigger1=1
+attr=S,HA
+hitflag=
+
+[state 3365,maar]
+type=hitdef
+trigger1=var(0)<var(15)+5
+trigger1=!var(1)
+trigger1=ifelse(parent,numenemy>1,parent,numtarget(450)<2,parent,numtarget(450)<1)
+attr=S,HA
+damage=ceil(25*fvar(1)),7
+hitflag=MAFD
+priority=5,Hit
+pausetime=cond(var(12)>=19,15,6),cond(var(12)>=19,15,6)
+hitsound=-1+(0*(var(19):=500))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=0,0+(0*(var(23):=100&&var(24):=-25))
+animtype=hard
+ground.type=low
+air.animtype=hard
+air.type=low
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+air.hittime=100
+ground.velocity=cond(var(12)>=19,-10.9375,-0.9765625)*parent,facing,cond(var(12)>=19,0.0,-8.59375)
+air.velocity=cond(var(12)>=19,-10.9375,-0.9765625)*parent,facing,cond(var(12)>=19,0.0,-8.59375)
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+getpower=0,0
+givepower=15,15
+envshake.time=10
+envshake.ampl=5
+fall=1
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+id=3365
+kill=var(12)>=19
+
+[state 3365,maar]
+type=hitdef
+trigger1=random<500
+trigger1=var(0)<var(15)
+trigger1=!var(1)
+trigger1=ifelse(parent,numenemy>1,parent,numtarget(450)<2,parent,numtarget(450)<1)
+attr=S,HA
+damage=ceil(25*fvar(1)),7
+hitflag=MAFD
+priority=5,Hit
+pausetime=cond(var(12)>=19,15,6),cond(var(12)>=19,15,6)
+hitsound=-1+(0*(var(19):=500))
+guardsound=-1+(0*(var(20):=0))
+sparkno=-1+(0*(var(21):=8720))
+guard.sparkno=-1+(0*(var(22):=8727))
+sparkxy=0,0+(0*(var(23):=100&&var(24):=-25))
+animtype=hard
+ground.type=high
+air.animtype=hard
+air.type=high
+ground.slidetime=24+4*var(16)
+ground.hittime=24+4*var(16)
+guard.slidetime=24+4*var(16)
+guard.hittime=24+4*var(16)
+air.hittime=100
+ground.velocity=cond(var(12)>=19,-10.9375,-0.9765625)*parent,facing,cond(var(12)>=19,0.0,-8.59375)
+air.velocity=cond(var(12)>=19,-10.9375,-0.9765625)*parent,facing,cond(var(12)>=19,0.0,-8.59375)
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=0.5859375
+getpower=0,0
+givepower=15,15
+envshake.time=10
+envshake.ampl=5
+fall=1
+air.fall=1
+fall.recover=0
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+id=3365
+kill=var(12)>=19
+
+[state 3365,badalna]
+type=changestate
+trigger1=movecontact||movereversed
+value=3370
+ignorehitpause=1
+[state 3365,marna]
+type=destroyself
+trigger1=!parent,numhelper(3355)
+;=========================================================================
+;Hitbox - Contact
+;=========================================================================
+[Statedef 3370]
+type=S
+movetype=A
+physics=N
+ctrl=0
+movehitpersist=1
+
+[state 3370,Hits]
+type=varadd
+trigger1=hitpausetime
+var(12)=1
+ignorehitpause=1
+persistent=0
+
+[state 3370,Juggle]
+type=parentvaradd
+trigger1=movehit=1
+trigger1=numtarget
+var(0)=1
+
+[state 3370,Dampener]
+type=parentvaradd
+trigger1=movehit=1
+trigger1=numtarget
+fvar(0)=1
+
+[state 3370,Reprisal]
+type=parentvarset
+trigger1=hitpausetime
+trigger1=movehit=1
+trigger1=numtarget
+trigger1=var(16)=1
+var(16)=2
+ignorehitpause=1
+persistent=0
+
+[state 3370,Target_ID]
+type=parentvarset
+trigger1=hitpausetime
+trigger1=movehit=1
+trigger1=numtarget
+trigger1=var(55):=target,id
+var(55)=target,id
+ignorehitpause=1
+persistent=0
+
+[state 3370,Hit_Sound]
+type=playsnd
+trigger1=hitpausetime
+value=s(cond(moveguarded,120,200)),(cond(moveguarded,var(20),var(19)))
+channel=1
+ignorehitpause=1
+persistent=0
+
+[state 3370,Hit_Spark]
+type=helper
+trigger1=hitpausetime
+helpertype=normal
+name="Hit_Spark"
+stateno=ifelse(moveguarded,8727,8720)
+id=8700
+postype=p1
+pos=((ceil(target,pos x-pos x))+cond(random<500,-random%25,random%25))*facing,ceil(((target,const(size.mid.pos.y)+target,pos y)-pos y)+(cond(random<500,-random%25,random%25)))
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+pausemovetime=65536
+supermovetime=65536
+ignorehitpause=1
+persistent=0
+
+[state 3370,Super_Finish]
+type=helper
+trigger1=root,winko
+trigger1=!root,numhelper(10000)
+trigger1=movehit
+trigger1=numtarget
+trigger1=hitpausetime
+name="Super-Finish"
+id=10000
+stateno=10000
+postype=p1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+ignorehitpause=1
+persistent=0
+
+[state 3370,maar]
+type=targetstate
+trigger1=hitpausetime
+trigger1=movehit=1
+trigger1=numtarget
+value=900
+ignorehitpause=1
+persistent=0
+
+[state 3370,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+[state 3370,roop]
+type=sprpriority
+trigger1=1
+value=5
+ignorehitpause=1
+[state 3370,roop]
+type=posfreeze
+trigger1=1
+value=1
+ignorehitpause=1
+
+[state 3370,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+ignorehitpause=1
+
+[state 3370,fasla]
+type=attackdist
+trigger1=1
+value=ceil(gamewidth)
+ignorehitpause=1
+
+[state 3370,na_maar]
+type=hitdef
+trigger1=1
+attr=S,HA
+hitflag=
+ignorehitpause=1
+
+[state 3370,badalna]
+type=changestate
+trigger1=!hitpausetime
+value=3365+(10*(var(12)>=20))
+ignorehitpause=1
+;=========================================================================
+;Hitbox - Disappear
+;=========================================================================
+[Statedef 3375]
+type=S
+movetype=I
+physics=N
+ctrl=0
+movehitpersist=1
+
+[state 3375,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 3375,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+
+[state 3375,anim]
+type=changeanim
+trigger1=!time
+value=9999
+
+[state 3070,marna]
+type=destroyself
+trigger1=time>16
+;=========================================================================
+;Target - Frozen
+;=========================================================================
+[Statedef 3400]
+type=U
+movetype=H
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=-1
+
+[state 3400,marna]
+type=removeexplod
+trigger1=ishelper
+[state 3400,marna]
+type=destroyself
+trigger1=ishelper
+
+[state 3400,ajay]
+type=nothitby
+trigger1=!time
+value=SCA
+value2=SCA
+time=0
+
+[state 3400,anim]
+type=changeanim
+trigger1=time<124;102
+value=anim
+elem=animelemno(0)
+
+[state 3400,roop]
+type=posfreeze
+trigger1=time<102
+value=1
+
+[state 3400,shiighrataa]
+type=veladd
+trigger1=statetype=A
+trigger1=time>=102
+y=const(movement.yaccel)
+
+[state 3400,phir_lana]
+type=selfstate
+trigger1=statetype=A
+trigger1=time>=102
+trigger1=pos y>=0
+trigger1=vel y>0
+value=52
+ctrl=1
+[state 3400,phir_lana]
+type=selfstate
+trigger1=!animtime
+value=(11*(statetype=C))+(50*(statetype=A))
+ctrl=1
+[state 3400,phir_lana]
+type=selfstate
+trigger1=!gethitvar(isbound)
+trigger1=time>500
+value=5050

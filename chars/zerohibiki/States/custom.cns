@@ -1,0 +1,329 @@
+;---------------------------------------------------------------------------
+; Standing Repel (P2)
+[Statedef 50703]
+type = S
+movetype = H
+physics = N
+velset = 0,0
+ctrl = 0
+
+[State 50703, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 50703
+
+[State 50703, ChangeState]
+type = SelfState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------------
+; Crouching Repel (P2)
+[Statedef 50704]
+type = C
+movetype = H
+physics = N
+velset = 0,0
+ctrl = 0
+
+[State 50704, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 50704
+
+[State 50704, ChangeState]
+type = SelfState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+;---------------------------------------------------------------------------
+; Aerial Repel (P2)
+[Statedef 50705]
+type = A
+movetype = H
+physics = N
+velset = -2,-3
+ctrl = 0
+
+[State 50705, VelAdd]
+type = VelAdd
+trigger1 = 1
+y = 0.5
+
+[State 50705, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 50705
+
+[State 50705, ChangeState]
+type = SelfState
+trigger1 = AnimTime = 0
+value = 5040
+ctrl = 0
+;---------------------------------------------------------------------------
+; Melding Being Blade (P2)
+[Statedef 51018]
+type = A
+movetype = H
+physics = N
+velset = 0,0
+ctrl = 0
+
+[State 51018, HitFallSet]
+type = HitFallSet
+trigger1 = !Time
+value = 1
+
+[State 51018, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 1,0
+
+[State 51018, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 51018
+;---------------------------------------------------------------------------
+; Melding Being Blade (P2 Thrown)
+[Statedef 51019]
+type = A
+movetype = H
+physics = N
+velset = -1,-8
+poweradd = 120
+ctrl = 0
+
+[State 51019, HitFallSet]
+type = HitFallSet
+trigger1 = !Time
+value = 1
+
+[State 51019, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 1,0
+
+[State 51019, 1] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = .45
+
+[State 51019, 2] 
+type = SelfState
+triggerall = AnimElemTime(6)>=0
+trigger1 = Vel Y > 0
+trigger1 = Vel Y > -Pos Y
+value = 5100
+;---------------------------------------------------------------------------
+; Melding Being Blade (P2 Thrown Backward)
+[Statedef 51020]
+type = A
+movetype = H
+physics = N
+velset = 1,-8
+poweradd = 120
+ctrl = 0
+
+[State 51020, HitFallSet]
+type = HitFallSet
+trigger1 = !Time
+value = 1
+
+[State 51020, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 1,0
+
+[State 51020, 1] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = .45
+
+[State 51020, 2] ;Fly Away
+type = SelfState
+triggerall = AnimElemTime(6)>=0
+trigger1 = Vel Y > 0
+trigger1 = Vel Y > -Pos Y
+value = 5100
+;---------------------------------------------------------------------------
+; Heavenly Spirit of Victory (P2)
+[Statedef 53001]
+type = S
+movetype = H
+physics = N
+velset = 0,0
+ctrl = 0
+
+[State 53001, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State 53001, PosSet]
+type = PosSet
+trigger1 = !Time
+y = 0
+
+[State 53001, HitFallSet]
+type = HitFallSet
+trigger1 = !Time
+value = 1
+
+[State 53001, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 1,0
+
+[State 53001, ChangeAnim2]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 53001
+persistent = 0
+
+[State 53001, ChangeAnim]
+type = ChangeAnim
+triggerall = Anim = 53001
+triggerall = SelfAnimExist(5900) = 1
+trigger1 = AnimTime = 0
+value = 5900
+persistent = 0
+
+[State 53001, ChangeAnim]
+type = ChangeAnim
+triggerall = Anim = 53001
+triggerall = SelfAnimExist(5950) = 1
+trigger1 = AnimTime = 0
+value = 5950
+persistent = 0
+
+[State 53001, ChangeAnim2]
+type = ChangeAnim2
+triggerall = Anim = 53001
+triggerall = !SelfAnimExist(5950) && !SelfAnimExist(5900)
+trigger1 = AnimTime = 0
+value = 53002
+persistent = 0
+
+[State 53001, ChangeState]
+type = ChangeState
+triggerall = Anim = 53002 || Anim = 5900 || Anim = 5950 
+triggerall = Alive
+trigger1 = IfElse(Anim = 5900 || Anim = 5950, Time >= 230, AnimTime = 0)
+value = 53002
+persistent = 0
+
+[State 53001, SelfState]
+type = SelfState
+triggerall = Anim = 53002 || Anim = 5900 || Anim = 5950 
+triggerall = !Alive
+trigger1 = IfElse(Anim = 5900 || Anim = 5950, Time >= 230, AnimTime = 0)
+value = 5150
+persistent = 0
+;---------------------------------------------------------------------------
+; Heavenly Spirit of Victory (P2)
+[Statedef 53002]
+type = L
+movetype = I
+physics = N
+velset = 0,0
+ctrl = 0
+
+[State 53002, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State 53002, PosSet]
+type = PosSet
+trigger1 = !Time
+y = 0
+
+[State 53002, 2]
+type = ChangeAnim
+trigger1 = Time = 29
+value = IfElse(SelfAnimExist(5121), 5121, 5120)
+
+[State 53002, 2]
+type = SelfState
+triggerall = Anim = [5120,5121]
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------------
+; No Fear Feint (P2)
+[Statedef 53010]
+type = S
+movetype = H
+physics = N
+velset = 0,0
+ctrl = 0
+
+[State 53010, PosSet]
+type = PosSet
+trigger1 = !Time
+y = 0
+
+[State 53010, ChangeAnim2]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 53001
+persistent = 0
+
+[State 53010, PalFX]
+type = PalFX
+trigger1 = !Time
+time = 138
+add = 0,0,0
+mul = 0,0,0
+;---------------------------------------------------------------------------
+; No Fear Feint (P2 Collapse)
+[Statedef 53011]
+type = S
+movetype = I
+physics = N
+velset = 0,0
+ctrl = 0
+
+[State 53011, PosSet]
+type = PosSet
+trigger1 = !Time
+y = 0
+
+[State 53011, HitFallSet]
+type = HitFallSet
+trigger1 = 1
+value = 1
+
+[State 53011, ChangeAnim]
+type = ChangeAnim
+triggerall = Anim = 53001
+trigger1 = SelfAnimExist(5950)
+value = 5950
+persistent = 0
+
+[State 53011, ChangeAnim2]
+type = ChangeAnim2
+triggerall = Anim = 53001
+trigger1 = !SelfAnimExist(5950)
+value = 53002
+persistent = 0
+
+[State 53011, ChangeState]
+type = ChangeState
+triggerall = Anim = 53002 || Anim = 5900 || Anim = 5950 
+triggerall = Alive
+trigger1 = IfElse(Anim = 5900 || Anim = 5950, Time >= 125, AnimTime = 0)
+value = 53002
+persistent = 0
+
+[State 53011, SelfState]
+type = SelfState
+triggerall = Anim = 53002 || Anim = 5900 || Anim = 5950 
+triggerall = !Alive
+trigger1 = IfElse(Anim = 5900 || Anim = 5950, Time >= 125, AnimTime = 0)
+value = 5150
+persistent = 0

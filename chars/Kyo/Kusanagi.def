@@ -1,0 +1,42 @@
+; _______________________________________________
+;| Kyo Kusanagi by Jmorphman					|
+; ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+;====================<DEFINITION>====================
+[Info]
+name        = "Kyo Kusanagi"
+displayName = "Kusanagi"
+versionDate = 01,16,2011
+mugenVersion= 1.0
+author      = "Jmorphman"
+pal.defaults= 4,5,6,1,2,3,10,11,12,7,8,9
+localCoord  = 320,240
+
+[Files]
+cmd     = Command.cmd
+cns     = Constants.cns
+st      = States/System.st
+st1     = States/Normal.st
+st2     = States/Special.st
+st3     = States/Super.st
+st4     = States/Helpers.st
+st5     = States/Kusanagi.st
+stCommon= common1.cns
+sprite  = Sprite.sff
+anim    = Anim.air
+sound   = Sound.snd
+pal1	= Palettes/KOFKusanagi.act
+pal2	= Palettes/MalaDingDong_ShotaroKaneda.act
+pal3	= Palettes/MC2_SyoKirishima.act
+pal4	= Palettes/KusanagiDefault.act
+pal5	= Palettes/MalaDingDong_Kyo-1.act
+pal6	= Palettes/MalaDingDong_Kyo-2.act
+pal7	= Palettes/ShoShingo_DomonKasshu.act
+pal8	= Palettes/.Hades._IoriYagami.act
+pal9	= Palettes/Chosis_IoriYagamiXII.act
+pal10	= Palettes/Hero_SVCGhost.act
+pal11	= Palettes/Anthem_Nameless.act
+pal12	= Palettes/LurkerSupreme_Chris.act
+	
+;[Arcade]
+;intro.storyBoard = intro.def
+;ending.storyBoard = ending.def

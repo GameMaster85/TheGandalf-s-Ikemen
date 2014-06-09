@@ -1,0 +1,93 @@
+[Info]
+name ="Felicia_LG"
+displayname ="Felicia"
+versiondate=2010,2,06   ;Date Started
+mugenversion=1.0
+author="Jesuszilla"      ;イエスジラ
+pal.defaults=4,5,6,1,2,3,10,11,12,7,8,9
+localcoord = 320,240
+
+[Files]
+cmd=Felicia_LG.cmd
+cns=Felicia_LG.cns
+stcommon=common1.cns
+st=Felicia_LG.cns
+st1=spark.lol
+st2=config.txt
+st3=GANKBANK/repeltheevildoers.st
+;st4=guard.lol
+sprite=Felicia_LG.sff
+anim=Felicia_LG.air
+sound=Felicia_LG.snd
+ai=Felicia_LG.ai
+pal1=Wolverine.act        
+pal2=felmorrigan.act        
+pal3=Rose.act        
+pal4=act004.act        
+pal5=stealth.act        
+pal6=Peach.act        
+pal7=CViper.act        
+pal8=Bluestreak.act        
+pal9=Redstreak.act        
+pal10=Anakaris.act       
+pal11=Rogue.act       
+pal12=Zero.act       
+
+
+;=========================================;
+;     Complete Alternate Palette List     ;
+;=========================================;
+;pal7=DGO_A.act         ;DGO CvS-style LK
+;pal8=DGO_B.act         ;DGO CvS-style MK
+;pal9=DGO_C.act         ;DGO CvS-style HK
+;pal10=DGO_X.act        ;DGO CvS-style LP
+;pal11=DGO_Y.act        ;DGO CvS-style MP
+;pal12=DGO_Z.act        ;DGO CvS-style HP
+;pal7=act007.act        ;Vampire Savior PPP
+;pal8=act008.act        ;Vampire Savior KKK
+;pal9=act009.act        ;MvC2 HP
+;pal10=act010.act       ;MvC2 A1
+;pal11=act011.act       ;MvC2 HK
+;pal12=act012.act       ;MvC2 A2
+;pal7=act013.act        ;Vampire Hunter HP
+;pal8=act014.act        ;Vampire Hunter LK
+;pal9=act015.act        ;Vampire Hunter MK
+;pal10=act016.act       ;Pocket Fighter SP
+;pal11=act017.act       ;CFJ default
+;pal12=act018.act       ;A little something custom by me
+;pal7=act019.act        ;SSTK Cham-Cham
+;pal8=act020.act        ;JJBA Polnareff
+;pal9=act021.act        ;JJBA Midler
+;pal10=act022.act       ;Custom by Corntortillas
+;pal11=act023.act       ;Red and Orange by Orochi_Hadou
+;pal12=act024.act       ;Aisha Clanclan by me
+;pal7=act025.act        ;Comic book by me
+
+;Don't fuck with anything below unless you know what you're doing.
+[Palette Keymap]
+x = 4
+y = 5
+z = 6
+a = 1
+b = 2
+c = 3
+x2 = 10
+y2 = 11
+z2 = 12
+a2 = 7
+b2 = 8
+c2 = 9
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=
+
+
+
+
+
+
+
+
+
+;Is this not the most simple .def file you've ever read for a badass character?

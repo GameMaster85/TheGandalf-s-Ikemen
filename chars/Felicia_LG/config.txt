@@ -1,0 +1,74 @@
+;---------------------------------------------------------------------------
+[Statedef 10001]
+type = S
+anim = 1
+
+;===================================================;
+;   To change the X-Axis of the Dark Force Timer,   ;
+;              set Var(23) accordingly.             ;
+;     ダークフォースのタイマーの表示X座標補正 　    ;
+;         （var(23)の数値を弄ってください）         ;
+;===================================================;
+[State 10010, TIMER X-Axis]
+type = ParentVarSet
+trigger1 = Time = 0
+var(23) = 0
+;+...Foward
+;-...Back
+
+
+;===================================================;
+;   To change the Y-Axis of the Dark Force Timer,   ;
+;              set Var(24) accordingly.             ;
+;     ダークフォースのタイマーの表示X座標補正 　    ;
+;         （var(24)の数値を弄ってください）         ;
+;===================================================;
+[State 10010, TIMER Y-Axis]
+type = ParentVarSet
+trigger1 = Time = 0
+var(24) = 0
+;+...Up
+;-...Down
+
+;===================================================;
+;        Keyboard Mode (for Vampire EX moves)       ;
+;        2ボタンでEX必殺技を使いたがったら、        ;
+;            キボードモードを使えます。             ;
+;===================================================;
+[State -2, GAME SELECT]
+type = ParentVarSet
+trigger1 = Time = 0
+var(34) = 0
+;0...KEYBOARD MODE OFF/やさしいコマンドなし
+;1...KEYBOARD MODE ON/やさしいコマンドあり
+
+;==============================================================;
+;      To enable/disable Power Gauge display, set Var(36)      ;
+;                         accordingly.                         ;
+;    パワーゲージの表示設定（Var(36)の数値を弄ってください）   ;
+;=============================================================-;
+[State -2, GAUGE]
+type = ParentVarSet
+trigger1 = Time = 0
+var(36) = 1
+;0...GAUGE OFF/パワーゲージの表示なし
+;1...GAUGE ON/パワーゲージの表示あり
+
+;===================================================;
+;                    GAME SELECT                    ;
+;                   ゲームセレクト                  ;
+;===================================================;
+[State -2, GAME SELECT]
+type = ParentVarSet
+trigger1 = Time = 0
+var(10) = -1
+;-1.....GAME SELECT ON/ゲームセレクトの表示あり
+;.0.....VAMPIRE/ヴァンパイア
+;.1.....VAMPIRE HUNTER/ヴァンパイア　ハンター
+;.2.....VAMPIRE SAVIOR/ヴァンパイア　セイヴァー
+;.3.....VAMPIRE SAVIOR 2/ヴァンパイア　セイヴァー2
+;.4.....JZ MODE (CUSTOM/カスタム)
+
+[State 10010, DestroySelf]
+type = DestroySelf
+trigger1 = Time = 1

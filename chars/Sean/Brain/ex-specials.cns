@@ -1,0 +1,399 @@
+;============================================
+;EX-Special attacks
+;---------------------------------------------------------------------------
+; EX- Hurricane Kick Start
+[Statedef 2500]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= -750
+velset = 0,0
+anim = 2500
+ctrl = 0
+sprpriority = 2
+
+[State 1200, Width]
+type = Width
+trigger1 = 1
+edge = 20,0
+player = 10,10
+
+[State 9001, Explod]
+type = Explod
+trigger1 = (!Time)
+anim = 2600
+id = 2600
+pos = 0,0
+postype	= left
+facing = 1
+vfacing = 1
+bindtime = -1
+vel = 0,0
+accel = 0,0
+random = 0,0
+scale = 1,1
+removetime = 3
+supermove = 0
+supermovetime = 99999
+pausemovetime = 99999
+scale = 1,1
+sprpriority = -5
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+[State 1200, 1]
+type = PlaySnd
+trigger1 = (!Time)
+value = s2600, 0
+
+[State -3, ExFlash]
+type=palfx
+trigger1= time = 0
+time=10
+add=32+ceil(sin(gametime/1.5)*32),32+ceil(sin(gametime/1.5)*32),0
+mul=300,300,200
+ignorehitpause=1
+
+[State 1200, VelSet]
+type = VelSet
+trigger1 = animelem = 2
+x = 3
+y = -2
+
+[State 1200, 1]
+type = PlaySnd
+trigger1 = animelem = 2
+value = s1050, 0
+
+[State 1200, 1]
+type = PlaySnd
+trigger1 = animelem = 3
+value = s1, 5
+
+[State 1200, 2]
+type = null;PosAdd
+trigger1 = AnimElem = 2
+x = 15
+
+[State 1200, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 2501
+;---------------------------------------------------------------------------
+;Fierce Hurricane Kick- Air
+[Statedef 2501]
+type    = A
+movetype= A
+physics = N
+velset = 3.5,-.7
+anim = 2501
+
+[State 1200, Width]
+type = Width
+trigger1 = 1
+edge = 20,0
+player = 10,10
+
+[State -3, ExShadow]
+type=afterimage
+triggerall = stateno=[2500,2599]
+trigger1= time = 0
+time=2
+timegap=1
+framegap=1
+length=8
+palbright=32,32,0
+palcontrast=128,128,128
+paladd=-10,-10,-10
+palmul=1.1,1,.5
+trans=add
+ignorehitpause=1
+
+[State 3000, Super C]
+type = AfterImageTime
+trigger1 = AnimElemTime(1) >= 1 && Time < 60
+time = 2
+
+[State 1251, PosAdd]
+type = PosAdd
+trigger1 = time = 0
+x = 6
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time>= 20
+y = .1
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time>= 46
+y = .5
+
+
+[State 1251, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 6||animelem = 12||animelem = 18||animelem = 24||animelem = 30
+value = S1,5
+
+[State 1251, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 35
+value = S1,6
+
+[State 1251, 4]
+type = HitDef
+trigger1 = animelem = 1||animelem = 7||animelem = 13||animelem = 19||animelem = 25||animelem=31
+attr = A, SA
+animtype  = Medium
+fall.animtype = Medium
+damage    = 27, 4
+getpower = 0,0
+priority=4,Hit
+guardflag = MA
+pausetime = 6,7
+sparkno = s7010+(random%8)
+guard.sparkno = s7060
+sparkxy = -10,-70
+hitsound   = s2,5
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -7
+guard.velocity = -5
+air.velocity = -2, 0
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State 1050, 4]
+type = HitDef
+trigger1 = animelem = 36
+attr = A, SA
+animtype  = Medium
+fall.animtype = Medium
+damage    = 27, 4
+getpower = 0,0
+priority  = 7,hit
+guardflag = MA
+pausetime = 12,12
+sparkno = s7010+(random%8)
+guard.sparkno = s7060
+sparkxy = -10,-70
+hitsound   = s2,6
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+air.hittime = 30
+fall.hittime = 30
+ground.velocity = -8,-3.5
+guard.velocity = -7
+air.velocity = -7.5,-3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+
+[State 1051, 3] ;Change state when KFM is close to ground
+type = ChangeState
+triggerall = time >= 25
+trigger1 = Vel Y > 0 && Pos Y >= -10
+value = 1052
+;---------------------------------------------------------------------------
+;Fierce Tackle
+[Statedef 2550]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= -750
+velset = 0,0
+anim = 1420
+ctrl = 0
+sprpriority = 2
+
+[State 9001, Explod]
+type = Explod
+trigger1 = (!Time)
+anim = 2600
+id = 2600
+pos = 0,0
+postype	= left
+facing = 1
+vfacing = 1
+bindtime = -1
+vel = 0,0
+accel = 0,0
+random = 0,0
+scale = 1,1
+removetime = 3
+supermove = 0
+supermovetime = 99999
+pausemovetime = 99999
+scale = 1,1
+sprpriority = -3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+[State 1200, 1]
+type = PlaySnd
+trigger1 = (!Time)
+value = s2600, 0
+
+[State -3, ExShadow]
+type=afterimage
+triggerall = stateno=[2500,2599]
+trigger1= time = 0
+time=2
+timegap=1
+framegap=1
+length=8
+palbright=32,32,0
+palcontrast=128,128,128
+paladd=-10,-10,-10
+palmul=1.1,1,.5
+trans=add
+ignorehitpause=1
+
+[State 3000, Super C]
+type = AfterImageTime
+trigger1 = AnimElemTime(2) >= 1 && Time < 60
+time = 2
+
+[State -3, ExFlash]
+type=palfx
+trigger1= time = 0
+time=10
+add=32+ceil(sin(gametime/1.5)*32),32+ceil(sin(gametime/1.5)*32),0
+mul=300,300,200
+ignorehitpause=1
+
+[State 1420, VelAdd]
+type = VelSet
+trigger1 = animelem = 2
+x = 15
+
+[State 1420, 2]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = s1400, 0
+
+[State 1420, 3]
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = s1400, 1
+
+[State 1420, 4]
+type = HitDef
+trigger1 = Time = 0
+attr = S, SA
+damage    = 0, 4
+getpower = 0,0
+priority=4,miss
+sparkno  = -1
+hitflag   = M
+guardflag = L
+p1facing = 1
+p2facing = 1          ;Force p2 to face KFM
+p1stateno = 2551       ;On success, KFM changes to state 1401
+p2stateno = 1430
+
+[State 1420, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Fierce Beatdown
+[Statedef 2551]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 2551
+ctrl = 0
+sprpriority = 2
+
+[State 0, HitAdd]
+type = HitAdd
+trigger1 = !time
+value = -1
+
+[State 0, Width]
+type = Width
+trigger1 = AnimElemTime(2)>=0 && AnimElemTime(4)<0
+edge = 50,0
+
+[State 1421, TargetBind]
+type = TargetBind
+trigger1 = AnimElemTime(2)>=0 && AnimElemTime(4)<0
+pos = 50, 0
+
+[State 1401, 1]
+type = PlaySnd
+trigger1 = time = 16
+value = s800, 1
+volume = 255
+
+[State 1421, 1]
+type = PlaySnd
+trigger1 = animelem = 2
+value = s800, 0
+
+[State 1421, 1]
+type = PlaySnd
+trigger1 = animelem = 10||animelem = 15||animelem=20||animelem=25
+value = s100, 1
+
+[State 1421, 1]
+type = PlaySnd
+trigger1 = animelem = 28
+value = s100, 2
+
+[State 1421, 1]
+type = PlaySnd
+trigger1 = animelem = 10||animelem = 15||animelem=20||animelem=25||animelem = 29
+value = s1, 3
+
+[State 1421, VelAdd]
+type = VelAdd
+trigger1 = animelem = 4
+x = 4
+
+[State 1421, 2]
+type = null;PosAdd
+trigger1 = AnimElem = 2
+x = 15
+
+[State 1421, 4]
+type = HitDef
+trigger1 = animelem=11|animelem=16||animelem=21||animelem=26||animelem=30
+attr = S, SA
+damage    = 40, 4
+getpower = 0,0
+priority  = 5
+guardflag = MA
+hitflag = D
+pausetime = 7,12
+sparkno = s7010+(random%8)
+guard.sparkno = s7060
+sparkxy = -35,-11
+hitsound   = s2,3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+p2stateno = 1431
+
+[State 1421, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1402

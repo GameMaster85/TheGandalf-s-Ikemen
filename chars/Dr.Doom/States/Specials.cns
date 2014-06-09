@@ -1,0 +1,2225 @@
+;------------------------------------------------------------------
+;Photon Shot
+[Statedef 1000]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+poweradd=72 * !var(20)
+sprpriority=1
+facep2=1
+
+[State 1000, VarSet]
+type=VarSet
+trigger1 =!AILevel && !time
+var(10)=ifelse(command="PhotonShot1",0,ifelse(command="PhotonShot2",1,2))
+ignorehitpause=1
+[State 1000, VarSet]
+type=VarSet
+trigger1 =AILevel && !time && numenemy
+var(10)=ifelse(enemynear,Movetype=H||P2bodydist x<120,0,ifelse(random<400,1,2))
+ignorehitpause=1
+
+[State 1000, anim]
+type=ChangeAnim
+Trigger1=!time
+value=Ifelse(var(20),1003,1000+var(10))
+ignorehitpause=1
+
+[State 1000, Voice]
+type=PlaySnd
+trigger1=animelem=6
+value=1000,var(40)
+channel=0
+[State 1000, Move Snd]
+type=PlaySnd
+trigger1=animelem=4
+value=1,2
+channel=1
+[State 1000, Shot FX]
+type=PlaySnd
+trigger1=!time
+value=1005,1
+channel=4
+
+[State 1000, Hand FX]
+type = Helper
+trigger1=!time
+helpertype = normal 
+name = "HandFX"
+stateno = 1040
+ID = 1040
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1000, Photon Shot1]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot1"
+stateno = 1005
+ID = 1005
+persistent = 0
+pos = ceil(84*const(size.xscale)),ceil(-60*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1000, Photon Shot2]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot2"
+stateno = 1006
+ID = 1005
+persistent = 0
+pos = ceil(82*const(size.xscale)),ceil(-52*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1000, Photon Shot8]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot8"
+stateno = 1012
+ID = 1005
+persistent = 0
+pos = ceil(86*const(size.xscale)),ceil(-66*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1000, Photon Shot9]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot9"
+stateno = 1013
+ID = 1005
+persistent = 0
+pos = ceil(80*const(size.xscale)),ceil(-78*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1000, Photon Shot10]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot10"
+stateno = 1014
+ID = 1005
+persistent = 0
+pos = ceil(70*const(size.xscale)),ceil(-82*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+
+[State 1000, Photon Shot1]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot1Reversed"
+stateno = 1020
+ID = 1005
+persistent = 0
+pos = ceil(-20*const(size.xscale)),ceil(-72*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1000, Photon Shot2]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot2Reversed"
+stateno = 1021
+ID = 1005
+persistent = 0
+pos = ceil(-20*const(size.xscale)),ceil(-82*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1000, Photon Shot3]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot3Reversed"
+stateno = 1022
+ID = 1005
+persistent = 0
+pos = ceil(-16*const(size.xscale)),ceil(-94*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1000, Photon Shot4]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot4Reversed"
+stateno = 1023
+ID = 1005
+persistent = 0
+pos = ceil(-5*const(size.xscale)),ceil(-102*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1000, Photon Shot5]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot5Reversed"
+stateno = 1024
+ID = 1005
+persistent = 0
+pos = ceil(12*const(size.xscale)),ceil(-108*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+
+[State 1000, End]
+type=ChangeState
+trigger1=!animtime
+value=0
+ctrl=1
+;------------------------------------------------------------------
+;EX-Photon Shot
+[Statedef 1050]
+type=S
+movetype=A
+physics=S
+anim=1050
+ctrl=0
+velset=0,0
+poweradd=-500
+sprpriority=1
+facep2=1
+
+[State 1050, EXVar]
+type=VarSet
+trigger1 =!time
+var(10)=3
+ignorehitpause=1
+[State 1050, MAX timer Drain]
+type=VarAdd
+trigger1=!time
+trigger1=var(20) > 0
+var(20)=-250
+[State 1050, Custom Combo Juggle Reset]
+type=VarSet
+trigger1=!time && var(20)
+var(15)=0
+ignoreHitPause=1
+[State 1050, EX Flash]
+type=VarSet
+trigger1=!time
+var(25)=30
+[State 1050, EX FX]
+type=Explod
+trigger1=!time
+anim=8210
+sprPriority=3
+posType=p1
+pos=25, -90
+scale=0.5, 0.5
+pauseMovetime=-1
+superMovetime=-1
+ownPal=1
+[State 1050, EX-SND]
+type=PlaySnd
+trigger1 =!time
+value=0,1000
+channel=3
+
+[State 1050, Voice]
+type=PlaySnd
+trigger1=animelem=6
+value=1000,var(40)
+channel=0
+[State 1050, Move Snd]
+type=PlaySnd
+trigger1=animelem=4
+value=1,2
+channel=1
+[State 1050, Shot FX]
+type=PlaySnd
+trigger1=!time
+value=1005,1
+channel=4
+
+[State 1050, Hand FX]
+type = Helper
+trigger1=!time
+helpertype = normal 
+name = "HandFX"
+stateno = 1040
+ID = 1040
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1050, Photon Shot1]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot1"
+stateno = 1005
+ID = 1005
+pos = ceil(84*const(size.xscale)),ceil(-60*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1050, Photon Shot2]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot2"
+stateno = 1006
+ID = 1005
+pos = ceil(82*const(size.xscale)),ceil(-52*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1050, Photon Shot8]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot8"
+stateno = 1012
+ID = 1005
+pos = ceil(86*const(size.xscale)),ceil(-66*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1050, Photon Shot9]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot9"
+stateno = 1013
+ID = 1005
+pos = ceil(80*const(size.xscale)),ceil(-78*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1050, Photon Shot10]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot10"
+stateno = 1014
+ID = 1005
+pos = ceil(70*const(size.xscale)),ceil(-82*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+
+[State 1050, Photon Shot1]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot1Reversed"
+stateno = 1020
+ID = 1005
+pos = ceil(-20*const(size.xscale)),ceil(-72*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1050, Photon Shot2]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot2Reversed"
+stateno = 1021
+ID = 1005
+pos = ceil(-20*const(size.xscale)),ceil(-82*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1050, Photon Shot3]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot3Reversed"
+stateno = 1022
+ID = 1005
+pos = ceil(-16*const(size.xscale)),ceil(-94*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1050, Photon Shot4]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot4Reversed"
+stateno = 1023
+ID = 1005
+pos = ceil(-5*const(size.xscale)),ceil(-102*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1050, Photon Shot5]
+type = Helper
+trigger1 = animelem = 7
+helpertype = normal
+name = "PhotonShot5Reversed"
+stateno = 1024
+ID = 1005
+pos = ceil(12*const(size.xscale)),ceil(-108*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1050, End]
+type=ChangeState
+trigger1=!animtime
+value=0
+ctrl=1
+;------------------------------------------------------------------
+;Air Photon Shot
+[Statedef 1100]
+type=A
+movetype=A
+physics=N
+ctrl=0
+velset=0,0
+poweradd=Ifelse(var(14),18,72) * !var(20)
+sprpriority=1
+facep2=1
+
+[State 1100, PosAdd]
+type = PosAdd
+triggerall=numenemy && enemynear,Movetype=H
+trigger1=Enemynear,statetype=A&&(p2bodydist x=[-25,90])&&(p2bodydist y=[-125,-20]) 
+y = -40
+ignorehitpause =1
+
+[State 1100, VarSet]
+type=VarSet
+trigger1 =!AILevel && !time
+var(10)=ifelse(command="PhotonShot1",0,ifelse(command="PhotonShot2",1,2))
+ignorehitpause=1
+[State 1100, VarSet]
+type=VarSet
+trigger1 =AILevel && !time
+var(10)=ifelse(enemynear,Movetype=H,0,ifelse(random<300,1,2))
+ignorehitpause=1
+
+[State 1100, anim]
+type=ChangeAnim
+Trigger1=!time
+value=Ifelse(var(20),1103,1100+var(10))
+ignorehitpause=1
+
+[State 1100, Voice]
+type=PlaySnd
+trigger1=animelem=5
+value=1000,var(40)
+channel=0
+[State 1100, Move Snd]
+type=PlaySnd
+trigger1=animelem=6
+value=1,2
+channel=1
+[State 1100, Shot FX]
+type=PlaySnd
+trigger1=!time
+value=1005,1
+channel=4
+
+[State 1100, Hand FX]
+type = Helper
+trigger1=!time
+helpertype = normal 
+name = "HandFX"
+stateno = 1105
+ID = 1105
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1100, Photon Shot2]
+type = Helper
+trigger1 = animelem = 6
+helpertype = normal
+name = "PhotonShot2"
+stateno = 1006
+ID = 1005
+persistent = 0
+pos = ceil(68*const(size.xscale)),ceil(-50*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1100, Photon Shot3]
+type = Helper
+trigger1 = animelem = 6
+helpertype = normal
+name = "PhotonShot3"
+stateno = 1007
+ID = 1005
+persistent = 0
+pos = ceil(60*const(size.xscale)),ceil(-38*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1100, Photon Shot4]
+type = Helper
+trigger1 = animelem = 6
+helpertype = normal
+name = "PhotonShot4"
+stateno = 1008
+ID = 1005
+persistent = 0
+pos = ceil(44*const(size.xscale)),ceil(-30*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1100, Photon Shot5]
+type = Helper
+trigger1 = animelem = 6
+helpertype = normal
+name = "PhotonShot5"
+stateno = 1009
+ID = 1005
+persistent = 0
+pos = ceil(30*const(size.xscale)),ceil(-26*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1100, Photon Shot6]
+type = Helper
+trigger1 = animelem = 6
+helpertype = normal
+name = "PhotonShot6"
+stateno = 1010
+ID = 1005
+persistent = 0
+pos = ceil(24*const(size.xscale)),ceil(-20*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1100, Gravity]
+type = Gravity
+trigger1 =!var(14)&&animelemtime(16)>=0
+[State 1100, ChangeState]
+type = ChangeState
+trigger1 = var(14)&&animelemtime(17)>=0
+value = 1701
+ignorehitpause = 1
+[State 1100, CtrlSet]
+type = CtrlSet
+trigger1 =animelemtime(16)=0 && (var(14)||var(20))
+value = 1
+[State 1100, End]
+type=ChangeState
+trigger1=pos y > -vel y
+value=1110
+;-------------------------------------------------------------------------
+;Special Land
+[Statedef 1110]
+type = C
+movetype = I
+physics = C
+anim = 1110
+velset = 0, 0
+
+[State 1110, PosSet]
+type = PosSet
+trigger1 =1
+y = 0
+
+[State 1110, Landing Sound]
+type = PlaySnd
+trigger1 = !time
+value = 52,0
+
+[State 1110, Landing Dust Explod]
+type = Explod
+trigger1 = !time
+anim = 8102
+sprpriority = -3
+postype = P1
+pos = 0,2
+scale = 0.65,0.65
+pauseMovetime = -1
+superMovetime = -1
+ownPal = 1
+
+[State 1110, End]
+type = ChangeState
+trigger1 = !animtime
+value = 0
+ctrl = 1
+;------------------------------------------------------------------
+;EX-Air Photon Shot
+[Statedef 1150]
+type=A
+movetype=A
+physics=N
+anim=1150
+ctrl=0
+velset=0,0
+poweradd=-500
+sprpriority=1
+facep2=1
+
+[State 1150, PosAdd]
+type = PosAdd
+triggerall=numenemy && enemynear,Movetype=H
+trigger1=Enemynear,statetype=A&&(p2bodydist x=[-25,90])&&(p2bodydist y=[-125,-20]) 
+y = -40
+ignorehitpause =1
+
+[State 1150, EXVar]
+type=VarSet
+trigger1 =!time
+var(10)=3
+ignorehitpause=1
+[State 1150, MAX timer Drain]
+type=VarAdd
+trigger1=!time
+trigger1=var(20) > 0
+var(20)=-250
+[State 1150, Custom Combo Juggle Reset]
+type=VarSet
+trigger1=!time && var(20)
+var(15)=0
+ignoreHitPause=1
+[State 1150, EX Flash]
+type=VarSet
+trigger1=!time
+var(25)=30
+[State 1150, EX FX]
+type=Explod
+trigger1=!time
+anim=8210
+sprPriority=3
+posType=p1
+pos=-42, -125
+scale=0.5, 0.5
+pauseMovetime=-1
+superMovetime=-1
+ownPal=1
+[State 1150, EX-SND]
+type=PlaySnd
+trigger1 =!time
+value=0,1000
+channel=3
+
+[State 1150, Voice]
+type=PlaySnd
+trigger1=animelem=5
+value=1000,var(40)
+channel=0
+[State 1150, Move Snd]
+type=PlaySnd
+trigger1=animelem=6
+value=1,2
+channel=1
+[State 1150, Shot FX]
+type=PlaySnd
+trigger1=!time
+value=1005,1
+channel=4
+
+[State 1150, Hand FX]
+type = Helper
+trigger1=!time
+helpertype = normal 
+name = "HandFX"
+stateno = 1105
+ID = 1105
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1150, Photon Shot2]
+type = Helper
+trigger1 = animelem = 6
+helpertype = normal
+name = "PhotonShot2"
+stateno = 1006
+ID = 1005
+persistent = 0
+pos = ceil(68*const(size.xscale)),ceil(-50*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1150, Photon Shot3]
+type = Helper
+trigger1 = animelem = 6
+helpertype = normal
+name = "PhotonShot3"
+stateno = 1007
+ID = 1005
+persistent = 0
+pos = ceil(60*const(size.xscale)),ceil(-38*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1150, Photon Shot4]
+type = Helper
+trigger1 = animelem = 6
+helpertype = normal
+name = "PhotonShot4"
+stateno = 1008
+ID = 1005
+persistent = 0
+pos = ceil(44*const(size.xscale)),ceil(-30*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1150, Photon Shot5]
+type = Helper
+trigger1 = animelem = 6
+helpertype = normal
+name = "PhotonShot5"
+stateno = 1009
+ID = 1005
+persistent = 0
+pos = ceil(30*const(size.xscale)),ceil(-26*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1150, Photon Shot6]
+type = Helper
+trigger1 = animelem = 6
+helpertype = normal
+name = "PhotonShot6"
+stateno = 1010
+ID = 1005
+persistent = 0
+pos = ceil(24*const(size.xscale)),ceil(-20*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1150, Gravity]
+type = Gravity
+trigger1 =!var(14)&&animelemtime(16)>=0
+[State 1150, ChangeState]
+type = ChangeState
+trigger1 = var(14)&&animelemtime(17)>=0
+value = 1701
+ignorehitpause = 1
+[State 1150, CtrlSet]
+type = CtrlSet
+trigger1 =animelemtime(16)=0 && (var(14)||var(20))
+value = 1
+[State 1150, End]
+type=ChangeState
+trigger1=pos y > -vel y
+value=1110
+;------------------------------------------------------------------
+;Plasma Beam
+[Statedef 1200]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+poweradd=72 * !var(20)
+sprpriority=1
+facep2=1
+
+[State 1200, VarSet]
+type=VarSet
+trigger1 =!AILevel && !time
+var(10)=ifelse(command="PlasmaBeam1",0,ifelse(command="PlasmaBeam2",1,2))
+ignorehitpause=1
+[State 1200, VarSet]
+type=VarSet
+trigger1 =AILevel && !time
+var(10)=ifelse(enemynear,Movetype=H||P2bodydist x<140,0,ifelse(random<400,1,2))
+ignorehitpause=1
+
+[State 1200, anim]
+type=ChangeAnim
+Trigger1=!time
+value=Ifelse(var(20),1203,1200+var(10))
+ignorehitpause=1
+
+[State 1200, Voice]
+type=PlaySnd
+trigger1=animelem=10&&var(40)
+value=0,Ifelse(random<400,10,12)
+channel=0
+[State 1200, Voice]
+type=PlaySnd
+trigger1=animelem=10&&!var(40)
+value=1200,0
+channel=0
+[State 1200, Move Snd]
+type=PlaySnd
+trigger1=animelem=9
+value=1,2
+channel=1
+[State 1200, Plasma Beam FX]
+type=PlaySnd
+trigger1=animelem=2
+value=1205,0
+channel=2
+
+[State 1200, Hand FX]
+type = Helper
+trigger1=!time
+helpertype = normal 
+name = "HandFX"
+stateno = 1210
+ID = 1210
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1200, Plasma Beam]
+type = Helper
+trigger1=animelem=10
+helpertype = normal 
+name = "PlasmaBeam"
+stateno = 1205
+ID = 1205
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1200, End]
+type=ChangeState
+trigger1=!animtime
+value=0
+ctrl=1
+;------------------------------------------------------------------
+;EX-Plasma Beam
+[Statedef 1250]
+type=S
+movetype=A
+physics=S
+anim=1250
+ctrl=0
+velset=0,0
+poweradd=-500
+sprpriority=1
+facep2=1
+
+[State 1250, EXVar]
+type=VarSet
+trigger1 =!time
+var(10)=3
+ignorehitpause=1
+[State 1250, MAX timer Drain]
+type=VarAdd
+trigger1=!time
+trigger1=var(20) > 0
+var(20)=-250
+[State 1250, Custom Combo Juggle Reset]
+type=VarSet
+trigger1=!time && var(20)
+var(15)=0
+ignoreHitPause=1
+[State 1250, EX Flash]
+type=VarSet
+trigger1=!time
+var(25)=30
+[State 1250, EX FX]
+type=Explod
+trigger1=!time
+anim=8210
+sprPriority=3
+posType=p1
+pos=25, -90
+scale=0.5, 0.5
+pauseMovetime=-1
+superMovetime=-1
+ownPal=1
+[State 1250, EX-SND]
+type=PlaySnd
+trigger1 =!time
+value=0,1000
+channel=3
+
+[State 1250, Voice]
+type=PlaySnd
+trigger1=animelem=10&&var(40)
+value=0,Ifelse(random<400,10,12)
+channel=0
+[State 1250, Voice]
+type=PlaySnd
+trigger1=animelem=10&&!var(40)
+value=1200,0
+channel=0
+[State 1250, Move Snd]
+type=PlaySnd
+trigger1=animelem=9
+value=1,2
+channel=1
+[State 1250, Plasma Beam FX]
+type=PlaySnd
+trigger1=animelem=2
+value=1205,0
+channel=2
+
+[State 1250, Hand FX]
+type = Helper
+trigger1=!time
+helpertype = normal 
+name = "HandFX"
+stateno = 1210
+ID = 1210
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1250, Plasma Beam]
+type = Helper
+trigger1=animelem=10
+helpertype = normal 
+name = "PlasmaBeam"
+stateno = 1205
+ID = 1205
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1250, End]
+type=ChangeState
+trigger1=!animtime
+value=0
+ctrl=1
+;------------------------------------------------------------------
+;Air Plasma Beam
+[Statedef 1300]
+type=A
+movetype=A
+physics=N
+ctrl=0
+velset=0,0
+poweradd=Ifelse(var(14),18,72) * !var(20)
+sprpriority=1
+facep2=1
+
+[State 1300, PosAdd]
+type = PosAdd
+triggerall=numenemy && enemynear,Movetype=H
+trigger1=Enemynear,statetype=A&&(p2bodydist x=[-25,90])&&(p2bodydist y=[-105,-20]) 
+y = -40
+ignorehitpause =1
+
+[State 1300, VarSet]
+type=VarSet
+trigger1 =!AILevel && !time
+var(10)=ifelse(command="PlasmaBeam1",0,ifelse(command="PlasmaBeam2",1,2))
+ignorehitpause=1
+[State 1300, VarSet]
+type=VarSet
+trigger1 =AILevel && !time
+var(10)=ifelse(enemynear,Movetype=H&&enemynear,Statetype!=L,0,ifelse(random<300,1,2))
+ignorehitpause=1
+
+[State 1300, anim]
+type=ChangeAnim
+Trigger1=!time
+value=Ifelse(var(20),1303,1300+var(10))
+ignorehitpause=1
+
+[State 1300, Voice]
+type=PlaySnd
+trigger1=animelem=10&&var(40)
+value=0,Ifelse(random<400,10,12)
+channel=0
+[State 1300, Voice]
+type=PlaySnd
+trigger1=animelem=10&&!var(40)
+value=1200,0
+channel=0
+[State 1300, Move Snd]
+type=PlaySnd
+trigger1=animelem=8
+value=1,2
+channel=1
+[State 1300, Plasma Beam FX]
+type=PlaySnd
+trigger1=animelem=2
+value=1205,0
+channel=2
+
+[State 1300, Hand FX]
+type = Helper
+trigger1=!time
+helpertype = normal 
+name = "HandFX"
+stateno = 1310
+ID = 1310
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1300, Plasma Beam]
+type = Helper
+trigger1=animelem=12
+helpertype = normal 
+name = "PlasmaBeam"
+stateno = 1305
+ID = 1305
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1300, Gravity]
+type = Gravity
+trigger1 =!var(14)&&animelemtime(23)>=0
+[State 1300, ChangeState]
+type = ChangeState
+trigger1 = var(14)&&animelemtime(24)>=0
+value = 1701
+ignorehitpause = 1
+[State 1300, CtrlSet]
+type = CtrlSet
+trigger1 =animelemtime(23)=0 && (var(14)||var(20))
+value = 1
+[State 1300, End]
+type=ChangeState
+trigger1=pos y > -vel y
+value=1110
+;------------------------------------------------------------------
+;EX-Air Plasma Beam
+[Statedef 1350]
+type=A
+movetype=A
+physics=N
+anim=1350
+ctrl=0
+velset=0,0
+poweradd=-500
+sprpriority=1
+facep2=1
+
+[State 1350, PosAdd]
+type = PosAdd
+triggerall=numenemy && enemynear,Movetype=H
+trigger1=Enemynear,statetype=A&&(p2bodydist x=[-25,90])&&(p2bodydist y=[-105,-20]) 
+y = -40
+ignorehitpause =1
+
+[State 1350, EXVar]
+type=VarSet
+trigger1 =!time
+var(10)=3
+ignorehitpause=1
+[State 1350, MAX timer Drain]
+type=VarAdd
+trigger1=!time
+trigger1=var(20) > 0
+var(20)=-250
+[State 1350, Custom Combo Juggle Reset]
+type=VarSet
+trigger1=!time && var(20)
+var(15)=0
+ignoreHitPause=1
+[State 1350, EX Flash]
+type=VarSet
+trigger1=!time
+var(25)=30
+[State 1350, EX FX]
+type=Explod
+trigger1=!time
+anim=8210
+sprPriority=3
+posType=p1
+pos=-42, -125
+scale=0.5, 0.5
+pauseMovetime=-1
+superMovetime=-1
+ownPal=1
+[State 1350, EX-SND]
+type=PlaySnd
+trigger1 =!time
+value=0,1000
+channel=3
+
+[State 1350, Voice]
+type=PlaySnd
+trigger1=animelem=10&&var(40)
+value=0,Ifelse(random<400,10,12)
+channel=0
+[State 1350, Voice]
+type=PlaySnd
+trigger1=animelem=10&&!var(40)
+value=1200,0
+channel=0
+[State 1350, Move Snd]
+type=PlaySnd
+trigger1=animelem=8
+value=1,2
+channel=1
+[State 1350, Plasma Beam FX]
+type=PlaySnd
+trigger1=animelem=2
+value=1205,0
+channel=2
+
+[State 1350, Hand FX]
+type = Helper
+trigger1=!time
+helpertype = normal 
+name = "HandFX"
+stateno = 1310
+ID = 1310
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1350, Plasma Beam]
+type = Helper
+trigger1=animelem=12
+helpertype = normal 
+name = "PlasmaBeam"
+stateno = 1305
+ID = 1305
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1350, Gravity]
+type = Gravity
+trigger1 =!var(14)&&animelemtime(23)>=0
+[State 1350, ChangeState]
+type = ChangeState
+trigger1 = var(14)&&animelemtime(24)>=0
+value = 1701
+ignorehitpause = 1
+[State 1350, CtrlSet]
+type = CtrlSet
+trigger1 =animelemtime(23)=0 && (var(14)||var(20))
+value = 1
+[State 1350, End]
+type=ChangeState
+trigger1=pos y > -vel y
+value=1110
+;------------------------------------------------------------------
+;Molecular Shield
+[Statedef 1400]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+poweradd=72 * !var(20)
+sprpriority=1
+facep2=1
+
+[State 1400, VarSet]
+type=VarSet
+trigger1 =!AILevel && !time
+var(10)=ifelse(command="MolecularShield1",0,ifelse(command="MolecularShield2",1,2))
+ignorehitpause=1
+[State 1400, VarSet]
+type=VarSet
+trigger1 =AILevel && !time
+var(10)=ifelse(enemynear,Movetype=H||P2bodydist x<70,0,ifelse(random<250,1,2))
+ignorehitpause=1
+
+[State 1400, anim]
+type=ChangeAnim
+Trigger1=!time
+value=Ifelse(var(20),1401,1400)
+ignorehitpause=1
+[State 1400, shorten anim]
+type=ChangeAnim
+triggerall=anim=1400||anim=1401
+trigger1=anim=1400&&!var(10)&&animelemtime(1)=5
+trigger2=anim=1400&&var(10)=1&&animelemtime(1)=7
+trigger3=anim=1401&&!var(10)&&animelemtime(1)=3
+trigger4=anim=1401&&var(10)=1&&animelemtime(1)=4
+value=anim
+elem=2
+ignorehitpause=1
+persistent=0
+[State 1400, shorten anim]
+type=ChangeAnim
+triggerall=anim=1400||anim=1401
+trigger1=anim=1400&&!var(10)&&animelemtime(2)=3
+trigger2=anim=1400&&var(10)=1&&animelemtime(2)=5
+trigger3=anim=1401&&!var(10)&&animelemtime(2)=1
+trigger4=anim=1401&&var(10)=1&&animelemtime(2)=2
+value=anim
+elem=3
+ignorehitpause=1
+persistent=0
+
+[State 1400, anim]
+type=ChangeAnim
+triggerall=anim=1400||anim=1401
+trigger1=!var(20)&&time>60+10*var(10)
+trigger2=var(20)&&time>40+5*var(10)
+trigger3=!animtime&&!numhelper(1405)
+value=Ifelse(var(20),1403,1402)
+ignorehitpause=1
+
+[State 1400, Voice]
+type=PlaySnd
+trigger1=(anim=1400||anim=1401)&&animelem=4
+value=1400,var(40)
+channel=0
+persistent=0
+[State 1400, Move Snd]
+type=PlaySnd
+trigger1=(anim=1402||anim=1403)&&animelem=2
+value=1,2
+channel=1
+[State 1400, Shot FX]
+type=PlaySnd
+trigger1=(anim=1400||anim=1401)&&animelem=4
+value=1405,0
+channel=2
+persistent=0
+
+[State 1400, Explod]
+type = Explod
+trigger1=(anim=1400||anim=1401)&&animelem=3
+trigger2=(anim=1400||anim=1401)&&animelem=6
+anim = 1475
+ID = 1475
+pos = 0,15
+postype = p1
+facing = 1
+bindtime = 1
+removetime = -2
+scale = 1,1
+sprpriority =5
+ownpal = 1
+
+[State 1400, Doom Rocks]
+type = Helper
+triggerall = (Numhelper(1405)<3+var(10))
+triggerall = (anim=1400||anim=1401)
+trigger1 = animelemtime(3)=1
+trigger2 = animelemtime(5)=1
+trigger3 = animelemtime(7)=1
+trigger4 = animelemtime(9)=1
+trigger5 = animelemtime(11)=1
+trigger6 = animelemtime(13)=1
+helpertype = normal
+name = "DoomRocks1"
+stateno = 1405
+ID = 1405
+pos = ceil(50*const(size.xscale)),ceil(0*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1400, Doom Rocks2]
+type = Helper
+triggerall = (Numhelper(1405)<3+var(10))
+triggerall = (anim=1400||anim=1401)
+trigger1 = animelemtime(4)=1
+trigger2 = animelemtime(6)=1
+trigger3 = animelemtime(8)=1
+trigger4 = animelemtime(10)=1
+trigger5 = animelemtime(12)=1
+helpertype = normal
+name = "DoomRocks2"
+stateno = 1406
+ID = 1405
+pos = ceil(40*const(size.xscale)),ceil(0*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1400, End]
+type=ChangeState
+trigger1 = (anim=1402||anim=1403)&&!animtime
+value=0
+ctrl=1
+;------------------------------------------------------------------
+;EX-Molecular Shield
+[Statedef 1450]
+type=S
+movetype=A
+physics=S
+anim=1450
+ctrl=0
+velset=0,0
+poweradd=-500
+sprpriority=1
+facep2=1
+
+[State 1450, EXVar]
+type=VarSet
+trigger1 =!time
+var(10)=3
+ignorehitpause=1
+[State 1450, MAX timer Drain]
+type=VarAdd
+trigger1=!time
+trigger1=var(20) > 0
+var(20)=-250
+[State 1450, Custom Combo Juggle Reset]
+type=VarSet
+trigger1=!time && var(20)
+var(15)=0
+ignoreHitPause=1
+[State 1450, EX Flash]
+type=VarSet
+trigger1=!time
+var(25)=30
+[State 1450, EX FX]
+type=Explod
+trigger1=!time
+anim=8210
+sprPriority=3
+posType=p1
+pos=10, -90
+scale=0.5, 0.5
+pauseMovetime=-1
+superMovetime=-1
+ownPal=1
+[State 1450, EX-SND]
+type=PlaySnd
+trigger1 =!time
+value=0,1000
+channel=3
+
+[State 1450, anim]
+type=ChangeAnim
+triggerall=anim=1450
+trigger1=time>90
+value=1402
+ignorehitpause=1
+
+[State 1450, Voice]
+type=PlaySnd
+trigger1=anim=1450&&animelem=4
+value=1400,var(40)
+channel=0
+persistent=0
+[State 1450, Move Snd]
+type=PlaySnd
+trigger1=1402&&animelem=2
+value=1,2
+channel=1
+[State 1450, Shot FX]
+type=PlaySnd
+trigger1=anim=1450&&animelem=4
+value=1405,0
+channel=2
+persistent=0
+
+[State 1450, Explod]
+type = Explod
+trigger1=anim=1450&&animelem=3
+trigger2=anim=1450&&animelem=6
+anim = 1475
+ID = 1475
+pos = 0,15
+postype = p1
+facing = 1
+bindtime = 1
+removetime = -2
+scale = 1,1
+sprpriority =5
+ownpal = 1
+
+[State 1450, Doom Rocks]
+type = Helper
+triggerall = (Numhelper(1405)<7) 
+triggerall = anim=1450
+trigger1 = animelemtime(3)=1
+trigger2 = animelemtime(5)=1
+trigger3 = animelemtime(7)=1
+trigger4 = animelemtime(9)=1
+trigger5 = animelemtime(11)=1
+trigger6 = animelemtime(13)=1
+helpertype = normal
+name = "DoomRocks1"
+stateno = 1405
+ID = 1405
+pos = ceil(50*const(size.xscale)),ceil(0*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1450, Doom Rocks2]
+type = Helper
+triggerall = (Numhelper(1405)<7) 
+triggerall = anim=1450
+trigger1 = animelemtime(4)=1
+trigger2 = animelemtime(6)=1
+trigger3 = animelemtime(8)=1
+trigger4 = animelemtime(10)=1
+trigger5 = animelemtime(12)=1
+helpertype = normal
+name = "DoomRocks2"
+stateno = 1406
+ID = 1405
+pos = ceil(40*const(size.xscale)),ceil(0*const(size.yscale))
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1450, End]
+type=ChangeState
+trigger1 = anim=1402&&!animtime
+value=0
+ctrl=1
+;------------------------------------------------------------------
+;Doom Lazer
+[Statedef 1500]
+type=A
+movetype=A
+physics=N
+ctrl=0
+velset=vel x/20,vel y/20
+poweradd=Ifelse(var(14),18,72) * !var(20)
+sprpriority=1
+facep2=1
+
+[State 1500, PosAdd]
+type = PosAdd
+triggerall=numenemy && enemynear,Movetype=H
+trigger1=Enemynear,statetype=A&&(p2bodydist x=[-25,90])&&(p2bodydist y=[-145,-60]) 
+y = -40
+ignorehitpause =1
+
+[State 1500, VarSet]
+type=VarSet
+trigger1 =!AILevel && !time
+var(10)=ifelse(command="DoomLazer1",0,ifelse(command="DoomLazer2",1,2))
+ignorehitpause=1
+[State 1500, VarSet]
+type=VarSet
+trigger1 =AILevel && !time
+var(10)=ifelse(enemynear,Movetype=H&&enemynear,Statetype!=L,0,ifelse(random<300,1,2))
+ignorehitpause=1
+
+[State 1500, anim]
+type=ChangeAnim
+Trigger1=!time
+value=Ifelse(var(20),1503,1500+var(10))
+ignorehitpause=1
+
+[State 1500, Voice]
+type=PlaySnd
+trigger1=animelem=3
+value=0,3+9*var(40)
+channel=0
+[State 1500, Lazer FX]
+type=PlaySnd
+trigger1=animelem=6
+value=1505,0
+channel=2
+[State 1500, charge]
+type=PlaySnd
+trigger1=animelem=8
+value=1505,1
+channel=1
+
+[State 1500, Width]
+type = Width
+trigger1 =animelem=5 
+value=60,0
+ignorehitpause =1
+
+[State 1500, Lazer]
+type = Helper
+trigger1=animelem=6
+helpertype = normal 
+name = "Lazer"
+stateno = 1505
+ID = 1505
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1500, Gravity]
+type = Gravity
+trigger1 =!var(14)&&animelemtime(10)>=0
+[State 1500, ChangeState]
+type = ChangeState
+trigger1 = var(14)&&animelemtime(10)>=0
+value = 1701
+ignorehitpause = 1
+[State 1500, CtrlSet]
+type = CtrlSet
+trigger1 =animelemtime(11)=0 && (var(14)||var(20))
+value = 1
+[State 1500, End]
+type=ChangeState
+trigger1=pos y > -vel y
+value=1110
+;------------------------------------------------------------------
+;EX-Doom Lazer
+[Statedef 1550]
+type=A
+movetype=A
+physics=N
+anim=1550
+ctrl=0
+velset=vel x/20,vel y/20
+poweradd=-500
+sprpriority=1
+facep2=1
+
+[State 1500, PosAdd]
+type = PosAdd
+triggerall=numenemy && enemynear,Movetype=H
+trigger1=Enemynear,statetype=A&&(p2bodydist x=[-25,90])&&(p2bodydist y=[-145,-60]) 
+y = -40
+ignorehitpause =1
+
+[State 1550, EXVar]
+type=VarSet
+trigger1 =!time
+var(10)=3
+ignorehitpause=1
+[State 1550, MAX timer Drain]
+type=VarAdd
+trigger1=!time
+trigger1=var(20) > 0
+var(20)=-250
+[State 1550, Custom Combo Juggle Reset]
+type=VarSet
+trigger1=!time && var(20)
+var(15)=0
+ignoreHitPause=1
+[State 1550, EX Flash]
+type=VarSet
+trigger1=!time
+var(25)=30
+[State 1550, EX FX]
+type=Explod
+trigger1=!time
+anim=8210
+sprPriority=3
+posType=p1
+pos=5,-85
+scale=0.5, 0.5
+pauseMovetime=-1
+superMovetime=-1
+ownPal=1
+[State 1550, EX-SND]
+type=PlaySnd
+trigger1 =!time
+value=0,1000
+channel=3
+
+[State 1550, Voice]
+type=PlaySnd
+trigger1=animelem=3
+value=0,3+9*var(40)
+channel=0
+[State 1550, Lazer FX]
+type=PlaySnd
+trigger1=animelem=6
+value=1505,0
+channel=2
+[State 1550, charge]
+type=PlaySnd
+trigger1=animelem=8
+value=1505,1
+channel=1
+
+[State 1550, Width]
+type = Width
+trigger1 =animelem=5 
+value=60,0
+ignorehitpause =1
+
+[State 1550, Lazer]
+type = Helper
+trigger1=animelem=6
+helpertype = normal 
+name = "Lazer"
+stateno = 1505
+ID = 1505
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1550, Gravity]
+type = Gravity
+trigger1 =!var(14)&&animelemtime(10)>=0
+[State 1550, ChangeState]
+type = ChangeState
+trigger1 = var(14)&&animelemtime(10)>=0
+value = 1701
+ignorehitpause = 1
+[State 1550, CtrlSet]
+type = CtrlSet
+trigger1 =animelemtime(11)=0 && (var(14)||var(20))
+value = 1
+[State 1550, End]
+type=ChangeState
+trigger1=pos y > -vel y
+value=1110
+;------------------------------------------------------------------
+;Hidden Missiles
+[Statedef 1600]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+poweradd=72 * !var(20)
+sprpriority=1
+facep2=1
+
+[State 1600, VarSet]
+type=VarSet
+trigger1 =!AILevel && !time
+var(10)=ifelse(command="HiddenMissiles1",0,ifelse(command="HiddenMissiles2",1,2))
+ignorehitpause=1
+[State 1600, VarSet]
+type=VarSet
+trigger1 =AILevel && !time
+var(10)=ifelse(random<300,1,2)
+ignorehitpause=1
+
+[State 1600, Width]
+type = Width
+trigger1 = 1
+edge = 0,10
+ignorehitpause = 1
+
+[State 1600, VarSet]
+type=VarSet
+trigger1 =!time
+var(11)=0
+ignorehitpause=1
+[State 1600, VarSet]
+type=VarSet
+trigger1 =!time
+var(12)=Ifelse(backedgebodydist>180,2,Ifelse(backedgebodydist<100,0,1))
+ignorehitpause=1
+
+[State 1600, anim]
+type=ChangeAnim
+Trigger1=!time
+value=Ifelse(var(20),1601,1600)
+ignorehitpause=1
+
+[State 1600, shorten anim]
+type=ChangeAnim
+triggerall=anim=1600||anim=1601
+trigger1=anim=1600&&!var(10)&&animelemtime(1)=2
+trigger2=anim=1600&&var(10)=1&&animelemtime(1)=4
+trigger3=anim=1601&&!var(10)&&animelemtime(1)=2
+trigger4=anim=1601&&var(10)=1&&animelemtime(1)=3
+value=anim
+elem=2
+ignorehitpause=1
+persistent=0
+[State 1600, shorten anim]
+type=ChangeAnim
+triggerall=anim=1600||anim=1601
+trigger1=anim=1600&&!var(10)&&animelemtime(2)=2
+trigger2=anim=1600&&var(10)=1&&animelemtime(2)=3
+trigger3=anim=1601&&!var(10)&&animelemtime(2)=2
+trigger4=anim=1601&&var(10)=1&&animelemtime(2)=3
+value=anim
+elem=3
+ignorehitpause=1
+persistent=0
+
+[State 1600, anim]
+type=ChangeAnim
+triggerall=anim=1600||anim=1601
+trigger1=var(11)=2+(var(10)*2)
+value=Ifelse(var(20),1603,1602)
+ignorehitpause=1
+
+[State 1600, VarAdd]
+type = VarAdd
+triggerall=anim=1600||anim=1601
+trigger1 = animelem=10
+var(11)=1
+ignorehitpause =1
+
+[State 1600, Voice]
+type=PlaySnd
+trigger1=animelem=6
+value=Ifelse(var(40),190,1600),0+6*var(40)
+channel=0
+persistent=0
+
+[State 1600, Missile Launcher]
+type = Helper
+triggerall=anim=1600||anim=1601
+trigger1=animelem=5
+helpertype = normal 
+name = "Silo"
+stateno = 1610
+ID = 1610
+persistent = 0
+postype = p1
+pos=40,50
+ownpal = 1
+size.xscale = 1.0
+size.yscale = 1.0
+
+[State 1600, Hidden Missile Count]
+type=VarAdd
+triggerall=Numhelper(1610) && Numenemy
+trigger1=helper(1610),var(13)
+var(13)=var(13)!=helper(1610),var(13)
+ignorehitpause=1
+[State 1600, Hidden Missile Juggle Points]
+type=VarAdd
+triggerall=Numhelper(1610) && Numenemy
+trigger1=helper(1610),var(15)
+var(15)=var(15)!=helper(1610),var(15)
+ignorehitpause=1
+[State 1600, Hidden Missile ProjContact]
+type=VarSet
+triggerall=Numhelper(1605) 
+trigger1=helper(1605),var(18) 
+var(18)=1
+ignorehitpause=1
+
+[State 1600, End]
+type=ChangeState
+trigger1=(anim=1602||anim=1603)&&!animtime
+value=0
+ctrl=1
+;------------------------------------------------------------------
+;EX-Hidden Missiles
+[Statedef 1650]
+type=S
+movetype=A
+physics=S
+anim=1650
+ctrl=0
+velset=0,0
+poweradd=-500
+sprpriority=1
+facep2=1
+
+[State 1650, Width]
+type = Width
+trigger1 = 1
+edge = 0,10
+ignorehitpause = 1
+[State 1650, Reset]
+type=VarSet
+trigger1 =!time
+var(11)=0
+ignorehitpause=1
+[State 1650, Reset]
+type=VarSet
+trigger1 =!time
+var(32)=0
+ignorehitpause=1
+[State 1650, VarSet]
+type=VarSet
+trigger1 =!time
+var(12)=Ifelse(backedgebodydist>180,2,Ifelse(backedgebodydist<100,0,1))
+ignorehitpause=1
+
+[State 1650, EXVar]
+type=VarSet
+trigger1 =!time
+var(10)=3
+ignorehitpause=1
+[State 1650, MAX timer Drain]
+type=VarAdd
+trigger1=!time
+trigger1=var(20) > 0
+var(20)=-250
+[State 1650, Custom Combo Juggle Reset]
+type=VarSet
+trigger1=!time && var(20)
+var(15)=0
+ignoreHitPause=1
+[State 1650, EX Flash]
+type=VarSet
+trigger1=!time
+var(25)=30
+[State 1650, EX FX]
+type=Explod
+trigger1=!time
+anim=8210
+sprPriority=3
+posType=p1
+pos=5, -85
+scale=0.5, 0.5
+pauseMovetime=-1
+superMovetime=-1
+ownPal=1
+[State 1650, EX-SND]
+type=PlaySnd
+trigger1 =!time
+value=0,1000
+channel=3
+
+[State 1650, Reset]
+type=VarSet
+trigger1 =animelemtime(11)=2
+var(32)=0
+ignorehitpause=1
+[State 1650, VarAdd]
+type = VarAdd
+triggerall=anim=1650
+trigger1=!AILevel&&(command="a"||command="b"||command="c")
+trigger2=AILevel&&random < (750* (AIlevel ** 2 / 64.0))
+var(32)=1
+ignorehitpause =1
+
+[State 1650, speedup]
+type=ChangeAnim
+triggerall=anim=1650&&animelemtime(2)>=2&&animelemtime(3)<0
+trigger1=var(32)>=2
+value=1650
+elem=3
+ignorehitpause=1
+[State 1650, speedup]
+type=ChangeAnim
+triggerall=anim=1650&&animelemtime(3)>=2&&animelemtime(4)<0
+trigger1=var(32)>=3
+value=1650
+elem=4
+ignorehitpause=1
+[State 1650, speedup]
+type=ChangeAnim
+triggerall=anim=1650&&animelemtime(4)>=2&&animelemtime(5)<0
+trigger1=var(32)>=3
+value=1650
+elem=5
+ignorehitpause=1
+[State 1650, speedup]
+type=ChangeAnim
+triggerall=anim=1650&&animelemtime(5)>=2&&animelemtime(6)<0
+trigger1=var(32)>=4
+value=1650
+elem=6
+ignorehitpause=1
+[State 1650, speedup]
+type=ChangeAnim
+triggerall=anim=1650&&animelemtime(6)>=2&&animelemtime(7)<0
+trigger1=var(32)>=4
+value=1650
+elem=7
+ignorehitpause=1
+[State 1650, speedup]
+type=ChangeAnim
+triggerall=anim=1650&&animelemtime(7)>=2&&animelemtime(8)<0
+trigger1=var(32)>=4
+value=1650
+elem=8
+ignorehitpause=1
+[State 1650, speedup]
+type=ChangeAnim
+triggerall=anim=1650&&animelemtime(8)>=1&&animelemtime(9)<0
+trigger1=var(32)>=4
+value=1650
+elem=9
+ignorehitpause=1
+[State 1650, speedup]
+type=ChangeAnim
+triggerall=anim=1650&&animelemtime(9)>=1&&animelemtime(10)<0
+trigger1=var(32)>=4
+value=1650
+elem=10
+ignorehitpause=1
+[State 1650, speedup]
+type=ChangeAnim
+triggerall=anim=1650&&animelemtime(10)>=3&&animelemtime(11)<0
+trigger1=var(32)>=2
+value=1650
+elem=11
+ignorehitpause=1
+[State 1650, speedup]
+type=ChangeAnim
+triggerall=anim=1650&&animelemtime(11)>=3
+trigger1=var(32)>=1
+value=1650
+elem=8
+ignorehitpause=1
+
+[State 1650, VarAdd]
+type = VarAdd
+triggerall=anim=1650
+trigger1 = animelem=10
+var(11)=1
+ignorehitpause =1
+[State 1650, anim]
+type=ChangeAnim
+triggerall=anim=1650
+trigger1=var(11)=9
+value=1602
+ignorehitpause=1
+
+[State 1650, Voice]
+type=PlaySnd
+trigger1=animelem=6
+value=Ifelse(var(40),190,1600),0+6*var(40)
+channel=0
+persistent=0
+
+[State 1650, Missile Launcher]
+type = Helper
+triggerall=anim=1650
+trigger1=animelem=5
+helpertype = normal 
+name = "Silo"
+stateno = 1610
+ID = 1610
+persistent = 0
+postype = p1
+pos=40,50
+ownpal = 1
+size.xscale = 1.0
+size.yscale = 1.0
+
+[State 1650, Hidden Missile Count]
+type=VarAdd
+triggerall=Numhelper(1610) && Numenemy
+trigger1=helper(1610),var(13)
+var(13)=var(13)!=helper(1610),var(13)
+ignorehitpause=1
+[State 1650, Hidden Missile Juggle Points]
+type=VarAdd
+triggerall=Numhelper(1610) && Numenemy
+trigger1=helper(1610),var(15)
+var(15)=var(15)!=helper(1610),var(15)
+ignorehitpause=1
+[State 1650, Hidden Missile ProjContact]
+type=VarSet
+triggerall=Numhelper(1605) 
+trigger1=helper(1605),var(18) 
+var(18)=1
+ignorehitpause=1
+
+[State 1650, End]
+type=ChangeState
+trigger1= anim=1602 && !animtime
+value=0
+ctrl=1
+;------------------------------------------------------------------
+;Flight Start Up
+[Statedef 1700]
+type=A
+movetype=I
+physics=N
+anim=1700
+ctrl=0
+velset=0,-4
+poweradd=-500
+sprpriority=1
+facep2=1
+
+[State 1700, BodyFG]
+type = Helper
+trigger1=!time 
+helpertype = normal 
+name = "BodyFG"
+stateno = 1720
+ID = 1720
+persistent = 0
+postype = p1
+ownpal = 0
+size.xscale = (1.0 * const(size.xscale))
+size.yscale = (1.0 * const(size.yscale))
+[State 1700, Jet Flame]
+type = Helper
+trigger1=!time
+helpertype = normal 
+name = "JetFlame"
+stateno = 1721
+ID = 1721
+persistent = 0
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1700, VarSet]
+type=VarSet
+trigger1 =!time
+var(14)=300
+ignorehitpause=1
+[State 1700, VarAdd]
+type=VarAdd
+trigger1 =!time
+var(24)=5
+ignorehitpause=1
+
+[State 1700, MAX timer Drain]
+type=VarAdd
+trigger1=!time
+trigger1=var(20) > 0
+var(20)=-250
+[State 1700, Custom Combo Juggle Reset]
+type=VarSet
+trigger1=!time && var(20)
+var(15)=0
+ignoreHitPause=1
+[State 1700, EX Flash]
+type=VarSet
+trigger1=!time
+var(25)=30
+[State 1700, EX FX]
+type=Explod
+trigger1=!time
+anim=8210
+sprPriority=3
+posType=p1
+pos=5, -85
+scale=0.5, 0.5
+pauseMovetime=-1
+superMovetime=-1
+ownPal=1
+[State 1700, EX-SND]
+type=PlaySnd
+trigger1 =!time
+value=0,1000
+channel=3
+
+[State 1700, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 1700, VelAdd]
+type = VelAdd
+trigger1 = !var(14)
+y = const(movement.yaccel)
+
+[State 110, ChangeState]
+type = ChangeState
+trigger1 =!animtime && var(14)
+value = 1701
+ctrl = 1
+[State 110, End]
+type=ChangeState
+trigger1=pos y > -vel y
+value=52
+
+;-----------------------------------------------------------------
+;Flight 
+[Statedef 1701]
+type    = A
+movetype= I
+physics = N
+anim=1701
+ctrl = 1
+velset = 0,0
+sprpriority=1
+
+[State 1701, VarSet]
+type=VarSet
+trigger1 =!AILevel && var(14) 
+var(10)=ifelse(command="holdfwd",1,ifelse(command="holdback",2,ifelse(command="holddown",3,ifelse(command="holdup",4,0))))
+ignorehitpause=1
+[State 1701, VarSet]
+type=VarSet
+trigger1 =AILevel && numenemy && var(14) 
+var(10)=ifelse(enemynear,statetype=A&&enemynear,Movetype!=A,1,ifelse(enemynear,Movetype=A&&random<500,2,0))
+ignorehitpause=1
+
+[State 1701, anim]
+type=ChangeAnim
+Triggerall=anim!=1701 && var(14)
+trigger1=!var(10)
+trigger2=var(10)=3
+trigger3=var(10)=4
+value=1701
+ignorehitpause=1
+[State 1701, anim]
+type=ChangeAnim
+Triggerall=anim!=1702 && var(14)
+trigger1=var(10)=1
+value=1702
+ignorehitpause=1
+[State 1701, anim]
+type=ChangeAnim
+Triggerall=anim!=1703 && var(14)
+trigger1=var(10)=2
+value=1703
+ignorehitpause=1
+
+[State 1701, BodyFG]
+type = Helper
+triggerall=!numhelper(1711)
+triggerall=anim=1701
+trigger1=!var(10)
+trigger2=var(10)=3
+trigger3=var(10)=4
+helpertype = normal 
+name = "BodyFG"
+stateno = 1711
+ID = 1711
+postype = p1
+ownpal = 0
+size.xscale = (1.0 * const(size.xscale))
+size.yscale = (1.0 * const(size.yscale))
+[State 1701, BodyFG]
+type = Helper
+triggerall=!numhelper(1714)
+triggerall=anim=1703
+trigger1=var(10)=2
+helpertype = normal 
+name = "BodyFG"
+stateno = 1714
+ID = 1714
+postype = p1
+ownpal = 0
+size.xscale = (1.0 * const(size.xscale))
+size.yscale = (1.0 * const(size.yscale))
+
+[State 1701, Jet Flame]
+type = Helper
+triggerall=!numhelper(1712)
+triggerall=anim=1701
+trigger1=!var(10)
+trigger2=var(10)=3
+trigger3=var(10)=4
+helpertype = normal 
+name = "JetFlame"
+stateno = 1712
+ID = 1712
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1701, Jet Flame]
+type = Helper
+triggerall=!numhelper(1713)
+triggerall=anim=1702
+trigger1=var(10)=1
+helpertype = normal 
+name = "JetFlame"
+stateno = 1713
+ID = 1713
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1701, Jet Flame]
+type = Helper
+triggerall=!numhelper(1715)
+triggerall=anim=1703
+trigger1=var(10)=2
+helpertype = normal 
+name = "JetFlame"
+stateno = 1715
+ID = 1715
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+[State 1701, Jet Flame]
+type = Helper
+triggerall=!numhelper(1716)
+triggerall=anim=1703
+trigger1=var(10)=2
+helpertype = normal 
+name = "JetFlame"
+stateno = 1716
+ID = 1716
+postype = p1
+ownpal = 1
+size.xscale = (0.5 * const(size.xscale))
+size.yscale = (0.5 * const(size.yscale))
+
+[State 1701, Velset]
+type = VelSet
+trigger1 = anim=1701 && var(14)
+x = 0
+y = Ifelse(var(10)=4,-4,Ifelse(var(10)=3,4,0))
+[State 1701, Velset]
+type = VelSet
+trigger1 = anim=1702 && var(14)
+x = const(velocity.run.fwd.x)
+y = 0
+[State 1701, Velset]
+type = VelSet
+trigger1 = anim=1703 && var(14)
+x = const(velocity.run.back.x)
+y = 0
+
+[State 1701, VelAdd]
+type = VelAdd
+trigger1 = animelemtime(6) >= 0 && !var(14) 
+y = const(movement.yaccel)
+[State 1701, PosSet]
+type = PosSet
+trigger1 = var(14) && pos y>=-20
+y = -20
+ignorehitpause = 1
+[State 1701, PosSet]
+type = PosSet
+trigger1 = pos y<=-225
+y = -225
+ignorehitpause = 1
+
+[State 1701, Turn]
+type = Turn
+trigger1 = p2dist x < -const(size.air.back)
+
+[State 1701, ChangeState]
+type = ChangeState
+trigger1 =!animtime && !var(14) 
+value = 50
+ctrl = 1
+[State 1701, End]
+type=ChangeState
+trigger1=pos y > -vel y
+value=52

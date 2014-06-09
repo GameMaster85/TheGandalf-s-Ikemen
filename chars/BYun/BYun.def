@@ -1,0 +1,42 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name ="Yun"
+displayname ="Yun"
+versiondate = 
+mugenversion = 
+author ="Dick Buckus"
+pal.defaults =2,6
+
+[Files]
+sprite =Yun.sff
+anim =Yun.air
+sound =Yun.snd
+cmd =Brain\Yun.cmd
+cns =Brain\Yun.cns
+stcommon =common1.cns
+st =Brain\states.cns
+pal1=Palettes\yun1.act
+pal2=Palettes\yun2.act
+pal3=Palettes\yun3.act
+pal4=Palettes\yun4.act
+pal5=Palettes\yun5.act
+pal6=Palettes\yun6.act
+pal7=Palettes\yun7.act
+pal8=Palettes\yun8.act
+pal9=Palettes\yun9.act
+pal10=Palettes\yun10.act
+pal11=Palettes\yun11.act
+pal12=Palettes\yun12.act
+st1=Brain\attacks.cns
+st2=Brain\specials.cns
+st3=Brain\supers.cns
+st4=Brain\system.cns
+st5=Brain\helpers.cns
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

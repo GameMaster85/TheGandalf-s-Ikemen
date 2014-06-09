@@ -1,0 +1,24 @@
+[Info]
+name="Jin Kazama"
+displayname="Jin Kazama"
+versiondate=2011
+mugenversion=1.0
+author="SeanAltly"
+pal.defaults=1,2,3,4
+[Files]
+sprite=jin.sff
+sound=jin.snd
+anim=jin.air
+cmd=jin.cmd
+cns=jin.cns
+st=jin.cns
+stcommon=common1.cns
+pal1=jin.act
+pal2=jin2.act
+pal3=jin3.act
+pal4=jin4.act
+pal5=jin5.act
+pal6=jin6.act
+[Arcade]
+intro.storyboard=
+ending.storyboard=

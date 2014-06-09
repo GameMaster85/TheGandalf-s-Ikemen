@@ -1,0 +1,41 @@
+; _______________________________________
+;| Joe Higashi by Jmorphman				 |
+; ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+;====================<DEFINITION>====================
+[Info]
+name        = "Joe Higashi"
+displayName = "Joe Higashi"
+versionDate = 09,05,2010
+mugenVersion= 1.0
+author      = "Jmorphman"
+pal.defaults= 4,5,6,1,2,3,10,11,12,7,8,9
+localCoord  = 320,240
+
+[Files]
+cmd     = Command.cmd
+cns     = Constants.cns
+st      = States/System.st
+st1     = States/Normal.st
+st2     = States/Special.st
+st3     = States/Super.st
+st4     = States/Helpers.st
+stCommon= common1.cns
+sprite  = Sprite.sff
+anim    = Anim.air
+sound   = Sound.snd
+pal1	= Palettes/RBS.act
+pal2	= Palettes/FF3.act
+pal3	= Palettes/Kirishima_BruceIrvin.act
+pal4	= Palettes/Default.act
+pal5	= Palettes/Cyclysm_Red+Black.act
+pal6	= Palettes/MalaDingDong_Ryu.act
+pal7	= Palettes/PsychoKrusher_Red.act
+pal8	= Palettes/MC2+Hades_Adon.act
+pal9	= Palettes/Hades_KOFXII.act
+pal10	= Palettes/MalaDingDong_KOF.act
+pal11	= Palettes/Hoshi_Blue.act
+pal12	= Palettes/MC2_FanArt.act
+	
+;[Arcade]
+;intro.storyBoard = intro.def
+;ending.storyBoard = ending.def

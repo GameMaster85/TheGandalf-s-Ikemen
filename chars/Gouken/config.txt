@@ -1,0 +1,62 @@
+;-------------------------------------------------------------
+;INITIALIZE
+[Statedef 5900]
+type = S
+
+[State 5900, Varreset]
+type = varrangeset
+trigger1 = !roundsexisted
+value = 0
+[State 5900, Varreset]
+type = varrangeset
+trigger1 = !roundsexisted
+fvalue = 0
+
+;===========================================================================
+; Chain Combos
+[State 5900, Chain Combos]
+type = VarSet
+trigger1 = 1
+v = 55
+value = 1
+___________________________________________________________________________
+;Change the value number to 0 if you do not want chain comboing
+;Change the value number to 1 if you do want chain comboing
+;Default value is 1.
+
+
+;===========================================================================
+; Custom Voice
+[State 5900, Custom Voice]
+type = VarSet
+trigger1 = 1
+v = 40
+value =1
+___________________________________________________________________________
+;Change the value number to 1 if you do not want Custom Voice
+;Change the value number to 0 if you do want Custom Voice
+;Default value is 1.
+;===========================================================================
+
+
+[State 5900, VarSet]
+type = VarSet
+trigger1 = !time
+var(11)=Ifelse(palno>=7,1,0)
+ignorehitpause =1
+
+[State 5900, Turns Intro]
+type = ChangeState
+trigger1 = TeamMode = Turns
+trigger1 = !RoundsExisted && RoundNo >= 2
+value = 6900
+
+[State 5900, End]
+type = ChangeState
+trigger1 = roundno = 1
+value = 190
+
+[State 5900, End]
+type = ChangeState
+trigger1 = 1
+value = 0

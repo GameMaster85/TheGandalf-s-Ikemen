@@ -1,0 +1,2420 @@
+;@@@@@@@@@@@@@@@@@@@@@@@Maki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@Maki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+[Data]
+life = 1000
+power = 3000
+attack = 100
+defence = 100
+fall.defence_up = 50
+liedown.time = 60
+airjuggle = 25
+sparkno = 8700
+guard.sparkno = 8725
+KO.echo = 1
+volume = 255
+IntPersistIndex = 56
+FloatPersistIndex = 36
+
+[Size]
+xscale = 1
+yscale = 1
+ground.back = 15
+ground.front = 15
+air.back = 15
+air.front = 15
+height = 60
+attack.dist = 160
+proj.attack.dist = 90
+proj.doscale = 0
+head.pos = 0, -83
+mid.pos = -5, -60
+shadowoffset = 0
+draw.offset = 0,0
+
+[Velocity]
+walk.fwd  = 3.9375
+walk.back = -2.8125
+run.fwd  = 6.328125,0
+run.back = -6.5,-4.5
+jump.neu = 0,-12.65
+jump.back = -5.765625 ;-5.125 
+jump.fwd = 5.625 ;5.0
+runjump.back = -7.5,-10.233
+runjump.fwd = 7.5,-10.233
+airjump.neu = 0,0
+airjump.back = 0
+airjump.fwd = 0
+
+[Movement]
+airjump.num = 0
+airjump.height = 0
+yaccel = .61004167
+stand.friction = .85
+crouch.friction = .82
+stand.friction.threshold = 1.0
+crouch.friction.threshold = 1.0
+air.gethit.groundlevel = 25
+air.gethit.groundrecover.ground.threshold = -20
+air.gethit.groundrecover.groundlevel = 10
+air.gethit.airrecover.threshold = -1
+air.gethit.airrecover.yaccel = .35
+air.gethit.trip.groundlevel = 15
+down.bounce.offset = 0, 20
+down.bounce.yaccel = .4
+down.bounce.groundlevel = 12
+down.friction.threshold = .05
+
+[Quotes]
+Victory1="Yep! That's the end of it!"
+Victory2="Hey! Don't worry about it! You know... being weak and all!"
+Victory3="Huh? You want some more? Sigh, I'm tired of the same goons!"
+Victory4="Yep! Mr. Runner-Up! I'll fight you if we ever meet again!"
+Victory5="Don't regret losing at all... I wasn't really trying..."
+Victory6="That must have hurt!"
+Victory7="Don't worry... I only broke a couple of your bones."
+Victory8="Okay! I'll stop, but only if you beg for mercy!"
+Victory9="Are you up for another go? I have more energy to burn!"
+Victory10="I told you not to blink..."
+Victory11="You're no match for me!"
+Victory12="Do yourself a favor and just stay down this time!"
+Victory20="Whew! You really fight hard! You handled my moves well." ;Sakura
+Victory21="Hahahaha! I won! I beat Guy! I am the true successor to the Bushin style!" ;Guy
+Victory22="You weren't as strong as I expected, Guy!" ;Guy
+Victory23="Hehehe! So how did you like my secret move?" ;Guy
+Victory24="Whew! It's finally over..." ;Guy
+;-----------------------------------------------------------------------
+;Stand
+[StateDef 0]
+type=S
+physics=S
+velset=0,0
+sprpriority=0
+
+[State 0,atma_naash]
+type=removeexplod
+trigger1=ishelper
+[State 0,atma_naash]
+type=destroyself
+trigger1=ishelper
+
+[state 0,anim]
+type=changeanim
+trigger1=anim!=0&&anim!=5
+trigger2=anim=5&&animTime=0
+value=0
+
+[state 0,Siraa]
+type=changestate
+trigger1=!alive
+value=5050
+;---------------------------------------------------------------------------
+;Walking
+[StateDef 20]
+type=S
+physics=S
+sprpriority=0
+ctrl=1
+
+[state 20,Shiighrataa]
+type=velset
+trigger1=command="holdfwd"
+x=const(velocity.walk.fwd.x)
+
+[state 20,Shiighrataa]
+type=velset
+trigger1=command="holdback"
+x=const(velocity.walk.back.x)
+
+[state 20,Anim]
+type=changeanim
+trigger1=anim!=(20+(vel x<0))
+value=(20+(vel x<0))
+;--------------------------------------------------------------------------
+[Statedef 21]
+type=S
+physics=N
+sprpriority=0
+ctrl=1
+
+[state 21,Dekho]
+type=turn
+trigger1=p2dist x<0
+
+[state 21,Shiighrataa]
+type=velset
+trigger1=!time
+x=ifelse(random%5<=2||p2bodydist x<50,const(velocity.walk.back.x),const(velocity.walk.fwd.x))
+
+[state 21,Shiighrataa]
+type=velset
+trigger1=!time
+trigger1=p2bodydist x>160
+x=const(velocity.walk.fwd.x)
+
+[state 20,Anim]
+type=changeanim
+trigger1=anim!=(20+(vel x<0))
+value=(20+(vel x<0))
+
+[state 21,Chaalo_Na]
+type=changestate
+trigger1=time>20
+trigger1=p2bodydist x<=50&&anim=20
+trigger2=time>20
+trigger2=p2bodydist x>=150&&anim=21
+trigger3=inguarddist
+trigger4=roundstate!=2
+trigger5=vel x=0
+trigger6=backedgebodydist<=1&&time>15&&anim=21
+value=0
+ctrl=1
+;---------------------------------------------------------------------------
+;Starting Jump Frame
+[Statedef 40]
+type=S
+physics=S
+;anim=40
+ctrl=0
+velset=0,0
+facep2=1
+
+[state 40,ajay]
+type=hitby
+trigger1=1
+value=SCA,NA,SA,HA,NP,SP,HP
+
+[state 40,Direction]
+type=varset
+trigger1=!ailevel
+sysvar(1)=cond(!time,0,cond(command="holdfwd",1,cond(command="holdback",-1,sysvar(1))))
+[state 40,Direction]
+type=varset
+trigger1=ailevel
+sysvar(1)=ifelse((p2movetype!=A||backedgebodydist<=10&&random<100||prevstateno=100||random<50),1,ifelse(p2movetype=A,-1,0))
+
+[state 40,anim]
+type=changeanim
+trigger1=!time
+value=40
+
+[state 40,Running_Long_Jump]
+type=varset
+trigger1=1
+var(17)=cond(sysvar(1)>=0,(prevstateno=[100,101]),cond(sysvar(1)=-1,(prevstateno=[105,106]),var(17)))
+
+[state 40,Short_Jump]
+type=varset
+trigger1=!time
+var(18)=0
+[state 40,Short_Jump]
+type=varset
+trigger1=!ailevel
+trigger1=command!="holdup"
+var(18)=1
+
+[state 40,High_Jump]
+type=varset
+trigger1=!time
+var(19)=0
+[state 40,High_Jump]
+type=varset
+trigger1=!ailevel&&!time
+trigger1=command="HighJmp"
+var(19)=1
+[state 40,High_Jump]
+type=varset
+triggerall=ailevel&&!time
+trigger1=(p2bodydist x>230)&&p2movetype!=A&&random<=350
+var(19)=1
+
+[state 40,Avaaz]
+type=playsnd
+trigger1=!animtime
+value=S40,ifelse(var(17)||var(19),1,0)
+volume=255
+
+[state 40,JumpSmoke]
+type=helper
+trigger1=!animtime
+trigger1=fvar(9):=ifelse(!sysvar(1),1,ifelse(sysvar(1)=1,-12,12))
+name="JumpSmoke"
+helpertype=normal
+stateno=8500
+id=8500
+postype=P1
+ownpal=1
+keyctrl=0
+supermovetime=99999
+pausemovetime=99999
+
+[state 40,Shiighrataa_Normal_Jump]
+type=velset
+trigger1=!animtime
+x=ifelse(!sysvar(1),0,ifelse(sysvar(1)=1,const(velocity.jump.fwd.x),const(velocity.jump.back.x)))
+y=const(velocity.jump.y)
+
+[state 40,Shiighrataa_Running_Long_Jump]
+type=velset
+trigger1=!animtime
+trigger1=var(17)
+x=ifelse(!sysvar(1),0,ifelse(sysvar(1)=1,const(velocity.jump.fwd.x)*1.5,const(velocity.jump.back.x)*1.5))
+y=const(velocity.jump.y)*1.05
+
+[state 40,Shiighrataa_Short_Jump]
+type=velset
+trigger1=!animtime
+trigger1=var(18)
+x=ifelse(!sysvar(1),0,ifelse(sysvar(1)=1,const(velocity.jump.fwd.x),const(velocity.jump.back.x)))
+y=const(velocity.jump.y)*.75
+
+[state 40,Shiighrataa_High_Jump]
+type=velset
+trigger1=!animtime
+trigger1=var(19)
+x=ifelse(!sysvar(1),0,ifelse(sysvar(1)=1,const(velocity.jump.fwd.x)*1.5,const(velocity.jump.back.x)*1.5))
+y=ifelse(!sysvar(1),const(velocity.jump.y)*1.15,const(velocity.jump.y)*1.0)
+
+[state 40,Shiighrataa_Running_Long_Jump_Low]
+type=velset
+trigger1=!animtime
+trigger1=var(17)&&var(18)
+x=ifelse(!sysvar(1),0,ifelse(sysvar(1)=1,const(velocity.runjump.fwd.x)+1.5,const(velocity.runjump.back.x)-1.5))
+y=const(velocity.jump.y)*.75
+
+[state 40,Shiighrataa_Running_Long_Jump_High]
+type=velset
+trigger1=!animtime
+trigger1=var(17)&&var(19)
+x=ifelse(!sysvar(1),0,ifelse(sysvar(1)=1,const(velocity.jump.fwd.x)*1.5,const(velocity.jump.back.x)*1.5))
+y=const(velocity.jump.y)*1.15
+
+[state 50,Siraa]
+type=ChangeState
+trigger1=!animtime
+value=50
+ctrl=1
+;---------------------------------------------------------------------------
+[Statedef 50]
+type=A
+physics=N
+
+[state 50,anim]
+type=changeanim
+trigger1=!time
+value=ifelse(!sysvar(1)||prevstateno=140,41,ifelse(sysvar(1)=1,42,43))
+elem=1+(6*(prevstateno=140))
+
+[State 50,chaayaa]
+type=afterimage
+trigger1=var(17)||var(19)
+trigger1=!time
+time=30
+timegap=1
+framegap=4
+length=9
+palbright=0,0,0
+palcontrast=128,128,128
+palpostbright=0,0,0
+paladd=0,0,0
+palmul=.9,.9,.9
+trans=add1
+
+[state 50,shiighrataa(CvS2)]
+type=velmul
+trigger1=sysvar(1)=1||sysvar(1)=-1
+trigger1=cond(sysvar(1)=1,vel x>(4.54833984375+((4.54833984375/2)*(var(17)||var(19)))),vel x<(-4.68896484375+((-4.68896484375/2)*(var(17)||var(19)))))
+x=0.996065
+[state 50,shiighrataa(CvS2)]
+type=velset
+trigger1=sysvar(1)=1||sysvar(1)=-1
+trigger1=cond(sysvar(1)=1,vel x<(4.54833984375+((4.54833984375/2)*(var(17)||var(19)))),vel x>(-4.68896484375+((-4.68896484375/2)*(var(17)||var(19)))))
+x=cond(sysvar(1)=1,(4.54833984375+((4.54833984375/2)*(var(17)||var(19)))),(-4.68896484375+((-4.68896484375/2)*(var(17)||var(19)))))
+[state 50,shiighrataa]
+type=veladd
+trigger1=1
+y=cond(prevstateno=1710,0.5,const(movement.yaccel))
+
+[state 50,Tata_Yaa_Tiir_Par_Utaranaa]
+type=changestate
+trigger1=pos y>=0&&vel y>0
+value=52
+;---------------------------------------------------------------------------
+[Statedef 52]
+type=S
+physics=S
+ctrl=0
+velset=0,0
+
+[state 1300,anim]
+type=changeanim
+trigger1=!time
+value=47
+
+[state 52,LandSmoke]
+type=helper
+trigger1=!animelemtime(1)
+name="LandSmoke"
+helpertype=normal
+stateno=8505
+id=8505
+postype=P1
+ownpal=1
+keyctrl=0
+supermovetime=99999
+pausemovetime=99999
+
+[state 52,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 52,ctrl]
+type=ctrlset
+trigger1=prevstateno!=[600,699]
+trigger1=!time
+trigger2=prevstateno=[600,699]
+trigger2=time>3
+value=1
+
+[state 52,turn]
+type=changeanim
+trigger1=ctrl&&p2dist x<0
+trigger1=anim!=5
+value=5
+[state 52,turn]
+type=turn
+trigger1=anim=5
+trigger1=!animelemtime(1)
+
+[state 52,roop]
+type=assertspecial
+trigger1=anim!=5
+trigger1=cond((anim=[47,49]),time<=3,!ctrl)
+flag=nowalk
+
+[state 52,avaaz]
+type=playsnd
+trigger1=!time
+value=s52,0
+volume=255
+
+[state 52,siraa]
+type=changeState
+trigger1=!animtime
+value=0
+ctrl=1
+;---------------------------------------------------------------------------
+[Statedef 100]
+type=S
+physics=N
+ctrl=0
+velset=0,0
+
+[state 100,Width]
+type=width
+trigger1=1
+player=1,1
+
+[state 100,roop]
+type=assertspecial
+trigger1=1
+flag=nostandguard
+flag2=nocrouchguard
+flag3=noairguard
+[state 100,roop]
+type=assertspecial
+trigger1=1
+flag=nowalk
+flag2=noautoturn
+
+[state 100,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 100,anim]
+type=changeanim
+trigger1=!time
+value=stateno
+
+[state 100,Shiighrataa]
+type=velset
+trigger1=animelemtime(2)>=0
+x=const(velocity.run.fwd.x)
+
+[State 100,chingariya]
+type=explod
+trigger1=time=5||time=8||time=11
+anim=8510
+pos=-28,0
+postype=P1
+scale=.3,.3
+velocity=-2,-2.5
+sprpriority=5
+ownpal=1
+supermovetime=999
+
+[state 100,Avaaz]
+type=playsnd
+trigger1=animelemtime(2)>0&&!(time%15)
+value=s100,0
+volume=255
+
+[state 100,Badalaanaa]
+type=changestate
+trigger1=command="holdup"
+trigger1=command="holdfwd"
+value=40
+[state 100,Badalaanaa]
+type=changestate
+triggerall=!ailevel
+triggerall=animelemtime(2)>0
+trigger1=command!="holdfwd"
+value=101
+ctrl=0
+[state 100,Badalaanaa]
+type=changestate
+triggerall=ailevel
+triggerall=animelemtime(2)>0
+trigger1=(p2bodydist x<=45)&&random<=700
+trigger2=p2movetype=A&&(p2bodydist x<=70)&&random<=500
+trigger3=inguarddist&&random<350
+trigger4=roundstate!=2
+value=101
+ctrl=0
+;-------------------------------------------------------------------------
+[Statedef 101]
+type=S
+physics=N
+ctrl=0
+
+[state 101,Width]
+type=width
+trigger1=1
+player=1,1
+
+[state 101,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 101,anim]
+type=changeanim
+trigger1=!time
+value=stateno
+
+[State 101,chingariya]
+type=explod
+trigger1=time=0|time=3||time=6
+anim=8510
+pos=15,0
+postype=P1
+scale=.3,.3
+velocity=2,-0.5
+sprpriority=5
+ownpal=1
+supermovetime=999
+
+[state 101,Shiighrataa]
+type=velmul
+trigger1=time
+x=.82
+y=0
+
+[state 101,Avaaz]
+type=playsnd
+trigger1=!animelemtime(1)
+value=s100,1
+
+[state 101,ctrlset]
+type=ctrlset
+trigger1=time>=6
+value=1
+
+[state 101,Badalaanaa]
+type=changestate
+trigger1=command="holdup"
+value=40
+[state 101,Siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;-------------------------------------------------------------------
+[Statedef 105]
+type=S
+physics=S
+ctrl=0
+velset=0,0
+
+[state 105,roop]
+type=assertspecial
+trigger1=1
+flag=nostandguard
+flag2=nocrouchguard
+flag3=noairguard
+[state 105,roop]
+type=assertspecial
+trigger1=1
+flag=nowalk
+flag2=noautoturn
+
+[state 105,anim]
+type=changeanim
+trigger1=!time
+value=stateno
+
+[state 105,roop]
+type=statetypeset
+trigger1=!animelemtime(2)
+statetype=A
+physics=N
+
+[State 105,JumpSmoke]
+type=Helper
+trigger1=!animelemtime(2)
+trigger1=fvar(9):=1
+id=8500
+name="JumpSmoke"
+helpertype=normal
+stateno=8500
+id=8500
+postype=P1
+ownpal=1
+keyctrl=0
+supermovetime=99999
+pausemovetime=99999
+
+[state 100,Shiighrataa]
+type=velset
+trigger1=!animelemtime(2)
+x=const(velocity.run.back.x)
+y=const(velocity.run.back.y)
+[state 100,Shiighrataa]
+type=veladd
+trigger1=animelemtime(2)>0
+y=const(movement.yaccel)
+
+[state 105,dharna]
+type=posset
+trigger1=pos y>=0
+y=0
+
+[state 105,Avaaz]
+type=playsnd
+trigger1=!animelemtime(2)
+value=S100,2
+volume=0
+
+[state 105,Tata_Yaa_Tiir_Par_Utaranaa]
+type=changestate
+triggerall=animelemtime(2)>0
+trigger1=pos y>=0&&vel y>0
+value=106
+;---------------------------------------------------
+[statedef 106]
+type=S
+physics=N
+ctrl=0
+
+[state 106,Shiighrataa]
+type=velset
+trigger1=!time
+y=0
+
+[state 106,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 106,anim]
+type=changeanim
+trigger1=!time
+value=stateno
+
+[state 106,Shiighrataa]
+type=velmul
+trigger1=animelemno(0)=[1,2]
+x=.5
+
+[state 106,LandSmoke]
+type=helper
+trigger1=!animelemtime(1)
+name="LandSmoke"
+helpertype=normal
+stateno=8505
+id=8505
+postype=P1
+ownpal=1
+keyctrl=0
+supermovetime=99999
+pausemovetime=99999
+
+[State 106,Avaaz]
+type=playsnd
+trigger1=!animelemtime(1)
+value=S52,0
+
+[state 106,ctrlset]
+type=ctrlset
+trigger1=time>=6
+value=1
+
+[state 106,Badalaanaa]
+type=changestate
+trigger1=command="holdup"
+value=40
+[State 106,Siraa]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+;-------------------------------------------------------------------------
+; INTO GUARD
+[Statedef 120]
+type=U
+physics=U
+
+[state 120,shiighrataa]
+type=velset
+trigger1=!time&&statetype!=A
+x=0
+y=0
+
+[state 120,anim]
+type=changeanim
+trigger1=!time
+value=120+(statetype=C)+(statetype=A)*2
+
+[state 120,roop]
+type=statetypeset
+trigger1=!time&&statetype=S
+physics=S
+[state 120,roop]
+type=statetypeset
+trigger1=!time&&statetype=C
+physics=C
+[state 120,roop]
+type=statetypeset
+trigger1=!time&&statetype=A
+physics=A
+
+[state 120,High_to_Low]
+type=statetypeset
+trigger1=!ailevel&&statetype=S&&command="holddown"
+trigger2=ailevel&&statetype=S&&(enemynear,movetype=A)&&(enemynear,statetype=C)
+statetype=C
+physics=C
+[state 120,Low_to_High]
+type=statetypeset
+trigger1=!ailevel&&statetype=C&&command!="holddown"
+trigger2=ailevel&&statetype=C&&(enemynear,movetype=A)&&(enemynear,statetype!=C)
+statetype=S
+physics=S
+
+[State 120,Control_So_Ai_Won't look_Stupid_Trying_To_Guard]
+type=ctrlset
+trigger1=ailevel&&numenemy
+value=(enemynear,time>=70||time>=70)
+
+[State 120, End]
+type=changestate
+trigger1=!animtime
+value=130+(statetype=C)+(statetype=A)*2
+[State 120, stop]
+type=changestate
+trigger1=!ailevel&&command!="holdback"
+trigger2=!inguarddist
+trigger3=ailevel&&numenemy
+trigger3=enemynear,hitdefattr=SCA,AT
+value=140
+;-------------------------------------------------------------------------
+; STAND GUARD (guarding)
+[Statedef 130]
+type=S
+physics=S
+
+[state 130,anim]
+type=changeanim
+trigger1=anim!=130
+value=130
+
+[State 130,Control_So_Ai_Won't look_Stupid_Trying_To_Guard]
+type=ctrlset
+trigger1=ailevel&&numenemy
+value=(enemynear,time>=70||time>=70)
+
+[state 130,Hi_to_Lo]
+type=changestate
+trigger1=!ailevel&&command="holddown"
+trigger2=ailevel&&(enemynear,movetype=A)&&(enemynear,statetype=C)&&random<(900*(ailevel**2/64.0))
+value=131
+
+[state 130,Stop_Guarding]
+type=changestate
+trigger1=!ailevel&&command!="holdback"
+trigger2=!inguarddist
+trigger3=ailevel&&numenemy
+trigger3=enemynear,hitdefattr=SCA,AT
+value=140
+;---------------------------------------------------------------------------
+; CROUCH GUARD (guarding)
+[Statedef 131]
+type=C
+physics=C
+
+[state 131,anim]
+type=changeanim
+trigger1=anim!=131
+value=131
+
+[State 131,Control_So_Ai_Won't look_Stupid_Trying_To_Guard]
+type=ctrlset
+trigger1=ailevel&&numenemy
+value=(enemynear,time>=70||time>=70)
+
+[state 131,Lo_to_Hi]
+type=changestate
+trigger1=!ailevel&&command!="holddown"
+trigger2=ailevel&&(enemynear,movetype=A)&&(enemynear,statetype!=C)&&random<(450*(ailevel**2/64.0))
+value=130
+
+[state 131,Stop_Guarding]
+type=changestate
+trigger1=!ailevel&&command!="holdback"
+trigger2=!inguarddist
+trigger3=ailevel&&numenemy
+trigger3=enemynear,hitdefattr=SCA,AT
+value=140
+;---------------------------------------------------------------------------
+; AIR GUARD (guarding)
+[Statedef 132]
+type=A
+physics=N
+
+[state 132,anim]
+type=changeanim
+trigger1=anim!=132
+value=132
+
+[state 132,shiighrataa]
+type=veladd
+trigger1=1
+y=const(movement.yaccel)
+
+[state 132,var]
+type=varset
+trigger1=1
+sysvar(0)=(pos y>=0)&&(vel y>0)
+
+[state 132,shiighrataa]
+type=velset
+trigger1=sysvar(0)
+y=0
+
+[state 132,Jagah_Baithanaa]
+type=posset
+trigger1=sysvar(0)
+y=0
+
+[State 132,Control_So_Ai_Won't look_Stupid_Trying_To_Guard]
+type=ctrlset
+trigger1=ailevel&&numenemy
+value=(enemynear,time>=70||time>=70)
+
+[state 132,siraa]
+type=changestate
+triggerall=sysvar(0)
+triggerall=inguarddist
+trigger1=!ailevel
+trigger1=command="holdback"
+trigger2=ailevel
+value=130
+
+[state 132,siraa]
+type=changestate
+trigger1=sysvar(0)
+value=52
+
+[state 132,Stop_Guarding]
+type=changestate
+trigger1=!ailevel
+trigger1=command!="holdback"
+trigger2=!inguarddist
+trigger3=ailevel&&numenemy
+trigger3=enemynear,hitdefattr=SCA,AT
+value=140
+;---------------------------------------------------------------------------
+; GUARD (end)
+[Statedef 140]
+type=U
+physics=U
+ctrl=1
+
+[state 140,anim]
+type=changeanim
+trigger1=time=0
+value=140+(statetype=C)+(statetype=A)*2
+
+[state 140,roop]
+type=statetypeset
+trigger1=time=0&&statetype=S
+physics=S
+[state 140,roop]
+type=statetypeset
+trigger1=time=0&&statetype=C
+physics=C
+[state 140,roop]
+type=statetypeset
+trigger1=time=0&&statetype=A
+physics=A
+
+[state 140,Hi_to_Lo]
+type=statetypeset
+trigger1=!ailevel&&statetype=S&&command="holddown"
+trigger2=ailevel&&statetype=S&&(enemynear,movetype=A)&&(enemynear,statetype=C)&&random<(900*(ailevel**2/64.0))
+statetype=C
+physics=C
+[State 140,Lo_to_Hi]
+type=statetypeset
+trigger1=!ailevel&&statetype=C&&command!="holddown"
+trigger2=ailevel&&statetype=C&&(enemynear,movetype=A)&&(enemynear,statetype!=C)&&random<(450*(ailevel**2/64.0))
+statetype=S
+physics=S
+
+[State 140,sira]
+type=changestate
+trigger1=!animtime
+value=0+(11*(statetype=C))+(50*(statetype=A))
+;---------------------------------------------------------------------------
+; SGUARDHIT (shaking)
+[Statedef 150]
+type=S
+movetype=H
+physics =N
+velset=0,0
+
+[state 150,anim]
+type=changeanim
+trigger1=1
+value=150
+
+[state 150,siraa]
+type=changestate
+trigger1=hitshakeover
+value=151+2*((!ailevel&&command="holddown")||(ailevel&&(enemynear,movetype=A)&&(enemynear,statetype=C)))
+
+[state 150,Hi_to_Lo]
+type=statetypeset
+trigger1=!ailevel&&statetype=S&&command="holddown"
+trigger2=ailevel&&statetype=S&&(enemynear,movetype=A)&&(enemynear,statetype=C)&&random<(900*(ailevel**2/64.0))
+statetype=C
+physics=C
+[state 150,Lo_to_Hi]
+type=statetypeset
+trigger1=!ailevel&&statetype=C&&command!="holddown"
+trigger2=ailevel&&statetype=C&&(enemynear,movetype=A)&&(enemynear,statetype!=C)&&random<(450*(ailevel**2/64.0))
+statetype=S
+physics=S
+
+[state 150,FFB]
+type=forcefeedback
+trigger1=time=0
+waveform=square
+time=3
+;---------------------------------------------------------------------------
+; SGUARDHIT2 (knocked back)
+[Statedef 151]
+type=S
+movetype=H
+physics=S
+anim=150
+
+[state 151,shiighrataa]
+type=hitvelset
+trigger1=time=0
+x=1
+[state 151,shiighrataa]
+type=velset
+trigger1=time=gethitvar(slidetime)
+trigger2=hitover
+x=0
+
+[state 151,ctrl]
+type=ctrlset
+trigger1=time=gethitvar(ctrltime)
+value=1
+
+[state 151,Hi_to_Lo]
+type=statetypeset
+trigger1=!ailevel&&statetype=S&&command="holddown"
+trigger2=ailevel&&statetype=S&&(enemynear,movetype=A)&&(enemynear,statetype=C)&&random<(900*(ailevel**2/64.0))
+statetype=C
+physics=C
+[state 151,Lo_to_Hi]
+type=statetypeset
+trigger1=!ailevel&&statetype=C&&command!="holddown"
+trigger2=ailevel&&statetype=C&&(enemynear,movetype=A)&&(enemynear,statetype!=C)&&random<(450*(ailevel**2/64.0))
+statetype=S
+physics=S
+
+[state 151,siraa]
+type=changestate
+trigger1=hitover
+value=130
+ctrl=1
+;---------------------------------------------------------------------------
+; CGUARDHIT (shaking)
+[Statedef 152]
+type=C
+movetype=H
+physics=N
+velset=0,0
+
+[state 152,anim]
+type=changeanim
+trigger1=1
+value=151
+
+[state 152,siraa]
+type=changestate
+trigger1=hitshakeover
+value=151+2*((!ailevel&&command="holddown")||(ailevel&&(enemynear,movetype=A)&&(enemynear,statetype=C)))
+
+[state 152,Hi_to_Lo]
+type=statetypeset
+trigger1=!ailevel&&statetype=S&&command="holddown"
+trigger2=ailevel&&statetype=S&&(enemynear,movetype=A)&&(enemynear,statetype=C)&&random<(900*(ailevel**2/64.0))
+statetype=C
+physics=C
+[state 152,Lo_to_Hi]
+type=statetypeset
+trigger1=!ailevel&&statetype=C&&command!="holddown"
+trigger2=ailevel&&statetype=C&&(enemynear,movetype=A)&&(enemynear,statetype!=C)&&random<(450*(ailevel**2/64.0))
+statetype=S
+physics=S
+
+[state 152,FFB]
+type=forcefeedback
+trigger1=time=0
+waveform=square
+time=4
+;---------------------------------------------------------------------------
+; CGUARDHIT2 (knocked back)
+[Statedef 153]
+type=C
+movetype=H
+physics=C
+anim=151
+
+[state 153,shiighrataa]
+type=hitvelset
+trigger1=time=0
+x=1
+[state 153,shiighrataa]
+type=velset
+trigger1=time=gethitvar(slidetime)
+trigger2=hitover
+x = 0
+
+[state 153,ctrl]
+type=ctrlset
+trigger1=time=gethitvar(ctrltime)
+value=1
+
+[state 153,Hi_to_Lo]
+type=statetypeset
+trigger1=!ailevel&&statetype=S&&command="holddown"
+trigger2=ailevel&&statetype=S&&(enemynear,movetype=A)&&(enemynear,statetype=C)&&random<(900*(ailevel**2/64.0))
+statetype=C
+physics=C
+[state 153,Lo_to_Hi]
+type=statetypeset
+trigger1=!ailevel&&statetype=C&&command!="holddown"
+trigger2=ailevel&&statetype=C&&(enemynear,movetype=A)&&(enemynear,statetype!=C)&&random<(450*(ailevel**2/64.0))
+statetype=S
+physics=S
+
+[State 153,siraa]
+type=changestate
+trigger1=hitover
+value=131
+ctrl=1
+;---------------------------------------------------------------------------
+; AGUARDHIT (shaking)
+[Statedef 154]
+type=A
+movetype=H
+physics=N
+velset=0,0
+
+[state 154,anim]
+type=changeanim
+trigger1=1
+value=152
+
+[State 154,siraa]
+type=changestate
+trigger1=hitshakeover
+value=155 ;AGUARDHIT2
+
+[State 154,FFB]
+type=forcefeedback
+trigger1=time=0
+waveform=square
+time=4
+;---------------------------------------------------------------------------
+; AGUARDHIT2 (knocked away)
+[Statedef 155]
+type=A
+movetype=H
+physics=N
+anim=152
+
+[state 155,shiighrataa]
+type=hitvelset
+trigger1=time=0
+x=1
+y=1
+[state 155,shiighrataa]
+type=veladd
+trigger1=1
+y=const(movement.yaccel)
+
+[state 155,ctrl]
+type=ctrlset
+trigger1=time=gethitvar(ctrltime)
+value=1
+
+[state 155,var]
+type=varset
+trigger1=1
+sysvar(0)=(pos y>=0)&&(vel y>0)
+
+[state 155,shiighrataa]
+type=velset
+trigger1=sysvar(0)
+y=0
+
+[state 155,Jagah_Baithanaa]
+type=posset
+trigger1=sysvar(0)
+y=0
+
+[state 155,siraa]
+type=changestate
+trigger1=sysvar(0)
+trigger1=command="holdback"
+trigger1=inguarddist
+value=130
+
+[state 155,siraa]
+type=changestate
+trigger1=sysvar(0)
+value=52
+;---------------------------------------------------------------------------
+; Air get-hit (knocked away)
+[Statedef 5030]
+type=A
+movetype=H
+physics=N
+ctrl=0
+
+[state 5030,anim]
+type=changeanim
+trigger1=anim!=[5000,5199]
+trigger1=selfanimexist(5030)
+value=5030
+
+[state 5030,shiighrataa]
+type=veladd
+trigger1=1
+y=gethitvar(yaccel)
+
+[state 5030,shiighrataa]
+type=hitvelset
+trigger1=!time
+x=1
+y=1
+
+[state 5030,siraa]
+type=changestate
+triggerall=!hitfall
+trigger1=hitover
+trigger2=vel y>0
+trigger2=pos y>=const(movement.air.gethit.groundlevel)
+value=5040
+
+[state 5030,siraa]
+type=changestate
+triggerall=hitfall
+trigger1=hitover
+trigger2=vel y>0
+trigger2=pos y>=const(movement.air.gethit.groundlevel)
+value=5050
+
+[state 5030,siraa]
+type=changestate
+trigger1=!animtime
+trigger2=anim=[5090,5095]
+trigger2=time=7
+value=5035
+;---------------------------------------------------------------------------
+;Air get-hit (transition)
+[Statedef 5035]
+type=A
+movetype=H
+physics=N
+
+[state 5035,anim]
+type=changeanim
+trigger1=!time
+trigger1=selfanimexist(5035)
+trigger1=anim!=[5051,5059]
+trigger1=anim!=[5090,5095]
+value=5035
+
+[state 5035,shiighrataa]
+type=veladd
+trigger1=1
+y=gethitvar(yaccel)
+
+[state 5035,siraa]
+type=changestate
+triggerall=!hitfall
+trigger1=hitover
+trigger2=!animtime
+trigger3=vel y>0
+trigger3=pos y>=(const(movement.air.gethit.groundlevel)-15)
+trigger4=!time
+trigger4=anim!=5035
+value=5040
+[state 5035,siraa]
+type=changestate
+triggerall=hitfall
+trigger1=hitover
+trigger2=!animtime
+trigger3=vel y>0
+trigger3=pos y>=(const(movement.air.gethit.groundlevel)-15)
+trigger4=!time
+trigger4=anim!=5035
+value=5050
+;---------------------------------------------------------------------------
+; Air get-hit (falling)
+[Statedef 5050]
+type=A
+movetype=H
+physics=N
+
+[state 5050,anim]
+type=changeanim
+trigger1=!animtime
+trigger1=anim=5035
+trigger2=!time
+trigger2=anim!=5035
+trigger2=(anim!=[5051,5059])&&(anim!=[5061,5069])
+trigger2=anim!=[5090,5095]
+value=5050
+
+[state 5050,anim]
+type=changeanim
+trigger1=anim = [5050,5059]
+trigger1=vel y>=ifelse(anim=5050,const720p(4),const720p(-8))
+trigger1=selfanimexist(anim+10)
+value=anim+10
+persistent=0
+
+[state 5050,shiighrataa]
+type=veladd
+trigger1=1
+y=gethitvar(yaccel)
+
+[state 5050,siraa]
+type=null;changestate
+triggerall=vel y>0
+triggerall=pos y>=const(movement.air.gethit.groundrecover.ground.threshold)
+triggerall=alive
+triggerall=canrecover
+trigger1=command="recovery"
+value=5200
+
+[state 5050,siraa]
+type=null;changestate
+triggerall=vel y>const(movement.air.gethit.airrecover.threshold)
+triggerall=alive
+triggerall=canrecover
+trigger1=command="recovery"
+value=5210
+
+[state 5050,siraa]
+type=changestate
+trigger1=vel y>0
+trigger1=pos y>=ifelse((anim =[5051,5059])||(anim = [5061,5069]),0,const(movement.air.gethit.groundlevel))
+value=5100
+;---------------------------------------------------------------------------
+; HIT_GETUP
+[Statedef 5120]
+type=L
+movetype=I
+physics=N
+
+[state 5120,anim]
+type=changeanim
+triggerall=!time
+trigger1=anim!=[5111,5119]
+trigger2=!selfanimexist(5120+(anim%10))
+value=5120
+
+[state 5120,anim]
+type=changeanim
+triggerall=!time
+trigger1=anim=[5111,5119]
+trigger1=selfanimexist(5120+(anim%10))
+value=5120+(anim%10)
+
+[State 5120,shiighrataa]
+type=velset
+trigger1=!time
+x=0
+y=0
+
+[state 5120,ajay]
+type=playerpush
+trigger1=1
+value=0
+
+[state 5120,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+
+[state 5120,maarse-ghirna]
+type=hitfallset
+trigger1=!animtime
+value=1
+
+[state 5120,ajay]
+type=nothitby
+trigger1=!animtime
+value=,NT,ST,HT
+time=12
+
+[state 5120,ajay]
+type=nothitby
+trigger1=!animtime
+value2=SCA
+time=3
+
+[state 5120,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;---------------------------------------------------------------------------
+; HIT_LIEDEAD
+[Statedef 5150]
+type=L
+movetype=H
+physics=N
+sprpriority=-3
+
+[state 5150,anim]
+type=changeanim
+triggerall=!time
+triggerall=selfanimexist(5140)
+trigger1=(anim!=[5111,5119])&&(anim!=[5171,5179])
+trigger2=!SelfAnimExist(5140+(anim%10))
+value=5140
+
+[state 5150,anim]
+type=changeanim
+trigger1=!time
+trigger1=(anim=[5111,5119])||(anim=[5171,5179])
+trigger1=selfanimexist(5140+(anim%10))
+value=5140+(anim%10)
+
+[state 5150,anim]
+type=changeanim
+;trigger1=!time
+trigger1=matchover=1
+trigger1=anim=[5140,5149]
+trigger1=selfanimexist(anim+10)
+value=anim+10
+persistent=0
+
+[state 5150,anim]
+type=changeanim
+trigger1=!time
+trigger1=anim!=[5140,5159]
+trigger1=anim!=[5110,5119]
+value=5110
+
+[state 5150,shiigrataa]
+type=velmul
+trigger1=1
+x=0.85
+
+[state 5150,shiigrataa]
+type=velset
+trigger1=abs(vel x)<const(movement.down.friction.threshold)
+x=0
+persistent=0
+
+[state 5150,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+
+[State 5150,fadeout]
+type=trans
+trigger1=ishelper
+trans=addalpha
+alpha=ceil(256-12.8*(.5*time)),ceil(128+6.4*(.5*time))
+[state 5150,Apne_Naash_Karne]
+type=destroyself
+trigger1=ishelper
+trigger1=time>25
+;---------------------------------------------------------------------------
+; HIT_FALLRECOVER (still falling)
+[Statedef 5200]
+type=A
+movetype=H
+physics=N
+
+[state 5200,dharna]
+type=posset
+trigger1=pos y >0
+y=0
+
+[state 5200,anim]
+type=changeanim
+trigger1=anim=5035
+trigger1=!animtime
+value=5050
+
+[state 5200,shiighrataa]
+type=veladd
+trigger1=1
+y=gethitvar(yaccel)
+
+[state 5200,siraa]
+type=selfstate
+trigger1=vel y>0
+trigger1=pos y>=-5
+value=5201
+;---------------------------------------------------------------------------
+; HIT_FALLRECOVER (on the ground)
+[Statedef 5201]
+type=S
+movetype=I
+physics=N
+anim=5200
+ctrl=0
+
+[state 5201,rang]
+type=palfx
+trigger1=!time
+time=3
+add=128,128,128
+
+[state 5201,face]
+type=turn
+trigger1=time=0
+trigger1=p2dist x<const720p(-20)
+
+[state 5201,jagah_baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 5201,shiiighrataa]
+type=velset
+trigger1=!time
+x=-6
+y=0
+[state 5201,shiiighrataa]
+type=velmul
+trigger1=1
+x=0.95
+[state 5201,shiiighrataa]
+type=velset
+trigger1=vel x>=-0.1
+trigger2=animelemtime(5)>=0
+x=0
+
+[state 5201,LandSmoke]
+type=helper
+trigger1=!animelemtime(1)
+name="LandSmoke"
+helpertype=normal
+stateno=8505
+id=8505
+postype=P1
+ownpal=1
+keyctrl=0
+supermovetime=99999
+pausemovetime=99999
+
+[state 5201,avaaz]
+type=PlaySnd
+trigger1=!time
+value=s52, 0
+[state 5201,avaaz]
+type=PlaySnd
+trigger1=!time
+value=s800,0
+volume=255
+
+[state 5201,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+
+[state 5201,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;---------------------------------------------------------------------------
+; HIT_AIRFALLRECOVER
+[Statedef 5210]
+type=A
+movetype=I
+physics=N
+anim=5210
+ctrl=0
+
+[state 5210,rang]
+type=palfx
+trigger1=!time
+time=3
+add=128,128,128
+
+[state 5210,face]
+type=turn
+trigger1=!time
+trigger1=p2dist x<const720p(-80)
+
+[state 5210,shiighrataa]
+type=veladd
+trigger1=1
+y=0.5
+
+[state 5210,shiighrataa]
+type=velset
+trigger1=!time
+x=(4*command="holdfwd")-(4*command="holdback")
+y=-6.0
+
+[state 5210,ajay]
+type=nothitby
+trigger1=!time
+value=SCA
+time=14
+
+[state 5210,ctrl]
+type=ctrlset
+trigger1=time=15
+value=1
+
+[State 5210,siraa]
+type=changestate
+trigger1=vel y>0
+trigger1=pos y>=0
+value=52
+ctrl=1
+;---------------------------------------------------------------------------
+; Initialize (at the start of the round)
+[Statedef 5900]
+type=S
+
+[State 5900,Int]
+type=varrangeset
+trigger1=roundsexisted=0
+value=0
+
+[State 5900,Flt]
+type=varrangeset
+trigger1=roundsexisted=0
+fvalue=0
+
+[state 5900,palette]
+type=remappal
+trigger1=1
+source=1,4
+dest=1,palno
+
+[state 5900,siraa]
+type=changestate
+trigger1=1
+value=0+(190*(roundno=1))
+;---------------------------------------------------------------------------
+[Statedef 5950]
+movetype=H
+physics=S
+ctrl=0
+velset=0,0
+
+[state 5950,anim]
+type=changeanim
+trigger1=!time
+value=5950
+
+[state 5950,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+
+[state 5950,dharna]
+type=posset
+trigger1=1
+y=0
+
+[state 5950,siraa]
+type=changestate
+trigger1=animelemno(0)=11
+value=5150
+;=========================================================================
+[StateDef -2]
+
+[State -2,System]
+type=DisplayToClipboard
+trigger1=(authorname="RajaaBoy")
+text="Juggle=%d/%d || Dmg_Mul=%f/%f || RajaaBoy"
+params=var(0),var(1),fvar(0),vel x
+ignorehitpause=1
+
+[State -2,Creators_Testing]
+type=null;DisplayToClipboard
+trigger1=1
+text="P2Pos y=%f Pos x=%f p2bodydist x=%f p2dist y=%f RajaaBoy"
+params=(enemynear,pos y+enemynear,const(size.mid.pos.y)),pos y,p2bodydist x,p2dist y
+ignorehitpause=1
+;=========================================================================
+;Vigor Mode -2
+;=========================================================================
+[state -2,Vigor:_Helper]
+type=helper
+trigger1=!numhelper(7100)
+name="Vigor-System"
+id=7100
+stateno=7100
+keyctrl=0
+ownpal=1
+supermovetime=0
+pausemovetime=0
+ignorehitpause=1
+
+[state -2,Vigor:_No-Guard]
+type=assertspecial
+trigger1=var(25)
+flag=noairguard
+ignorehitpause=1
+
+[state -2,Vigor:_End]
+type=varset
+trigger1=1
+var(30)=1
+[state -2,Vigor:_End]
+type=varset
+trigger1=stateno=3000
+trigger1=animelemtime(4)<0
+trigger2=stateno=3100
+trigger2=animelemtime(3)<0
+trigger3=stateno=3200
+trigger3=animelemtime(3)<0
+trigger4=stateno=3205
+trigger4=animelemtime(3)<0
+var(30)=0
+
+[state -2,Vigor:_Glow]
+type=palfx
+trigger1=var(25)
+trigger1=!(gametime%5)
+time=1
+mul=256,64,64
+add=128,64,64
+ignorehitpause=1
+
+[state -2,Vigor:_Palette]
+type=remappal
+trigger1=var(26)=1
+source=1,4
+dest=1,palno
+ignorehitpause=1
+;=========================================================================
+;Hit Sparks
+;=========================================================================
+[state -2,Hit_Sparks:_Detect]
+type=varset
+trigger1=movecontact=1&&var(20)<0
+var(20)=hitpausetime
+ignorehitpause=1
+
+[state -2,Hit_Sparks:_Activate]
+type=helper
+trigger1=var(20)=hitpausetime
+trigger1=var(21)>0||var(22)>0
+trigger1=movecontact=1
+helpertype=normal
+name="Hit_Spark"
+stateno=ifelse(movehit,var(21),var(22))
+id=8700
+postype=p1
+pos=ceil(ifelse(p2dist x<0,0,ifelse(p2dist x<var(23),p2dist x,var(23)))),ceil(var(24))
+ownpal=1
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+ignorehitpause=1
+
+[state -2,Hit_Sparks:_Detect]
+type=varset
+trigger1=1
+var(20)=-1
+
+[state -2,Hit_Sparks:_Reset]
+type=varrangeset
+trigger1=movetype=I
+trigger2=movetype=H&&time
+first=20
+last=24
+value=-1
+ignorehitpause=1
+;=========================================================================
+;Juggle
+;=========================================================================
+[state -2,Juggle:_Ignore_Mugen's_Juggle_System]
+type=assertspecial
+trigger1=1
+flag=nojugglecheck
+ignorehitpause=1
+
+[state -2,Juggle:_Detect]
+type=varadd
+trigger1=movehit=1
+trigger1=!(hitdefattr=SCA,AT)
+var(0)=1
+
+[state -2,Juggle:_Reset-1]
+type=varset
+triggerall=var(0)
+triggerall=numenemy=1
+trigger1=(enemynear,movetype!=H)||(enemynear,stateno=[5110,5150])
+trigger2=(enemynear,statetype!=A)&&(enemynear,statetype!=L)
+;trigger1=enemynear,statetype!=A&&enemynear,time>=1&&enemynear,stateno!=[5100,5109]
+;trigger2=enemynear,movetype!=H||enemynear,ctrl||enemynear,stateno=[120,155]
+var(0)=0
+ignorehitpause=1
+
+[state -2,Juggle:_Reset-2]
+type=varset
+triggerall=var(0)
+triggerall=numenemy>1
+trigger1=(enemynear(0),statetype!=A)&&(enemynear(0),time>=1)
+trigger2=(enemynear(0),movetype!=H)||(enemynear(0),stateno=[120,155])||(enemynear(0),ctrl)
+trigger3=(enemynear(1),statetype!=A)&&(enemynear(0),time>=1)
+trigger4=(enemynear(1),movetype!=H)||(enemynear(0),stateno=[120,155])||(enemynear(0),ctrl)
+var(0)=0
+ignorehitpause=1
+
+[state -2,Juggle:_Unlimited]
+type=varset
+trigger1=roundstate>2
+var(0)=0
+
+[state -2,Juggle:_Restrict]
+type=varset
+trigger1=numenemy
+trigger1=enemynear,stateno=5040&&!enemynear,ctrl
+var(1)=1
+ignorehitpause=1
+
+[state -2,Juggle:_Unrestrict-1]
+type=varset
+triggerall=var(1)
+triggerall=numenemy=1
+trigger1=enemynear,stateno!=5040&&enemynear,movetype!=H
+trigger2=enemynear,statetype=L||!enemynear,hitshakeover||enemynear,ctrl
+var(1)=0
+ignorehitpause=1
+
+[state -2,Juggle:_Unrestrict-2]
+type=varset
+triggerall=var(1)
+triggerall=numenemy>1
+trigger1=(enemynear(0),statetype!=A)&&(enemynear(0),time>=1)
+trigger2=(enemynear(0),movetype!=H)||(enemynear(0),stateno=[120,155])||(enemynear(0),ctrl)
+trigger3=(enemynear(1),statetype!=A)&&(enemynear(0),time>=1)
+trigger4=(enemynear(1),movetype!=H)||(enemynear(0),stateno=[120,155])||(enemynear(0),ctrl)
+var(1)=0
+ignorehitpause=1
+;=========================================================================
+;Dampaner
+;=========================================================================
+[state -2,Dampener:_Hit#]
+type=varadd
+trigger1=movehit=1
+trigger1=!(hitdefattr=SCA,AT)
+fvar(0)=1.0
+
+[State -2,Dampener:_Reset_Hit#]
+type=varset
+trigger1=fvar(0)
+trigger1=numenemy
+trigger1=!(enemynear,movetype=H)&&!(enemynear,anim=5300)
+fvar(0)=0.0
+ignorehitpause=1
+
+[State -2,Dampener:_Initialize]
+type=varset
+trigger1=stateno!=[3000,3999]
+fvar(1)=cond(fvar(0)<=1.0,1.0,0.75**fvar(0))+(0.10*var(25))
+ignorehitpause=1
+
+[State -2,Dampener:_Super-->Special]
+type=varset
+trigger1=var(8)
+fvar(1)=0.5
+ignorehitpause=1
+
+[State -2,Dampener:_Special]
+type=null;varset
+trigger1=0
+fvar(1)=cond(fvar(0)<=var(14),1,0.75**fvar(0))+(0.10*var(25))
+ignorehitpause=1
+
+[State -2,Dampener:_Super]
+type=varset
+trigger1=stateno=[3000,3999]
+fvar(1)=cond(fvar(0)<=var(15),1.0,0.65)+(0.10*var(25))
+ignorehitpause=1
+
+[State -2,Dampener:_Zero]
+type=varset
+trigger1=fvar(1)<0
+fvar(1)=0.0
+ignorehitpause=1
+
+[State -2,Dampener:_Activate]
+type=attackmulset
+trigger1=1
+value=fvar(1)
+ignorehitpause=1
+;=========================================================================
+;Function Variables
+;=========================================================================
+[State -2,Counter_Attack]
+type=varSet
+trigger1=numenemy
+var(16)=p2movetype=A
+ignorehitpause=1
+;=========================================================================
+;Upon Death
+;=========================================================================
+[State -2,Madad_Karne_Vale_ki_Marne_Ki_Avaaz]
+type=helper
+trigger1=!alive
+trigger1=!numhelper(9999)
+helpertype=normal
+name="Madad_Karne_Vale_ki_Marne_Ki_Avaaz"
+id=9999
+stateno=9999
+postype=p1
+supermovetime=999999
+pausemovetime=999999
+ignorehitpause=1
+;=========================================================================
+;Tweaks
+;=========================================================================
+[state -2,Target:_Facing]
+type=targetfacing
+trigger1=numtarget=1&&movecontact=1
+trigger1=!(target,hitshakeover)&&!(target,hitfall)&&!(target,time)
+value=ifelse(((target,pos x-pos x)*facing)>=0,-1,1)
+ignorehitpause=1
+
+[State -2,Super_Afterimage_Cancel]
+type=afterimagetime
+trigger1=movetype=H||stateno=0||stateno=20||stateno=40||(stateno=[10,11])||stateno=52
+trigger2=stateno=3005&&!animtime||(stateno=3101||stateno=3106||stateno=3110)&&!animtime||stateno=3226&&!animtime||stateno=3305&&!animtime||stateno=3419&&!animtime
+trigger3=stateno=[600,799]
+trigger4=stateno=50&&((prevstateno=[600,1999])||(prevstateno=[4000,4999]))
+trigger4=prevstateno!=1710
+trigger5=((stateno=[1500,1599])||(stateno=[1800,1899])||(stateno=[4200,4299])||(stateno=[4500,4599]))
+ignorehitpause=1
+[State -2,Dhalsim_Yoga_Strike_Compatibility]
+type=afterimagetime
+trigger1=numenemy
+trigger1=(enemy,authorname="RajaaBoy")&&(enemy,name="RajaaDhalsim")
+trigger1=enemy,stateno=[3300,3399]
+trigger1=gethitvar(isbound)&&stateno=[3320,3325]
+time=5
+ignorehitpause=1
+
+[State -2,No_Lying_Theives]
+type=DisplayToClipboard
+trigger1=!(authorname="RajaaBoy")
+text="This is Rajaaboy's character and I'm stealing/editing it and this will tell you the truth if I deny it"
+ignorehitpause=1
+;=========================================================================
+;Cheap K.O.
+;=========================================================================
+[state -2,Cheap:_K.O.]
+type=changestate
+trigger1=!alive
+trigger1=stateno=[5000,5010]
+trigger1=(prevstateno=[120,121])||(prevstateno=[130,131])||(prevstateno=[140,141])||(prevstateno=[150,153])
+value=5950
+ignorehitpause=1
+
+[state -2,Cheap:_On_Knees]
+type=null;playsnd
+triggerall=anim=5950
+trigger1=!animelemtime(10)
+value=s52,0
+volume=255
+
+[state -2,Cheap:_On_Knees]
+type=playsnd
+triggerall=anim=5950
+trigger1=!animelemtime(6)
+value=s5100,0
+volume=255
+
+[state -2,Cheap:_Hit]
+type=playsnd
+triggerall=anim=5950&&roundstate=2
+triggerall=random%2=0
+trigger1=animelemtime(1)=2
+value=s5000,2
+channel=0
+volume=255
+;=========================================================================
+;Maki-Unique
+;=========================================================================
+[state -2,width]
+type=width
+trigger1=stateno=3100
+edge=15,0
+[state -2,width]
+type=width
+trigger1=stateno=1660
+edge=12,0
+[state -2,width]
+type=width
+trigger1=stateno=3000
+edge=20,0
+
+[state 1500,baandhnaa]
+type=targetdrop
+triggerall=numenemy>1
+triggerall=time<=1
+trigger1=prevstateno=1616&&(stateno!=[1615,1666])||prevstateno=4316&&(stateno!=[4315,4366])
+trigger2=prevstateno=1666&&(stateno!=[1615,1666])||prevstateno=4366&&(stateno!=[4315,4366])
+id=-1
+;=========================================================================
+;AI Configuration
+;=========================================================================
+[State -2,AI:_Parry_Stand]
+type=hitoverride
+triggerall=ailevel
+triggerall=statetype!=A&&ctrl
+trigger1=random<=((300+(100*var(25)))*(ailevel**2/64.0))
+trigger2=stateno=[6100,6101]
+trigger2=time>12&&random<700
+slot=0
+stateno=6100
+attr=SA,AA,AP
+time=1
+[State -2,AI:_Parry_Crouch]
+type=hitoverride
+triggerall=ailevel
+triggerall=statetype!=A&&ctrl
+trigger1=random<=((300+(100*var(25)))*(ailevel**2/64.0))
+trigger2=stateno=[6100,6101]
+trigger2=time>12&&random<700
+slot=1
+stateno=6101
+attr=C,AA,AP
+time=1
+[State -2,AI:_Parry_Air]
+type=hitoverride
+triggerall=ailevel
+triggerall=statetype=A&&ctrl
+trigger1=random<=((300+(100*var(25)))*(ailevel**2/64.0))
+trigger2=stateno=[6100,6101]
+trigger2=time>12&&random<700
+slot=2
+stateno=6102
+attr=SCA,AA,AP
+time=1
+;=============================================================================
+[StateDef -3]
+
+;=========================================================================
+;CornerPush
+;=========================================================================
+[state -3,CornerPush:_General]
+type=varset
+triggerall=fvar(2)
+trigger1=numtarget
+trigger1=target,hitover
+trigger2=fvar(5)<=0;target,gethitvar(hitshaketime)&&target,time<=0
+trigger3=abs(fvar(2))<=(1/ifelse(statetype=C,const(movement.crouch.friction),const(movement.stand.friction)))
+fvar(2)=0
+
+[state -3,CornerPush:_Batoranaa]
+type=varset
+trigger1=numtarget&&movecontact=1
+fvar(2)=target,gethitvar(xvel)
+ignorehitpause=1
+[state -3,CornerPush:_Batoranaa]
+type=varset
+trigger1=numtarget&&movecontact=1
+trigger1=target,time=1
+fvar(3)=hitpausetime
+ignorehitpause=1
+[state -3,CornerPush:_Batoranaa]
+type=varset
+trigger1=numtarget&&movecontact=1
+trigger1=target,time=1
+fvar(4)=target,gethitvar(hitshaketime)
+ignorehitpause=1
+
+[state -3,CornerPush:_Ginanaa]
+type=varset
+trigger1=numtarget&&movecontact=1
+trigger1=target,time=1
+fvar(5)=abs(fvar(4)+fvar(3))/4
+ignorehitpause=1
+[state -3,CornerPush:_Shesh_Nikaalanaa]
+type=varadd
+trigger1=fvar(5)
+fvar(5)=-.25
+[state -3,CornerPush:_Hadh]
+type=varset
+trigger1=fvar(5)<0
+fvar(5)=0
+
+[state -3,CornerPush:_Ghisaav]
+type=varset
+trigger1=numtarget
+trigger1=fvar(5)>=0
+fvar(2)=fvar(2)*ifelse(statetype=C,const(movement.crouch.friction),const(movement.stand.friction))
+
+[state -3,CornerPush:_Safe]
+type=varset
+trigger1=stateno=3000&&time=5
+trigger2=stateno=3100&&time=5
+trigger3=stateno=3200&&time=5
+trigger4=stateno=3205&&time=5
+trigger5=stateno=3300&&time=0
+trigger6=stateno=3400&&time=5
+fvar(2)=0
+
+[state -3,CornerPush:_Dhakelanaa]
+type=posadd
+triggerall=fvar(2)&&numtarget
+triggerall=!hitpausetime&&fvar(5)
+triggerall=!target,gethitvar(fall)
+trigger1=target,frontedgebodydist<=abs(target,vel x+target,const(size.ground.front))
+trigger1=(target,gethitvar(xvel)*target,facing)>0
+trigger2=target,backedgebodydist<=abs(target,vel x+target,const(size.ground.back))
+trigger2=(target,gethitvar(xvel)*target,facing)<0
+x=-abs(fvar(2))
+;=========================================================================
+;Canceling
+;=========================================================================
+[state -3,Canceling:_Reset]
+type=null
+trigger1=var(2):=0
+trigger2=var(3):=0
+trigger3=var(4):=0
+trigger4=var(5):=0
+trigger5=var(6):=0
+trigger6=var(10):=0
+trigger7=var(27):=0
+trigger8=var(28):=0
+ignorehitpause=1
+
+[state -3,Canceling:_Spam]
+type=null
+trigger1=time=[4,10]
+trigger1=movecontact
+trigger1=stateno=200
+trigger1=var(10):=1
+trigger2=time=[4,10]
+trigger2=movecontact
+trigger2=stateno=400
+trigger2=var(10):=1
+trigger3=time=[4,10]
+trigger3=movecontact
+trigger3=stateno=430
+trigger3=var(10):=1
+ignorehitpause=1
+
+[state -3,Canceling:_Normal(Punch)--->Special]
+type=null
+trigger1=movecontact=[1,8]
+trigger1=stateno=200||stateno=205
+trigger1=var(2):=1-(2*(stateno=205))
+trigger2=movecontact=[1,8]
+trigger2=stateno=210||stateno=215
+trigger2=var(2):=2-(4*(stateno=215))
+trigger3=movecontact=[1,8]
+trigger3=stateno=220||stateno=225
+trigger3=var(2):=3-(6*(stateno=225))
+trigger4=movecontact=[1,8]
+trigger4=stateno=400||stateno=405
+trigger4=var(2):=4-(8*(stateno=405))
+trigger5=movecontact=[1,8]
+trigger5=stateno=410||stateno=415
+trigger5=var(2):=5-(10*(stateno=415))
+trigger6=movecontact=[1,8]
+trigger6=stateno=420||stateno=425
+trigger6=var(2):=6-(12*(stateno=425))
+ignorehitpause=1
+
+[state -3,Canceling:_Normal(Kick)--->Special]
+type=null
+trigger1=movecontact=[1,8]
+trigger1=stateno=230||stateno=235
+trigger1=var(3):=1-(2*(stateno=235))
+trigger2=movecontact=[1,8]
+trigger2=stateno=240||stateno=245
+trigger2=var(3):=2-(4*(stateno=245))
+trigger3=movecontact=[1,8]
+trigger3=stateno=250||stateno=255||stateno=752
+trigger3=var(3):=3-(6*(stateno=255))
+trigger4=movecontact=[1,8]
+trigger4=stateno=430||stateno=435
+trigger4=var(3):=4-(8*(stateno=435))
+trigger5=movecontact=[1,8]
+trigger5=stateno=440||stateno=445
+trigger5=var(3):=5-(10*(stateno=445))
+trigger6=movecontact=[1,8]
+trigger6=stateno=450||stateno=455
+trigger6=var(3):=6-(12*(stateno=455))
+ignorehitpause=1
+
+[state -3,Canceling:_Normal(Punch)--->Super]
+type=null
+trigger1=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger1=stateno=200||stateno=205
+trigger1=var(4):=1-(2*(stateno=205))
+trigger2=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger2=stateno=210||stateno=215
+trigger2=var(4):=2-(4*(stateno=215))
+trigger3=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger3=stateno=220||stateno=225
+trigger3=var(4):=3-(6*(stateno=225))
+trigger4=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger4=stateno=400||stateno=405
+trigger4=var(4):=4-(8*(stateno=405))
+trigger5=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger5=stateno=410||stateno=415
+trigger5=var(4):=5-(10*(stateno=415))
+trigger6=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger6=stateno=420||stateno=425
+trigger6=var(4):=6-(12*(stateno=425))
+ignorehitpause=1
+
+[state -3,Canceling:_Normal(Kick)--->Super]
+type=null
+trigger1=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger1=stateno=230||stateno=235
+trigger1=var(5):=1-(2*(stateno=235))
+trigger2=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger2=stateno=240||stateno=245
+trigger2=var(5):=2-(4*(stateno=245))
+trigger3=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger3=stateno=250||stateno=255||stateno=752
+trigger3=var(5):=3-(6*(stateno=255))
+trigger4=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger4=stateno=430||stateno=435
+trigger4=var(5):=4-(8*(stateno=435))
+trigger5=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger5=stateno=440||stateno=445
+trigger5=var(5):=5-(10*(stateno=445))
+trigger6=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger6=stateno=450||stateno=455
+trigger6=var(5):=6-(12*(stateno=455))
+ignorehitpause=1
+
+[state -3,Canceling:_Extra]
+type=null
+trigger1=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger1=stateno=1300
+trigger1=var(6):=1
+trigger2=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger2=stateno=1400
+trigger2=var(6):=2
+trigger3=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger3=stateno=1610
+trigger3=var(6):=3
+trigger4=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger4=stateno=1660
+trigger4=var(6):=4
+trigger5=ifelse(ailevel,(ifelse(random<200,(movecontact=[1,8]),(movehit=[1,8]))),movecontact=[1,8])
+trigger5=stateno=600||stateno=610
+trigger5=var(6):=5
+ignorehitpause=1
+
+[state -3,Canceling:_Vigor-Mode:_Normal-Chaining:_Punches]
+type=null
+triggerall=var(25)
+triggerall=movecontact=[1,4]
+trigger1=stateno=200||stateno=205
+trigger1=var(27):=1-(2*(stateno=205))
+trigger2=stateno=210||stateno=215
+trigger2=var(27):=2-(4*(stateno=215))
+trigger3=stateno=220||stateno=225
+trigger3=var(27):=3-(6*(stateno=225))
+trigger4=stateno=400||stateno=405
+trigger4=var(27):=4-(8*(stateno=405))
+trigger5=stateno=410||stateno=415
+trigger5=var(27):=5-(10*(stateno=415))
+trigger6=stateno=420||stateno=425
+trigger6=var(27):=6-(12*(stateno=425))
+trigger7=stateno=600||stateno=605
+trigger7=var(27):=7-(14*(stateno=605))
+trigger8=stateno=610||stateno=615
+trigger8=var(27):=8-(16*(stateno=615))
+trigger9=stateno=620||stateno=625
+trigger9=var(27):=9-(18*(stateno=625))
+ignorehitpause=1
+
+[state -3,Canceling:_Vigor-Mode:_Normal-Chaining:_Kicks]
+type=null
+triggerall=var(25)
+triggerall=movecontact=[1,4]
+trigger1=stateno=230||stateno=235
+trigger1=var(28):=1-(2*(stateno=235))
+trigger2=stateno=240||stateno=245
+trigger2=var(28):=2-(4*(stateno=245))
+trigger3=stateno=250||stateno=255
+trigger3=var(28):=3-(6*(stateno=255))
+trigger4=stateno=430||stateno=435
+trigger4=var(28):=4-(8*(stateno=435))
+trigger5=stateno=440||stateno=445
+trigger5=var(28):=5-(10*(stateno=445))
+trigger6=stateno=450||stateno=455
+trigger6=var(28):=6-(12*(stateno=455))
+trigger7=stateno=630||stateno=635
+trigger7=var(28):=7-(14*(stateno=635))
+trigger8=stateno=640||stateno=645
+trigger8=var(28):=8-(16*(stateno=645))
+trigger9=stateno=650||stateno=655
+trigger9=var(28):=9-(18*(stateno=655))
+ignorehitpause=1
+
+[state -3,Canceling:_Stop]
+type=null
+triggerall=time<=1
+trigger1=var(2):=0
+trigger2=var(3):=0
+trigger3=var(4):=0
+trigger4=var(5):=0
+trigger5=var(6):=0
+trigger6=var(27):=0
+trigger7=var(28):=0
+ignorehitpause=1
+
+[state -3,Canceling:_Unique]
+type=null
+trigger1=0
+ignorehitpause=1
+
+[state -3,Canceling:_Vigor:_Unique]
+type=null
+triggerall=var(25)
+trigger1=movecontact
+trigger1=stateno=[200,699]
+trigger1=prevstateno=[200,699]
+trigger1=var(2):=0||var(3):=0||var(4):=0||var(5):=0
+ignorehitpause=1
+;=========================================================================
+;Super_Canceling
+;=========================================================================
+[State -3,Super-Cancel:_Reset]
+type=varset
+trigger1=stateno!=[3000,3999]
+trigger2=time<=1
+trigger2=(stateno=[1300,2999])||(stateno=[4000,4999])||(stateno=[3000,3999])
+trigger3=stateno=[3000,3999]
+trigger3=var(11)!=2
+trigger4=!movecontact&&!var(9)
+var(7)=0
+ignorehitpause=1
+
+[State -3,Super-Cancel:_Activate]
+type=varset
+trigger1=stateno=[3000,3999]
+trigger1=var(11)=2
+trigger1=movecontact||var(9)
+var(7)=1
+ignorehitpause=1
+
+[State -3,Super-Cancel:_Special/Super]
+type=varset
+trigger1=stateno!=[3105,3106]
+var(8)=0
+ignorehitpause=1
+
+[State -3,Super-Cancel:_Special/Super]
+type=varset
+triggerall=prevstateno=[3000,3999]
+trigger1=stateno=[1300,2999]
+trigger2=stateno=3000||stateno=3100||stateno=3200||stateno=3300||stateno=3400
+var(8)=1
+ignorehitpause=1
+
+[State -3,Super-Cancel:_Special/Super]
+type=afterimagetime
+trigger1=stateno!=[3000,3999]
+trigger1=var(8)
+time=0
+ignorehitpause=1
+;=========================================================================
+;Custom_Canceling
+;=========================================================================
+[state -3,Custom_Cancellation]
+type=varset
+triggerall=var(9)
+trigger1=stateno!=3225
+trigger2=time<=1
+trigger2=stateno=3200||stateno=3205
+var(9)=0
+;=========================================================================
+;Super Configuration
+;=========================================================================
+[state -3,Super_Finish]
+type=helper
+triggerall=winko&&!numhelper(10000)
+trigger1=(stateno=[3000,3999])&&numtarget&&(movehit=1||var(9))
+trigger2=((stateno=[3224,3225])||stateno=3418)&&animelemtime(1)<2
+helpertype=normal
+name="Super-Finish"
+id=10000
+stateno=10000
+postype=p1
+facing=0
+ownpal=1
+ignorehitpause=1
+supermovetime=999999
+pausemovetime=999999
+;=========================================================================
+;Sounds & Voices
+;=========================================================================
+[state -3,Bolii_Light]
+type=playsnd
+trigger1=(stateno=[200,205])&&!animelemtime(2)&&random<=500
+trigger2=(stateno=[230,235])&&!animelemtime(3)&&random<=500
+trigger3=(stateno=[400,405])&&!animelemtime(2)&&random<=500
+trigger4=(stateno=[430,435])&&!animelemtime(2)&&random<=500
+trigger5=(stateno=[600,605])&&!animelemtime(2)&&random<=500
+trigger6=(stateno=[630,635])&&!animelemtime(2)&&random<=500
+value=S2,0+random%2
+volume=255
+channel=0
+
+[state -3,Avaaz_Light]
+type=playsnd
+trigger1=(stateno=[200,205])&&!animelemtime(2)
+trigger2=(stateno=[230,235])&&!animelemtime(3)
+trigger3=(stateno=[400,405])&&!animelemtime(2)
+trigger4=(stateno=[430,435])&&!animelemtime(2)
+trigger5=(stateno=[600,605])&&!animelemtime(2)
+trigger6=(stateno=[630,635])&&!animelemtime(2)
+value=S1,0
+volume=255
+
+[state -3,Bolii_Medium]
+type=playsnd
+trigger1=(stateno=[210,215])&&!animelemtime(3)&&random<=500
+trigger2=(stateno=[240,245])&&!animelemtime(3)&&random<=500
+trigger3=(stateno=[410,415])&&!animelemtime(3)&&random<=500
+trigger4=(stateno=[440,445])&&!animelemtime(3)&&random<=500
+trigger5=(stateno=[610,615])&&!animelemtime(2)&&random<=500
+trigger6=(stateno=[640,645])&&!animelemtime(3)&&random<=500
+value=S2,1+random%2
+volume=255
+channel=0
+
+[state -3,Avaaz_Medium]
+type=playsnd
+trigger1=(stateno=[210,215])&&!animelemtime(3)
+trigger2=(stateno=[240,245])&&!animelemtime(3)
+trigger3=(stateno=[410,415])&&!animelemtime(3)
+trigger4=(stateno=[440,445])&&!animelemtime(3)
+trigger5=(stateno=[610,615])&&!animelemtime(2)
+trigger6=(stateno=[640,645])&&!animelemtime(3)
+value=S1,1
+volume=255
+
+[state -3,Bolii_Heavy]
+type=playsnd
+trigger1=(stateno=[220,225])&&!animelemtime(3)&&random<=500
+trigger2=(stateno=[250,255])&&ifelse(stateno=250,!animelemtime(5),!animelemtime(3))&&random<=500
+trigger3=(stateno=[420,425])&&!animelemtime(3)&&random<=500
+trigger4=(stateno=[450,455])&&!animelemtime(4)&&random<=500
+trigger5=(stateno=[620,625])&&!animelemtime(4)&&random<=500
+trigger6=(stateno=[650,655])&&!animelemtime(4)&&random<=500
+value=S2,1+random%2
+volume=255
+channel=0
+
+[state -3,Avaaz_Heavy]
+type=playsnd
+trigger1=(stateno=[220,225])&&!animelemtime(3)
+trigger2=(stateno=[250,256])&&ifelse(stateno=250,!animelemtime(5),!animelemtime(3))
+trigger3=(stateno=[420,425])&&!animelemtime(3)
+trigger4=(stateno=[450,455])&&!animelemtime(4)
+trigger5=(stateno=[620,625])&&!animelemtime(4)
+trigger6=(stateno=[650,655])&&!animelemtime(4)
+value=S1,2+(stateno=220||stateno=420||stateno=620)
+volume=255
+;=========================================================================
+;Get Hit Sounds & Voices
+;=========================================================================
+[state -3,Get-Hit-Sound:_Fall]
+type=playsnd
+triggerall=time=1
+trigger1=stateno=5070
+trigger2=stateno=5090
+trigger3=stateno=5100
+trigger4=stateno=5160
+trigger5=stateno=5110&&prevstateno!=5081
+value=s5100,0
+channel=20
+
+[state -3,Get-Hit-Sound:_Recovery]
+type=playsnd
+triggerall=time=1
+trigger1=stateno=5201
+trigger2=stateno=5210
+value=s2,0+(random%3)
+channel=0
+
+[state -3,Get-Hit-Sound:_Hurt]
+type=playsnd
+trigger1=alive
+trigger1=random<500
+trigger1=time=1
+trigger1=stateno=5000||stateno=5010||stateno=5020||stateno=5070||stateno=5080||stateno=5100
+value=s5000,0+(random%3)
+channel=0;10
+
+[state -3,Get-Hit-Sound:_Stop]
+type=stopsnd
+trigger1=!alive
+trigger1=numhelper(9999)
+trigger1=helper(9999),time<=1
+channel=0

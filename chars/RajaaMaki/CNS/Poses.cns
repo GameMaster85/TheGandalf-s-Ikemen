@@ -1,0 +1,272 @@
+;@@@@@@@@@@@@@@@@@@@@@@@Maki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@Maki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+[statedef 170]
+type=S
+ctrl=0
+velset=0,0
+
+[state 170,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 170,anim]
+type=changeanim
+trigger1=!time
+value=170
+
+[state 170,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+;---------------------------------------------------------------------------
+[statedef 180]
+type=S
+
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=!time
+value=1+(random%12)
+
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Sakura"||enemy,name="Sakura Kasugano"||enemy,name="cvssakura"||enemy,name="RajaaSakura"
+value=20
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Guy"||enemy,name="cvsguy"||enemy,name="RajaaGuy"
+value=21+(random%4)
+
+[state 180,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+
+[state 180,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[State 180,Win]
+type=changeState
+trigger1=!time
+value=181+(random%2)
+;---------------------------------------------------------------------------
+[Statedef 181]
+type=S
+ctrl=0
+sprpriority=0
+velset=0,0
+
+[state 180,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 180,anim]
+type=changeanim
+trigger1=!time
+value=180
+
+[state 180,bolii]
+type=playsnd
+trigger1=!animelemtime(2)
+value=S180,0+random%2
+volume=255
+channel=0
+
+[state 180,na_kiye]
+type=assertspecial
+trigger1=time=[0,200]
+flag=roundnotover
+;---------------------------------------------------------------------------
+[Statedef 182]
+type=S
+ctrl=0
+sprpriority=0
+velset=0,0
+
+[state 180,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 180,anim]
+type=changeanim
+trigger1=!time
+value=181
+
+[state 191,shiighrataa]
+type=velset
+trigger1=!animelemtime(3)
+y=-6
+[state 191,shiighrataa]
+type=velset
+trigger1=!animelemtime(6)
+y=0
+[state 191,shiighrataa]
+type=veladd
+trigger1=animelemno(0)=[3,5]
+y=const(movement.yaccel)
+
+[state 180,PosSet]
+type=posset
+trigger1=!animelemtime(6)
+y=0
+
+[state 190,bolii]
+type=playsnd
+trigger1=!animelemtime(6)
+value=S180,2+random%2
+volume=255
+channel=0
+[state 190,avaaz]
+type=playsnd
+trigger1=!animelemtime(6)
+value=S52,0
+volume=255
+
+[state 180,na_kiye]
+type=assertspecial
+trigger1=time=[0,200]
+flag=roundnotover
+;---------------------------------------------------------------------------
+[Statedef 190]
+type=S
+ctrl=0
+velset=0,0
+
+[state 190,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+
+[State 190,Special_Intro]
+type=changestate
+triggerall=numenemy
+trigger1=(enemy,name="yamazaki")||(enemy,name="cvsyamazaki")
+value=192
+[state 190,Intro]
+type=changestate
+trigger1=!time
+value=191
+;---------------------------------------------------------------------------
+[Statedef 191]
+type=S
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 190,intro]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 190,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 190,anim]
+type=changeanim
+trigger1=!time
+value=190
+
+[state 190,murna]
+type=varset
+trigger1=!time
+var(12)=3
+[state 190,murna]
+type=varadd
+trigger1=!animelemtime(5)
+var(12)=-1
+[state 190,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(5)
+value=anim
+elem=1
+
+[state 190,bolii]
+type=playsnd
+trigger1=var(12)=3
+trigger1=!animelemtime(1)
+value=S190,0
+volume=255
+channel=0
+
+[state 190,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+;---------------------------------------------------------------------------
+[Statedef 192]
+type=S
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 190,intro]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 190,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 190,anim]
+type=changeanim
+trigger1=!time
+value=191
+
+[state 190,bolii]
+type=playsnd
+trigger1=!animelemtime(6)
+value=S190,1
+volume=255
+channel=0
+
+[state 190,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+;---------------------------------------------------------------------------
+[Statedef 199]
+type=S
+movetype=I
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 199,anim]
+type=changeanim
+trigger1=!time
+value=199
+
+[state 199,ctrlset]
+type=ctrlset
+trigger1=roundstate=2&&time>35
+value=1
+
+[state 199,bolii]
+type=playsnd
+trigger1=!animelemtime(1)
+value=s199,0
+volume=255
+channel=0
+
+[state 199,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1

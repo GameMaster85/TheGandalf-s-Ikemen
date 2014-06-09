@@ -1,0 +1,174 @@
+
+;---------------------- Integer variable list ----------------------
+;var(0):= Hyper Finish Text Selector
+;var(3):= Jump
+;var(4):= Normal Cancel
+;var(5):= Special Cancel
+;var(6):= Super Cancel
+;var(7):= Max Cancel
+;var(8):= Helper Contact Target
+;var(9):= Counter Flag
+;var(10):= Move Var
+;var(11):= Helper Var
+;var(13):= Hit count
+;var(15):= Juggle Points
+;var(16):= Juggle Flag
+;var(17):= Unguardable
+;var(18):= Helper Projcontact
+;var(19):= Throw Escape
+;var(20):= Custom Combo Time
+;var(21):= Super Cancel Flag
+;var(22):= Hyper Cancel Flag
+;var(23):= Super Finish Type
+;var(25):= Ticks to Apply EX FX
+;var(26):= Palette Select
+;var(27):= Palette Selector (on/off)
+;var(29):= Palette Selector Timer
+;var(30):= Hit Detection
+;var(33):= Hit SparkNo
+;var(34):= Guard SparkNo
+;var(35):= Spark X Axis
+;var(36):= Spark Y Axis
+;var(38):= Throws (0 = Allowed/1 = Not Allowed)
+;var(43):= Hit Sparks Selector
+;var(44):= Hit Sounds Selector
+;var(55):= Combo Style Selector
+
+;---------------------- Float variable list ----------------------
+;fvar(5):= Corner Push
+;fvar(8):= Down Juggle Points
+;fvar(9):= Ctrl Flag
+;fvar(10):= Damage Scale (Dampener)
+;fvar(11):= Damage Scale Backup
+;fvar(12):= Enemy In Hit State
+;fvar(13):= Attack Level
+;fvar(17):= Hitspark Helper Var
+;fvar(18):= Hitspark Helper Var
+;---------------------- Sound Channel list ----------------------
+;Channel=0 := Voice
+;Channel=1 := Dust Sound FX's
+;Channel=5 := Movement Sound FX's
+;Channel=22 := Wall Hit Sound FX
+
+;======================================================================================
+;Constants
+;======================================================================================
+[Data]
+life = 1000			
+attack = 100		
+defence = 100		
+fall.defence_up = 50	
+liedown.time = 50		
+airjuggle = 0		
+sparkno = s8010			
+guard.sparkno = s8000	
+KO.echo = 0			
+volumescale = 100			
+IntPersistIndex = 0	
+FloatPersistIndex = 0 
+
+[Size]
+xscale = 1
+yscale = 1
+ground.back = 20
+ground.front = 22
+air.back = 20
+air.front = 20
+height = 60
+attack.dist = 160
+proj.attack.dist = 90
+proj.doscale = 0
+head.pos = 5, -90
+mid.pos = -5, -55
+shadowoffset = 0
+draw.offset = 0, 0
+
+[Velocity]
+walk.fwd = 3.3376
+walk.back = -3.3376
+run.fwd = 6.4526, 0
+run.back = -5.725,-3.5
+jump.neu = 0, -9.9275
+jump.fwd = 3.31275
+jump.back = -3.1275
+runjump.fwd = 5.21745, -10.275
+runjump.back = -5.21745, -10.275
+airjump.neu = 0,-9.1     
+airjump.back = -2.55      
+airjump.fwd = 2.5         
+
+[Movement]
+airJump.num = 0
+airJump.height = 0
+yaccel = 0.48275
+stand.friction = 0.85
+crouch.friction = 0.82
+stand.friction.threshold = 1.0
+crouch.friction.threshold = 1.0
+air.gethit.groundLevel = 25
+air.gethit.groundRecover.ground.threshold = -20
+air.gethit.groundRecover.groundLevel = 10
+air.gethit.airRecover.threshold = -1
+air.gethit.airRecover.yAccel = 0.35
+air.gethit.trip.groundLevel = 15
+down.bounce.offset = 0, 20
+down.bounce.yAccel = 0.4
+down.bounce.groundLevel = 12
+down.friction.threshold = 0.5
+
+[Quotes]
+victory0 = "I sure have gotten the old stuff back."
+victory1 = "I almost got my fighting sense back."
+victory2 = "The goddess of victory seems to have chosen me."
+victory3 = "You're unlucky to have to fight me."
+victory4 = "Hmm, the goddess of victory knows everything."
+victory5 = "Over so soon?"
+;Vs Terry
+victory6 = "How about that, big brother?"
+victory7 = "I know all your moves well. That's why I won!"
+victory8 = "You let your guard down, bro! I'm not the same ol' Andy I used to be you know!" 
+victory9 = "I may have won today, but our fight is still not over, my brother!" 
+;Vs Joe Higashi
+victory10 = "It seems I've weathered your storms. You're still as loud as ever, though."
+victory11 = "A real champ. All the right moves!"
+victory12 = "Joe, head on back to Thailand!"
+victory13 = "Take a Valium, Joe, and tell me all about it while I get an ice pack for your glass jaw."
+;Vs Mai Shiranui
+victory14 = "Bet you've had enough, eh, Mai?"
+victory15 = "These fights are dangerous. Pack up and go home, Mai."
+victory16 = "What's the story, Mai? Feeling gravity's pull?" 
+victory17 = "Fighting is no game, Mai. Just hit the sidelines and cheer me on from there."
+;Vs Geese Howard
+victory18 = "Lose to you? You're funny!"
+victory19 = "Get up, Geese. I'm not done yet!"
+;Vs Billy Kane
+victory20 = "Go back to Southtown and tell Geese, I'll be coming soon to defeat him!"
+victory21 = "Quit the bodyguard biz, pal!" 
+;Vs Benimaru
+victory22 = "How do you keep doing that? I always get my hands burned on your electricity!"
+;Vs Clark Steel
+victory23 = "We're not pawns on a board. You think everything behaves like a simulation?"
+;Vs Kensou
+victory24 = "Is that all you can do? You wouldn't have gone very far with that anyway."
+;Vs Kula Diamond
+victory25 = "Did you see me move? I guess not. Your stupefied face suggests as much."
+;Vs Raiden
+victory26 = "You can't keep up with my speed with your body. We knew that before the fight began."
+;Vs Shen Woo
+victory27 = "Level-headed, unwavering and confident. That's what you need to be to win."
+;Vs Takuma Sakazaki
+victory28 = "You have taught me how to make use of my "spirit." I thank you, Master Sakazaki!"
+;Vs Vice
+victory29 = "Your power and fighting spirit are formidable, but you're too slow."
+;Vs Chin Gentsai
+victory30 = "There really is a lot of Chinese Kenpo, eh? Thanks for the refresher course!"
+;Vs Iori Yagami
+victory31 = "Hatred only eats away at your heart. You oughta know that..."
+;Vs Kim Kaphwan
+victory32 = "Conquering oneself means overcoming one's own body."
+;Vs Kyo Kusanagi
+victory33 = "Aw! You sullied the Kusanagi name!"
+;Vs Leona/Ry0 
+victory34 = "All right!"
+;Vs Ralf Jones
+victory35 = "The more power you come at me with, the better my advantage!"

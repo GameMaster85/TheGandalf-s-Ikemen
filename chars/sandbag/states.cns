@@ -1,0 +1,122 @@
+; States
+;---------------------------------------------------------------------------
+; Crouch
+[Statedef 10]
+
+[State 10, 0]
+type = ChangeState
+trigger1 = 1
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Walk
+[Statedef 20]
+
+[State 20, 0]
+type = ChangeState
+trigger1 = 1
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Jump
+[Statedef 40]
+
+[State 40, 0]
+type = ChangeState
+trigger1 = 1
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Dash
+[Statedef 100]
+
+[State 100, 0]
+type = ChangeState
+trigger1 = 1
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Lose by Time Over
+[Statedef 170]
+type = S
+anim = 170
+velset = 0,0
+ctrl = 0
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+;---------------------------------------------------------------------------
+; DRAWGAME (Time over)
+[Statedef 175]
+type = S
+velset = 0,0
+ctrl = 0
+
+[State 175, 1] ; If no anim, use go to lose state.
+type = ChangeState
+trigger1 = Time = 0
+trigger1 = !SelfAnimExist(175)
+value = 170
+
+[State 175, 2]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 175
+
+[State 175, 3]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+;---------------------------------------------------------------------------
+; Win Pose
+[Statedef 180]
+type = S
+anim = 180
+velset = 0,0
+ctrl = 0
+
+[State 181, 1]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 180, 1]
+type = ChangeState
+trigger1 = Time = 0
+value = 181
+
+;---------------------------------------------------------------------------
+; Introduction
+[Statedef 190]
+type = S
+anim = 190
+velset = 0,0
+ctrl = 0
+
+[State 190, 1] ;Freeze animation until PreIntro is over
+type = ChangeAnim
+trigger1 = RoundState = 0
+value = 190
+
+[State 190, 2] ;Assert this until you want "round 1, fight" to begin
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State 190, 4] ;Change to stand state
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+
+;---------------------------------------------------------------------------

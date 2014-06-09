@@ -1,0 +1,78 @@
+;-------------------------------------------------------------
+;INITIALIZE
+[Statedef 5900]
+type = S
+
+[State 5900, Varreset]
+type = varrangeset
+trigger1 = !roundsexisted
+value = 0
+[State 5900, Varreset]
+type = varrangeset
+trigger1 = !roundsexisted
+fvalue = 0
+
+;===========================================================================
+; Chain Combos
+[State 5900, Chain Combos]
+type = VarSet
+trigger1 = 1
+v = 55
+value = 1
+___________________________________________________________________________
+;Change the value number to 0 if you do not want chain comboing
+;Change the value number to 1 if you do want chain comboing
+;Default value is 1.
+;===========================================================================
+
+[State 5900, Vs. Geese]
+type = ChangeState
+triggerall = NumEnemy
+triggerall = RoundNo = 1 || (!(Enemy, RoundsExisted) && !(TeamMode = Simul) && !(Enemy, TeamMode = Simul))
+trigger1=Enemy, Name="Terry" || Enemy, Name="Terry Bogard" || Enemy, Name="cvsterry"
+trigger2=Enemy, Name="Ryuji Yamazaki" || Enemy, Name="Yamazaki" || Enemy, Name="cvsyamazaki"
+trigger3=Enemy, Name="Billy Kane"
+trigger4=Enemy, Name="Mai Shiranui" || Enemy, Name="cvsmai"|| Enemy, Name="Mai"
+trigger5=Enemy, Name="Andy Bogard" || Enemy, Name="cvsandy"
+trigger6=Enemy, Name="Joe Higashi" || Enemy, Name="cvsjoe"
+trigger7=Enemy, Name="cvsraiden" || Enemy, Name="Big Bear"
+trigger8=Enemy, Name="Alfred"
+trigger9=Enemy, Name="Blue Mary"
+trigger10=Enemy, Name="Bob Wilson"
+trigger11=Enemy, Name="Cheng Shinzan"
+trigger12=Enemy, Name="Duck King"
+trigger13=Enemy, Name="Franco Bash"
+trigger14=Enemy, Name="Hon Fu"
+trigger15=Enemy, Name="Jin Chonrei"
+trigger16=Enemy, Name="Jin Chonshu"
+trigger17=Enemy, Name="Kim Kaphwan"
+trigger18=Enemy, Name="Laurence Blood"
+trigger19=Enemy, Name="Rick Strowd"
+trigger20=Enemy, Name="Sokaku Mochizuki"
+trigger21=Enemy, Name="Tung Fu Rue"
+trigger22=Enemy, Name="White"
+trigger23=Enemy, Name="Axel Hawk"
+trigger24=Enemy, Name="Li Xiangfei"
+value = 193
+
+[State 5900, Vs. Geese]
+type = ChangeState
+triggerall = NumEnemy
+triggerall = RoundNo = 1 || (!(Enemy, RoundsExisted) && !(TeamMode = Simul) && !(Enemy, TeamMode = Simul))
+trigger1= enemy,name="Geese" || enemy,name="cvsgeese"|| enemy,name="Geese Howard"
+value = 19999
+[State 5900, Turns Intro]
+type = ChangeState
+trigger1 = TeamMode = Turns
+trigger1 = !RoundsExisted && RoundNo >= 2
+value = 6900
+
+[State 5900, Intro Decider]
+type = ChangeState
+trigger1 = RoundNo = 1
+value = 191+random%2
+
+[State 5900, End]
+type = ChangeState
+trigger1 = 1
+value = 0

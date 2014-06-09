@@ -1,0 +1,41 @@
+; _______________________________________________
+;| Kim Kaphwan by Jmorphman						 |
+; ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+;====================<DEFINITION>====================
+[Info]
+name        ="Kim Kaphwan"
+displayName ="Kim Kaphwan"
+versionDate = 08,11,2012
+mugenVersion= 1.0
+author      = "Jmorphman"
+pal.defaults= 4,5,6,1,2,3,10,11,12,7,8,9
+localCoord  = 320,240
+
+[Files]
+cmd     = Command.cmd
+cns     = Constants.cns
+st      = States/System.st
+st1     = States/Normal.st
+st2     = States/Special.st
+st3     = States/Super.st
+st4     = States/Helpers.st
+stCommon= common1.cns
+sprite  = Sprite.sff
+anim    = Anim.air
+sound   = Sound.snd
+pal1	= Palettes/.Hades._Black&White.act
+pal2	= Palettes/Agnibyte_White&Black.act
+pal3	= Palettes/Goodaldo_Black&Red.act
+pal4	= Palettes/Default.act
+pal5	= Palettes/Girard_KimDongHwan.act
+pal6	= Palettes/Girard_KimJaeHoon.act
+pal7	= Palettes/Dishamonpow_Pink&Green.act
+pal8	= Palettes/Kiri_Orange&Brown.act
+pal9	= Palettes/davismaximus_JackDaniel's.act
+pal10	= Palettes/MDD_HwoarangTekken6.act
+pal11	= Palettes/Koldskool_AllenSnider.act
+pal12	= Palettes/Girard_MayLee.act
+	
+;[Arcade]
+;intro.storyBoard = intro.def
+;ending.storyBoard = ending.def

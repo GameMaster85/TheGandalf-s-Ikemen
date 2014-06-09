@@ -1,0 +1,44 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name="Victor Ortega"
+displayname ="Ortega"
+versiondate =
+mugenversion =
+author ="Dick Buckus"
+pal.defaults =8,7
+
+; Files for the player
+[Files]
+cmd     =Brain/ortega.cmd
+cns     =Brain/ortega.cns
+st      =Brain/states.cns
+stcommon =common1.cns
+sprite  =ortega.sff
+anim    =ortega.air
+sound   =ortega.snd
+pal1=Palettes/new1.act
+pal2=Palettes/new2.act
+pal3=Palettes/new3.act
+pal4=Palettes/new4.act
+pal5=Palettes/new5.act
+pal6=Palettes/new6.act
+pal7=Palettes/new7.act
+pal8=Palettes/new8.act
+pal9=Palettes/new9.act
+pal10=Palettes/new10.act
+pal11=Palettes/new11.act
+pal12=Palettes/new12.act
+st1=Brain/attack.cns
+st2=Brain/special.cns
+st3=Brain/super.cns
+st4=Brain/system.cns
+st5=Brain/helpers.cns
+st6=Brain/grapple.cns
+
+; Arcade mode
+[Arcade]
+intro.storyboard =
+ending.storyboard =

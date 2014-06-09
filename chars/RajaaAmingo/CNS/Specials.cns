@@ -1,0 +1,1590 @@
+;@@@@@@@@@@@@@@@@@@@@@@@Amingo By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@Amingo By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+[Statedef 1300]
+type=U
+movetype=A
+physics=N
+ctrl=0
+velset=0,0
+poweradd=75*!var(25)
+sprpriority=1
+
+[state 1300,dharna]
+type=posset
+trigger1=statetype!=A
+trigger1=!time
+y=0
+
+[state 1300,shakti]
+type=varset
+triggerall=!ailevel
+trigger1=!time
+var(11)=ifelse(command="x"||command="NE_x",0,ifelse(command="y"||command="NE_y",1,2))
+[state 1300,shakti]
+type=varset
+triggerall=ailevel
+trigger1=!time
+var(11)=ifelse(p2bodydist x>140||numtarget,(2-var(25)),ifelse((p2bodydist x=[90,140]),1,0))
+
+[state 1300,roop]
+type=statetypeset
+trigger1=statetype=C||statetype=L
+statetype=S
+ignorehitpause=1
+
+[state 1300,anim]
+type=changeanim
+trigger1=!time
+value=1300
+
+[state 1300,murna]
+type=varset
+trigger1=!time
+var(12)=2
+[state 1300,murna]
+type=varadd
+trigger1=anim!=1305
+trigger1=!animelemtime(15)
+var(12)=-1
+[state 1300,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(15)
+value=anim
+elem=11
+
+[state 1300,width]
+type=width
+trigger1=animelemno(0)=[11,14]
+player=-5,0
+
+[state 1300,anim]
+type=changeanim
+trigger1=anim!=1305
+trigger1=statetype=A
+trigger1=!animelemtime(20)
+value=1305
+
+[state 1300,shiighrataa]
+type=velset
+trigger1=anim!=1305
+trigger1=!animelemtime(10)
+x=10.0+(5.0*(var(11)))
+[state 1300,shiighrataa]
+type=velmul
+trigger1=anim!=1305
+trigger1=animelemtime(10)>0
+x=0.9
+[state 1300,shiighrataa]
+type=velset
+trigger1=anim!=1305
+trigger1=!animelemtime(20)
+x=0.0
+[state 1300,shiighrataa]
+type=veladd
+trigger1=statetype=A
+trigger1=anim=1305
+y=const(movement.yaccel)
+
+[state 1300,Core]
+type=helper
+trigger1=anim!=1305
+trigger1=!animelemtime(1)
+helpertype=normal
+name="Core"
+stateno=1315
+id=1315
+postype=p1
+pos=0,0
+ownpal=0
+keyctrl=0
+pausemovetime=0
+supermovetime=0
+ignorehitpause=1
+
+[state 1300,Leaves]
+type=explod
+trigger1=anim!=1305
+trigger1=!animelemtime(10)
+id=1310
+anim=1310
+ownpal=1
+sprpriority=2
+bindtime=2
+postype=p1
+pos=0,0
+scale=const(size.xscale),const(size.yscale)
+supermovetime=0
+pausemovetime=0
+[state 1300,Dash]
+type=explod
+trigger1=statetype!=A
+trigger1=!animelemtime(11)
+anim=8511
+pos=ceil(-35*const(size.xscale)),0
+postype=P1
+scale=.5,.5
+velocity=0,0
+sprpriority=5
+ownpal=1
+supermovetime=-1
+pausemovetime=-1
+persistent=0
+[state 1300,Dash]
+type=explod
+trigger1=anim!=1305
+trigger1=statetype!=A
+trigger1=!animelemtime(11)
+anim=8512
+pos=ceil(30*const(size.xscale)),0
+postype=P1
+scale=.5,.5
+velocity=0,0
+sprpriority=5
+ownpal=1
+supermovetime=-1
+pausemovetime=-1
+persistent=0
+
+[state 1300,maar]
+type=hitdef
+trigger1=statetype!=A
+trigger1=anim!=1305
+trigger1=var(0)<1||var(8)
+trigger1=!var(1)
+trigger1=!movecontact&&!movereversed
+trigger1=animelemno(0)=[11,15]
+trigger1=!animelemtime(animelemno(0))
+attr=S,SA
+damage=80+(7*var(11)),20
+guardflag=M
+hitflag=MAF
+priority=6,Hit
+pausetime=8,8
+guard.pausetime=12,12
+sparkno=-1+(0*(var(21):=8715))
+guard.sparkno=-1+(0*(var(22):=8726))
+sparkxy=-10,-45+(0*(var(23):=35&&var(24):=-45))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-4.5,-7.0
+guard.velocity=-15
+air.velocity=-4.5,-7.0
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=100*!var(25),50*!var(25)
+givepower=50,50
+envshake.time=12
+envshake.ampl=6
+fall=1
+fall.recover=!var(25)
+fall.recovertime=100
+forcestand=1
+nochainid=450
+
+[state 1300,maar]
+type=hitdef
+trigger1=statetype=A
+trigger1=anim!=1305
+trigger1=var(0)<1||var(8)
+trigger1=!var(1)
+trigger1=!movecontact&&!movereversed
+trigger1=animelemno(0)=[11,15]
+trigger1=!animelemtime(animelemno(0))
+attr=A,SA
+damage=80+(7*var(11)),20
+guardflag=MA
+hitflag=MAF
+priority=6,Hit
+pausetime=8,8
+guard.pausetime=12,12
+sparkno=-1+(0*(var(21):=8715))
+guard.sparkno=-1+(0*(var(22):=8726))
+sparkxy=-10,-45+(0*(var(23):=35&&var(24):=-45))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-4.5,-7.0
+guard.velocity=-15
+air.velocity=-4.5,-7.0
+airguard.velocity=-3.5,-1
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=100*!var(25),50*!var(25)
+givepower=50,50
+envshake.time=12
+envshake.ampl=6
+fall=1
+fall.recover=!var(25)
+fall.recovertime=100
+forcestand=1
+nochainid=450
+
+[state 1300,bekaar]
+type=statetypeset
+trigger1=!animelemtime(18)
+movetype=I
+
+[state 1300,Bolii]
+type=playsnd
+trigger1=anim!=1305
+trigger1=!animelemtime(10)
+value=s450,0
+volume=255
+channel=0
+
+[state 1300,siraa]
+type=changestate
+trigger1=statetype!=A
+trigger1=!animtime
+value=0
+ctrl=1
+[state 1300,siraa]
+type=changestate
+trigger1=statetype=A
+trigger1=pos y>=0&&vel y>0
+value=52
+ctrl=0
+;---------------------------------------------------------------------------
+[Statedef 1315]
+type=S
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 1315,rahnaa]
+type=bindtoparent
+trigger1=parent,stateno=1300&&parent,anim=1300
+pos=0,0
+
+[state 1315,anim]
+type=changeanim
+trigger1=anim!=1315
+value=1315
+[state 1315,anim]
+type=changeanim
+trigger1=parent,stateno=1300&&parent,anim=1300
+trigger1=parent,animelemtime(10)<0
+value=anim
+elem=parent,animelemno(0)
+
+[state 1315,atma_naash]
+type=destroyself
+trigger1=!animtime
+trigger2=parent,movetype=H
+trigger3=parent,stateno!=1300
+trigger4=parent,animelemtime(10)>=0
+;---------------------------------------------------------------------------
+[Statedef 1400]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+poweradd=75*!var(25)
+sprpriority=1
+
+[state 1400,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 1400,shakti]
+type=varset
+triggerall=!ailevel
+trigger1=!time
+var(11)=ifelse(command="x"||command="NE_x",0,ifelse(command="y"||command="NE_y",1,2))
+[state 1400,shakti]
+type=varset
+triggerall=ailevel
+trigger1=!time
+var(11)=ifelse((p2bodydist x>(150-(100*(random<500))))||p2dist y<-75||numtarget,(2-var(25)),ifelse((p2bodydist x=[100,150]),1,0))
+
+[state 1400,plant-count]
+type=varadd
+trigger1=!time
+var(33)=1
+
+[state 1400,anim]
+type=changeanim
+trigger1=!time
+value=1400
+
+[state 1400,ajay]
+type=nothitby
+trigger1=animelemtime(3)<0
+value=SCA
+time=1
+
+[state 1400,width]
+type=width
+trigger1=animelemtime(4)<0
+player=time*5,0
+
+[state 1400,anim]
+type=changeanim
+trigger1=numhelper(8005)
+trigger1=helper(8005),stateno=8005&&helper(8005),anim=8005
+trigger1=helper(8005),animelemtime(3)>=0&&helper(8005),animelemtime(6)<0
+value=anim
+elem=3
+ignorehitpause=1
+[state 1400,invisible]
+type=assertspecial
+trigger1=numhelper(8005)
+trigger1=helper(8005),stateno=8005&&helper(8005),anim=8005
+trigger1=helper(8005),animelemtime(3)>=0&&helper(8005),animelemtime(6)<0
+flag=invisible
+ignorehitpause=1
+
+[state 1400,roop]
+type=statetypeset
+trigger1=!animelemtime(4)
+statetype=A
+physics=N
+
+[state 1400,jodo]
+type=posadd
+trigger1=!animelemtime(4)
+x=65
+y=-60
+
+[state 1400,shiighrataa]
+type=velset
+trigger1=!animelemtime(4)
+x=3.5+(2.0*var(11))
+y=-6.0-(2.0*var(11))
+[state 1400,shiighrataa]
+type=velmul
+trigger1=numhelper(8005)
+x=0.95
+[state 1400,shiighrataa]
+type=veladd
+trigger1=animelemtime(4)>0
+y=const(movement.yaccel)
+
+[state 1400,Plant]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Plant"
+id=8005
+stateno=8005
+ownpal=1
+keyctrl=0
+postype=p1
+pos=0,0
+[state 1400,Plant]
+type=null;helper
+trigger1=vel y>0
+helpertype=normal
+name="Plant"
+id=8005
+stateno=8006
+ownpal=1
+keyctrl=0
+postype=p1
+pos=0,0
+persistent=0
+
+[state 1400,maar]
+type=hitdef
+trigger1=var(0)<1||var(8)
+trigger1=!var(1)
+trigger1=!animelemtime(4)
+attr=A,SA
+damage=91+(7*var(11)),20
+guardflag=M
+hitflag=MAF
+priority=6,Hit
+pausetime=10,10
+guard.pausetime=12,12
+sparkno=-1+(0*(var(21):=8715))
+guard.sparkno=-1+(0*(var(22):=8726))
+sparkxy=-10,0+(0*(var(23):=50&&var(24):=0))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-5.0,-9.0
+guard.velocity=-15
+air.velocity=-5.0,-9.0
+airguard.velocity=-3.5,-1
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=100*!var(25),50*!var(25)
+givepower=50,50
+envshake.time=12
+envshake.ampl=6
+fall=1
+fall.recover=!var(25)
+fall.recovertime=100
+forcestand=1
+nochainid=450
+
+[state 1400,maar]
+type=hitdef
+trigger1=var(0)<1||var(8)
+trigger1=!var(1)
+trigger1=!movecontact&&!movereversed
+trigger1=vel y=1
+attr=A,SA
+damage=91+(7*var(11)),20
+guardflag=HA
+hitflag=MAF
+priority=6,Hit
+pausetime=10,10
+guard.pausetime=12,12
+sparkno=-1+(0*(var(21):=8715))
+guard.sparkno=-1+(0*(var(22):=8726))
+sparkxy=-10,0+(0*(var(23):=50&&var(24):=0))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-5.0,5.0
+guard.velocity=-15
+air.velocity=-5.0,5.0
+airguard.velocity=-3.5,-1
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=100*!var(25),50*!var(25)
+givepower=50,50
+envshake.time=12
+envshake.ampl=6
+fall=1
+fall.recover=!var(25)
+fall.recovertime=100
+forcestand=1
+nochainid=450
+
+[state 1400,Bolii]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s1400,0
+volume=255
+channel=0
+[state 1400,Bolii]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s3005,0
+volume=255
+
+[state 1300,siraa]
+type=changestate
+trigger1=pos y>=-60&&vel y>0
+value=1405
+ctrl=0
+;---------------------------------------------------------------------------
+[Statedef 1405]
+type=A
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+
+[state 1405,roop]
+type=statetypeset
+trigger1=numhelper(8005)
+trigger1=helper(8005),stateno=8006
+trigger1=!helper(8005),animelemtime(5)
+statetype=S
+physics=S
+
+[state 1405,anim]
+type=changeanim
+trigger1=numhelper(8005)
+trigger1=helper(8005),stateno=8006
+trigger1=!helper(8005),animelemtime(5)
+value=1405
+
+[state 1405,dharna]
+type=posset
+trigger1=numhelper(8005)
+trigger1=helper(8005),stateno=8006
+trigger1=!helper(8005),animelemtime(5)
+y=0
+
+[state 1405,anim]
+type=changeanim
+trigger1=numhelper(8005)
+trigger1=helper(8005),stateno=8006&&helper(8005),anim=8006
+trigger1=helper(8005),animelemtime(5)>=0&&helper(8005),animelemtime(11)<0
+value=anim
+elem=1
+ignorehitpause=1
+[state 1405,invisible]
+type=assertspecial
+trigger1=numhelper(8005)
+trigger1=helper(8005),stateno=8006&&helper(8005),anim=8006
+trigger1=helper(8005),animelemtime(5)>=0&&helper(8005),animelemtime(11)<0
+flag=invisible
+ignorehitpause=1
+
+[state 1405,safe]
+type=posset
+trigger1=!numhelper(8005)
+y=0
+[state 1405,Siraa]
+type=changeState
+trigger1=!numhelper(8005)
+value=52
+ctrl=0
+
+[state 1405,Siraa]
+type=changeState
+trigger1=!animtime
+value=0
+ctrl=1
+;---------------------------------------------------------------------------
+[Statedef 8005]
+type=S
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8005,plant-number]
+type=varset
+trigger1=!time
+var(33)=parent,var(33)
+
+[state 8005,rahnaa]
+type=bindtoparent
+trigger1=parent,stateno=1400&&parent,animelemtime(4)<0
+pos=0,0
+
+[state 8005,anim]
+type=changeanim
+trigger1=!time
+value=8005
+
+[state 8005,anim]
+type=changeanim
+trigger1=parent,hitpausetime
+trigger1=animelemtime(8)<0
+value=anim
+elem=animelemno(0)
+
+[state 8005,siraa]
+type=changestate;destroyself
+trigger1=!animtime
+value=8006
+[state 8005,atma_naash]
+type=destroyself
+trigger1=animelemtime(7)<0
+trigger1=parent,movetype=H
+trigger2=parent,stateno!=1400
+;---------------------------------------------------------------------------
+[Statedef 8006]
+type=S
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8005,plant-number]
+type=null;varset
+trigger1=!time
+var(33)=parent,var(33)
+
+[state 8006,rahnaa]
+type=posset
+trigger1=!time
+y=0
+[state 8006,rahnaa]
+type=posadd
+trigger1=!time
+x=(parentdist x+10)+(25*parent,var(11))
+[state 8006,rahnaa]
+type=posadd
+trigger1=parent,vel y>0
+trigger1=parentdist x!=[-80,50]
+x=parentdist x
+[state 8005,rahnaa]
+type=bindtoparent
+trigger1=parent,stateno=1405&&parent,anim=1405
+pos=0,0
+
+[state 8006,kaas]
+type=screenbound
+trigger1=1
+value=1
+movecamera=0,0
+
+[state 8006,anim]
+type=changeanim
+trigger1=!time
+value=8006
+
+[state 8006,anim]
+type=changeanim
+trigger1=parent,stateno=1400
+trigger1=animelemtime(4)>=0
+trigger1=var(33)=parent,var(33)
+value=anim
+elem=4
+[state 8006,anim]
+type=changeanim
+trigger1=anim=8006&&animelemno(0)=4
+trigger1=parent,movetype=H
+trigger1=parent,stateno!=1405
+value=8007
+
+[state 8006,plant]
+type=explod
+trigger1=!animelemtime(4)
+id=8008
+anim=8008
+ownpal=0
+sprpriority=-1
+bindtime=-1
+postype=p1
+pos=0,0
+scale=const(size.xscale),const(size.yscale)
+supermovetime=0
+pausemovetime=0
+
+[state 8006,haath]
+type=removeexplod
+trigger1=numexplod(8008)
+trigger1=animelemno(0)!=4
+trigger2=!animtime
+trigger3=anim!=8006
+id=8008
+[state 8006,atma_naash]
+type=destroyself
+trigger1=!animtime
+trigger2=anim=8006
+trigger2=animelemtime(5)>=0
+trigger2=parent,movetype=H
+;---------------------------------------------------------------------------
+[Statedef 1500]
+type=S
+movetype=I
+physics=S
+ctrl=0
+velset=0,0
+poweradd=25*!var(25)
+sprpriority=1
+
+[state 1500,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 1500,shakti]
+type=varset
+triggerall=!ailevel
+trigger1=!time
+trigger1=command="Child_of_The_Earth"
+var(11)=ifelse(command="a"||command="NE_a",0,ifelse(command="b"||command="NE_b",1,2))
+[state 1500,shakti]
+type=varset
+triggerall=!ailevel
+trigger1=!time
+trigger1=command="Child_of_The_Earth-2"
+var(11)=ifelse(command="a"||command="NE_a",3,ifelse(command="b"||command="NE_b",4,5))
+[state 1500,shakti]
+type=varset
+triggerall=ailevel
+trigger1=!time
+var(11)=0+random%5
+
+[state 1500,anim]
+type=changeanim
+trigger1=!time
+value=1500
+
+[state 1500,murna]
+type=varset
+trigger1=!time
+var(12)=3
+[state 1500,murna]
+type=varadd
+trigger1=!animelemtime(4)
+var(12)=-1
+[state 1500,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(4)
+value=anim
+elem=2
+
+[state 1500,Mini-Amingo]
+type=helper
+trigger1=!animelemtime(6)
+helpertype=normal
+name="Mini-Amingo"
+id=8040
+stateno=8040
+ownpal=1
+keyctrl=0
+postype=p1
+pos=ceil(85*const(size.xscale)),0
+
+[state 1500,attackdist]
+type=attackdist
+trigger1=1
+value=0
+
+[state 1500,bekaar]
+type=statetypeset
+trigger1=!animelemtime(7)
+movetype=I
+
+[state 1500,bolii]
+type=playsnd
+trigger1=!animelemtime(7)
+value=S1500,0
+volume=255
+channel=0
+[state 1500,avaaz]
+type=playsnd
+trigger1=!animelemtime(6)
+value=S1500,1
+volume=255
+
+[state 1500,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;---------------------------------------------------------------------------
+[Statedef 8040]
+type=S
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8040,Vigor:_Glow]
+type=palfx
+trigger1=root,var(25)
+trigger1=!(gametime%5)
+time=1
+mul=256,64,64
+add=128,64,64
+ignorehitpause=1
+
+[state 8040,Super--->Special]
+type=varset
+trigger1=!time
+var(8)=root,var(8)
+ignorehitpause=1
+[state 8040,Level]
+type=varset
+trigger1=!time
+var(11)=root,var(11)
+ignorehitpause=1
+
+[state 8040,murna]
+type=varset
+trigger1=!time
+var(12)=5+(2*(var(11)=1||var(11)=4))+(4*(var(11)=2||var(11)=5))
+
+[state 8040,anim]
+type=changeanim
+trigger1=!time
+value=8040
+
+[state 8040,avaaz]
+type=playsnd
+trigger1=!animelemtime(2)
+value=S1500,2
+volume=255
+
+[state 8040,siraa]
+type=changestate
+trigger1=!animtime
+value=8041
+;---------------------------------------------------------------------------
+[Statedef 8041]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8041,Vigor:_Glow]
+type=palfx
+trigger1=root,var(25)
+trigger1=!(gametime%5)
+time=1
+mul=256,64,64
+add=128,64,64
+ignorehitpause=1
+
+[state 8041,ajay]
+type=hitby
+trigger1=1
+value=SCA,AA,AP
+time=-1
+ignorehitpause=1
+[state 8041,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,AA,AP
+stateno=8043
+slot=0
+time=-1
+ignorehitpause=1
+
+[state 8041,anim]
+type=changeanim
+trigger1=!time
+value=8041
+
+[state 8041,attackdist]
+type=attackdist
+trigger1=1
+value=0
+
+[state 8041,roop]
+type=statetypeset
+trigger1=!animelemtime(2)
+statetype=A
+physics=N
+
+[state 8041,shiighrataa]
+type=velset
+trigger1=!animelemtime(2)
+x=2.50-(1*(var(11)>2))
+y=-3.00
+[state 8041,shiighrataa]
+type=veladd
+trigger1=animelemtime(2)>0
+y=const(movement.yaccel)
+
+[state 8041,murna]
+type=varadd
+trigger1=pos y>=0&&vel y>0
+var(12)=-1
+
+[state 8041,siraa]
+type=changestate
+trigger1=pos y>=0&&vel y>0
+value=8042
+;---------------------------------------------------------------------------
+[Statedef 8042]
+type=S
+movetype=A
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8042,Vigor:_Glow]
+type=palfx
+trigger1=root,var(25)
+trigger1=!(gametime%5)
+time=1
+mul=256,64,64
+add=128,64,64
+ignorehitpause=1
+
+[state 8042,ajay]
+type=hitby
+trigger1=1
+value=SCA,AA,AP
+time=-1
+ignorehitpause=1
+[state 8042,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,AA,AP
+stateno=8043
+slot=0
+time=-1
+ignorehitpause=1
+
+[state 8042,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 8041,attackdist]
+type=attackdist
+trigger1=1
+value=0
+
+[state 8043,anim]
+type=changeanim
+trigger1=!time
+value=8042
+
+[state 8042,turn]
+type=turn
+trigger1=!animelemtime(1)
+trigger1=p2dist x<-5
+
+[state 8042,avaaz]
+type=playsnd
+trigger1=!animelemtime(1)
+value=S1500,3
+volume=255
+
+[state 8042,siraa]
+type=changestate
+trigger1=!animtime
+value=8041+((4+(5*(var(11)>2)))*(!var(12)))+((4+(5*(var(11)>2)))*(p2dist x<=(50+(50*(var(11)>2)))))-((4+(5*(var(11)>2)))*(!var(12)&&p2dist x<=(50+(50*(var(11)>2)))))
+;---------------------------------------------------------------------------
+[Statedef 8043]
+type=A
+movetype=H
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8043,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 8043,anim]
+type=changeanim
+trigger1=!time
+value=8043
+
+[state 8043,shiighrataa]
+type=velset
+trigger1=!time
+x=-abs((gethitvar(xvel)*1.25))
+y=-7.0
+[state 8043,shiighrataa]
+type=velmul
+trigger1=time
+x=ifelse(statetype=C,const(movement.crouch.friction),const(movement.stand.friction))
+[state 8043,shiighrataa]
+type=veladd
+trigger1=time
+y=const(movement.yaccel)
+
+[state 8043,avaaz]
+type=playsnd
+trigger1=!time
+value=S1500,6
+volume=255
+channel=5
+
+[state 8043,siraa]
+type=changestate
+trigger1=pos y>=0&&vel y>0
+value=8044
+;---------------------------------------------------------------------------
+[Statedef 8044]
+type=S
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8044,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 8044,anim]
+type=changeanim
+trigger1=!time
+value=8044
+
+[state 8044,murna]
+type=varset
+trigger1=!time
+var(12)=3
+[state 8044,murna]
+type=varadd
+trigger1=!animelemtime(5)
+var(12)=-1
+[state 8044,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(5)
+value=anim
+elem=1
+
+[state 8044,atma_naash]
+type=destroyself
+trigger1=!animtime
+;---------------------------------------------------------------------------
+[Statedef 8045]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8045,Vigor:_Glow]
+type=palfx
+trigger1=root,var(25)
+trigger1=!(gametime%5)
+time=1
+mul=256,64,64
+add=128,64,64
+ignorehitpause=1
+
+[state 8045,Root-Varset-Juggle/Juggle/Counter]
+type=null
+trigger1=var(0):=root,var(0)||var(1):=root,var(1)||var(16):=root,var(16)
+ignorehitpause=1
+[state 8045,Root-Varset-Vigor/Dampener]
+type=null
+trigger1=var(25):=root,var(25)||fvar(1):=root,fvar(1)
+ignorehitpause=1
+
+[state 8045,ajay]
+type=hitby
+trigger1=1
+value=SCA,AA,AP
+time=-1
+ignorehitpause=1
+[state 8045,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,AA,AP
+stateno=8043
+slot=0
+time=-1
+ignorehitpause=1
+
+[state 8045,anim]
+type=changeanim
+trigger1=!time
+value=8045
+
+[state 8045,roop]
+type=statetypeset
+trigger1=!animelemtime(2)
+statetype=A
+physics=N
+
+[state 8045,shiighrataa]
+type=velset
+trigger1=!animelemtime(2)
+x=0.0
+y=-3.00
+[state 8045,shiighrataa]
+type=velset
+trigger1=!animelemtime(3)
+y=0
+[state 8045,shiighrataa]
+type=veladd
+trigger1=animelemtime(6)>0
+y=const(movement.yaccel)
+[state 8045,shiighrataa]
+type=velset
+trigger1=moveguarded=1
+x=-7.5
+[state 8045,shiighrataa]
+type=veladd
+trigger1=moveguarded=1
+y=-2.0
+
+[state 8045,maar]
+type=hitdef
+trigger1=var(0)<2||var(8)
+trigger1=!var(1)
+trigger1=!animelemtime(4)
+trigger1=ifelse(parent,numenemy>1,parent,numtarget(450)<2,parent,numtarget(450)<1)
+attr=S,SA
+damage=ceil(75*fvar(1)),20
+guardflag=M
+hitflag=MAF
+priority=5,Hit
+pausetime=12,12
+sparkno=-1+(0*(var(21):=8715))
+guard.sparkno=-1+(0*(var(22):=8726))
+sparkxy=0,0+(0*(var(23):=50&&var(24):=-20))
+hitsound=S200,20
+guardsound=s120,0
+animtype=hard
+ground.type=low
+air.type=low
+ground.slidetime=18+4*var(16)
+ground.hittime=18+4*var(16)
+air.hittime=100
+ground.velocity=-5
+air.velocity=-5,-7.5
+airguard.velocity=-3.5,-1
+ground.cornerpush.veloff=0
+guard.cornerpush.veloff=0
+yaccel=.5
+getpower=100*!var(25),50*!var(25)
+givepower=50,50
+envshake.time=10
+envshake.ampl=4
+fall=0
+air.fall=1
+fall.recover=!var(25)
+fall.recovertime=100
+fall.animtype=hard
+forcestand=1
+
+[state 8045,Hit_Sparks:_Detect]
+type=varset
+trigger1=movecontact=1&&var(20)<0
+var(20)=hitpausetime
+ignorehitpause=1
+[state 8045,Hit_Sparks:_Activate]
+type=helper
+trigger1=var(20)=hitpausetime
+trigger1=movecontact=1
+helpertype=normal
+name="Hit_Spark"
+stateno=ifelse(movehit,8715,8726)
+id=8700
+postype=p1
+pos=ceil(ifelse(p2dist x<0,0,ifelse(p2dist x<var(23),p2dist x,var(23)))*const(size.xscale)),ceil(var(24)*const(size.yscale))
+ownpal=1
+keyctrl=0
+size.yscale=1
+size.xscale=1
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+ignorehitpause=1
+[state 8045,Blood_Spark]
+type=helper
+trigger1=var(20)=hitpausetime
+trigger1=movehit=1&&numtarget
+helpertype=normal
+name="Blood_Spark"
+ID=8400
+stateno=8400
+pos=ceil(ifelse(p2dist x<0,0,ifelse(p2dist x<var(23),p2dist x,var(23)))*const(size.xscale)),ceil(var(24)*const(size.yscale))
+postype=p1
+facing=ifelse(random<500,1,-1)
+keyctrl=0
+ownpal=1
+size.xscale=.5
+size.yscale=.5
+ignorehitpause=1
+[state 8045,Hit_Sparks:_Detect]
+type=varset
+trigger1=1
+var(20)=-1
+
+[state -2,Juggle 1x1]
+type=parentvaradd
+trigger1=movehit=1&&numtarget
+trigger1=!(target,ishelper)
+var(0)=1
+[state -2,Dampening_Hits]
+type=parentvaradd
+trigger1=movehit=1&&numtarget
+trigger1=!(target,ishelper)
+fvar(0)=1
+
+[state 8045,bekaar]
+type=statetypeset
+trigger1=!animelemtime(6)
+movetype=I
+
+[state 8045,avaaz]
+type=playsnd
+trigger1=!animelemtime(4)
+value=S1500,7
+volume=255
+channel=5
+
+[state 8045,siraa]
+type=changestate
+trigger1=pos y>=0&&vel y>0
+value=8044
+;---------------------------------------------------------------------------
+[Statedef 8050]
+type=S
+movetype=A
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8040,Vigor:_Glow]
+type=palfx
+trigger1=root,var(25)
+trigger1=!(gametime%5)
+time=1
+mul=256,64,64
+add=128,64,64
+ignorehitpause=1
+
+[state 8050,Root-Varset-Juggle/Juggle/Counter]
+type=null
+trigger1=var(0):=root,var(0)||var(1):=root,var(1)||var(16):=root,var(16)
+ignorehitpause=1
+[state 8050,Root-Varset-Vigor/Dampener]
+type=null
+trigger1=var(25):=root,var(25)||fvar(1):=root,fvar(1)
+ignorehitpause=1
+
+[state 8050,ajay]
+type=hitby
+trigger1=1
+value=SCA,AA,AP
+time=-1
+ignorehitpause=1
+[state 8050,ajay]
+type=hitoverride
+trigger1=1
+attr=SCA,AA,AP
+stateno=8043
+slot=0
+time=-1
+ignorehitpause=1
+
+[state 8050,anim]
+type=changeanim
+trigger1=!time
+value=8050
+
+[state 8050,roop]
+type=statetypeset
+trigger1=!animelemtime(2)
+statetype=A
+physics=N
+
+[state 8050,shiighrataa]
+type=velset
+trigger1=!animelemtime(2)
+x=4.5
+y=-6.5
+[state 8050,shiighrataa]
+type=veladd
+trigger1=animelemtime(2)>0
+y=const(movement.yaccel)
+
+[state 8050,hitdef]
+type=hitdef
+trigger1=var(0)<1||var(8)
+trigger1=!var(1)
+trigger1=!animelemtime(2)
+attr=A,ST
+damage=0,20
+hitflag=MA
+;guardflag=MA
+guard.pausetime=12,12
+sparkno=-1+(0*(var(21):=0))
+guard.sparkno=-1+(0*(var(22):=8726))
+sparkxy=0,0+(0*(var(23):=50&&var(24):=-20))
+guardsound=s120,0
+numhits=0
+getpower=0
+priority=3,Miss
+p1facing=1
+p2facing=1
+p1stateno=8051
+fall=1
+fall.recover=0
+
+[state 8050,Hit_Sparks:_Activate]
+type=helper
+trigger1=movecontact=1
+helpertype=normal
+name="Hit_Spark"
+stateno=ifelse(movehit,8715,8726)
+id=8700
+postype=p1
+pos=ceil(ifelse(p2dist x<0,0,ifelse(p2dist x<var(23),p2dist x,var(23)))*const(size.xscale)),ceil(var(24)*const(size.yscale))
+ownpal=1
+keyctrl=0
+size.yscale=1
+size.xscale=1
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+ignorehitpause=1
+
+[state 8050,avaaz]
+type=playsnd
+trigger1=!animelemtime(2)
+value=S1500,5
+volume=255
+channel=5
+
+[state 8050,siraa]
+type=changestate
+trigger1=pos y>=0&&vel y>0
+value=8044
+;---------------------------------------------------------------------------
+[Statedef 8051]
+type=S
+movetype=A
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8040,Vigor:_Glow]
+type=palfx
+trigger1=root,var(25)
+trigger1=!(gametime%5)
+time=1
+mul=256,64,64
+add=128,64,64
+ignorehitpause=1
+
+[state 8045,Juggle]
+type=varset
+trigger1=time>=0
+var(0)=root,var(0)
+ignorehitpause=1
+[state 8045,Juggle]
+type=varset
+trigger1=time>=0
+var(1)=root,var(1)
+ignorehitpause=1
+[state 8045,Vigor]
+type=varset
+trigger1=time>=0
+var(25)=root,var(25)
+ignorehitpause=1
+[state 8045,Dampener]
+type=varset
+trigger1=time>=0
+fvar(1)=root,fvar(1)
+ignorehitpause=1
+[state 1300,Bind]
+type=varset
+trigger1=!time
+fvar(34)=p2dist y
+
+[state 8051,anim]
+type=changeanim
+trigger1=!time
+value=8051
+
+[state 8051,attackdist]
+type=attackdist
+trigger1=1
+value=0
+
+[state 8051,target]
+type=targetstate
+trigger1=!time
+value=8055
+
+[state 8051,rahnaa]
+type=bindtotarget
+trigger1=animelemtime(3)<0
+trigger1=numtarget
+pos=target,const(size.ground.front),-ceil(fvar(34))
+[state 8051,rahnaa]
+type=turn
+trigger1=animelemtime(3)<0
+trigger1=numtarget
+trigger1=facing=target,facing
+[state 8051,rahnaa]
+type=targetdrop
+trigger1=numtarget
+trigger1=target,stateno!=[8055,8056]
+id=-1
+ignorehitpause=1
+
+[state 8051,murna]
+type=varset
+trigger1=!time
+var(12)=5
+[state 8051,murna]
+type=varadd
+trigger1=!animelemtime(3)
+var(12)=-1
+[state 8051,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=numtarget
+trigger1=!animelemtime(3)
+value=anim
+elem=1
+
+[state 8051,shiighrataa]
+type=velset
+trigger1=numtarget
+trigger1=!animelemtime(3)
+x=-3.0
+y=-4.5
+[state 8051,shiighrataa]
+type=veladd
+trigger1=animelemtime(3)>0
+y=const(movement.yaccel)
+
+[state 8051,avaaz]
+type=playsnd
+trigger1=numtarget
+trigger1=!animelemtime(3)
+value=s200,20
+volume=255
+
+[state 8051,Hit_Sparks:_Activate]
+type=helper
+trigger1=numtarget
+trigger1=!animelemtime(3)
+helpertype=normal
+name="Hit_Spark"
+stateno=8715
+id=8700
+postype=p1
+pos=ceil(0*const(size.xscale)),-35
+ownpal=1
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+[state 8051,Blood_Spark]
+type=helper
+trigger1=numtarget
+trigger1=!animelemtime(3)
+helpertype=normal
+name="Blood_Spark"
+ID=8400
+stateno=8400
+pos=ceil(0*const(size.xscale)),-35
+postype=p1
+facing=ifelse(random<500,1,-1)
+keyctrl=0
+ownpal=1
+size.xscale=.5
+size.yscale=.5
+
+[state 8051,Naash]
+type=targetlifeadd
+trigger1=!animelemtime(3)
+value=ceil(-75*fvar(1))
+kill=1
+[state 8051,Naash]
+type=targetpoweradd
+trigger1=!animelemtime(3)
+value=50
+[state 8051,target]
+type=targetstate
+trigger1=!animelemtime(3)
+value=8056
+
+[state 8051,Shakti]
+type=poweradd
+trigger1=!animelemtime(3)
+value=100*!var(25)
+
+[state 8051,avaaz]
+type=playsnd
+trigger1=!time
+value=s800,0
+volume=255
+
+[state 8051,maar]
+type=hitadd
+trigger1=numtarget
+trigger1=!animelemtime(3)
+value=1
+[state -2,Juggle]
+type=null;parentvaradd
+trigger1=numtarget
+trigger1=!animelemtime(3)
+var(0)=1
+[state -2,Dampener]
+type=parentvaradd
+trigger1=numtarget
+trigger1=!animelemtime(3)
+fvar(0)=1
+
+[state 8051,sira]
+type=changestate
+trigger1=pos y>=0&&vel y>0
+value=8044
+ctrl=0
+;---------------------------------------------------------------------------
+[Statedef 8055]
+type=A
+movetype=H
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 8055,anim]
+type=ChangeAnim2
+trigger1=!time
+value=8055
+
+[state 8055,bound]
+type=screenbound
+trigger1=1
+value=0
+movecamera=1,1
+
+[state 8055,phir_lana]
+type=selfstate
+trigger1=!gethitvar(isbound)
+trigger1=time>100
+value=5050
+;---------------------------------------------------------------------------
+[Statedef 8056]
+type=A
+movetype=H
+physics=N
+ctrl=0
+sprpriority=-1
+
+[state 8056,fall]
+type=hitfallset
+trigger1=!time
+value=1
+
+[state 8056,anim]
+type=changeanim2
+trigger1=!time
+value=8056
+
+[state 8056,shiighrataa]
+type=velset
+trigger1=!time
+x=-3.5
+y=-5.5
+[state 8056,shiighrataa]
+type=veladd
+trigger1=time
+y=.5
+
+[state 8056,hilaav]
+type=envshake
+trigger1=pos y>=0&&vel y>0
+time=15
+ampl=5
+
+[state 8056,phir_lana]
+type=selfstate
+trigger1=pos y>=0&&vel y>0
+value=5100
+ctrl=0

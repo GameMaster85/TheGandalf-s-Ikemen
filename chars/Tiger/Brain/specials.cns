@@ -1,0 +1,2878 @@
+;==================================================================
+;Special Attacks
+;==================================================================
+; Kung Fu Palm
+; CNS difficulty: medium
+[Statedef 1000]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 100)
+velset = 0,0
+anim = 1000
+ctrl = 0
+sprpriority = 2
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (5) >= 0) && (AnimElemTime (11) < 0)
+value = 15,0
+
+[State 6000, Helper]
+type = Helper
+trigger1 = animelem = 4
+helpertype = normal ;player
+name = "Trace"
+ID = 1001
+stateno = 1001
+postype = p1
+pos = ceil(0*const(size.xscale)), ceil(0*const(size.yscale))
+scale = ceil(1*const(size.xscale)), ceil(1*const(size.yscale))
+ownpal = 1
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 1;
+value = s1000, 0
+channel = 0
+
+[State 1000, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem = 5
+attr = S, SA
+animtype  = Hard
+damage    = 43, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 8,8
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=80), var(13):=-68
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 19
+ground.velocity = -4
+air.velocity = -4,-3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State 1000, 6] ;Opponent not near
+type = HitDef
+trigger1 = AnimElem = 7
+attr = S, SA
+animtype  = Hard
+damage    = 45, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority  = 4
+guardflag = MA
+hitflag = MAF
+pausetime = 12,15
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=80), var(13):=-57
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -7
+air.velocity = -4,-2.5
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(10)>=0
+movetype=I
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = (AnimElemTime (2)= 0)
+x = ceil(-37*const(size.xscale))
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = (AnimElemTime (3)= 0)
+x = ceil(20*const(size.xscale))
+
+[State 1000, 6]
+type = PosAdd
+trigger1 = AnimElem = 5
+x = ceil(36*const(size.xscale))
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;==================================================================
+; Kung Fu Palm
+; CNS difficulty: medium
+[Statedef 1010]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 100)
+velset = 0,0
+anim = 1010
+ctrl = 0
+sprpriority = 2
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (5) >= 0) && (AnimElemTime (11) < 0)
+value = 15,0
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 1;
+value = s1000, 0
+channel = 0
+
+[State 6000, Helper]
+type = Helper
+trigger1 = animelem = 4
+helpertype = normal ;player
+name = "Trace"
+ID = 1001
+stateno = 1001
+postype = p1
+pos = ceil(0*const(size.xscale)), ceil(0*const(size.yscale))
+scale = ceil(1*const(size.xscale)), ceil(1*const(size.yscale))
+ownpal = 1
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 4;
+value = s1, 3
+
+[State 1000, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem = 5
+attr = S, SA
+animtype  = Hard
+damage    = 53, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 8,8
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=80), var(13):=-68
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 19
+ground.velocity = -4
+air.velocity = -4,-3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State 1000, 6] ;Opponent not near
+type = HitDef
+trigger1 = AnimElem = 7
+attr = S, SA
+animtype  = Hard
+damage    = 55, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority  = 4
+guardflag = MA
+hitflag = MAF
+pausetime = 12,15
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=80), var(13):=-57
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -7
+air.velocity = -4,-2.5
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(10)>=0
+movetype=I
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = (AnimElemTime (2)= 0)
+x = ceil(-37*const(size.xscale))
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = (AnimElemTime (3)= 0)
+x = ceil(20*const(size.xscale))
+
+[State 1000, 6]
+type = PosAdd
+trigger1 = AnimElem = 5
+x = ceil(36*const(size.xscale))
+
+[State 1000, 6]
+type = VelSet
+trigger1 = AnimElem = 5
+x = 8
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelem = 8
+x = 0
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;==================================================================
+; Kung Fu Palm
+; CNS difficulty: medium
+[Statedef 1020]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 0)
+velset = 0,0
+anim = 1020
+ctrl = 0
+sprpriority = 2
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (5) >= 0) && (AnimElemTime (11) < 0)
+value = 15,0
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 1;
+value = s1000, 0
+channel = 0
+
+[State 6000, Helper]
+type = Helper
+trigger1 = animelem = 4
+helpertype = normal ;player
+name = "Trace"
+ID = 1001
+stateno = 1001
+postype = p1
+pos = ceil(0*const(size.xscale)), ceil(0*const(size.yscale))
+scale = ceil(1*const(size.xscale)), ceil(1*const(size.yscale))
+ownpal = 1
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 4;
+value = s1, 3
+
+[State 1000, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem = 5
+attr = S, SA
+animtype  = Hard
+damage    = 63, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 8,8
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=80), var(13):=-68
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 19
+ground.velocity = -4
+air.velocity = -4,-3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State 1000, 6] ;Opponent not near
+type = HitDef
+trigger1 = AnimElem = 7
+attr = S, SA
+animtype  = Hard
+damage    = 65, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority  = 4
+guardflag = MA
+hitflag = MAF
+pausetime = 12,15
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=80), var(13):=-57
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 19
+ground.velocity = -7
+air.velocity = -4,-2.5
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(10)>=0
+movetype=I
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = (AnimElemTime (2)= 0)
+x = ceil(-37*const(size.xscale))
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = (AnimElemTime (3)= 0)
+x = ceil(20*const(size.xscale))
+
+[State 1000, 6]
+type = PosAdd
+trigger1 = AnimElem = 5
+x = ceil(36*const(size.xscale))
+
+[State 1000, 6]
+type = VelSet
+trigger1 = AnimElem = 5
+x = 11
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelem = 8
+x = 0
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Kung Fu Knee
+; CNS difficulty: medium
+[Statedef 1050]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 100)
+velset = 0,0
+anim = 1050
+ctrl = 0
+sprpriority = 2
+
+[State 1050, NotHitBy]
+type = NotHitBy
+trigger1 = time = [4,6]
+value = SCA,NA,SA,NP,SP
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 1;
+value = s1050, 0
+channel = 0
+
+[State 1000, 6]
+type = PosAdd
+trigger1 = AnimElem = 2||animelem = 3
+x = ceil(20*const(size.xscale))
+
+[State 1050, 4]
+type = HitDef
+trigger1 = animelem = 3
+attr = A, SA
+animtype  = Low
+damage    = 40, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 12,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=60), var(13):=-68
+hitsound   = s2,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1,-7
+guard.velocity = -7
+air.velocity = -1,-7
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+
+[State 1050, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1051
+
+;--------------------------------------------------------------------------
+; Light Kung Fu Knee - jump
+[Statedef 1051]
+type    = A
+movetype= A
+physics = N
+velset = 1,-7.5
+anim = 1051
+
+[State 1051, 1] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = .45
+
+[State 1050, 4]
+type = HitDef
+trigger1 = Time = 0
+attr = A, SA
+animtype  = Up
+damage    = 40, 4
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 8,8
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=60), var(13):=-100
+hitsound  = s2,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1,-7
+guard.velocity = -7
+air.velocity = -1,-7
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+yaccel= .5
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(2)>=0
+movetype=I
+
+[State 1051, 2]
+type = ChangeState
+trigger1 = Command = "QCF_a"||Command = "QCF_b"||Command = "QCF_c"
+trigger1 = AnimElemTime(1) >= 6 && AnimElemTime(5) < 0
+value = 1055
+
+[State 1051, 3] ;Change state when KFM is close to ground
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= -10
+value = 1052
+
+;------------------------------------------------------------------
+; Light Kung Fu Knee - land.
+[Statedef 1052]
+type    = S
+movetype= I
+physics = S
+anim = 1052
+sprpriority = 1
+velset = 0,0
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+triggerall = prevstateno = 1261
+trigger1 = time = 0
+value = 1262
+
+[State 1052, 1] ;Reset y-position to ground level
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 1052, 2] ;Play a sound for landing
+type = PlaySnd
+trigger1 = Time = 0
+value = 40, 0
+
+[State 1052, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;------------------
+; Kung Fu Knee - kick
+[Statedef 1055]
+type    = A
+movetype= A
+physics = N
+velset = 3,-4
+anim = 1055
+
+[State 1055, 1]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 100,3
+channel = 0
+
+[State 1055, 2]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0, 1
+
+[State 1055, 4] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = .45
+
+[State 1055, 5]
+type = HitDef
+trigger1 = Time = 0
+attr = A, SA
+animtype  = Med
+damage    = 20, 2
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority  = 4
+guardflag = MA
+hitflag = MAF
+pausetime = 12,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=60), var(13):=-92
+hitsound   = s2,3
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 16
+ground.velocity = -6,5
+guard.velocity = -8
+guard.ctrltime = 12
+air.velocity = -4,-9
+airguard.velocity = -4,-4.5
+air.fall = 1
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+yaccel= .5
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(3)>=0
+movetype=I
+
+[State 1055, 6] ;Change state when KFM is close to ground
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= -5
+value = 1052
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+; Kung Fu Knee
+; CNS difficulty: medium
+[Statedef 1060]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 100)
+velset = 0,0
+anim = 1060
+ctrl = 0
+sprpriority = 2
+
+[State 1050, NotHitBy]
+type = NotHitBy
+trigger1 = time = [5,15]
+value = SCA,NA,SA,NP,SP
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 1;
+value = s1050, 0
+channel = 0
+
+[State 1000, 6]
+type = PosAdd
+trigger1 = AnimElem = 2||animelem = 3
+x = ceil(25*const(size.xscale))
+
+[State 1050, 4]
+type = HitDef
+trigger1 = animelem = 3
+attr = A, SA
+animtype  = Low
+damage    = 20, 4
+getpower = ifelse(numhelper(3051) , 0 , 20),ifelse(numhelper(3051) , 0 , 20)
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 12,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=60), var(13):=-68
+hitsound   = s2,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1,-7
+guard.velocity = -7
+air.velocity = -1,-7
+fall = 1
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State 1050, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1061
+
+;------------------
+; Light Kung Fu Knee - jump
+[Statedef 1061]
+type    = A
+movetype= A
+physics = N
+velset = 2,-9
+anim = 1061
+
+[State 1051, 1] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = .45
+
+[State 1050, 4]
+type = HitDef
+trigger1 = animelem = 1||animelem = 2||animelem= 3||animelem = 4
+attr = A, SA
+animtype  = Up
+damage    = 27, 4
+getpower = ifelse(numhelper(3051) , 0 , 20),ifelse(numhelper(3051) , 0 , 20)
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 6,6
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=60), var(13):=-100
+hitsound  = s2,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1,-7
+guard.velocity = -7
+air.velocity = -1,-7
+fall = 1
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+yaccel= .5
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(5)>=0
+movetype=I
+
+[State 1051, 2]
+type = ChangeState
+trigger1 = Command = "QCF_a"||Command = "QCF_b"||Command = "QCF_c"
+trigger1 = AnimElemTime(4) >= 2 && AnimElemTime(8) < 0
+value = 1055
+
+[State 1051, 3] ;Change state when KFM is close to ground
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= -10
+value = 1052
+
+;---------------------------------------------------------------------------
+; Kung Fu Knee
+; CNS difficulty: medium
+[Statedef 1070]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 100)
+velset = 0,0
+anim = 1070
+ctrl = 0
+sprpriority = 2
+
+[State 1050, NotHitBy]
+type = NotHitBy
+trigger1 = time = [5,15]
+value = SCA,NA,SA,NP,SP
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 1;
+value = s1050, 0
+channel = 0
+
+[State 1000, 6]
+type = PosAdd
+trigger1 = AnimElem = 2||animelem = 3
+x = ceil(25*const(size.xscale))
+
+[State 1050, 4]
+type = HitDef
+trigger1 = animelem = 3
+attr = A, SA
+animtype  = Low
+damage    = 20, 4
+getpower = ifelse(numhelper(3051) , 0 , 20),ifelse(numhelper(3051) , 0 , 20)
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 12,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=60), var(13):=-68
+hitsound   = s2,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1,-7
+guard.velocity = -7
+air.velocity = -1,-7
+fall = 1
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State 1050, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1071
+
+;------------------
+; Light Kung Fu Knee - jump
+[Statedef 1071]
+type    = A
+movetype= A
+physics = N
+velset = 2,-11
+anim = 1071
+
+[State 1051, 1] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = .45
+
+[State 1050, 4]
+type = HitDef
+trigger1 = animelem = 1||animelem = 2||animelem= 3||animelem = 4||animelem = 5||animelem = 6
+attr = A, SA
+animtype  = Up
+damage    = 23, 4
+getpower = ifelse(numhelper(3051) , 0 , 20),ifelse(numhelper(3051) , 0 , 20)
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 6,6
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=60), var(13):=-100
+hitsound  = s2,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1,-7
+guard.velocity = -7
+air.velocity = -1,-7
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+yaccel= .5
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(7)>=0
+movetype=I
+
+[State 1051, 2]
+type = ChangeState
+trigger1 = Command = "QCF_a"||Command = "QCF_b"||Command = "QCF_c"
+trigger1 = AnimElemTime(6) >= 2 && AnimElemTime(10) < 0
+value = 1055
+
+[State 1051, 3] ;Change state when KFM is close to ground
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= -10
+value = 1052
+
+
+;---------------------------------------------------------------------------
+;=============================================================
+; Light Kung Fu Palm - Part 1
+; CNS difficulty: medium
+[Statedef 1100]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 20)
+velset = 0,0
+anim = 1100
+ctrl = 0
+sprpriority = 2
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (6) < 0)
+value = 15,0
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 2
+x = 10
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 5
+x = 0
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 3;
+value = s1100, 0
+channel = 0
+
+[State 10001, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem <=2
+attr = S, SA
+animtype  = Hard
+damage    = 40, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 10,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=70), var(13):=-76
+hitsound   = s2,2
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 21
+ground.velocity = -4,0
+air.velocity = -2.7,-3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(5)>=0
+movetype=I
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit || time > 10
+trigger1 = command = "QCF_x"||command = "QCF_y"||command = "QCF_z"
+value = 1101
+ctrl = 0
+;=============================================================
+; Light Kung Fu Palm - Part 1
+; CNS difficulty: medium
+[Statedef 1101]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 20)
+velset = 0,0
+anim = 1101
+ctrl = 0
+sprpriority = 2
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (6) < 0)
+value = 15,0
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 2
+x = 10
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 5
+x = 0
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 2
+value = s1100, 1
+channel = 0
+
+[State 0, Explod]
+type = Explod
+trigger1 = animelem = 3
+anim = 1105
+pos = 0,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .75,1
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 0
+
+[State 10001, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem <=2
+attr = S, SA
+animtype  = Hard
+damage    = 40, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 10,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=70), var(13):=-98
+hitsound   = s2,2
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 21
+ground.velocity = -4,0
+air.velocity = -2.7,-3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(5)>=0
+movetype=I
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit || time > 10
+trigger1 = command = "QCF_x"||command = "QCF_y"||command = "QCF_z"
+value = 1103
+ctrl = 0
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit || time >= 10
+trigger1 = command = "forward_x"||command = "forward_y"||command = "forward_z"
+value = 1102
+ctrl = 0
+
+
+;---------------------------------------------------------------------------
+; Light Kung Fu Palm - Part 3
+; CNS difficulty: medium
+[Statedef 1102]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 20)
+velset = 0,0
+anim = 1102
+ctrl = 0
+sprpriority = 2
+
+[State 1000, Width]
+type = Width
+trigger1 = AnimElem = 3, >= 0
+value = 39,0
+
+[State 1002, 1]
+type = PlaySnd
+trigger1 = animelem = 5
+value = 1100, 2
+channel = 0
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 3
+x = 7
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 8
+x = 0
+
+[State 0, Explod]
+type = Explod
+trigger1 = animelem = 5
+anim = 1106
+pos = 0,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .75,1
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 0
+
+[State 1055, 5]
+type = HitDef
+trigger1 = animelem = 6
+attr = A, SA
+animtype  = Med
+damage    = 50, 2
+getpower = ifelse(numhelper(3051) , 0 , 75),ifelse(numhelper(3051) , 0 , 75)
+priority  = 4
+guardflag = MA
+hitflag = MAF
+pausetime = 12,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=70), var(13):=-60
+hitsound   = s2,3
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 16
+ground.velocity = -7,-5
+guard.velocity = -8
+guard.ctrltime = 12
+air.velocity = -7,-4.45
+airguard.velocity = -4,-4.5
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+fall.recovertime = 65
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(7)>=0
+movetype=I
+
+[State 1002, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------------
+; Light Kung Fu Palm - Part 3
+; CNS difficulty: medium
+[Statedef 1103]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 20)
+velset = 0,0
+anim = 1103
+ctrl = 0
+sprpriority = 2
+
+[State 1002, 1]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 1100, 3
+channel = 0
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 1
+x = 9
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 4
+x = 0
+
+[State 0, Explod]
+type = Explod
+trigger1 = animelem = 1
+anim = 1107
+pos = 0,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .75,1
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 0
+
+[State 1002, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem =2
+attr = S, SA
+animtype  = Back
+damage    = 30, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 12,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=60), var(13):=-60
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -1,-3
+air.velocity = -1
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+fall.recover = 0
+
+[State 1055, 5]
+type = HitDef
+trigger1 = animelem = 3
+attr = S, SA
+animtype  = Med
+damage    = 34, 2
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority  = 4
+guardflag = MA
+hitflag = MAF
+pausetime = 12,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=40), var(13):=-92
+hitsound   = s2,3
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 16
+ground.velocity = -5,-9
+guard.velocity = -8
+guard.ctrltime = 12
+air.velocity = -5,-9
+airguard.velocity = -4,-4.5
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+fall.recovertime = 65
+yaccel = .5
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(4)>=6
+movetype=I
+
+[State 1002, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;=============================================================
+; Light Kung Fu Palm - Part 1
+; CNS difficulty: medium
+[Statedef 1110]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 20)
+velset = 0,0
+anim = 1110
+ctrl = 0
+sprpriority = 2
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (6) < 0)
+value = 15,0
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 2
+x = 13
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 5
+x = 0
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 3;
+value = s1100, 0
+channel = 0
+
+[State 10001, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem <=2
+attr = S, SA
+animtype  = Hard
+damage    = 46, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 10,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=70), var(13):=-76
+hitsound   = s2,2
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 24
+ground.velocity = -4,0
+air.velocity = -2.7,-3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(5)>=0
+movetype=I
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit || time > 11
+trigger1 = command = "QCF_x"||command = "QCF_y"||command = "QCF_z"
+value = 1111
+ctrl = 0
+;=============================================================
+; Light Kung Fu Palm - Part 1
+; CNS difficulty: medium
+[Statedef 1111]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 0)
+velset = 0,0
+anim = 1111
+ctrl = 0
+sprpriority = 2
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (6) < 0)
+value = 15,0
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 2
+x = 13
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 5
+x = 0
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 2
+value = s1100, 1
+channel = 0
+
+[State 0, Explod]
+type = Explod
+trigger1 = animelem = 3
+anim = 1105
+pos = 0,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .75,1
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 0
+
+[State 10001, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem <=2
+attr = S, SA
+animtype  = Hard
+damage    = 46, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 10,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=70), var(13):=-98
+hitsound   = s2,2
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 25
+ground.velocity = -4,0
+air.velocity = -2.7,-3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(5)>=0
+movetype=I
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit || time > 11
+trigger1 = command = "QCF_x"||command = "QCF_y"||command = "QCF_z"
+value = 1103
+ctrl = 0
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit || time >= 11
+trigger1 = command = "forward_x"||command = "forward_y"||command = "forward_z"
+value = 1102
+ctrl = 0
+
+;=============================================================
+; Light Kung Fu Palm - Part 1
+; CNS difficulty: medium
+[Statedef 1120]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 20)
+velset = 0,0
+anim = 1120
+ctrl = 0
+sprpriority = 2
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (6) < 0)
+value = 15,0
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 2
+x = 16.5
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 5
+x = 0
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 3;
+value = s1100, 0
+channel = 0
+
+[State 10001, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem <=2
+attr = S, SA
+animtype  = Hard
+damage    = 52, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 10,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=70), var(13):=-76
+hitsound   = s2,2
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 27
+ground.velocity = -4,0
+air.velocity = -2.7,-3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(5)>=0
+movetype=I
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit || time > 13
+trigger1 = command = "QCF_x"||command = "QCF_y"||command = "QCF_z"
+value = 1121
+ctrl = 0
+;=============================================================
+; Light Kung Fu Palm - Part 1
+; CNS difficulty: medium
+[Statedef 1121]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 20)
+velset = 0,0
+anim = 1121
+ctrl = 0
+sprpriority = 2
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (1) >= 0) && (AnimElemTime (6) < 0)
+value = 15,0
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 2
+x = 16.5
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 5
+x = 0
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 2
+value = s1100, 1
+channel = 0
+
+[State 0, Explod]
+type = Explod
+trigger1 = animelem = 3
+anim = 1105
+pos = 0,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .75,1
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 0
+
+[State 10001, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem <=2
+attr = S, SA
+animtype  = Hard
+damage    = 52, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 10,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=70), var(13):=-98
+hitsound   = s2,2
+guardsound = s6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 27
+ground.velocity = -4,0
+air.velocity = -2.7,-3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(5)>=0
+movetype=I
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit || time > 13
+trigger1 = command = "QCF_x"||command = "QCF_y"||command = "QCF_z"
+value = 1103
+ctrl = 0
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit || time >= 13
+trigger1 = command = "forward_x"||command = "forward_y"||command = "forward_z"
+value = 1102
+ctrl = 0
+;=============================================================
+; Light Kung Fu Palm - Part 1
+; CNS difficulty: medium
+[Statedef 1150]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 50)
+velset = 0,0
+anim = 1150
+ctrl = 0
+sprpriority = 2
+
+[State 1000, 6]
+type = PosAdd
+trigger1 = AnimElem = 2;||animelem = 3
+x = ceil(30*const(size.xscale))
+
+[State 1050, NotHitBy]
+type = NotHitBy
+trigger1 = time = [5,15]
+value = ,AP;,SA,NP,SP
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (3) >= 0) && (AnimElemTime (5) < 0)
+value = 15,0
+
+[State 3000, Dust]
+type = Explod
+trigger1 = animelem = 3
+scale = .5, .5
+anim = 7106
+pos = 0, 0
+sprpriority = 3
+
+[State 1000, VelAdd]
+type = VelAdd
+trigger1 = animelem = 3
+x = 9
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = AnimElemTime (6) >= 1
+x = 0
+
+[State 420, 1]
+type = PlaySnd
+trigger1 = animelem = 1
+value = s1150, 0
+channel = 0
+
+[State 10001, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem =5
+attr = S, SA
+animtype  = Hard
+damage    = 60, 4
+getpower = ifelse(numhelper(3051) , 0 , 75),ifelse(numhelper(3051) , 0 , 75)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 12,10
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=40), var(13):=-85
+hitsound   = s2,5
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 18
+ground.velocity = -4,0
+air.velocity = -4,0
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(6)>=0
+movetype=I
+
+[State 210, 3]
+type = ChangeAnim
+trigger1 = AnimElemTime(5) > 0 && AnimElemTime(6) <= 0
+trigger1 = movecontact
+ignorehitpause = 1
+persistent = 0
+value = 1150
+elem = 6
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit; && animelemtime(4)>=0
+trigger1 = command = "forward_x"||command = "forward_y"||command = "forward_z"
+value = 1151
+ctrl = 0
+;=============================================================
+; Light Kung Fu Palm - Part 1
+; CNS difficulty: medium
+[Statedef 1151]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 20)
+velset = 0,0
+anim = 1151
+ctrl = 0
+sprpriority = 2
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (3) >= 0) && (AnimElemTime (5) < 0)
+value = 15,0
+
+[State 3000, Dust]
+type = Explod
+trigger1 = animelem = 3
+scale = .5, .5
+anim = 7106
+pos = 0, 0
+sprpriority = 3
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 3
+x = 9
+
+[State 1000, VelAdd]
+type = VelSet
+trigger1 = animelem = 5
+x = 0
+
+[State 420, 1]
+type = PlaySnd
+trigger1 = animelem = 4
+value = s100, 3
+channel = 0
+
+[State 10001, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem <=2
+attr = S, SA
+animtype  = Hard
+damage    = 45, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 10,10
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=50), var(13):=-76
+hitsound   = s2,6
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 21
+ground.velocity = -3,-8
+air.velocity = -3,-7.3
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+fall.recover = 0
+yaccel = .5
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(5)>=6
+movetype=I
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;=============================================================
+; Light Kung Fu Palm - Part 1
+; CNS difficulty: medium
+[Statedef 1160]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 50)
+velset = 0,0
+anim = 1160
+ctrl = 0
+sprpriority = 2
+
+[State 1000, 6]
+type = PosAdd
+trigger1 = AnimElem = 2;||animelem = 3
+x = ceil(30*const(size.xscale))
+
+[State 1050, NotHitBy]
+type = NotHitBy
+trigger1 = time = [5,19]
+value = ,AP;,SA,NP,SP
+
+[State 3000, Dust]
+type = Explod
+trigger1 = animelem = 3
+scale = .5, .5
+anim = 7106
+pos = 0, 0
+sprpriority = 3
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (3) >= 0) && (AnimElemTime (5) < 0)
+value = 15,0
+
+[State 1000, VelAdd]
+type = VelAdd
+trigger1 = animelem = 3
+x = 14
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = AnimElemTime (5) >= 1
+x = 0
+
+[State 420, 1]
+type = PlaySnd
+trigger1 = animelem = 1
+value = s1150, 0
+channel = 0
+
+[State 10001, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem =4
+attr = S, SA
+animtype  = Hard
+damage    = 75, 4
+getpower = ifelse(numhelper(3051) , 0 , 75),ifelse(numhelper(3051) , 0 , 75)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 12,10
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=40), var(13):=-85
+hitsound   = s2,5
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 18
+ground.velocity = -4,0
+air.velocity = -4,0
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(5)>=0
+movetype=I
+
+[State 210, 3]
+type = ChangeAnim
+trigger1 = AnimElemTime(4) > 0 && AnimElemTime(5) <= 0
+trigger1 = movecontact
+ignorehitpause = 1
+persistent = 0
+value = 1150
+elem = 6
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit ;&& animelemtime(4)>=0
+trigger1 = command = "forward_x"||command = "forward_y"||command = "forward_z"
+value = 1151
+ctrl = 0
+
+;=============================================================
+; Light Kung Fu Palm - Part 1
+; CNS difficulty: medium
+[Statedef 1170]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 50)
+velset = 0,0
+anim = 1170
+ctrl = 0
+sprpriority = 2
+
+[State 1000, 6]
+type = PosAdd
+trigger1 = AnimElem = 2;||animelem = 3
+x = ceil(30*const(size.xscale))
+
+[State 1050, NotHitBy]
+type = NotHitBy
+trigger1 = time = [5,20]
+value = ,AP;,SA,NP,SP
+
+[State 3000, Dust]
+type = Explod
+trigger1 = animelem = 3
+scale = .5, .5
+anim = 7106
+pos = 0, 0
+sprpriority = 3
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (3) >= 0) && (AnimElemTime (5) < 0)
+value = 15,0
+
+[State 1000, VelAdd]
+type = VelAdd
+trigger1 = animelem = 3
+x = 18
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = AnimElemTime (5) >= 1
+x = 0
+
+[State 420, 1]
+type = PlaySnd
+trigger1 = animelem = 1
+value = s1150, 0
+channel = 0
+
+[State 10001, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem <=2
+attr = S, SA
+animtype  = Hard
+damage    = 93, 4
+getpower = ifelse(numhelper(3051) , 0 , 75),ifelse(numhelper(3051) , 0 , 75)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 12,10
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=40), var(13):=-85
+hitsound   = s2,5
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 18
+ground.velocity = -4,0
+air.velocity = -4,0
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(5)>=0
+movetype=I
+
+[State 210, 3]
+type = ChangeAnim
+trigger1 = AnimElemTime(4) > 0 && AnimElemTime(5) <= 0
+trigger1 = movecontact
+ignorehitpause = 1
+persistent = 0
+value = 1150
+elem = 6
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall = movehit; && animelemtime(4)>=0
+trigger1 = command = "forward_x"||command = "forward_y"||command = "forward_z"
+value = 1151
+ctrl = 0
+;---------------------------------------------------------------------------
+; Light Kung Fu Blow
+; CNS difficulty: easy
+; Notes: This uses the EnvShake controller to shake the screen. It makes the
+;        move look stronger.
+[Statedef 1200]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 100)
+velset = 0,0
+anim = 1200
+ctrl = 0
+sprpriority = 2
+
+[State 1000, 6]
+type = PosAdd
+trigger1 = animelem=3||animelem=4||animelem=5||animelem=6||animelem=7
+x = ceil(3*const(size.xscale))
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = animelem = 10
+x = ceil(-72*const(size.xscale))
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = animelem = 11
+x = ceil(-18*const(size.xscale))
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (3) >= 0) && (AnimElemTime (10) < 0)
+value = 15,0
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 3
+value = s1200, 0
+channel = 0
+
+[State 1002, 5] ;Opponent near
+type = HitDef
+trigger1 = AnimElem =8
+attr = S, SA
+animtype  = Back
+damage    = 45, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority=4,Hit
+guardflag = MA
+hitflag = MAF
+pausetime = 12,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=70), var(13):=-60
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2,-3
+air.velocity = -7
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+fall.recover = 0
+
+[State 1055, 5]
+type = HitDef
+trigger1 = animelem = 9
+attr = A, SA
+animtype  = Up
+damage    = 45, 2
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority  = 4
+guardflag = MA
+hitflag = MAF
+pausetime = 12,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=70), var(13):=-92
+hitsound   = s2,3
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 16
+ground.velocity = -1,-13
+guard.velocity = -8
+guard.ctrltime = 12
+air.velocity = -1,-13
+airguard.velocity = -4,-4.5
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+fall.recovertime = 50
+yaccel = .5
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(10)>=0
+movetype=I
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) != 1
+triggerall =  time = [26,45]
+trigger1 = command = "QCF_x"||command = "QCF_y"||command = "QCF_z"
+value = 1205
+ctrl = 0
+
+[State 1000, 8]
+type = ChangeState
+triggerall = var(7) >= 1
+triggerall =  time = 39
+trigger1 = random<333
+value = 1205
+ctrl = 0
+
+[State 1200, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------------
+; Light Kung Fu Blow
+; CNS difficulty: easy
+[Statedef 1205]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 20)
+velset = 0,0
+anim = 1205
+ctrl = 0
+sprpriority = 2
+
+[State 3000, Dust]
+type = Explod
+trigger1 = animelem = 3
+scale = .5, .5
+anim = 7106
+pos = 0, 0
+sprpriority = 3
+
+[State 210, Width]
+type = Width
+trigger1 = (AnimElemTime (3) >= 0) && (AnimElemTime (5) < 0)
+value = 15,0
+
+[State 3060, VelAdd]
+type = Velset
+trigger1 = AnimElem=3
+x = 10
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = animelem = 3
+x = ceil(45*const(size.xscale))
+
+[State 3060, VelAdd]
+type = VelSet
+trigger1 = AnimElem=5
+x = 0
+
+[State 0, Explod]
+type = Explod
+trigger1 = animelem = 3
+anim = 1206
+pos = 0,0
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = -1
+removetime = -2
+scale = .75,1
+sprpriority = 3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 1
+ignorehitpause = 0
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 3
+value = s1205, 0
+channel = 0
+
+[State 1002, 5] ;Opponent near
+type = HitDef
+trigger1 = time = 0
+attr = S, SA
+animtype  = Back
+damage    = 40, 4
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority=4,Hit
+hitflag = MAFD
+guardflag = AL
+pausetime = 12,12
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=80), var(13):=-33
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -2,-3
+air.velocity = -7
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+fall.recover = 0
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(4)>=0
+movetype=I
+
+[State 1200, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;==================================================================
+; Kung Fu Palm
+; CNS difficulty: medium
+[Statedef 1250]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 60)
+velset = 0,0
+anim = 1250
+ctrl = 0
+sprpriority = 2
+
+[State 420, 1]
+type = PlaySnd
+trigger1 = animelem = 3
+value = s100, 4
+channel = 0
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = animelem = 3;
+value = s1, 3
+
+[State 1000, 5]
+type = HitDef
+triggerall = p2statetype != A
+trigger1 = AnimElem = 3
+attr = S, SA
+animtype  = Hard
+damage    = 5, 0
+getpower = ifelse(numhelper(3051) , 0 , 0),ifelse(numhelper(3051) , 0 , 0)
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 0,0
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=80), var(13):=-68
+hitsound   = s2,3
+guardsound = s6,0
+p1stateno = 1251
+p2facing  = 1
+;p2stateno = 1255
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(4)>=0
+movetype=I
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;==================================================================
+; Kung Fu Palm
+; CNS difficulty: medium
+[Statedef 1251]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 0)
+velset = 0,0
+anim = 1251
+ctrl = 0
+sprpriority = 2
+
+[State 0, TargetState]
+type = TargetState
+trigger1 = time = 0
+value = 1255
+
+[State 0, Width]
+type = Width
+trigger1 = 1
+edge = 90,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 5
+value = S1251,0
+channel = 0
+
+[State 0, EnvShake]
+type = EnvShake
+triggerall = anim = 1251
+trigger1 = animelem = 5
+time = 24
+
+[State 420, 1]
+type = PlaySnd
+triggerall = anim = 1251
+trigger1 = animelem = 9||animelem = 12
+value = s100, 4
+channel = 0
+
+[State 420, 1]
+type = PlaySnd
+triggerall = anim = 1252
+trigger1 = animelem = 2
+value = s100, 3
+channel = 0
+
+[State 810, Bind 5]
+type = TargetBind
+triggerall = anim = 1251
+trigger1 = AnimElemTime(1) >= 0 && AnimElemTime(2) < 0
+pos = ceil(73*const(size.xscale)), ceil(-85*const(size.yscale))
+
+[State 810, Bind 5]
+type = TargetBind
+triggerall = anim = 1251
+trigger1 = AnimElemTime(2) >= 0 && AnimElemTime(3) < 0
+pos = ceil(86*const(size.xscale)), ceil(-77*const(size.yscale))
+
+[State 810, Bind 5]
+type = TargetBind
+triggerall = anim = 1251
+trigger1 = AnimElem= 3
+pos = ceil(90*const(size.xscale)), ceil(0*const(size.yscale))
+
+[State 1000, 5]
+type = HitDef
+triggerall = p2statetype != A
+triggerall = anim = 1251
+trigger1 = AnimElem = 9||animelem = 12
+attr = S, SA
+animtype  = Hard
+damage    = 25, 0
+getpower = ifelse(numhelper(3051) , 0 , 20),ifelse(numhelper(3051) , 0 , 20)
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 0,0
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=80), var(13):=-68
+hitsound   = s2,3
+guardsound = s6,0
+ground.type = Low
+ground.slidetime = 15
+ground.hittime  = 45
+ground.velocity = 0,0
+guard.velocity = -8
+guard.ctrltime = 12
+air.velocity = -1,-1
+airguard.velocity = -4,-4.5
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+p2stateno = 1256
+
+[State 1000, 5]
+type = HitDef
+triggerall = p2statetype != A
+triggerall = anim = 1252
+trigger1 = AnimElem = 2
+attr = S, SA
+animtype  = Hard
+damage    = 25, 0
+getpower = ifelse(numhelper(3051) , 0 , 50),ifelse(numhelper(3051) , 0 , 50)
+priority  = 5
+guardflag = MA
+hitflag = MAF
+pausetime = 0,0
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=80), var(13):=-68
+hitsound   = s2,3
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 15
+ground.hittime  = 16
+ground.velocity = -7,-5
+guard.velocity = -8
+guard.ctrltime = 12
+air.velocity = -7,-4.45
+airguard.velocity = -4,-4.5
+envshake.time=16
+envshake.freq=30
+envshake.ampl=4
+fall = 1
+fall.recover = 0
+
+[State AttackDone]
+type=statetypeset
+triggerall = anim = 1252
+trigger1= animelemtime(3)>=0
+movetype=I
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 = time = 148
+value = 1252
+
+[State 1000, 7]
+type = ChangeState
+triggerall = anim = 1252
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;==========================================
+;Hyper Slash Opponent
+[Statedef 1255]
+type = S
+movetype = H
+physics = N
+velset = 0,0
+
+[State 0, ScreenBound]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 0,0
+
+[State 3063, 1]
+type = ChangeAnim2
+Trigger1 = Time = 0
+value = 1255
+
+[State 3063, 1]
+type = ChangeAnim
+Trigger1 = Time = 22
+value = 5300
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,NP,SP,HP,NT,ST,HT
+
+[State 0, HitBy]
+type = HitBy
+trigger1 = 1
+value = SCA,SA,HA
+
+[State 0, HitFallSet]
+type = HitFallSet
+trigger1 = 1
+value = 0
+
+[State 3063, SelfState]
+type = SelfState
+trigger1 = time = 140
+value = 0
+ctrl = 1
+;------------------------------------------------------
+;Grounder-(Grounds opponent if hit in air)
+[Statedef 1256]
+type    = S
+movetype= H
+physics = S
+velset = 0,0
+ctrl = 0
+
+[State 0, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 1256
+
+[State 0, 2]
+type = posset
+trigger1 = 1
+y = 0
+
+[State 0, 2]
+type = velset
+trigger1 = Time = 0
+y = 0
+
+[State 0, 2]
+type = HitFallSet
+trigger1 = Time = 0
+value = 0
+
+[State 0, 3]
+type = SelfState
+trigger1 = time >= 40
+value = 5000
+;---------------------------------------------------------------------------
+; Stomp
+; CNS difficulty: medium
+[Statedef 1260]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+poweradd = ifelse(numhelper(3051) , 0 , 50)
+velset = 0,0
+anim = 1260
+ctrl = 0
+sprpriority = 2
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+triggerall = prevstateno!=450||p2statetype!=L||(p2stateno!=[5100,5109])
+trigger1 = time = 0
+value = 1260
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+triggerall = prevstateno=450||p2statetype=L||(p2stateno=[5100,5109])
+trigger1 = time = 0
+value = 1265
+
+;[State 0, ChangeAnim]
+;type = ChangeAnim
+;triggerall = (p2stateno!=[5100,5109])
+;trigger1 = time = 0
+;value = 1265
+
+[State -3, Jumping Dust]
+type = Helper
+helpertype = normal
+trigger1 = animelem = 2
+stateno = 7100
+pos = 0, 0
+sprpriority = -1
+
+[State 0, StateTypeSet]
+type = StateTypeSet
+trigger1 = animelem >= 2
+statetype = A
+physics = N
+
+[State 1200, Vel]
+type=velset
+triggerall = prevstateno!=450||p2statetype!=L||(p2stateno!=[5100,5109])
+trigger1= animelem>=2
+x=p2dist x/((14+((14**2)-(4*.375*(enemynear(0),const(size.height))))**.5)/.75)
+y=-14
+persistent=0
+
+[State 1200, Vel]
+type=velset
+triggerall = prevstateno=450||p2statetype=L||(p2stateno=[5100,5109])
+trigger1= animelem>=2
+x=p2dist x/((14+((14**2)-(4*.375*(enemynear(0),const(size.height))))**.25)/1)
+y=-13
+persistent=0
+
+[State 1200, Vel]
+type=turn
+trigger1= animelem=2 && vel x<0
+persistent=0
+
+[State 1200, Vel]
+type=velset
+trigger1= animelem=2 && vel x>10
+x=10
+
+[State 1200, Vel]
+type=velset
+trigger1= animelem=2 && vel x<0
+x=0
+
+[State 0, VelAdd]
+type = VelAdd
+triggerall = anim = 1260
+trigger1 = time >6
+y = 1
+
+[State 0, VelAdd]
+type = VelAdd
+triggerall = anim = 1265
+trigger1 = time >6
+y = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 1
+value = S100,4
+channel = 0
+
+[State 1303, hit]
+type=hitdef
+trigger1= animelem=5
+attr=A,SA
+damage=42,4
+animtype=Hard
+guardflag=HA
+hitflag=MAF
+priority=4,Hit
+pausetime= 6,4
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=20), var(13):=-14
+hitsound=s2,6
+guardsound=s2,0
+ground.type=High
+ground.slidetime=16
+ground.hittime=16
+ground.velocity=-vel x,10
+air.type=Low
+air.velocity=-vel x,8
+fall.yvelocity=0
+givepower=200
+envshake.time=12
+envshake.freq=60
+envshake.ampl=5
+fall=1
+fall.recover=0
+airguard.ctrltime= 16
+airguard.velocity= -8, -1.5
+forcestand=1
+
+[State 1051, 3] ;Change state when KFM is close to ground
+type = ChangeState
+triggerall = time > 6
+trigger1 = Vel Y > 0 && Pos Y >= -10
+value = 1261
+;------------------
+; Light Kung Fu Knee - land.
+[Statedef 1261]
+type    = C
+movetype= A
+physics = S
+anim = 1261
+sprpriority = 1
+velset = 0,0
+
+[State 1052, 1] ;Reset y-position to ground level
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S1251,0
+channel = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time=15
+x = -4
+y = -5
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = time >=15
+y = .5
+
+[State 0, StateTypeSet]
+type = StateTypeSet
+trigger1 = animelem = 3
+statetype = A
+physics = N
+
+[State 1304, hit]
+type=hitdef
+trigger1= animelem=1
+attr=C,SA
+damage=83,7
+animtype=Hard
+guardflag=M
+hitflag=FD
+priority=4,Hit
+pausetime= 16,24
+sparkno = -1 * (var(10):=7010)**0
+guard.sparkno=s7060
+sparkxy = -10 + 0*(var(12):=20), var(13):=-4
+hitsound=s2,6
+guardsound=s2,0
+ground.type=High
+ground.slidetime=12
+ground.slidetime=16
+ground.hittime=16
+air.type=Low
+air.velocity=-7,7
+down.velocity=0,0
+down.bounce=0
+getpower= 75
+givepower=36,36
+envshake.time=12
+envshake.freq=60
+envshake.ampl=6
+fall=1
+fall.recover=0
+forcestand=1
+
+[State AttackDone]
+type=statetypeset
+trigger1= animelemtime(2)>=0
+movetype=I
+
+[State 1304, shake]
+type=envshake
+trigger1= !time
+time=12
+freq=60
+ampl=4
+
+[State 1051, 3] ;Change state when KFM is close to ground
+type = ChangeState
+triggerall = time > 15
+trigger1 = Vel Y > 0 && Pos Y >= 0
+value = 1052
+
+;---------------------------------------------------------------------------
+;Tiger Slash
+[Statedef 2500]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= -750
+velset = 0,0
+anim = 2500
+ctrl = 0
+sprpriority = 2
+
+[State 9001, Explod]
+type = Explod
+trigger1 = (!Time)
+anim = 2600
+id = 2600
+pos = 0,0
+postype	= left
+facing = 1
+vfacing = 1
+bindtime = -1
+vel = 0,0
+accel = 0,0
+random = 0,0
+scale = 1,1
+removetime = 3
+supermove = 0
+supermovetime = 99999
+pausemovetime = 99999
+scale = 1,1
+sprpriority = -3
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+
+[State 1200, 1]
+type = PlaySnd
+trigger1 = (!Time)
+value = s2600, 0
+
+[State -3, ExFlash]
+type=palfx
+trigger1= time = 0
+time=10
+add=32+ceil(sin(gametime/1.5)*32),32+ceil(sin(gametime/1.5)*32),0
+mul=300,300,200
+ignorehitpause=1
+
+[State 3000, Dust]
+type = Explod
+trigger1 = animelem = 6
+scale = 1, 1
+anim = 7106
+pos = 0, 0
+sprpriority = 3
+
+[State 3060, VelAdd]
+type = Velset
+trigger1 = AnimElem=6
+x = 9
+
+[State 3060, VelAdd]
+type = VelSet
+trigger1 = AnimElem=7
+x = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 6
+value = s100, 2
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem =6
+value = s1, 3
+
+[State 200, 1]
+type = HitDef
+trigger1 = time = 0
+attr = S, SA
+damage = 137, 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+getpower = 0
+priority = 3, Hit
+pausetime = 9, 12
+sparkno = s7010+(random%8)
+sparkxy = -10, -80
+guard.sparkno = s7060
+hitsound = S2, 9
+guardsound = S0, 0
+ground.type = High
+ground.slidetime = 0
+ground.hittime  = 15
+ground.velocity = 3, -4
+airguard.velocity = 0,-.8
+air.type = High
+air.velocity = 3,-4
+air.hittime = 15
+fall = 1
+air.fall = 1
+p1stateno = 2501
+
+
+[State 3060, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------------
+;Super Combo
+[Statedef 2501]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+velset = 11,0
+anim = 3001
+ctrl = 0
+sprpriority = 2
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State -2, burn]
+type = Helper
+trigger1 = time = 0
+name = "Slash"
+ID = 3007
+pos = target, const(size.mid.pos.x), target, const(size.mid.pos.y)
+stateno = 3007
+ownpal = 1
+supermovetime = 99999
+pausemovetime = 99999
+ignorehitpause = 1
+persistent = 0
+
+[State 3060, VelAdd]
+type = VelSet
+trigger1 = AnimElem=3
+x = 0
+
+[State 0, Turn]
+type = Turn
+trigger1 = animelem = 3
+
+[State 3060, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1

@@ -1,0 +1,165 @@
+Nanaya_K (Shiki Nanaya Arranged) by Kohaku for 1.0
+======================================================
+
+This is Nanaya from Melty Blood. He is not accurate to the source game and instead plays to a custom style.
+
+------------------------------------------------------
+
+Movelist:
+
+p = Any punch button (x/y/z)
+k = Any kick button (a/b/c)
+pp = Press any 2 punch buttons simultaneously
+kk = Press any 2 kick buttons simultaneously
+[EX] = Perform an enhanced version of the attack by pressing an additional button (D,F,p -> D,F,pp), costs 500 power
+
+Basic Standing
+==============
+Punch - x
+Elbow thrust - y
+Knife swing - z
+Elbow poke - a
+Kick - b
+Overhead kick - c
+
+Basic Crouching
+===============
+Punch - x
+Thrust - y
+Rising Slash - z 
+Kick - a
+Sweeping kick - b
+Slide kick - c
+
+Basic Jumping
+=============
+Punch - x
+Sweep slash - y
+Downward thrust - z
+Knee - a
+Sweep Slash - b
+Overhead Kick - c
+
+Abilities
+=========
+Side Step - x+a
+Dodge roll forward - F,x+a
+Dodge roll backward - B,x+a
+Throw - F+z or c/B+z or c
+Parry - F (before an incoming standing or air attack)
+Crouching parry - D (before an incoming crouching/low attack)
+Air parry - F (while in the air before an incoming attack)
+Power Charge - y+b
+Guard Counter - F+y+b (While blocking and requires 1000 power)
+Back Flip - B,B (after back dashing)
+Awakening* - z+c (requires 3000 power)
+- 15% attack bonus
+- Slow health regen
+- EX Attacks can be used (uses up 10% of the Awakening gauge)
+- Level 1 supers can be used (uses 20% of the Awakening gauge)
+- Unlimited use of Guard Counter
+- Activation can be used as a roman cancel from some attacks to extend combos
+
+Special moves
+=============
+Hattenshou - D,F,p [EX]
+Hassen - D,B,x
+Nanaya - D,B,y
+Hitokaze - D,B,z
+Rikuto - F,D,DF,k [EX]
+--> Press k for a follow up attack
+Ikka - D,B,k [EX] 
+--> Press k for a follow up attack
+Warui Ne - D+k (can only done in the air at the peak of a neutral or forward jump)
+
+Level 1 Supers (requires 1000 power)
+==============
+Meigokushamon - D,F,D,F,p
+-->Hold D right when the attack starts for a low version
+Ichiriyotsuji - D,B,D,B,k
+
+Level 2 Supers (requires 2000 power)
+=============
+Sensa: Meigokushamon - D,F,D,F,pp
+Sensa: Ichiriyotsuji - D,B,D,B,kk
+
+Level 3 Hyper (requires 3000 power)
+=============
+Kyokushi Nanaya - D,F,D,B,p
+------------------------------------------------------
+
+Update log(v2.1)
+==========
+2-24-11: 
+- Nanaya_K released
+
+10-31-11:
+- Low version of Meigokushamon now deals less damage and won't travel as high.
+- Added some after image effects to both versions of Meigokushamon.
+- Both versions of Ichiroyotsuji will now only KO on the last hit (unless guarding).
+- Increased push back on Hattenshou and will now only cornerpush on the last hit.
+- EX Rikuto doesn't launch the opponent as high anymore.
+- Changes to the damage dampener so it's not as strict anymore.
+- Adjustments to damage on some attacks to accomodate the updated dampener.
+- Revamped parry mechanic to address problems with parrying projectiles.
+- Fixes to cmd file to prevent clashing of certain commands.
+- Implemented a defense modifier that adjusts according to the character's remaining life.
+- Implemented dodge roll.
+- Normal attacks will now cause chip damage while in Overlimit.
+- New Super FX and sounds.
+- Changed up the envshakes of most attacks for better effect.
+- Made compatible with Akiha's Kemono wo Kogasu.
+- Intro with Rajaa's Shiki (1.0 version only).
+- New running animation.
+- New big portrait.
+
+1-28-12:
+- Adjustments to pausetimes on several attacks which didn't transfer well to 1.0.
+- Can now cancel out of a landing animation with the exception of some attacks
+- Fixed health regen during overlimit to prevent it from being affected by hit pauses.
+- Reworked envshakes on most attacks.
+- New super sparks.
+
+9-28-12:
+- Overlimit revamp.
+- New Super Portrait animations.
+- New Super Combo Finish animation.
+- New slash sounds.
+- Reduced damage for Kyokushi Nanaya.
+- Kyokushi Nanaya's hit box has been set higher.
+- Increased invulnerable frames of EX Rikuto.
+- Jumping medium punch/kick now hits twice.
+- Added a unique intro with V.Akiha.
+- Adjustments and fixes to intro with Rajaa's Shiki to accomodate the new portrait style
+
+3-18-14:
+- Updates to Awakening system.
+- Awakened attacks added.
+- Ikka follow-up attack is now an overhead.
+- Standing parry boxes altered.
+- Updated voice clips.
+------------------------------------------------------
+
+Future Updates:
+===============
+- More super/special moves possibly
+- Hit/guard sparks
+- More intros/winposes
+- More alterations and fixes
+------------------------------------------------------
+
+Special Thanks:
+===============
+- NxL, Liger, RicePigeon, and Orochi Gill for beta testing
+- PotS for the effects and references regarding his system 
+- Buckus for references with the chaining and damage dampener
+- Vyn for the super/hyper combo finish effects
+- Khn for using his sff as a base
+------------------------------------------------------
+
+Contact Info:
+=============
+If you have any questions please contant me through my email or through the thread of which this character was posted in.
+
+Email: Kohaku@mugen-infantry.net
+Website: http://kohaku.mugen-infantry.net 

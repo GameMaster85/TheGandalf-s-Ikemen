@@ -1,0 +1,1029 @@
+;@@@@@@@@@@@@@@@@@@@@@@@Shiki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@Shiki By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+;=========================================================================
+;Lose Pose
+;=========================================================================
+[Statedef 170]
+type=S
+ctrl=0
+velset=0,0
+
+[state 170,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 170,anim]
+type=changeanim
+trigger1=!time
+value=170
+
+[state 170,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+;=========================================================================
+;Win Pose Decider
+;=========================================================================
+[statedef 180]
+type=S
+
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=!time
+value=1+(random%12)
+
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Arcueid"||enemy,name="RajaaArcueid"||enemy,name="Arcueid_Brunestud"
+value=20
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Sion"||enemy,name="RajaaSion"||enemy,name="Sion_Eltnam_Atlasia"
+value=21
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Akiha"||enemy,name="RajaaAkiha"||enemy,name="Akiha_Tohno"||enemy,name="Tohno_Akiha"
+value=22
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Akiha_Vermillion"||enemy,name="RajaaVAkiha"||enemy,name="VAkiha_K"
+value=23
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Miyako"||enemy,name="RajaaMiyako"||enemy,name="Arima_Miyako"||enemy,name="Miyako_Arima"
+value=24
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Nanaya"||enemy,name="RajaaNanaya"||enemy,name="Shiki_Nanaya"||enemy,name="Nanaya_Shiki"||enemy,name="Nanaya_K"
+value=25
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Mech-Hisui"||enemy,name="RajaaMech-Hisui"||enemy,name="Mech_Hisui"||enemy,name="Mecha_Hisui"
+value=26
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Kohaku"||enemy,name="RajaaKohaku"||enemy,name="Kohaku_K"
+value=27
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Hisui"||enemy,name="RajaaHisui"||enemy,name="Hisui_K"
+value=28
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Ciel"||enemy,name="RajaaCiel"
+value=29
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Aoko"||enemy,name="RajaaAoko"||enemy,name="Aoko_Aozaki"||enemy,name="Aozaki_Aoko"
+value=30
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Roa"||enemy,name="RajaaRoa"||enemy,name="Michael_Roa_Valdamjong"
+value=31
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=numenemy
+trigger1=enemy,name="Satsuki"||enemy,name="RajaaSatsuki"||enemy,name="Yumizuka_Satsuki"||enemy,name="Satsuki_Yumizuka"
+value=32
+
+[state 180,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+
+[state 180,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 180,Win]
+type=changeState
+trigger1=!time
+value=181
+;=========================================================================
+;Win Pose 1
+;=========================================================================
+[Statedef 181]
+type=S
+ctrl=0
+sprpriority=2
+velset=0,0
+
+[state 181,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 181,anim]
+type=changeanim
+trigger1=!time
+value=180+random%2
+
+[state 181,roop]
+type=assertspecial
+trigger1=time=[0,270]
+flag=roundnotover
+
+[state 181,bolii]
+type=playsnd
+trigger1=!animelemtime(9)
+value=s180,anim=181
+volumescale=100
+channel=0
+;=========================================================================
+;Intro Pose Decider
+;=========================================================================
+[Statedef 190]
+type=S
+ctrl=0
+velset=0,0
+
+[state 190,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+
+[state 190,Evil]
+type=changestate
+triggerall=numenemy
+trigger1=enemy,name="Warakia"||enemy,name="RajaaWarakia"||enemy,name="Warakia_K"||enemy,name="Warachia"
+trigger2=enemy,name="Kouma"||enemy,name="RajaaKouma"||enemy,name="Kouma_K"
+trigger3=enemy,name="Nero"||enemy,name="RajaaNero"||enemy,name="Nero_K"
+value=197
+
+[state 190,Ciel]
+type=changestate
+trigger1=numenemy
+trigger1=enemy,name="Ciel"||enemy,name="RajaaCiel"||enemy,name="Ciel_K"
+value=198
+
+[state 190,Intro]
+type=changestate
+trigger1=!time
+value=191
+;=========================================================================
+;Intro Pose 1
+;=========================================================================
+[Statedef 191]
+type=S
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 191,anim]
+type=changeanim
+trigger1=!time
+value=190+random%2
+
+[state 191,anim]
+type=changeanim
+trigger1=numenemy
+trigger1=enemy,name="Nanaya"||enemy,name="RajaaNanaya"||enemy,name="Nanaya_K"||enemy,name="Nanaya_Shiki"
+value=192
+persistent=0
+
+[state 191,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 191,bolii]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s190,1*(anim=191)+2*(anim=192)
+channel=0
+
+[state 191,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+;=========================================================================
+;Intro Pose Evil
+;=========================================================================
+[Statedef 197]
+type=S
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 197,anim]
+type=changeanim
+trigger1=!time
+value=197
+
+[state 197,murna]
+type=varset
+trigger1=!time
+var(12)=16
+[state 197,murna]
+type=varadd
+trigger1=!animelemtime(5)
+var(12)=-1
+[state 197,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(5)
+value=anim
+elem=2
+
+[state 197,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 197,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+;=========================================================================
+;Intro Pose Ciel
+;=========================================================================
+[Statedef 198]
+type=S
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 198,anim]
+type=changeanim
+trigger1=!time
+value=198
+
+[state 198,murna]
+type=varset
+trigger1=!time
+var(12)=12
+[state 198,murna]
+type=varadd
+trigger1=!animelemtime(5)
+var(12)=-1
+[state 198,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(5)
+value=anim
+elem=2
+
+[state 198,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 198,bolii]
+type=playsnd
+trigger1=animelemtime(5)=90
+value=s190,3
+channel=0
+
+[state 198,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+;=========================================================================
+;Taunt
+;=========================================================================
+[Statedef 199]
+type=S
+movetype=I
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 199,anim]
+type=changeanim
+trigger1=!time
+value=199
+
+[state 199,bolii]
+type=playsnd
+trigger1=!animelemtime(10)
+value=s199,0
+volumescale=100
+channel=0
+
+[state 199,control]
+type=ctrlset
+trigger1=roundstate=2
+trigger1=time>35
+value=1
+
+[state 199,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
+;=========================================================================
+;Intro Nanaya - Wait
+;=========================================================================
+[Statedef 7200]
+type=S
+movetype=I
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 7200,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 7200,Camera]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Camera"
+ID=7299
+stateno=7299
+postype=p1
+pos=0,0
+facing=1
+ownpal=1
+keyctrl=0
+
+[state 7200,Background]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Background"
+ID=7298
+stateno=7298
+postype=p1
+pos=0,0
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+
+[state 7200,anim]
+type=changeanim
+trigger1=!time
+value=stateno
+
+[state 7200,dharna]
+type=posadd
+trigger1=time=1
+x=fvar(39)
+[state 7200,dharna]
+type=turn
+trigger1=time=1
+
+[state 7200,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 7200,roop]
+type=screenbound
+trigger1=1
+value=0
+movecamera=0,0
+
+[state 7200,badalna]
+type=changestate
+trigger1=numenemy
+trigger1=enemy,stateno=7205
+value=7205
+;=========================================================================
+;Intro Nanaya - Prepare
+;=========================================================================
+[Statedef 7205]
+type=S
+movetype=I
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 7205,anim]
+type=changeanim
+trigger1=!time
+value=stateno
+
+[state 7205,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 7205,roop]
+type=screenbound
+trigger1=1
+value=0
+movecamera=0,0
+
+[state 7205,badalna]
+type=changestate
+trigger1=numenemy
+trigger1=enemy,stateno=7205
+trigger1=enemy,animelemtime(6)>=0
+value=7210
+;=========================================================================
+;Intro Nanaya - Dodge
+;=========================================================================
+[Statedef 7210]
+type=S
+movetype=I
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 7210,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 7210,anim]
+type=changeanim
+trigger1=!time
+value=stateno
+
+[state 7210,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 7210,roop]
+type=screenbound
+trigger1=1
+value=0
+movecamera=0,0
+
+[state 7210,roop]
+type=trans
+trigger1=animelemtime(7)>=0
+trans=addalpha
+alpha=256-(43*(time-8)),(43*(time-8))
+
+[state 7210,avaaz]
+type=playsnd
+trigger1=!animelemtime(7)
+value=s1,16
+volumescale=100
+
+[state 7210,prakash]
+type=explod
+trigger1=!animelemtime(7)
+id=8515
+anim=8515
+postype=p1
+pos=0,0
+bindtime=1
+random=0,0
+velocity=0,0
+accel=0,0
+ownpal=1
+scale=0.5,0.5
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+
+[state 7210,Shadow]
+type=helper
+trigger1=!animelemtime(6)
+trigger2=!animelemtime(7)
+trigger3=!animelemtime(8)
+trigger4=!animelemtime(9)
+helpertype=normal
+name="Shadow"
+ID=7297
+stateno=7297
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+
+[state 7210,badalna]
+type=changestate
+trigger1=!animtime
+value=7215
+;=========================================================================
+;Intro Nanaya - Attack
+;=========================================================================
+[Statedef 7215]
+type=A
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 7215,anim]
+type=changeanim
+trigger1=!time
+value=stateno
+
+[state 7215,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 7215,roop]
+type=screenbound
+trigger1=1
+value=0
+movecamera=0,0
+
+[state 7215,roop]
+type=playerpush
+trigger1=animelemno(0)=[1,14]
+value=0
+
+[state 7215,roop]
+type=turn
+trigger1=!animelemtime(8)
+
+[state 7215,bolii]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s2,11
+volumescale=100
+channel=0
+[state 7215,avaaz]
+type=playsnd
+trigger1=!animelemtime(2)
+value=s1,3
+volumescale=100
+
+[state 7215,jodo]
+type=posadd
+trigger1=!animelemtime(1)
+x=p2dist x+50
+y=-55
+
+[state 7215,shiighrataa]
+type=velset
+trigger1=!animelemtime(2)
+x=0.0
+y=-7.734375
+[state 7215,shiighrataa]
+type=veladd
+trigger1=animelemtime(2)>0
+y=0.5859375
+
+[state 7215,Energy]
+type=helper
+trigger1=!animelemtime(2)
+helpertype=normal
+name="Energy"
+ID=1065
+stateno=1000
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=0.5
+size.yscale=0.5
+
+[state 7215,Shadow]
+type=helper
+trigger1=!animelemtime(2)
+trigger2=!animelemtime(5)
+trigger3=!animelemtime(8)
+trigger4=!animelemtime(11)
+trigger5=!animelemtime(14)
+helpertype=normal
+name="Shadow"
+ID=7297
+stateno=7297
+postype=p1
+facing=1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+
+[state 7215,badalna]
+type=changestate
+trigger1=pos y>=0
+trigger1=vel y>0
+value=7220
+;=========================================================================
+;Intro Nanaya - Land
+;=========================================================================
+[Statedef 7220]
+type=S
+movetype=I
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 7220,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 7220,anim]
+type=changeanim
+trigger1=!time
+value=stateno
+
+[state 7220,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 7220,roop]
+type=screenbound
+trigger1=1
+value=0
+movecamera=0,0
+
+[state 7220,avaaz]
+type=playsnd
+trigger1=!animelemtime(1)
+value=s52,0
+volumescale=100
+
+[state 7220,Land-Smoke]
+type=helper
+trigger1=!animelemtime(1)
+helpertype=normal
+name="Land-Smoke"
+id=8505
+stateno=8505
+postype=P1
+ownpal=1
+keyctrl=0
+size.xscale=1.0
+size.yscale=1.0
+supermovetime=65536
+pausemovetime=65536
+
+[state 7220,badalna]
+type=changeState
+trigger1=!animtime
+value=7225
+ctrl=0
+;=========================================================================
+;Intro Nanaya - Prepare
+;=========================================================================
+[Statedef 7225]
+type=S
+movetype=I
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 7225,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 7225,anim]
+type=changeanim
+trigger1=!time
+value=stateno
+
+[state 7225,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 7225,roop]
+type=screenbound
+trigger1=1
+value=0
+movecamera=0,0
+
+[state 7225,avaaz]
+type=playsnd
+trigger1=!animelemtime(5)
+value=s1,2
+volumescale=100
+
+[state 7225,jodo]
+type=posadd
+trigger1=animelemno(0)>=5
+x=5.859375
+
+[state 7225,badalna]
+type=changestate
+trigger1=p2dist x<=164
+trigger1=animelemtime(6)>=0
+value=7230
+;=========================================================================
+;Intro Nanaya - Clash
+;=========================================================================
+[Statedef 7230]
+type=S
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 7230,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 7230,anim]
+type=changeanim
+trigger1=time<20
+value=anim
+elem=animelemno(0)
+
+[state 7230,anim]
+type=changeanim
+trigger1=time=20
+value=stateno
+
+[state 7230,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 7230,roop]
+type=screenbound
+trigger1=1
+value=0
+movecamera=0,0
+
+[state 7230,roop]
+type=trans
+trigger1=anim=stateno
+trigger1=animelemtime(10)>=0
+trans=addalpha
+alpha=256-(64*(time-28)),(64*(time-28))
+
+[state 7230,avaaz]
+type=playsnd
+trigger1=!time
+value=s120,10
+volumescale=100
+
+[state 7230,avaaz]
+type=playsnd
+trigger1=anim=stateno
+trigger1=!animelemtime(10)
+value=s1,16
+volumescale=100
+
+[state 7230,hilaav]
+type=envshake
+trigger1=!time
+time=12
+ampl=6
+
+[state 7230,prakash]
+type=explod
+trigger1=anim=stateno
+trigger1=!animelemtime(10)
+id=8515
+anim=8515
+postype=p1
+pos=0,0
+bindtime=1
+random=0,0
+velocity=0,0
+accel=0,0
+ownpal=1
+scale=0.5,0.5
+sprpriority=5
+supermovetime=-1
+pausemovetime=-1
+
+[state 7230,Hit_Sparks:_Activate]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Hit_Spark"
+id=8700
+stateno=8710
+postype=p1
+pos=96,-42
+ownpal=1
+keyctrl=0
+pausemovetime=99999999999999999
+supermovetime=99999999999999999
+
+[state 7225,badalna]
+type=changestate
+trigger1=!animtime
+value=7235
+;=========================================================================
+;Intro Nanaya - Reappear
+;=========================================================================
+[Statedef 7235]
+type=S
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=1
+
+[state 7235,dharna]
+type=posset
+trigger1=!time
+y=0
+
+[state 7235,anim]
+type=changeanim
+trigger1=!time
+value=stateno
+
+[state 7235,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 7235,roop]
+type=screenbound
+trigger1=!time
+value=0
+movecamera=0,0
+
+[state 7235,roop]
+type=trans
+trigger1=animelemtime(2)>=0
+trigger1=animelemtime(10)<0
+trans=addalpha
+alpha=(32*(time-8)),256-(32*(time-8))
+
+[state 7231,dharna]
+type=posset
+trigger1=numhelper(7299)
+trigger1=!time
+x=helper(7299),pos x
+
+[state 7231,badalna]
+type=changestate
+trigger1=!animtime
+value=0
+;=========================================================================
+;Intro Nanaya - Shadow
+;=========================================================================
+[Statedef 7297]
+type=A
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 7297,anim]
+type=varset
+trigger1=!time
+var(0)=parent,anim
+[state 7297,anim]
+type=varset
+trigger1=!time
+var(1)=parent,animelemno(0)
+[state 7297,anim]
+type=changeanim
+trigger1=1
+value=var(0)
+elem=var(1)
+
+[state 7297,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=-1
+
+[state 7297,roop]
+type=assertspecial
+trigger1=1
+flag=noshadow
+
+[state 7297,roop]
+type=trans
+trigger1=time
+trans=addalpha
+alpha=256-(4*time),(4*time)
+
+[state 7297,marna]
+type=destroyself
+trigger1=time>64
+;=========================================================================
+;Intro Nanaya - Background
+;=========================================================================
+[Statedef 7298]
+type=A
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 7298,anim]
+type=changeanim
+trigger1=!time
+value=9999
+
+[state 7298,bind]
+type=bindtoparent
+trigger1=1
+pos=0,-10
+
+[state 7298,roop]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=nobardisplay
+flag3=nomusic
+
+[state 7298,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 7298,avaaz]
+type=playsnd
+trigger1=parent,stateno=7210
+trigger1=!parent,animelemtime(7)
+value=s1,13
+volumescale=100
+
+[state 7298,darken]
+type=bgpalfx
+trigger1=enemy,stateno>=7205
+trigger1=enemy,time>=40
+trigger1=var(2)<8
+trigger1=var(2):=var(2)+1
+time=1
+mul=0+(16*var(2)),0+(16*var(2)),0+(16*var(2))
+add=0,0,0
+color=256-(16*var(2))
+invertall=0
+[state 7298,darken]
+type=bgpalfx
+trigger1=var(2)=8
+trigger1=!var(3)
+time=1
+mul=256-(16*var(2)),256-(16*var(2)),256-(16*var(2))
+add=0,0,0
+color=256-(16*var(2))
+invertall=0
+[state 7298,darken]
+type=bgpalfx
+trigger1=parent,stateno=7235
+trigger1=var(3)<8
+trigger1=var(3):=var(3)+1
+time=1
+mul=(16*var(2))+(16*var(3)),(16*var(2))+(16*var(3)),(16*var(2))+(16*var(3))
+add=0,0,0
+color=(16*var(2))+(16*var(3))
+invertall=0
+
+[state 7298,marna]
+type=removeexplod
+trigger1=root,stateno!=[7200,7235]
+[state 7298,marna]
+type=destroyself
+trigger1=root,stateno!=[7200,7235]
+;=========================================================================
+;Intro Nanaya - Camera
+;=========================================================================
+[Statedef 7299]
+type=A
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+
+[state 7299,anim]
+type=changeanim
+trigger1=anim!=9999
+value=9999
+
+[state 7299,roop]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 7299,kaas]
+type=screenbound
+trigger1=1
+value=1
+movecamera=1,1
+
+[state 7299,marna]
+type=destroyself
+trigger1=root,stateno!=[7200,7235]

@@ -1,0 +1,248 @@
+; _____________
+;| Iori by Hero |
+; ¯¯¯¯¯¯¯¯¯¯¯¯¯
+;============================================================================================
+;=====================================<PALFX CONFIG FILE>=====================================
+;============================================================================================
+;=========<Config>==========
+[Statedef 24560]
+anim=9741
+
+; Give PALFX for P2 when Iori attacks enemy with flame attacks. 
+; Notice you may change PALFX for every palette
+; var(40)= RED
+; var(41)= GREEN
+; var(42)= BLUE
+; Suggested values beetwen 0 - 256
+
+;PALLETE 1
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 1
+var(40)= 165 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 1
+var(41)= 64 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 1
+var(42)= 256 ;<-Modify this value
+
+
+
+
+;PALLETE 2
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 2
+var(40)= 165 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 2
+var(41)= 64 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 2
+var(42)= 256 ;<-Modify this value
+
+
+
+
+;PALLETE 3
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 3
+var(40)= 165 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 3
+var(41)= 64 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 3
+var(42)= 256 ;<-Modify this value
+
+
+
+
+;PALLETE 4
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 4
+var(40)= 165 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 4
+var(41)= 64 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 4
+var(42)= 256 ;<-Modify this value
+
+
+
+
+;PALLETE 5
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 5
+var(40)= 165 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 5
+var(41)= 64 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 5
+var(42)= 256 ;<-Modify this value
+
+
+
+
+;PALLETE 6
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 6
+var(40)= 165 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 6
+var(41)= 64 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 6
+var(42)= 256 ;<-Modify this value
+
+
+
+
+;PALLETE 7
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 7
+var(40)= 78 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 7
+var(41)= 78 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 7
+var(42)= 256 ;<-Modify this value
+
+
+
+
+;PALLETE 8
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 8
+var(40)= 64 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 8
+var(41)= 64 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 8
+var(42)= 256 ;<-Modify this value
+
+
+
+
+;PALLETE 9
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 9
+var(40)= 117 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 9
+var(41)= 103 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 9
+var(42)= 103 ;<-Modify this value
+
+
+
+
+;PALLETE 10
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 10
+var(40)= 165 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 10
+var(41)= 64 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 10
+var(42)= 256 ;<-Modify this value
+
+
+
+
+;PALLETE 11
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 11
+var(40)= 133 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 11
+var(41)= 133 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 11
+var(42)= 133 ;<-Modify this value
+
+
+
+
+;PALLETE 12
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 12
+var(40)= 191 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 12
+var(41)= 64 ;<-Modify this value
+
+[State 24560, ParentVarSet]
+type = ParentVarSet
+trigger1 = parent,PalNo = 12
+var(42)= 79 ;<-Modify this value
+
+
+
+
+[State 24560, DestroySelf]
+type = DestroySelf
+trigger1 = roundstate = 2

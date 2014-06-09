@@ -1,0 +1,362 @@
+hitsound=s200,30;@@@@@@@@@@@@@@@@@@@@@@@Amingo By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;@@@@@@@@@@@@@@@@@@@@@@@Amingo By RajaaBoy@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+[statedef 170]
+type=S
+ctrl=0
+velset=0,0
+
+[state 170,Jagah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 170,anim]
+type=changeanim
+trigger1=!time
+value=170
+
+[state 170,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+;---------------------------------------------------------------------------
+[statedef 180]
+type=S
+
+[state 180,Victory_Quote]
+type=victoryquote
+trigger1=!time
+value=1+(random%12)
+
+[state 180,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+
+[state 180,Jahah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[State 180,Win]
+type=changeState
+trigger1=!time
+value=181+(random%2)
+;---------------------------------------------------------------------------
+[Statedef 181]
+type=S
+ctrl=0
+sprpriority=0
+velset=0,0
+
+[state 181,Jahah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 181,Plant]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Plant"
+id=8001
+stateno=8001
+ownpal=1
+keyctrl=0
+postype=p1
+pos=0,0
+
+[state 181,anim]
+type=changeanim
+trigger1=anim!=180
+trigger1=time>10
+value=180
+
+[state 181,anim]
+type=changeanim
+trigger1=anim=180
+trigger1=numhelper(8001)
+trigger1=helper(8001),animelemtime(4)>=0&&helper(8001),animelemtime(10)<0
+value=anim
+elem=3
+[state 181,Invisible]
+type=assertspecial
+trigger1=anim=180
+trigger1=numhelper(8001)
+trigger1=helper(8001),animelemtime(4)>=0&&helper(8001),animelemtime(10)<0
+flag=invisible
+
+[state 181,bolii]
+type=playsnd
+trigger1=anim=180
+trigger1=!animelemtime(5)
+value=s180,0
+volume=255
+channel=0
+loop=1
+
+[state 181,na_kiye]
+type=assertspecial
+trigger1=time=[0,275]
+flag=roundnotover
+;---------------------------------------------------------------------------
+[Statedef 8001]
+type=S
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8000,rahnaa]
+type=bindtoparent
+trigger1=1
+pos=0,0
+
+[state 8000,anim]
+type=changeanim
+trigger1=!time
+value=8001
+
+[state 8000,atma_naash]
+type=destroyself
+trigger1=!animtime
+trigger2=roundstate!=4
+trigger3=parent,stateno!=181
+;---------------------------------------------------------------------------
+[Statedef 182]
+type=S
+ctrl=0
+sprpriority=0
+velset=0,0
+
+[state 182,Jahah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 182,anim]
+type=changeanim
+trigger1=!time
+value=181
+
+[state 182,bolii]
+type=playsnd
+trigger1=!animelemtime(3)
+value=S190,2
+volume=255
+channel=0
+
+[state 182,na_kiye]
+type=assertspecial
+trigger1=time=[0,200]
+flag=roundnotover
+;---------------------------------------------------------------------------
+[Statedef 190]
+type=S
+ctrl=0
+velset=0,0
+
+[state 190,ajay]
+type=nothitby
+trigger1=1
+value=SCA
+time=1
+
+[state 190,Intro]
+type=changestate
+trigger1=!time
+value=191+(random%2)
+;---------------------------------------------------------------------------
+[Statedef 191]
+type=S
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 191,Jahah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 191,intro]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 191,anim]
+type=changeanim
+trigger1=!time
+value=190
+
+[state 191,Plant]
+type=helper
+trigger1=!time
+helpertype=normal
+name="Plant"
+id=8000
+stateno=8000
+ownpal=1
+keyctrl=0
+postype=p1
+pos=0,0
+
+[state 191,anim]
+type=changeanim
+trigger1=numhelper(8000)
+trigger1=helper(8000),animelemtime(11)<0
+value=anim
+elem=1
+[state 191,Invisible]
+type=assertspecial
+trigger1=numhelper(8000)
+trigger1=helper(8000),animelemtime(11)<0
+flag=invisible
+
+[state 191,murna]
+type=varset
+trigger1=!time
+var(12)=2
+[state 191,murna]
+type=varadd
+trigger1=!animelemtime(8)
+var(12)=-1
+[state 191,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(8)
+value=anim
+elem=6
+
+[state 191,bolii[]
+type=playsnd
+trigger1=!animelemtime(5)
+value=s190,0+random%2
+volume=255
+channel=0
+
+[state 191,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+;---------------------------------------------------------------------------
+[Statedef 8000]
+type=S
+movetype=I
+physics=N
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 8000,rahnaa]
+type=bindtoparent
+trigger1=1
+pos=0,0
+
+[state 8000,anim]
+type=changeanim
+trigger1=!time
+value=8000
+
+[state 8000,murna]
+type=varset
+trigger1=!time
+var(12)=3
+[state 8000,murna]
+type=varadd
+trigger1=!animelemtime(6)
+var(12)=-1
+[state 8000,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(6)
+value=anim
+elem=1
+
+[state 8000,atma_naash]
+type=destroyself
+trigger1=!animtime
+trigger2=roundstate>1
+trigger3=parent,stateno!=191||parent,animelemtime(4)>=0
+;---------------------------------------------------------------------------
+[Statedef 192]
+type=S
+ctrl=0
+velset=0,0
+sprpriority=0
+
+[state 192,Jahah_Baithanaa]
+type=posset
+trigger1=!time
+y=0
+
+[state 192,intro]
+type=assertspecial
+trigger1=1
+flag=intro
+
+[state 192,anim]
+type=changeanim
+trigger1=!time
+value=191
+
+[state 1205,avaaz]
+type=playsnd
+trigger1=!animelemtime(4)
+value=s1205,1
+volume=255
+
+[state 192,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+;---------------------------------------------------------------------------
+[Statedef 199]
+type=S
+movetype=I
+physics=S
+ctrl=0
+velset=0,0
+sprpriority=2
+
+[state 199,anim]
+type=changeanim
+trigger1=!time
+value=199
+
+[state 199,murna]
+type=varset
+trigger1=!time
+var(12)=3
+[state 199,murna]
+type=varadd
+trigger1=!animelemtime(5)
+var(12)=-1
+[state 199,murna]
+type=changeanim
+trigger1=var(12)
+trigger1=!animelemtime(5)
+value=anim
+elem=2
+
+[state 199,ctrlset]
+type=ctrlset
+trigger1=roundstate=2&&time>35
+value=1
+
+[state 199,bolii]
+type=playsnd
+trigger1=!animelemtime(1)
+value=s190,0
+volume=255
+channel=0
+
+[state 199,siraa]
+type=changestate
+trigger1=!animtime
+value=0
+ctrl=1
