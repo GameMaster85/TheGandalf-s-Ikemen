@@ -23,9 +23,9 @@ lib sdl = <alpha/sdlplugin.ssz>;
 type k_t = |sdl.SDLKey;
 /%&Keys in;
 in.new[0].set(
-  -1, (int)k_t::UP, (int)k_t::DOWN, (int)k_t::LEFT, (int)k_t::RIGHT,
-  (int)k_t::z, (int)k_t::x, (int)k_t::c, (int)k_t::a, (int)k_t::s, (int)k_t::d,
-  (int)k_t::RETURN);
+  0, -3, -4, -1, -2,
+  0, 3, 5, 1, 2, 4,
+  9);
 
 
 const bool SaveMemory = true;
